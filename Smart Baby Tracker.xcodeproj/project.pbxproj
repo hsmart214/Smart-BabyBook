@@ -15,8 +15,6 @@
 		421C747118937535000E3C30 /* SBTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 421C747018937535000E3C30 /* SBTAppDelegate.m */; };
 		421C747418937535000E3C30 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 421C747218937535000E3C30 /* Main_iPhone.storyboard */; };
 		421C747718937535000E3C30 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 421C747518937535000E3C30 /* Main_iPad.storyboard */; };
-		421C747A18937535000E3C30 /* SBTMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 421C747918937535000E3C30 /* SBTMasterViewController.m */; };
-		421C747D18937535000E3C30 /* SBTDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 421C747C18937535000E3C30 /* SBTDetailViewController.m */; };
 		421C747F18937535000E3C30 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 421C747E18937535000E3C30 /* Images.xcassets */; };
 		421C748618937535000E3C30 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 421C748518937535000E3C30 /* XCTest.framework */; };
 		421C748718937535000E3C30 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 421C746018937535000E3C30 /* Foundation.framework */; };
@@ -48,10 +46,6 @@
 		421C747018937535000E3C30 /* SBTAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SBTAppDelegate.m; sourceTree = "<group>"; };
 		421C747318937535000E3C30 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
 		421C747618937535000E3C30 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
-		421C747818937535000E3C30 /* SBTMasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SBTMasterViewController.h; sourceTree = "<group>"; };
-		421C747918937535000E3C30 /* SBTMasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SBTMasterViewController.m; sourceTree = "<group>"; };
-		421C747B18937535000E3C30 /* SBTDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SBTDetailViewController.h; sourceTree = "<group>"; };
-		421C747C18937535000E3C30 /* SBTDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SBTDetailViewController.m; sourceTree = "<group>"; };
 		421C747E18937535000E3C30 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		421C748418937535000E3C30 /* Smart Baby TrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Smart Baby TrackerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		421C748518937535000E3C30 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -117,14 +111,8 @@
 		421C746618937535000E3C30 /* Smart Baby Tracker */ = {
 			isa = PBXGroup;
 			children = (
-				421C746F18937535000E3C30 /* SBTAppDelegate.h */,
-				421C747018937535000E3C30 /* SBTAppDelegate.m */,
 				421C747218937535000E3C30 /* Main_iPhone.storyboard */,
 				421C747518937535000E3C30 /* Main_iPad.storyboard */,
-				421C747818937535000E3C30 /* SBTMasterViewController.h */,
-				421C747918937535000E3C30 /* SBTMasterViewController.m */,
-				421C747B18937535000E3C30 /* SBTDetailViewController.h */,
-				421C747C18937535000E3C30 /* SBTDetailViewController.m */,
 				421C747E18937535000E3C30 /* Images.xcassets */,
 				421C746718937535000E3C30 /* Supporting Files */,
 			);
@@ -134,6 +122,8 @@
 		421C746718937535000E3C30 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				421C746F18937535000E3C30 /* SBTAppDelegate.h */,
+				421C747018937535000E3C30 /* SBTAppDelegate.m */,
 				421C746818937535000E3C30 /* Smart Baby Tracker-Info.plist */,
 				421C746918937535000E3C30 /* InfoPlist.strings */,
 				421C746C18937535000E3C30 /* main.m */,
@@ -260,9 +250,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				421C747118937535000E3C30 /* SBTAppDelegate.m in Sources */,
-				421C747A18937535000E3C30 /* SBTMasterViewController.m in Sources */,
 				421C746D18937535000E3C30 /* main.m in Sources */,
-				421C747D18937535000E3C30 /* SBTDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
