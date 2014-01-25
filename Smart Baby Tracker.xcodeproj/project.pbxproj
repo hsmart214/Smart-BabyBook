@@ -21,6 +21,7 @@
 		421C748818937535000E3C30 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 421C746418937535000E3C30 /* UIKit.framework */; };
 		421C749018937536000E3C30 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 421C748E18937536000E3C30 /* InfoPlist.strings */; };
 		421C749218937536000E3C30 /* Smart_Baby_TrackerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 421C749118937536000E3C30 /* Smart_Baby_TrackerTests.m */; };
+		4248806618944C84009F2837 /* SBTBaby.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248806518944C84009F2837 /* SBTBaby.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,8 @@
 		421C748D18937536000E3C30 /* Smart Baby TrackerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Smart Baby TrackerTests-Info.plist"; sourceTree = "<group>"; };
 		421C748F18937536000E3C30 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		421C749118937536000E3C30 /* Smart_Baby_TrackerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Smart_Baby_TrackerTests.m; sourceTree = "<group>"; };
+		4248806418944C84009F2837 /* SBTBaby.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTBaby.h; sourceTree = "<group>"; };
+		4248806518944C84009F2837 /* SBTBaby.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTBaby.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +116,7 @@
 			children = (
 				421C747218937535000E3C30 /* Main_iPhone.storyboard */,
 				421C747518937535000E3C30 /* Main_iPad.storyboard */,
+				4248806718944C90009F2837 /* Model */,
 				421C747E18937535000E3C30 /* Images.xcassets */,
 				421C746718937535000E3C30 /* Supporting Files */,
 			);
@@ -148,6 +152,15 @@
 				421C748E18937536000E3C30 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4248806718944C90009F2837 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4248806418944C84009F2837 /* SBTBaby.h */,
+				4248806518944C84009F2837 /* SBTBaby.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -250,6 +263,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				421C747118937535000E3C30 /* SBTAppDelegate.m in Sources */,
+				4248806618944C84009F2837 /* SBTBaby.m in Sources */,
 				421C746D18937535000E3C30 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -469,6 +483,7 @@
 				421C749718937536000E3C30 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		421C749818937536000E3C30 /* Build configuration list for PBXNativeTarget "Smart Baby TrackerTests" */ = {
 			isa = XCConfigurationList;
@@ -477,6 +492,7 @@
 				421C749A18937536000E3C30 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
