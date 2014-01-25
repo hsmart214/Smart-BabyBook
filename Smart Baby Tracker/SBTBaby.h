@@ -14,7 +14,7 @@
 
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSDate *DOB;
-@property (nonatomic, copy) NSDate *dueDate;    // this is optional.  If no due date, assume full term.
+@property (nonatomic, copy) NSDate *dueDate;    // this is optional.  If no due date, assume full term baby.
 @property (assign) SBTGender gender;
 
 -(instancetype)initWithCoder:(NSCoder *)aDecoder;
@@ -24,6 +24,7 @@
 -(instancetype)copy;
 
 -(void)addEncounter:(SBTEncounter *)encounter;
+-(NSTimeInterval)ageAtEncounter:(SBTEncounter *)encounter;
 
 +(BOOL)supportsSecureCoding;
 

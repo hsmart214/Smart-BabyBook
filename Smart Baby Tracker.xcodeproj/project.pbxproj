@@ -22,6 +22,8 @@
 		421C749018937536000E3C30 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 421C748E18937536000E3C30 /* InfoPlist.strings */; };
 		421C749218937536000E3C30 /* Smart_Baby_TrackerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 421C749118937536000E3C30 /* Smart_Baby_TrackerTests.m */; };
 		4248806618944C84009F2837 /* SBTBaby.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248806518944C84009F2837 /* SBTBaby.m */; };
+		4248806A189459D2009F2837 /* SBTEncounter.m in Sources */ = {isa = PBXBuildFile; fileRef = 42488069189459D2009F2837 /* SBTEncounter.m */; };
+		4248806D18945CE2009F2837 /* SBTVaccine.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248806C18945CE2009F2837 /* SBTVaccine.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +57,10 @@
 		421C749118937536000E3C30 /* Smart_Baby_TrackerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Smart_Baby_TrackerTests.m; sourceTree = "<group>"; };
 		4248806418944C84009F2837 /* SBTBaby.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTBaby.h; sourceTree = "<group>"; };
 		4248806518944C84009F2837 /* SBTBaby.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTBaby.m; sourceTree = "<group>"; };
+		42488068189459D2009F2837 /* SBTEncounter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTEncounter.h; sourceTree = "<group>"; };
+		42488069189459D2009F2837 /* SBTEncounter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTEncounter.m; sourceTree = "<group>"; };
+		4248806B18945CE2009F2837 /* SBTVaccine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTVaccine.h; sourceTree = "<group>"; };
+		4248806C18945CE2009F2837 /* SBTVaccine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTVaccine.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +165,10 @@
 			children = (
 				4248806418944C84009F2837 /* SBTBaby.h */,
 				4248806518944C84009F2837 /* SBTBaby.m */,
+				42488068189459D2009F2837 /* SBTEncounter.h */,
+				42488069189459D2009F2837 /* SBTEncounter.m */,
+				4248806B18945CE2009F2837 /* SBTVaccine.h */,
+				4248806C18945CE2009F2837 /* SBTVaccine.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -263,8 +273,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				421C747118937535000E3C30 /* SBTAppDelegate.m in Sources */,
+				4248806A189459D2009F2837 /* SBTEncounter.m in Sources */,
 				4248806618944C84009F2837 /* SBTBaby.m in Sources */,
 				421C746D18937535000E3C30 /* main.m in Sources */,
+				4248806D18945CE2009F2837 /* SBTVaccine.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

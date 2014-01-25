@@ -7,6 +7,7 @@
 //
 
 #import "SBTBaby.h"
+#import "SBTEncounter.h"
 
 @interface SBTBaby ()
 
@@ -23,8 +24,14 @@
     [self.encounters addObject:encounter];
 }
 
+-(NSTimeInterval)ageAtEncounter:(SBTEncounter *)encounter
+{
+    return [encounter.date timeIntervalSinceDate:self.DOB];
+}
+
 -(instancetype)copyWithZone:(NSZone *)zone
 {
+    // This init will automatically set the created and modified dates to now.
     SBTBaby *newBaby = [[SBTBaby alloc] initWithName:self.name andDOB:self.DOB];
     newBaby.dueDate = self.dueDate;
     newBaby.gender = self.gender;
