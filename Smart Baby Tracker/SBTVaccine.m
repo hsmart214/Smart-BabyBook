@@ -31,6 +31,13 @@
     return self;
 }
 
+-(instancetype)initWithName:(NSString *)name displayName:(NSString *)displayName manufacturer:(NSString *)man andComponents:(NSArray *)comps
+{
+    self = [self initWithName:name displayName:displayName andComponents:comps];
+    self.manufacturer = man;
+    return self;
+}
+
 -(void)encodeWithCoder:(NSCoder *)aCoder
 {
     [aCoder encodeObject:self.name forKey:@"name"];
@@ -71,6 +78,18 @@
 +(BOOL)supportsSecureCoding
 {
     return YES;
+}
+
++(NSDictionary *)vaccinesByTradeName
+{
+    static NSDictionary *allVaccs = nil;
+    if (!allVaccs){
+        allVaccs = @{
+                     @"Adacel":[[SBTVaccine alloc] initWithName:@"Adacel" displayName:@"Tdap" manufacturer:Sanofi andComponents:@[@(SBTComponentFDA_Approved),@(SBTComponentTet), @(SBTComponentDiph), @(SBTComponentAcelPert)]]
+                     
+                     };
+    }
+    return allVaccs;
 }
 
 @end

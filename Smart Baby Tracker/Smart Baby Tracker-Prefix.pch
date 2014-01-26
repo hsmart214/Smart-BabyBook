@@ -21,3 +21,9 @@ typedef enum {Intramuscular, Subcutaneous, Intradermal, Oral, Nasal} SBTVaccineR
 
 typedef enum {SBTComponentFDA_Approved, SBTComponentHiB, SBTComponentDiph, SBTComponentTet, SBTComponentAcelPert, SBTComponentWhcelPert, SBTComponentIPV, SBTComponentOPV, SBTComponentRota, SBTComponentPCV7, SBTComponentPCV13, SBTComponentPPV23, SBTComponentHepB, SBTComponentHepA, SBTComponentMeas, SBTComponentMumps, SBTComponentRub, SBTComponentVZV, SBTComponentMCV4, SBTComponentMPV4, SBTComponentMenB, SBTComponentMenC, SBTComponentMenCY, SBTComponentHPV2, SBTComponentHPV4, SBTComponentFlu, SBTComponentTyphLive, SBTComponentTyphInact, SBTComponentJapEnc } SBTComponent;
 
+static NSString * const Sanofi = @"Sanofi Pasteur";
+static NSString * const Glaxo = @"GlaxoSmithKline";
+static NSString * const Merck = @"Merck";
+static NSString * const Wyeth = @"Wyeth";
+static NSString * const Novartis = @"Novartis";
+static NSString * const MedImmune = @"MedImmune";

@@ -20,11 +20,15 @@
 
 -(instancetype)init;
 -(instancetype)initWithName:(NSString *)name displayName:(NSString *)displayName andComponents:(NSArray *)comps;    // Designated initializer
+-(instancetype)initWithName:(NSString *)name displayName:(NSString *)displayName manufacturer:(NSString *)man andComponents:(NSArray *)comps;
 -(instancetype)initWithCoder:(NSCoder *)aDecoder;
 -(void)encodeWithCoder:(NSCoder *)aCoder;
 
 -(instancetype)copy;
 
 +(BOOL)supportsSecureCoding;
+
++(NSDictionary *)vaccinesByTradeName;
++(NSDictionary *)vaccinesByGenericName;
 
 @end
