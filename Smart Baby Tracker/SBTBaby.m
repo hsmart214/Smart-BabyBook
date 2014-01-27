@@ -8,6 +8,7 @@
 
 #import "SBTBaby.h"
 #import "SBTEncounter.h"
+#import "SBTVaccine.h"
 
 @interface SBTBaby ()
 
@@ -18,6 +19,26 @@
 @end
 
 @implementation SBTBaby
+
+-(NSArray *)daysGivenVaccineComponent:(SBTComponent)component
+{
+    NSMutableArray *dates = [NSMutableArray array];
+    NSMutableArray *days = [NSMutableArray array];
+    
+    for (SBTEncounter *enc in self.encounters){
+        for (SBTVaccine *vacc in enc.vaccinesGiven){
+            if ([vacc includesEquivalentComponent:component]){
+                [dates addObject:enc.date];
+            }
+        }
+    }
+    for (NSDate *date in dates){
+        NSTimeInterval ageInSecs = [date timeIntervalSinceDate:self.DOB];
+        double ageInDays = ageInSecs / SBT_DAY;
+        [days addObject:@(ageInDays)];
+    }
+    return [days copy];
+}
 
 -(void)addEncounter:(SBTEncounter *)encounter
 {

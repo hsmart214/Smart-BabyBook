@@ -24,6 +24,7 @@
 		4248806618944C84009F2837 /* SBTBaby.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248806518944C84009F2837 /* SBTBaby.m */; };
 		4248806A189459D2009F2837 /* SBTEncounter.m in Sources */ = {isa = PBXBuildFile; fileRef = 42488069189459D2009F2837 /* SBTEncounter.m */; };
 		4248806D18945CE2009F2837 /* SBTVaccine.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248806C18945CE2009F2837 /* SBTVaccine.m */; };
+		42B601301895E1E6000C15F4 /* SBTVaccineSchedule.m in Sources */ = {isa = PBXBuildFile; fileRef = 42B6012F1895E1E6000C15F4 /* SBTVaccineSchedule.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,8 @@
 		42488069189459D2009F2837 /* SBTEncounter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTEncounter.m; sourceTree = "<group>"; };
 		4248806B18945CE2009F2837 /* SBTVaccine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTVaccine.h; sourceTree = "<group>"; };
 		4248806C18945CE2009F2837 /* SBTVaccine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTVaccine.m; sourceTree = "<group>"; };
+		42B6012E1895E1E6000C15F4 /* SBTVaccineSchedule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTVaccineSchedule.h; sourceTree = "<group>"; };
+		42B6012F1895E1E6000C15F4 /* SBTVaccineSchedule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTVaccineSchedule.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +172,8 @@
 				42488069189459D2009F2837 /* SBTEncounter.m */,
 				4248806B18945CE2009F2837 /* SBTVaccine.h */,
 				4248806C18945CE2009F2837 /* SBTVaccine.m */,
+				42B6012E1895E1E6000C15F4 /* SBTVaccineSchedule.h */,
+				42B6012F1895E1E6000C15F4 /* SBTVaccineSchedule.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -272,6 +277,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42B601301895E1E6000C15F4 /* SBTVaccineSchedule.m in Sources */,
 				421C747118937535000E3C30 /* SBTAppDelegate.m in Sources */,
 				4248806A189459D2009F2837 /* SBTEncounter.m in Sources */,
 				4248806618944C84009F2837 /* SBTBaby.m in Sources */,

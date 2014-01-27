@@ -26,6 +26,10 @@
 -(void)addEncounter:(SBTEncounter *)encounter;
 -(NSTimeInterval)ageAtEncounter:(SBTEncounter *)encounter;
 
+// will return an EMPTY ARRAY (not nil) if never received the component
+// to simplfy, the ages are given in DAYS (not NSTimeIntervals)
+-(NSArray *)daysGivenVaccineComponent:(SBTComponent)component;
+
 +(BOOL)supportsSecureCoding;
 
 @end

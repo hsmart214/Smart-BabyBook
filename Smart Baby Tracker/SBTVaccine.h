@@ -12,15 +12,17 @@
 
 // Required
 @property (nonatomic, copy) NSString *name;
-@property (nonatomic, copy) NSString *displayName;
+@property (nonatomic, copy) NSArray *displayNames;
 // Optional
 @property (nonatomic, copy) NSString *manufacturer;
 @property (nonatomic, copy) NSString *lotNumber;
 @property (nonatomic, copy) NSDate *expirationDate;
 
+-(BOOL)includesEquivalentComponent:(SBTComponent)component;
+
 -(instancetype)init;
--(instancetype)initWithName:(NSString *)name displayName:(NSString *)displayName andComponents:(NSArray *)comps;    // Designated initializer
--(instancetype)initWithName:(NSString *)name displayName:(NSString *)displayName manufacturer:(NSString *)man andComponents:(NSArray *)comps;
+-(instancetype)initWithName:(NSString *)name displayNames:(NSArray *)displayNames andComponents:(NSArray *)comps;    // Designated initializer
+-(instancetype)initWithName:(NSString *)name displayNames:(NSArray *)displayNames manufacturer:(NSString *)man andComponents:(NSArray *)comps;
 -(instancetype)initWithCoder:(NSCoder *)aDecoder;
 -(void)encodeWithCoder:(NSCoder *)aCoder;
 

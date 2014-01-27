@@ -27,6 +27,7 @@
 
 -(NSTimeInterval)timeIntervalSinceEncounter:(SBTEncounter *)encounter;
 
+// an array of SBTVaccine * objects
 -(NSArray *)vaccinesGiven;
 
 +(BOOL)supportsSecureCoding;
