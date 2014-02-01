@@ -10,12 +10,13 @@
 
 @interface SBTEncounter : NSObject <NSSecureCoding, NSCopying>
 
-@property (nonatomic, copy) NSDate *date;
+@property (nonatomic, readonly) NSDateComponents *dateComps;
 // measurements in metric units
 @property (nonatomic, assign) float weight;
 // only one linear growth measurement per encounter, the other will be ZERO
 @property (nonatomic, assign) float length;    // supine length
 @property (nonatomic, assign) float height;    // standing height
+@property (nonatomic, assign) float headCirc;
 
 -(instancetype)initWithDate:(NSDate *)date; // Designated initializer
 -(instancetype)init;
@@ -25,11 +26,9 @@
 -(void)addVaccines:(NSArray *)vaccinesGiven;
 -(void)removeVaccines:(NSArray *)vaccinesToRemove;
 
--(NSTimeInterval)timeIntervalSinceEncounter:(SBTEncounter *)encounter;
+-(NSInteger)daysSinceEncounter:(SBTEncounter *)encounter;
 
 // an array of SBTVaccine * objects
 -(NSArray *)vaccinesGiven;
-
-+(BOOL)supportsSecureCoding;
 
 @end

@@ -10,9 +10,11 @@
 #import "SBTEncounter.h"
 #import "SBTVaccine.h"
 
+#define PREMATURE_DAYS_EARLY 21
+
 @interface SBTBaby ()
 
-@property (nonatomic, strong) NSMutableArray *encounters;
+@property (nonatomic, strong) NSMutableSet *encounters;
 @property (nonatomic, copy) NSDate *dateCreated;
 @property (nonatomic, copy) NSDate *dateModified;
 
@@ -20,22 +22,65 @@
 
 @implementation SBTBaby
 
+-(BOOL)isPremature
+{   //TODO: fix the prematurity calculation
+    NSCalendar *cal = [NSCalendar currentCalendar];
+    NSCalendarUnit unitFlag = NSCalendarUnitDay;
+    NSDateComponents *comps = [cal components:unitFlag fromDate:self.dueDate.date toDate:self.DOB.date options:0];
+    return [comps day] > PREMATURE_DAYS_EARLY;
+}
+
+-(NSDateComponents *)ageAtDate:(NSDate *)date
+{
+    NSCalendarUnit unitFlags = NSCalendarUnitYear | NSCalendarUnitDay;
+    NSCalendar *cal = [NSCalendar currentCalendar];
+    // strip the birth time out of the DOB components
+    NSDateComponents *simpleDOBcomps = [[NSDateComponents alloc] init];
+    simpleDOBcomps.year = self.DOB.year;
+    simpleDOBcomps.month = self.DOB.month;
+    simpleDOBcomps.day = self.DOB.day;
+    NSDate *simpleDOB = [self.DOB.calendar dateFromComponents:simpleDOBcomps];
+    NSDateComponents *comps = [cal components:unitFlags fromDate:simpleDOB toDate:date options:0];
+    return comps;
+}
+
+-(void)setName:(NSString *)name
+{
+    self.name = name;
+    self.dateModified = [NSDate date];
+}
+
+-(void)setDOB:(NSDateComponents *)DOB
+{
+    DOB.calendar = [NSCalendar currentCalendar];
+    self.DOB = DOB;
+    self.dateModified = [NSDate date];
+}
+
+-(void)setDueDate:(NSDateComponents *)dueDate
+{
+    self.dueDate = dueDate;
+    self.dateModified = [NSDate date];
+}
+
+-(NSMutableSet *)encounters
+{
+    if (!_encounters){
+        _encounters = [NSMutableSet set];
+    }
+    return _encounters;
+}
+
 -(NSArray *)daysGivenVaccineComponent:(SBTComponent)component
 {
-    NSMutableArray *dates = [NSMutableArray array];
     NSMutableArray *days = [NSMutableArray array];
     
     for (SBTEncounter *enc in self.encounters){
         for (SBTVaccine *vacc in enc.vaccinesGiven){
             if ([vacc includesEquivalentComponent:component]){
-                [dates addObject:enc.date];
+                [days addObject:@([self ageInDaysAtEncounter:enc])];
             }
         }
-    }
-    for (NSDate *date in dates){
-        NSTimeInterval ageInSecs = [date timeIntervalSinceDate:self.DOB];
-        double ageInDays = ageInSecs / SBT_DAY;
-        [days addObject:@(ageInDays)];
     }
     return [days copy];
 }
@@ -43,11 +88,23 @@
 -(void)addEncounter:(SBTEncounter *)encounter
 {
     [self.encounters addObject:encounter];
+    self.dateModified = [NSDate date];
 }
 
--(NSTimeInterval)ageAtEncounter:(SBTEncounter *)encounter
+-(BOOL)removeEncounter:(SBTEncounter *)encounter
 {
-    return [encounter.date timeIntervalSinceDate:self.DOB];
+    BOOL present = [self.encounters containsObject:encounter];
+    if (present) {
+        [self.encounters removeObject:encounter];
+        self.dateModified = [NSDate date];
+    }
+    return present;
+}
+
+-(NSInteger)ageInDaysAtEncounter:(SBTEncounter *)encounter
+{
+    NSDateComponents *comps = [[NSCalendar currentCalendar] components:NSCalendarUnitDay fromDate:encounter.dateComps.date toDate:self.DOB.date options:0];
+    return [comps day];
 }
 
 -(instancetype)copyWithZone:(NSZone *)zone
@@ -79,24 +136,26 @@
 {
     if (self = [super init]){
         self.name = [aDecoder decodeObjectOfClass:[NSString class] forKey:@"name"];
-        self.DOB = [aDecoder decodeObjectOfClass:[NSDate class] forKey:@"DOB"];
-        self.dueDate = [aDecoder decodeObjectOfClass:[NSDate class] forKey:@"dueDate"];
-        self.gender = [aDecoder decodeIntegerForKey:@"gender"];
-        self.encounters = [aDecoder decodeObjectOfClass:[NSMutableArray class] forKey:@"encounters"];
+        self.DOB = [aDecoder decodeObjectOfClass:[NSDateComponents class] forKey:@"DOB"];
+        self.dueDate = [aDecoder decodeObjectOfClass:[NSDateComponents class] forKey:@"dueDate"];
+        self.gender = (SBTGender)[aDecoder decodeIntegerForKey:@"gender"];
+        self.encounters = [aDecoder decodeObjectOfClass:[NSMutableSet class] forKey:@"encounters"];
         self.dateCreated = [aDecoder decodeObjectOfClass:[NSDate class] forKey:@"dateCreated"];
         self.dateModified = [aDecoder decodeObjectOfClass:[NSDate class] forKey:@"dateModified"];
     }
     return self;
 }
 
--(instancetype)initWithName:(NSString *)name andDOB:(NSDate *)dob
+-(instancetype)initWithName:(NSString *)name andDOB:(NSDateComponents *)dob
 {
     if (self = [super init]){
         self.name = name;
         if (dob){
             self.DOB = dob;
         }else{
-            self.DOB = [NSDate date];
+            NSCalendarUnit unit = NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear;
+            self.DOB = [[NSCalendar currentCalendar] components:unit fromDate:[NSDate date]];
+            self.DOB.calendar = [NSCalendar currentCalendar];
         }
         self.dateCreated = [NSDate date];
         self.dateModified = [NSDate date];
@@ -105,7 +164,7 @@
 }
 
 -(instancetype)init{
-    return [self initWithName:nil andDOB:[NSDate date]];
+    return [self initWithName:nil andDOB:nil];
 }
 
 +(BOOL)supportsSecureCoding

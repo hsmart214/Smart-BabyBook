@@ -28,8 +28,6 @@
 
 -(instancetype)copy;
 
-+(BOOL)supportsSecureCoding;
-
 +(NSDictionary *)vaccinesByTradeName;
 +(NSDictionary *)vaccinesByGenericName;
 

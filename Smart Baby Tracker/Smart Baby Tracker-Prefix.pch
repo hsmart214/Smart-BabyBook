@@ -28,4 +28,14 @@ static NSString * const Wyeth = @"Wyeth";
 static NSString * const Novartis = @"Novartis";
 static NSString * const MedImmune = @"MedImmune";
 
+static NSString * const WHOBoyChart24mos = @"com.mySmartSoftware.whoboy24mos";
+static NSString * const WHOBoyChart5yrs = @"com.mySmartSoftware.whoboy5yrs";
+static NSString * const WHOBoyChart20yrs = @"com.mySmartSoftware.whoboy20yrs";
+static NSString * const WHOGirlChart24mos = @"com.mySmartSoftware.whogirl24mos";
+static NSString * const WHOGirlChart5yrs = @"com.mySmartSoftware.whogirl5yrs";
+static NSString * const WHOGirlChart20yrs = @"com.mySmartSoftware.whogirl20yrs";
+
+static NSString * const DownBoyChart = @"com.mySmartSoftware.downboy";
+static NSString * const DownGirlChart = @"com.mySmartSoftware.downgirl";
+
 #define SBT_DAY 86400.0F // NSTimeInterval = seconds in a day

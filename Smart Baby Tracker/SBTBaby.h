@@ -13,10 +13,18 @@
 @interface SBTBaby : NSObject <NSSecureCoding, NSCopying>
 
 @property (nonatomic, copy) NSString *name;
-@property (nonatomic, copy) NSDate *DOB;
-@property (nonatomic, copy) NSDate *dueDate;    // this is optional.  If no due date, assume full term baby.
+@property (nonatomic, copy) NSDateComponents *DOB;
+@property (nonatomic, copy) NSDateComponents *dueDate;    // this is optional.  If no due date, assume full term baby.
 @property (assign) SBTGender gender;
 
+-(BOOL)isPremature;
+
+// years, days only (no months)
+-(NSDateComponents *)ageAtDate:(NSDate *)date;
+
+// this DOB should have its calendar property set to the local calendar used to create it.
+// if the DOB has a time as well, its timeZone property should also be set.
+-(instancetype)initWithName:(NSString *)name andDOB:(NSDateComponents *)dob;
 -(instancetype)initWithCoder:(NSCoder *)aDecoder;
 -(void)encodeWithCoder:(NSCoder *)aCoder;
 
@@ -24,12 +32,10 @@
 -(instancetype)copy;
 
 -(void)addEncounter:(SBTEncounter *)encounter;
--(NSTimeInterval)ageAtEncounter:(SBTEncounter *)encounter;
-
+-(BOOL)removeEncounter:(SBTEncounter *)encounter;   // returns NO if encounter not present in the Baby's set of encounters
+-(NSInteger)ageInDaysAtEncounter:(SBTEncounter *)encounter;
 // will return an EMPTY ARRAY (not nil) if never received the component
 // to simplfy, the ages are given in DAYS (not NSTimeIntervals)
 -(NSArray *)daysGivenVaccineComponent:(SBTComponent)component;
-
-+(BOOL)supportsSecureCoding;
 
 @end
