@@ -46,20 +46,22 @@
 
 -(void)setName:(NSString *)name
 {
-    self.name = name;
-    self.dateModified = [NSDate date];
+    if (![name isEqualToString:_name]){
+        _name = name;
+        self.dateModified = [NSDate date];
+    }
 }
 
 -(void)setDOB:(NSDateComponents *)DOB
 {
-    DOB.calendar = [NSCalendar currentCalendar];
-    self.DOB = DOB;
+    // DOB.calendar = [NSCalendar currentCalendar];
+    _DOB = DOB;
     self.dateModified = [NSDate date];
 }
 
 -(void)setDueDate:(NSDateComponents *)dueDate
 {
-    self.dueDate = dueDate;
+    _dueDate = dueDate;
     self.dateModified = [NSDate date];
 }
 
