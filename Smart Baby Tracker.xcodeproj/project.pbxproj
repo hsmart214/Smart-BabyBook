@@ -21,9 +21,11 @@
 		421C748818937535000E3C30 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 421C746418937535000E3C30 /* UIKit.framework */; };
 		421C749018937536000E3C30 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 421C748E18937536000E3C30 /* InfoPlist.strings */; };
 		421C749218937536000E3C30 /* Smart_Baby_TrackerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 421C749118937536000E3C30 /* Smart_Baby_TrackerTests.m */; };
+		4226B8CD189F5F3B00682A6A /* NSDateComponents+Today.m in Sources */ = {isa = PBXBuildFile; fileRef = 4226B8CC189F5F3B00682A6A /* NSDateComponents+Today.m */; };
 		4248806618944C84009F2837 /* SBTBaby.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248806518944C84009F2837 /* SBTBaby.m */; };
 		4248806A189459D2009F2837 /* SBTEncounter.m in Sources */ = {isa = PBXBuildFile; fileRef = 42488069189459D2009F2837 /* SBTEncounter.m */; };
 		4248806D18945CE2009F2837 /* SBTVaccine.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248806C18945CE2009F2837 /* SBTVaccine.m */; };
+		429700CE18AED9AA0013A91B /* ACIP Schedule.plist in Resources */ = {isa = PBXBuildFile; fileRef = 429700CD18AED9AA0013A91B /* ACIP Schedule.plist */; };
 		42B601301895E1E6000C15F4 /* SBTVaccineSchedule.m in Sources */ = {isa = PBXBuildFile; fileRef = 42B6012F1895E1E6000C15F4 /* SBTVaccineSchedule.m */; };
 /* End PBXBuildFile section */
 
@@ -56,12 +58,15 @@
 		421C748D18937536000E3C30 /* Smart Baby TrackerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Smart Baby TrackerTests-Info.plist"; sourceTree = "<group>"; };
 		421C748F18937536000E3C30 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		421C749118937536000E3C30 /* Smart_Baby_TrackerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Smart_Baby_TrackerTests.m; sourceTree = "<group>"; };
+		4226B8CB189F5F3B00682A6A /* NSDateComponents+Today.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDateComponents+Today.h"; sourceTree = "<group>"; };
+		4226B8CC189F5F3B00682A6A /* NSDateComponents+Today.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateComponents+Today.m"; sourceTree = "<group>"; };
 		4248806418944C84009F2837 /* SBTBaby.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTBaby.h; sourceTree = "<group>"; };
 		4248806518944C84009F2837 /* SBTBaby.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTBaby.m; sourceTree = "<group>"; };
 		42488068189459D2009F2837 /* SBTEncounter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTEncounter.h; sourceTree = "<group>"; };
 		42488069189459D2009F2837 /* SBTEncounter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTEncounter.m; sourceTree = "<group>"; };
 		4248806B18945CE2009F2837 /* SBTVaccine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTVaccine.h; sourceTree = "<group>"; };
 		4248806C18945CE2009F2837 /* SBTVaccine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTVaccine.m; sourceTree = "<group>"; };
+		429700CD18AED9AA0013A91B /* ACIP Schedule.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ACIP Schedule.plist"; sourceTree = "<group>"; };
 		42B6012E1895E1E6000C15F4 /* SBTVaccineSchedule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTVaccineSchedule.h; sourceTree = "<group>"; };
 		42B6012F1895E1E6000C15F4 /* SBTVaccineSchedule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTVaccineSchedule.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -137,6 +142,7 @@
 			children = (
 				421C746F18937535000E3C30 /* SBTAppDelegate.h */,
 				421C747018937535000E3C30 /* SBTAppDelegate.m */,
+				429700CD18AED9AA0013A91B /* ACIP Schedule.plist */,
 				421C746818937535000E3C30 /* Smart Baby Tracker-Info.plist */,
 				421C746918937535000E3C30 /* InfoPlist.strings */,
 				421C746C18937535000E3C30 /* main.m */,
@@ -174,6 +180,8 @@
 				4248806C18945CE2009F2837 /* SBTVaccine.m */,
 				42B6012E1895E1E6000C15F4 /* SBTVaccineSchedule.h */,
 				42B6012F1895E1E6000C15F4 /* SBTVaccineSchedule.m */,
+				4226B8CB189F5F3B00682A6A /* NSDateComponents+Today.h */,
+				4226B8CC189F5F3B00682A6A /* NSDateComponents+Today.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -257,6 +265,7 @@
 			files = (
 				421C747718937535000E3C30 /* Main_iPad.storyboard in Resources */,
 				421C747F18937535000E3C30 /* Images.xcassets in Resources */,
+				429700CE18AED9AA0013A91B /* ACIP Schedule.plist in Resources */,
 				421C747418937535000E3C30 /* Main_iPhone.storyboard in Resources */,
 				421C746B18937535000E3C30 /* InfoPlist.strings in Resources */,
 			);
@@ -283,6 +292,7 @@
 				4248806618944C84009F2837 /* SBTBaby.m in Sources */,
 				421C746D18937535000E3C30 /* main.m in Sources */,
 				4248806D18945CE2009F2837 /* SBTVaccine.m in Sources */,
+				4226B8CD189F5F3B00682A6A /* NSDateComponents+Today.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

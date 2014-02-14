@@ -8,6 +8,7 @@
 
 #import "SBTEncounter.h"
 #import "SBTVaccine.h"
+#import "NSDateComponents+Today.h"
 
 @interface SBTEncounter ()
 
@@ -74,12 +75,7 @@
 
 -(instancetype)init{
     // Give a default encounter date of today.
-    NSDate *today = [NSDate date];
-    NSCalendar *cal = [NSCalendar currentCalendar];
-    NSCalendarUnit unit = NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear;
-    NSDateComponents *todayComponents = [cal components:unit fromDate:today];
-    NSDate *simpleDate = [cal dateFromComponents:todayComponents];
-
+    NSDate *simpleDate = [[NSCalendar currentCalendar] dateFromComponents:[NSDateComponents today]];
     return [self initWithDate:simpleDate];
 }
 

@@ -9,6 +9,7 @@
 #import "SBTBaby.h"
 #import "SBTEncounter.h"
 #import "SBTVaccine.h"
+#import "NSDateComponents+Today.h"
 
 #define PREMATURE_DAYS_EARLY 21
 
@@ -80,7 +81,7 @@
     for (SBTEncounter *enc in self.encounters){
         for (SBTVaccine *vacc in enc.vaccinesGiven){
             if ([vacc includesEquivalentComponent:component]){
-                [days addObject:@([self ageInDaysAtEncounter:enc])];
+                [days addObject:[self ageInYearsAndDaysAtEncounter:enc]];
             }
         }
     }
@@ -103,10 +104,10 @@
     return present;
 }
 
--(NSInteger)ageInDaysAtEncounter:(SBTEncounter *)encounter
+-(NSDateComponents *)ageInYearsAndDaysAtEncounter:(SBTEncounter *)encounter
 {
-    NSDateComponents *comps = [[NSCalendar currentCalendar] components:NSCalendarUnitDay fromDate:encounter.dateComps.date toDate:self.DOB.date options:0];
-    return [comps day];
+    NSDateComponents *comps = [[NSCalendar currentCalendar] components:(NSCalendarUnitDay | NSCalendarUnitYear) fromDate:encounter.dateComps.date toDate:self.DOB.date options:0];
+    return comps;
 }
 
 -(instancetype)copyWithZone:(NSZone *)zone

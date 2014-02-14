@@ -10,9 +10,12 @@
 @class SBTBaby;
 @class SBTVaccine;
 
+typedef enum {SBTVaccineUpToDate, SBTVaccineDoseDue,
+    SBTVaccineDoneTooEarly, SBTVaccineDoseMissing} SBTVaccinationStatus;
+
 @interface SBTVaccineSchedule : NSObject
 
--(BOOL)baby:(SBTBaby *)baby isUTDforVaccineComponent:(SBTComponent)component;
+-(SBTVaccinationStatus)baby:(SBTBaby *)baby vaccinationStatusForVaccineComponent:(SBTComponent)component;
 
 +(SBTVaccineSchedule *)sharedSchedule;
 

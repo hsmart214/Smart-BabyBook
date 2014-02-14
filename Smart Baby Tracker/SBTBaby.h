@@ -14,6 +14,7 @@
 
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSDateComponents *DOB;
+
 @property (nonatomic, copy) NSDateComponents *dueDate;    // this is optional.  If no due date, assume full term baby.
 @property (assign) SBTGender gender;
 
@@ -33,7 +34,7 @@
 
 -(void)addEncounter:(SBTEncounter *)encounter;
 -(BOOL)removeEncounter:(SBTEncounter *)encounter;   // returns NO if encounter not present in the Baby's set of encounters
--(NSInteger)ageInDaysAtEncounter:(SBTEncounter *)encounter;
+-(NSDateComponents *)ageInYearsAndDaysAtEncounter:(SBTEncounter *)encounter;
 // will return an EMPTY ARRAY (not nil) if never received the component
 // to simplfy, the ages are given in DAYS (not NSTimeIntervals)
 -(NSArray *)daysGivenVaccineComponent:(SBTComponent)component;

@@ -6,6 +6,9 @@
 //  Copyright (c) 2014 J. HOWARD SMART. All rights reserved.
 //
 
+typedef enum {SBTVaccineDoseStatusValid, SBTVaccineDoseStatusTooYoungAge, SBTVaccineDoseStatusIntervalTooShort,
+            SBTVaccineDoseStatusLiveVaccineIntervalTooShort} SBTVaccineDoseStatus;
+
 @import Foundation;
 
 @interface SBTVaccine : NSObject <NSSecureCoding, NSCopying>
@@ -13,6 +16,7 @@
 // Required
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSArray *displayNames;
+@property (nonatomic) SBTVaccineDoseStatus status;
 // Optional
 @property (nonatomic, copy) NSString *manufacturer;
 @property (nonatomic, copy) NSString *lotNumber;
