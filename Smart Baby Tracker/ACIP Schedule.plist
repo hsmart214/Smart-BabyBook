@@ -8,11 +8,11 @@
 			<key>doseMinimumAge</key>
 			<integer>42</integer>
 			<key>doseMinimumInterval</key>
-			<integer>42</integer>
+			<integer>28</integer>
 			<key>doseRecommendedAge</key>
-			<integer>56</integer>
+			<integer>60</integer>
 			<key>doseRecommendedInterval</key>
-			<integer>56</integer>
+			<integer>60</integer>
 			<key>doseLateInterval</key>
 			<integer>84</integer>
 			<key>doseCausesLiveLockout</key>
@@ -36,7 +36,35 @@
 			<key>doseMinimumAge</key>
 			<integer>98</integer>
 			<key>doseMinimumInterval</key>
-			<integer>28</integer>
+			<integer>180</integer>
+			<key>doseRecommendedAge</key>
+			<integer>180</integer>
+			<key>doseRecommendedInterval</key>
+			<integer>56</integer>
+			<key>doseLateInterval</key>
+			<integer>84</integer>
+			<key>doseCausesLiveLockout</key>
+			<false/>
+		</dict>
+		<dict>
+			<key>doseMinimumAge</key>
+			<integer>365</integer>
+			<key>doseMinimumInterval</key>
+			<integer>180</integer>
+			<key>doseRecommendedAge</key>
+			<integer>180</integer>
+			<key>doseRecommendedInterval</key>
+			<integer>56</integer>
+			<key>doseLateInterval</key>
+			<integer>84</integer>
+			<key>doseCausesLiveLockout</key>
+			<false/>
+		</dict>
+		<dict>
+			<key>doseMinimumAge</key>
+			<integer>1460</integer>
+			<key>doseMinimumInterval</key>
+			<integer>0</integer>
 			<key>doseRecommendedAge</key>
 			<integer>180</integer>
 			<key>doseRecommendedInterval</key>
