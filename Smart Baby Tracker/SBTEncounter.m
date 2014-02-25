@@ -53,7 +53,10 @@
 
 -(void)addVaccines:(NSArray *)vaccinesGiven
 {
-    [self.vaccines addObjectsFromArray:vaccinesGiven];
+    // add a copy of each vaccine given in case someone wants to reuse objects.
+    for (SBTVaccine *vacc in vaccinesGiven){
+        [self.vaccines addObject:[vacc copy]];
+    }
     self.dateModified = [NSDate date];
 }
 

@@ -35,8 +35,11 @@
 -(void)addEncounter:(SBTEncounter *)encounter;
 -(BOOL)removeEncounter:(SBTEncounter *)encounter;   // returns NO if encounter not present in the Baby's set of encounters
 -(NSDateComponents *)ageInYearsAndDaysAtEncounter:(SBTEncounter *)encounter;
+-(NSDateComponents *)ageInMonthsAndDaysAtEncounter:(SBTEncounter *)encounter;
+-(NSDateComponents *)ageInDaysAtEncounter:(SBTEncounter *)encounter;
+
 // will return an EMPTY ARRAY (not nil) if never received the component
-// to simplfy, the ages are given in DAYS (not NSTimeIntervals)
+// to simplfy, the ages are given in DAYS as NSDateComponents * objects (not NSTimeIntervals)
 -(NSArray *)daysGivenVaccineComponent:(SBTComponent)component;
 
 @end

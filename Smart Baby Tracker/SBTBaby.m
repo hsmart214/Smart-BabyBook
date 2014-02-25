@@ -81,7 +81,7 @@
     for (SBTEncounter *enc in self.encounters){
         for (SBTVaccine *vacc in enc.vaccinesGiven){
             if ([vacc includesEquivalentComponent:component]){
-                [days addObject:[self ageInYearsAndDaysAtEncounter:enc]];
+                [days addObject:[self ageInDaysAtEncounter:enc]];
             }
         }
     }
@@ -107,6 +107,19 @@
 -(NSDateComponents *)ageInYearsAndDaysAtEncounter:(SBTEncounter *)encounter
 {
     NSDateComponents *comps = [[NSCalendar currentCalendar] components:(NSCalendarUnitDay | NSCalendarUnitYear) fromDate:encounter.dateComps.date toDate:self.DOB.date options:0];
+    return comps;
+}
+
+-(NSDateComponents *)ageInMonthsAndDaysAtEncounter:(SBTEncounter *)encounter
+{
+    NSDateComponents *comps = [[NSCalendar currentCalendar] components:(NSCalendarUnitDay | NSCalendarUnitMonth) fromDate:encounter.dateComps.date toDate:self.DOB.date options:0];
+    return comps;
+}
+
+
+-(NSDateComponents *)ageInDaysAtEncounter:(SBTEncounter *)encounter
+{
+    NSDateComponents *comps = [[NSCalendar currentCalendar] components:(NSCalendarUnitDay) fromDate:encounter.dateComps.date toDate:self.DOB.date options:0];
     return comps;
 }
 

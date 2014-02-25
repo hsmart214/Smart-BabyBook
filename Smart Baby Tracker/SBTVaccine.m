@@ -54,6 +54,7 @@
     [aCoder encodeObject:self.lotNumber forKey:@"lotNumber"];
     [aCoder encodeObject:self.expirationDate forKey:@"expDate"];
     [aCoder encodeObject:self.components forKey:@"components"];
+    [aCoder encodeInteger:self.route forKey:@"route"];
 }
 
 -(instancetype)initWithCoder:(NSCoder *)aDecoder
@@ -66,6 +67,7 @@
         self.lotNumber = [aDecoder decodeObjectOfClass:[NSString class] forKey:@"lotNumber"];
         self.expirationDate = [aDecoder decodeObjectOfClass:[NSDate class] forKey:@"expDate"];
         self.components = [aDecoder decodeObjectOfClass:[NSSet class] forKey:@"components"];
+        self.route = (SBTVaccineRoute)[aDecoder decodeIntegerForKey:@"route"];
     }
     return self;
 }
@@ -80,6 +82,7 @@
     newVacc.manufacturer = self.manufacturer;
     newVacc.lotNumber = self.lotNumber;
     newVacc.expirationDate = self.expirationDate;
+    newVacc.route = self.route;
     
     return newVacc;
 }

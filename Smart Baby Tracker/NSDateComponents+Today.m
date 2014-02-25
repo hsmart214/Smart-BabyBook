@@ -16,7 +16,7 @@
     NSCalendar *cal = [NSCalendar currentCalendar];
     NSCalendarUnit unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay;
     NSDateComponents *comps = [cal components:unitFlags fromDate:date];
-    comps.calendar = [NSCalendar currentCalendar];
+    comps.calendar = cal;
 
     return comps;
 }

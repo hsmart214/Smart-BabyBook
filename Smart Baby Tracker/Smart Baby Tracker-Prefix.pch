@@ -15,11 +15,11 @@
     #import <Foundation/Foundation.h>
 #endif
 
-typedef enum {male, female} SBTGender;
+typedef enum {SBTMale, SBTFemale} SBTGender;
 
 typedef enum {Intramuscular, Subcutaneous, Intradermal, Oral, Nasal} SBTVaccineRoute;
 
-typedef enum {SBTComponentFDA_Approved, SBTComponentHiB, SBTComponentPRP_OMP, SBTComponentPRP_T, SBTComponentDTP, SBTComponentDT, SBTComponentTd  , SBTComponentTdap, SBTComponentTet, SBTComponentDTaP, SBTComponentDTwP, SBTComponentIPV, SBTComponentOPV, SBTComponentRota, SBTComponentPCV7, SBTComponentPCV13, SBTComponentPPV23, SBTComponentHepB, SBTComponentHepA, SBTComponentMeas, SBTComponentMMR, SBTComponentMumps, SBTComponentRub , SBTComponentVZV , SBTComponentMCV4, SBTComponentMPV4, SBTComponentMenB, SBTComponentMenC, SBTComponentMenCY, SBTComponentHPV2, SBTComponentHPV4, SBTComponentFlu, SBTComponentTyphLive, SBTComponentTyphInact, SBTComponentJapEnc, SBTComponentDiph, SBTComponentAcelPert, SBTComponentPert } SBTComponent;
+typedef enum {SBTComponentFDA_Approved, SBTComponentHiB, SBTComponentPRP_OMP, SBTComponentPRP_T, SBTComponentDTP, SBTComponentDT, SBTComponentTd  , SBTComponentTdap, SBTComponentTet, SBTComponentDTaP, SBTComponentDTwP, SBTComponentIPV, SBTComponentOPV, SBTComponentRota, SBTComponentPCV7, SBTComponentPCV13, SBTComponentPPV23, SBTComponentHepB, SBTComponentHepA, SBTComponentMeasles, SBTComponentMMR, SBTComponentMumps, SBTComponentRubella , SBTComponentVZV , SBTComponentMCV4, SBTComponentMPV4, SBTComponentMenB, SBTComponentMenC, SBTComponentMenCY, SBTComponentHPV2, SBTComponentHPV4, SBTComponentFlu, SBTComponentLAIV, SBTComponentTyphLive, SBTComponentTyphInact, SBTComponentJapEnc, SBTComponentDiph, SBTComponentAcelPert, SBTComponentPert } SBTComponent;
 
 static NSString * const Sanofi = @"Sanofi Pasteur";
 static NSString * const Glaxo = @"GlaxoSmithKline";
@@ -35,7 +35,15 @@ static NSString * const WHOGirlChart24mos = @"com.mySmartSoftware.whogirl24mos";
 static NSString * const WHOGirlChart5yrs = @"com.mySmartSoftware.whogirl5yrs";
 static NSString * const WHOGirlChart20yrs = @"com.mySmartSoftware.whogirl20yrs";
 
+static NSString * const CDCBoyChart24mos = @"com.mySmartSoftware.cdcboy24mos";
+static NSString * const CDCBoyChart20yrs = @"com.mySmartSoftware.cdcboy20yrs";
+static NSString * const CDCGirlChart24mos = @"com.mySmartSoftware.cdcgirl24mos";
+static NSString * const CDCGirlChart20yrs = @"com.mySmartSoftware.cdcgirl20yrs";
+
+static NSString * const FentonPrematureBoyChart = @"com.mySmartSoftware.fentonboy";
+static NSString * const FentonPrematureGirlChart = @"com.mySmartSoftware.fentongirl";
+
 static NSString * const DownBoyChart = @"com.mySmartSoftware.downboy";
 static NSString * const DownGirlChart = @"com.mySmartSoftware.downgirl";
 
-#define SBT_DAY 86400.0F // NSTimeInterval = seconds in a day
+static NSString * const TurnerGirlChart = @"com.mySmartSoftware.turnergirl";

@@ -6,6 +6,10 @@
 //  Copyright (c) 2014 J. HOWARD SMART. All rights reserved.
 //
 
+/// Used to encapsulate any dated information put into an SBTBaby's record
+/// date of the SBTEncounter is based on the number of whole days since
+/// the birth date.
+
 @import Foundation;
 
 @interface SBTEncounter : NSObject <NSSecureCoding, NSCopying>
