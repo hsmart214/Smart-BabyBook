@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 J. HOWARD SMART. All rights reserved.
 //
 
+typedef enum {SBTVaccineDoseOnTime, SBTVaccineDoseTooEarly, SBTVaccineDoseLate, SBTVaccineTooSoonAfterLiveVaccine} SBTVaccineDoseStatus;
+
 @import Foundation;
 
 @interface SBTVaccine : NSObject <NSSecureCoding, NSCopying>

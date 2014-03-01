@@ -15,8 +15,6 @@
 @class SBTBaby;
 @class SBTVaccine;
 
-typedef enum {SBTVaccineDoseOnTime, SBTVaccineDoseTooEarly, SBTVaccineDoseLate, SBTVaccineTooSoonAfterLiveVaccine} SBTVaccineDoseStatus;
-
 typedef enum {SBTVaccinationUTD, SBTVaccinationDoseDue, SBTVaccinationDoseOverdue} SBTVaccinationStatus;
 
 @interface SBTVaccineSchedule : NSObject
