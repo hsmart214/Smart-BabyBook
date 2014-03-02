@@ -21,7 +21,7 @@
         NSArray *cachedData = [[NSArray alloc] initWithContentsOfURL:dataFileURL];
         return cachedData;
     }
-    dataFileURL = [[NSBundle mainBundle] URLForResource:fileString withExtension:nil];
+    dataFileURL = [[NSBundle mainBundle] URLForResource:@"file" withExtension:@"txt"];
     
     NSError *err;
     NSString *dataBlob = [NSString stringWithContentsOfURL:dataFileURL encoding:NSUTF8StringEncoding error:&err];
@@ -50,16 +50,26 @@
         
         [data addObject:dp];
     }
+    dataFileURL = [cacheURL URLByAppendingPathComponent:fileString];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [data writeToURL:dataFileURL atomically:YES];
+    });
     return data;
 }
 
 -(double)percentileOfMeasurement:(double)measurement
                           forAge:(NSInteger)days
-                    forParameter:(SBTGrowthParameter)parameter
+                       parameter:(SBTGrowthParameter)parameter
                        andGender:(SBTGender)gender
 {
     NSAssert(NO, @"Should not be calling the superclass method for SBTGrowthDataSource");
     return 0.0;
+}
+
++(instancetype)sharedDataSource
+{
+    NSAssert(NO, @"Should not be calling the superclass method for SBTGrowthDataSource");
+    return nil;
 }
 
 @end

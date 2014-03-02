@@ -16,11 +16,12 @@
 
 @property (nonatomic, readonly) NSDateComponents *dateComps;
 // measurements in metric units
-@property (nonatomic, assign) float weight;
+@property (nonatomic, assign) double weight;
 // only one linear growth measurement per encounter, the other will be ZERO
-@property (nonatomic, assign) float length;    // supine length
-@property (nonatomic, assign) float height;    // standing height
-@property (nonatomic, assign) float headCirc;
+@property (nonatomic, assign) double length;    // supine length
+@property (nonatomic, assign) double height;    // standing height
+@property (nonatomic, assign) double headCirc;
+@property (nonatomic, readonly) double BMI;
 
 -(instancetype)initWithDate:(NSDate *)date; // Designated initializer
 -(instancetype)init;

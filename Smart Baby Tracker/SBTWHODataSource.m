@@ -121,8 +121,8 @@
 }
 
 -(double)percentileOfMeasurement:(double)measurement
-                          ForAge:(NSInteger)days
-                    forParameter:(SBTGrowthParameter)parameter
+                          forAge:(NSInteger)days
+                       parameter:(SBTGrowthParameter)parameter
                        andGender:(SBTGender)gender
 {
     //TODO: gracefully recover if someone asks for a WHO data value > 61 months age

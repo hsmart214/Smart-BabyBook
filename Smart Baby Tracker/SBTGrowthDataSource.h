@@ -18,7 +18,9 @@ typedef enum {SBTStature, SBTLength, SBTWeight, SBTHeadCircumference, SBTBMI} SB
 
 -(double)percentileOfMeasurement:(double)measurement
                           forAge:(NSInteger)days
-                    forParameter:(SBTGrowthParameter)parameter
+                       parameter:(SBTGrowthParameter)parameter
                        andGender:(SBTGender)gender;
+
++(instancetype)sharedDataSource;
 
 @end

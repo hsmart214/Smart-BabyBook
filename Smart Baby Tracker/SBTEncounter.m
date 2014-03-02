@@ -26,21 +26,21 @@
     return [[NSCalendar currentCalendar] components:unit fromDate:self.universalDate];
 }
 
--(void)setLength:(float)length
+-(void)setLength:(double)length
 {
     _length = length;
     _height = 0.0F;
     self.dateModified = [NSDate date];
 }
 
--(void)setHeight:(float)height
+-(void)setHeight:(double)height
 {
     _height = height;
     _length = 0.0F;
     self.dateModified = [NSDate date];
 }
 
--(void)setHeadCirc:(float)headCirc
+-(void)setHeadCirc:(double)headCirc
 {
     _headCirc = headCirc;
     self.dateModified = [NSDate date];

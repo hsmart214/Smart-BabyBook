@@ -1,8 +1,8 @@
 //
-//  SBTDTaPScheduleTest.m
+//  SBTWHODataTets.m
 //  Smart Baby Tracker
 //
-//  Created by J. HOWARD SMART on 2/24/14.
+//  Created by J. HOWARD SMART on 3/1/14.
 //  Copyright (c) 2014 J. HOWARD SMART. All rights reserved.
 //
 
@@ -11,19 +11,26 @@
 #import "SBTEncounter.h"
 #import "SBTVaccine.h"
 #import "SBTVaccineSchedule.h"
+#import "SBTWHODataSource.h"
 
-@interface SBTDTaPScheduleTest : XCTestCase
+@interface SBTWHODataTets : XCTestCase
+
+{
+    SBTWHODataSource *whoData;
+}
 
 @property (nonatomic, strong) SBTBaby *baby;
 
 @end
 
-@implementation SBTDTaPScheduleTest
+@implementation SBTWHODataTets
 
 - (void)setUp
 {
     [super setUp];
-    // Put setup code here; it will be run once, before the first test case.
+    
+    whoData = [SBTWHODataSource sharedDataSource];
+    
     NSDateComponents *twoMonths = [[NSDateComponents alloc] init];
     twoMonths.month = 2;
     twoMonths.calendar = [NSCalendar currentCalendar];
@@ -41,15 +48,19 @@
     
     
     NSDate *date = [[NSCalendar currentCalendar] dateByAddingComponents:twoMonths toDate:birth options:0];
+    // this results in the date 10/18/1996, 61 days of age.
     SBTEncounter *enc = [[SBTEncounter alloc] initWithDate:date];
-    SBTVaccine *vaccine = [[SBTVaccine alloc] initWithName:@"Daptacel" displayNames:@[@"DTaP"] manufacturer:Sanofi andComponents:@[@(SBTComponentDTaP)]];
-    vaccine.route = Intramuscular;
-    [enc addVaccines: @[vaccine]];
+    enc.weight = 5.1315f;
+    enc.length = 50.786f;
+    enc.headCirc = 34.513f;
     [self.baby addEncounter:enc];
     
     date = [[NSCalendar currentCalendar] dateByAddingComponents:twoMonths toDate:date options:0];
     SBTEncounter *enc2 = [[SBTEncounter alloc] initWithDate:date];
-    [enc2 addVaccines:@[[vaccine copy]]];
+    // this results in the date 12/18/1996, 122 days of age.
+    enc2.weight = 6.428;
+    enc2.length = 62.1071;
+    enc2.headCirc = 40.5895;
     [self.baby addEncounter:enc2];
 }
 
@@ -59,11 +70,14 @@
     [super tearDown];
 }
 
-- (void)testExample
+- (void)testGirlWeight
 {
-    SBTVaccineSchedule *sched = [SBTVaccineSchedule sharedSchedule];
-    SBTVaccinationStatus status = [sched baby:self.baby vaccinationStatusForVaccineComponent:SBTComponentDTaP];
-    XCTAssertTrue(status == SBTVaccineDoseLate , @"Incorrect calculation of DTaP status with two doses.");
+    double w = 5.1315;
+    double pct = [whoData percentileOfMeasurement:w
+                                           forAge:61
+                                        parameter:SBTWeight
+                                        andGender:SBTFemale];
+    XCTAssert(((pct-50.0)<= 0.00001), @"Not calculating female weight percentile correctly");
 }
 
 @end
