@@ -8,12 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
-typedef enum {SBTStature, SBTLength, SBTMass, SBTHeadCircumference, SBTBMI} SBTGrowthParameter;
+typedef enum {SBTStature, SBTLength, SBTWeight, SBTHeadCircumference, SBTBMI} SBTGrowthParameter;
 
 // an abstract class meant to be subclassed into various WHO and CDC growth datasources
 
 @interface SBTGrowthDataSource : NSObject
 
--(double)percentileForAge:(NSInteger)days forParameter:(SBTGrowthParameter)parameter;
+-(NSArray *)filledDataArrayFromFile:(NSString *)fileString;
+
+-(double)percentileOfMeasurement:(double)measurement
+                          forAge:(NSInteger)days
+                    forParameter:(SBTGrowthParameter)parameter
+                       andGender:(SBTGender)gender;
 
 @end
