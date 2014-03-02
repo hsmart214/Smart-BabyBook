@@ -21,14 +21,14 @@
         NSArray *cachedData = [[NSArray alloc] initWithContentsOfURL:dataFileURL];
         return cachedData;
     }
-    dataFileURL = [[NSBundle mainBundle] URLForResource:@"file" withExtension:@"txt"];
+    dataFileURL = [[NSBundle mainBundle] URLForResource:fileString withExtension:nil];
     
     NSError *err;
     NSString *dataBlob = [NSString stringWithContentsOfURL:dataFileURL encoding:NSUTF8StringEncoding error:&err];
     if (err){
         NSLog(@"Error reading data: %@",[err debugDescription]);
     }
-    NSMutableArray *textLines = [NSMutableArray arrayWithArray:[dataBlob componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"\n\r"]]];
+    NSMutableArray *textLines = [NSMutableArray arrayWithArray:[dataBlob componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"\n"]]];
     // the first line is always a header with description of each column
     NSString *header = textLines[0];
     NSArray *chunks = [header componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
