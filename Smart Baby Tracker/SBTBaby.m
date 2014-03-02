@@ -25,6 +25,7 @@
 
 -(BOOL)isPremature
 {   //TODO: fix the prematurity calculation
+    if (!_dueDate) return  NO;
     NSCalendar *cal = [NSCalendar currentCalendar];
     NSCalendarUnit unitFlag = NSCalendarUnitDay;
     NSDateComponents *comps = [cal components:unitFlag fromDate:self.dueDate.date toDate:self.DOB.date options:0];

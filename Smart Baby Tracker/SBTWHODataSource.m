@@ -11,14 +11,14 @@
 
 #define WHO_MAX_AGE 1856.0f
 
-#define WHO_BOY_WEIGHT_FILENAME @"whoweightboys.txt"
-#define WHO_GIRL_WEIGHT_FILENAME @"whoweightgirls.txt"
-#define WHO_BOY_LENGTH_FILENAME @"wholengthboys.txt"
-#define WHO_GIRL_LENGTH_FILENAME @"wholengthgirls.txt"
-#define WHO_BOY_HC_FILENAME @"whohcboys.txt"
-#define WHO_GIRL_HC_FILENAME @"whohcgirls.txt"
-#define WHO_BOY_BMI_FILENAME @"whobmiboys.txt"
-#define WHO_GIRL_BMI_FILENAME @"whobmigirls.txt"
+#define WHO_BOY_WEIGHT_FILENAME @"whoweightboys"
+#define WHO_GIRL_WEIGHT_FILENAME @"whoweightgirls"
+#define WHO_BOY_LENGTH_FILENAME @"wholengthboys"
+#define WHO_GIRL_LENGTH_FILENAME @"wholengthgirls"
+#define WHO_BOY_HC_FILENAME @"whohcboys"
+#define WHO_GIRL_HC_FILENAME @"whohcgirls"
+#define WHO_BOY_BMI_FILENAME @"whobmiboys"
+#define WHO_GIRL_BMI_FILENAME @"whobmigirls"
 
 
 @interface SBTWHODataSource();

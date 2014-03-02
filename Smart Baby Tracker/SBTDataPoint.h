@@ -29,4 +29,7 @@
 
 -(double)percentileForMeasurment:(double)measurement;
 
+-(NSDictionary *)propertyList;
+-(instancetype)initWithPlist:(NSDictionary *)plist;
+
 @end

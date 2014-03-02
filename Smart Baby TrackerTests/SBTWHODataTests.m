@@ -13,7 +13,7 @@
 #import "SBTVaccineSchedule.h"
 #import "SBTWHODataSource.h"
 
-@interface SBTWHODataTets : XCTestCase
+@interface SBTWHODataTests : XCTestCase
 
 {
     SBTWHODataSource *whoData;
@@ -23,7 +23,7 @@
 
 @end
 
-@implementation SBTWHODataTets
+@implementation SBTWHODataTests
 
 - (void)setUp
 {

@@ -14,14 +14,23 @@
 -(NSArray *)filledDataArrayFromFile:(NSString *)fileString
 {
     NSMutableArray *data = [[NSMutableArray alloc] init];
+    NSMutableArray *plist = [[NSMutableArray alloc] init];
     
     NSURL *cacheURL = [[[NSFileManager defaultManager] URLsForDirectory:NSCachesDirectory inDomains:NSUserDomainMask] lastObject];
     NSURL *dataFileURL = [cacheURL URLByAppendingPathComponent:fileString];
+    //TODO: time this to make sure it is faster when cached
     if ([[NSFileManager defaultManager]fileExistsAtPath:[dataFileURL path]]){
         NSArray *cachedData = [[NSArray alloc] initWithContentsOfURL:dataFileURL];
-        return cachedData;
+        
+        for (NSDictionary *dict in cachedData){
+            [data addObject:[[SBTDataPoint alloc] initWithPlist:dict]];
+        }
+        NSLog(@"Read from plist file.");
+        return data;
     }
-    dataFileURL = [[NSBundle mainBundle] URLForResource:fileString withExtension:nil];
+    
+    // from here on we are regenerating the data file from the text file on disk
+    dataFileURL = [[NSBundle mainBundle] URLForResource:fileString withExtension:@"txt"];
     
     NSError *err;
     NSString *dataBlob = [NSString stringWithContentsOfURL:dataFileURL encoding:NSUTF8StringEncoding error:&err];
@@ -49,10 +58,12 @@
         dp->stdev = [chunks[3] doubleValue];
         
         [data addObject:dp];
+        [plist addObject:[dp propertyList]];
     }
     dataFileURL = [cacheURL URLByAppendingPathComponent:fileString];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [data writeToURL:dataFileURL atomically:YES];
+        BOOL success = [plist writeToURL:dataFileURL atomically:YES];
+        NSLog(@"Wrote data file?: %d", success);
     });
     return data;
 }

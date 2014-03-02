@@ -29,7 +29,7 @@
 		426FF5DB18C1A56200B66F36 /* SBTGrowthDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 426FF5DA18C1A56200B66F36 /* SBTGrowthDataSource.m */; };
 		429700CE18AED9AA0013A91B /* ACIP Schedule.plist in Resources */ = {isa = PBXBuildFile; fileRef = 429700CD18AED9AA0013A91B /* ACIP Schedule.plist */; };
 		42B601301895E1E6000C15F4 /* SBTVaccineSchedule.m in Sources */ = {isa = PBXBuildFile; fileRef = 42B6012F1895E1E6000C15F4 /* SBTVaccineSchedule.m */; };
-		42C753DB18C2B5630050F38A /* SBTWHODataTets.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C753DA18C2B5630050F38A /* SBTWHODataTets.m */; };
+		42C753DB18C2B5630050F38A /* SBTWHODataTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C753DA18C2B5630050F38A /* SBTWHODataTests.m */; };
 		42C7540518C2BBDC0050F38A /* whobmiboys.txt in Resources */ = {isa = PBXBuildFile; fileRef = 42C753FD18C2BBDC0050F38A /* whobmiboys.txt */; };
 		42C7540618C2BBDC0050F38A /* whobmigirls.txt in Resources */ = {isa = PBXBuildFile; fileRef = 42C753FE18C2BBDC0050F38A /* whobmigirls.txt */; };
 		42C7540718C2BBDC0050F38A /* whohcboys.txt in Resources */ = {isa = PBXBuildFile; fileRef = 42C753FF18C2BBDC0050F38A /* whohcboys.txt */; };
@@ -94,7 +94,7 @@
 		429700CD18AED9AA0013A91B /* ACIP Schedule.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ACIP Schedule.plist"; sourceTree = "<group>"; };
 		42B6012E1895E1E6000C15F4 /* SBTVaccineSchedule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTVaccineSchedule.h; sourceTree = "<group>"; };
 		42B6012F1895E1E6000C15F4 /* SBTVaccineSchedule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTVaccineSchedule.m; sourceTree = "<group>"; };
-		42C753DA18C2B5630050F38A /* SBTWHODataTets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTWHODataTets.m; sourceTree = "<group>"; };
+		42C753DA18C2B5630050F38A /* SBTWHODataTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTWHODataTests.m; sourceTree = "<group>"; };
 		42C753FD18C2BBDC0050F38A /* whobmiboys.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = whobmiboys.txt; path = "../Growth Charts/whobmiboys.txt"; sourceTree = "<group>"; };
 		42C753FE18C2BBDC0050F38A /* whobmigirls.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = whobmigirls.txt; path = "../Growth Charts/whobmigirls.txt"; sourceTree = "<group>"; };
 		42C753FF18C2BBDC0050F38A /* whohcboys.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = whohcboys.txt; path = "../Growth Charts/whohcboys.txt"; sourceTree = "<group>"; };
@@ -194,7 +194,7 @@
 			children = (
 				421C749118937536000E3C30 /* Smart_Baby_TrackerTests.m */,
 				42F66E3518BC581D0099137F /* SBTDTaPScheduleTest.m */,
-				42C753DA18C2B5630050F38A /* SBTWHODataTets.m */,
+				42C753DA18C2B5630050F38A /* SBTWHODataTests.m */,
 				421C748C18937536000E3C30 /* Supporting Files */,
 			);
 			path = "Smart Baby TrackerTests";
@@ -380,7 +380,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				42C753DB18C2B5630050F38A /* SBTWHODataTets.m in Sources */,
+				42C753DB18C2B5630050F38A /* SBTWHODataTests.m in Sources */,
 				421C749218937536000E3C30 /* Smart_Baby_TrackerTests.m in Sources */,
 				42F66E3618BC581D0099137F /* SBTDTaPScheduleTest.m in Sources */,
 			);

@@ -57,6 +57,29 @@
     return self;
 }
 
+-(instancetype)initWithPlist:(NSDictionary *)plist
+{
+    if (self = [super init]){
+        ageDays = [plist[@"ageDays"] doubleValue];
+        ageMonths = [plist[@"ageMonths"] doubleValue];
+        skew = [plist[@"skew"] doubleValue];
+        mean = [plist[@"mean"] doubleValue];
+        stdev = [plist[@"stdev"] doubleValue];
+    }
+    return self;
+}
+
+-(NSDictionary *)propertyList
+{
+    return @{
+             @"ageDays": @(ageDays),
+             @"ageMonths": @(ageMonths),
+             @"skew": @(skew),
+             @"mean": @(mean),
+             @"stdev": @(stdev),
+             };
+}
+
 +(BOOL)supportsSecureCoding
 {
     return YES;
