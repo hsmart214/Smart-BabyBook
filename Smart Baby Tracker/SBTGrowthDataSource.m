@@ -37,7 +37,7 @@
     if (err){
         NSLog(@"Error reading data: %@",[err debugDescription]);
     }
-    NSMutableArray *textLines = [NSMutableArray arrayWithArray:[dataBlob componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"\n"]]];
+    NSMutableArray *textLines = [NSMutableArray arrayWithArray:[dataBlob componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"\r\n"]]];
     // the first line is always a header with description of each column
     NSString *header = textLines[0];
     NSArray *chunks = [header componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];

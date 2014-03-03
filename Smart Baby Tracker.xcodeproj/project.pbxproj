@@ -26,27 +26,31 @@
 		4248806A189459D2009F2837 /* SBTEncounter.m in Sources */ = {isa = PBXBuildFile; fileRef = 42488069189459D2009F2837 /* SBTEncounter.m */; };
 		4248806D18945CE2009F2837 /* SBTVaccine.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248806C18945CE2009F2837 /* SBTVaccine.m */; };
 		4258BCF618C40E1900E8232F /* SBTCDCDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4258BCF518C40E1900E8232F /* SBTCDCDataSource.m */; };
+		426436A718C4459800414CA1 /* cdcbmiboys.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4264369318C4459800414CA1 /* cdcbmiboys.txt */; };
+		426436A818C4459800414CA1 /* cdcbmigirls.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4264369418C4459800414CA1 /* cdcbmigirls.txt */; };
+		426436A918C4459800414CA1 /* cdchcboys.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4264369518C4459800414CA1 /* cdchcboys.txt */; };
+		426436AA18C4459800414CA1 /* cdchcgirls.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4264369618C4459800414CA1 /* cdchcgirls.txt */; };
+		426436AB18C4459800414CA1 /* cdclengthboys.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4264369718C4459800414CA1 /* cdclengthboys.txt */; };
+		426436AC18C4459800414CA1 /* cdclengthgirls.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4264369818C4459800414CA1 /* cdclengthgirls.txt */; };
+		426436AD18C4459800414CA1 /* cdcstatureboys.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4264369918C4459800414CA1 /* cdcstatureboys.txt */; };
+		426436AE18C4459800414CA1 /* cdcstaturegirls.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4264369A18C4459800414CA1 /* cdcstaturegirls.txt */; };
+		426436AF18C4459800414CA1 /* cdcweightboys.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4264369B18C4459800414CA1 /* cdcweightboys.txt */; };
+		426436B018C4459800414CA1 /* cdcweightgirls.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4264369C18C4459800414CA1 /* cdcweightgirls.txt */; };
+		426436B118C4459800414CA1 /* cdcweightinfantboys.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4264369D18C4459800414CA1 /* cdcweightinfantboys.txt */; };
+		426436B218C4459800414CA1 /* cdcweightinfantgirls.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4264369E18C4459800414CA1 /* cdcweightinfantgirls.txt */; };
+		426436B318C4459800414CA1 /* whobmiboys.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4264369F18C4459800414CA1 /* whobmiboys.txt */; };
+		426436B418C4459800414CA1 /* whobmigirls.txt in Resources */ = {isa = PBXBuildFile; fileRef = 426436A018C4459800414CA1 /* whobmigirls.txt */; };
+		426436B518C4459800414CA1 /* whohcboys.txt in Resources */ = {isa = PBXBuildFile; fileRef = 426436A118C4459800414CA1 /* whohcboys.txt */; };
+		426436B618C4459800414CA1 /* whohcgirls.txt in Resources */ = {isa = PBXBuildFile; fileRef = 426436A218C4459800414CA1 /* whohcgirls.txt */; };
+		426436B718C4459800414CA1 /* wholengthboys.txt in Resources */ = {isa = PBXBuildFile; fileRef = 426436A318C4459800414CA1 /* wholengthboys.txt */; };
+		426436B818C4459800414CA1 /* wholengthgirls.txt in Resources */ = {isa = PBXBuildFile; fileRef = 426436A418C4459800414CA1 /* wholengthgirls.txt */; };
+		426436B918C4459800414CA1 /* whoweightboys.txt in Resources */ = {isa = PBXBuildFile; fileRef = 426436A518C4459800414CA1 /* whoweightboys.txt */; };
+		426436BA18C4459800414CA1 /* whoweightgirls.txt in Resources */ = {isa = PBXBuildFile; fileRef = 426436A618C4459800414CA1 /* whoweightgirls.txt */; };
 		426FF5D818C15DB000B66F36 /* SBTDataPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 426FF5D718C15DB000B66F36 /* SBTDataPoint.m */; };
 		426FF5DB18C1A56200B66F36 /* SBTGrowthDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 426FF5DA18C1A56200B66F36 /* SBTGrowthDataSource.m */; };
 		429700CE18AED9AA0013A91B /* ACIP Schedule.plist in Resources */ = {isa = PBXBuildFile; fileRef = 429700CD18AED9AA0013A91B /* ACIP Schedule.plist */; };
 		42B601301895E1E6000C15F4 /* SBTVaccineSchedule.m in Sources */ = {isa = PBXBuildFile; fileRef = 42B6012F1895E1E6000C15F4 /* SBTVaccineSchedule.m */; };
 		42C753DB18C2B5630050F38A /* SBTWHODataTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C753DA18C2B5630050F38A /* SBTWHODataTests.m */; };
-		42C7540518C2BBDC0050F38A /* whobmiboys.txt in Resources */ = {isa = PBXBuildFile; fileRef = 42C753FD18C2BBDC0050F38A /* whobmiboys.txt */; };
-		42C7540618C2BBDC0050F38A /* whobmigirls.txt in Resources */ = {isa = PBXBuildFile; fileRef = 42C753FE18C2BBDC0050F38A /* whobmigirls.txt */; };
-		42C7540718C2BBDC0050F38A /* whohcboys.txt in Resources */ = {isa = PBXBuildFile; fileRef = 42C753FF18C2BBDC0050F38A /* whohcboys.txt */; };
-		42C7540818C2BBDC0050F38A /* whohcgirls.txt in Resources */ = {isa = PBXBuildFile; fileRef = 42C7540018C2BBDC0050F38A /* whohcgirls.txt */; };
-		42C7540918C2BBDC0050F38A /* wholengthboys.txt in Resources */ = {isa = PBXBuildFile; fileRef = 42C7540118C2BBDC0050F38A /* wholengthboys.txt */; };
-		42C7540A18C2BBDC0050F38A /* wholengthgirls.txt in Resources */ = {isa = PBXBuildFile; fileRef = 42C7540218C2BBDC0050F38A /* wholengthgirls.txt */; };
-		42C7540B18C2BBDC0050F38A /* whoweightboys.txt in Resources */ = {isa = PBXBuildFile; fileRef = 42C7540318C2BBDC0050F38A /* whoweightboys.txt */; };
-		42C7540C18C2BBDC0050F38A /* whoweightgirls.txt in Resources */ = {isa = PBXBuildFile; fileRef = 42C7540418C2BBDC0050F38A /* whoweightgirls.txt */; };
-		42C7540E18C2C3020050F38A /* whobmiboys.txt in Resources */ = {isa = PBXBuildFile; fileRef = 42C753FD18C2BBDC0050F38A /* whobmiboys.txt */; };
-		42C7540F18C2C3020050F38A /* whobmigirls.txt in Resources */ = {isa = PBXBuildFile; fileRef = 42C753FE18C2BBDC0050F38A /* whobmigirls.txt */; };
-		42C7541018C2C3020050F38A /* whohcboys.txt in Resources */ = {isa = PBXBuildFile; fileRef = 42C753FF18C2BBDC0050F38A /* whohcboys.txt */; };
-		42C7541118C2C3020050F38A /* whohcgirls.txt in Resources */ = {isa = PBXBuildFile; fileRef = 42C7540018C2BBDC0050F38A /* whohcgirls.txt */; };
-		42C7541218C2C3020050F38A /* wholengthboys.txt in Resources */ = {isa = PBXBuildFile; fileRef = 42C7540118C2BBDC0050F38A /* wholengthboys.txt */; };
-		42C7541318C2C3020050F38A /* wholengthgirls.txt in Resources */ = {isa = PBXBuildFile; fileRef = 42C7540218C2BBDC0050F38A /* wholengthgirls.txt */; };
-		42C7541418C2C3020050F38A /* whoweightboys.txt in Resources */ = {isa = PBXBuildFile; fileRef = 42C7540318C2BBDC0050F38A /* whoweightboys.txt */; };
-		42C7541518C2C3020050F38A /* whoweightgirls.txt in Resources */ = {isa = PBXBuildFile; fileRef = 42C7540418C2BBDC0050F38A /* whoweightgirls.txt */; };
 		42E7F98C18C267AE00C49072 /* SBTWHODataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E7F98B18C267AE00C49072 /* SBTWHODataSource.m */; };
 		42F66E3618BC581D0099137F /* SBTDTaPScheduleTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F66E3518BC581D0099137F /* SBTDTaPScheduleTest.m */; };
 /* End PBXBuildFile section */
@@ -90,6 +94,26 @@
 		4248806C18945CE2009F2837 /* SBTVaccine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTVaccine.m; sourceTree = "<group>"; };
 		4258BCF418C40E1900E8232F /* SBTCDCDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTCDCDataSource.h; sourceTree = "<group>"; };
 		4258BCF518C40E1900E8232F /* SBTCDCDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTCDCDataSource.m; sourceTree = "<group>"; };
+		4264369318C4459800414CA1 /* cdcbmiboys.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cdcbmiboys.txt; sourceTree = "<group>"; };
+		4264369418C4459800414CA1 /* cdcbmigirls.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cdcbmigirls.txt; sourceTree = "<group>"; };
+		4264369518C4459800414CA1 /* cdchcboys.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cdchcboys.txt; sourceTree = "<group>"; };
+		4264369618C4459800414CA1 /* cdchcgirls.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cdchcgirls.txt; sourceTree = "<group>"; };
+		4264369718C4459800414CA1 /* cdclengthboys.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cdclengthboys.txt; sourceTree = "<group>"; };
+		4264369818C4459800414CA1 /* cdclengthgirls.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cdclengthgirls.txt; sourceTree = "<group>"; };
+		4264369918C4459800414CA1 /* cdcstatureboys.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cdcstatureboys.txt; sourceTree = "<group>"; };
+		4264369A18C4459800414CA1 /* cdcstaturegirls.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cdcstaturegirls.txt; sourceTree = "<group>"; };
+		4264369B18C4459800414CA1 /* cdcweightboys.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cdcweightboys.txt; sourceTree = "<group>"; };
+		4264369C18C4459800414CA1 /* cdcweightgirls.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cdcweightgirls.txt; sourceTree = "<group>"; };
+		4264369D18C4459800414CA1 /* cdcweightinfantboys.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cdcweightinfantboys.txt; sourceTree = "<group>"; };
+		4264369E18C4459800414CA1 /* cdcweightinfantgirls.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cdcweightinfantgirls.txt; sourceTree = "<group>"; };
+		4264369F18C4459800414CA1 /* whobmiboys.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = whobmiboys.txt; sourceTree = "<group>"; };
+		426436A018C4459800414CA1 /* whobmigirls.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = whobmigirls.txt; sourceTree = "<group>"; };
+		426436A118C4459800414CA1 /* whohcboys.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = whohcboys.txt; sourceTree = "<group>"; };
+		426436A218C4459800414CA1 /* whohcgirls.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = whohcgirls.txt; sourceTree = "<group>"; };
+		426436A318C4459800414CA1 /* wholengthboys.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = wholengthboys.txt; sourceTree = "<group>"; };
+		426436A418C4459800414CA1 /* wholengthgirls.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = wholengthgirls.txt; sourceTree = "<group>"; };
+		426436A518C4459800414CA1 /* whoweightboys.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = whoweightboys.txt; sourceTree = "<group>"; };
+		426436A618C4459800414CA1 /* whoweightgirls.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = whoweightgirls.txt; sourceTree = "<group>"; };
 		426FF5D618C15DB000B66F36 /* SBTDataPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTDataPoint.h; sourceTree = "<group>"; };
 		426FF5D718C15DB000B66F36 /* SBTDataPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTDataPoint.m; sourceTree = "<group>"; };
 		426FF5D918C1A56200B66F36 /* SBTGrowthDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTGrowthDataSource.h; sourceTree = "<group>"; };
@@ -98,14 +122,6 @@
 		42B6012E1895E1E6000C15F4 /* SBTVaccineSchedule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTVaccineSchedule.h; sourceTree = "<group>"; };
 		42B6012F1895E1E6000C15F4 /* SBTVaccineSchedule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTVaccineSchedule.m; sourceTree = "<group>"; };
 		42C753DA18C2B5630050F38A /* SBTWHODataTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTWHODataTests.m; sourceTree = "<group>"; };
-		42C753FD18C2BBDC0050F38A /* whobmiboys.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = whobmiboys.txt; path = "../Growth Charts/whobmiboys.txt"; sourceTree = "<group>"; };
-		42C753FE18C2BBDC0050F38A /* whobmigirls.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = whobmigirls.txt; path = "../Growth Charts/whobmigirls.txt"; sourceTree = "<group>"; };
-		42C753FF18C2BBDC0050F38A /* whohcboys.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = whohcboys.txt; path = "../Growth Charts/whohcboys.txt"; sourceTree = "<group>"; };
-		42C7540018C2BBDC0050F38A /* whohcgirls.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = whohcgirls.txt; path = "../Growth Charts/whohcgirls.txt"; sourceTree = "<group>"; };
-		42C7540118C2BBDC0050F38A /* wholengthboys.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = wholengthboys.txt; path = "../Growth Charts/wholengthboys.txt"; sourceTree = "<group>"; };
-		42C7540218C2BBDC0050F38A /* wholengthgirls.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = wholengthgirls.txt; path = "../Growth Charts/wholengthgirls.txt"; sourceTree = "<group>"; };
-		42C7540318C2BBDC0050F38A /* whoweightboys.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = whoweightboys.txt; path = "../Growth Charts/whoweightboys.txt"; sourceTree = "<group>"; };
-		42C7540418C2BBDC0050F38A /* whoweightgirls.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = whoweightgirls.txt; path = "../Growth Charts/whoweightgirls.txt"; sourceTree = "<group>"; };
 		42E7F98A18C267AE00C49072 /* SBTWHODataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTWHODataSource.h; sourceTree = "<group>"; };
 		42E7F98B18C267AE00C49072 /* SBTWHODataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTWHODataSource.m; sourceTree = "<group>"; };
 		42F66E3518BC581D0099137F /* SBTDTaPScheduleTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTDTaPScheduleTest.m; sourceTree = "<group>"; };
@@ -240,14 +256,26 @@
 		42C7540D18C2BBEE0050F38A /* Data files */ = {
 			isa = PBXGroup;
 			children = (
-				42C753FD18C2BBDC0050F38A /* whobmiboys.txt */,
-				42C753FE18C2BBDC0050F38A /* whobmigirls.txt */,
-				42C753FF18C2BBDC0050F38A /* whohcboys.txt */,
-				42C7540018C2BBDC0050F38A /* whohcgirls.txt */,
-				42C7540118C2BBDC0050F38A /* wholengthboys.txt */,
-				42C7540218C2BBDC0050F38A /* wholengthgirls.txt */,
-				42C7540318C2BBDC0050F38A /* whoweightboys.txt */,
-				42C7540418C2BBDC0050F38A /* whoweightgirls.txt */,
+				4264369318C4459800414CA1 /* cdcbmiboys.txt */,
+				4264369418C4459800414CA1 /* cdcbmigirls.txt */,
+				4264369518C4459800414CA1 /* cdchcboys.txt */,
+				4264369618C4459800414CA1 /* cdchcgirls.txt */,
+				4264369718C4459800414CA1 /* cdclengthboys.txt */,
+				4264369818C4459800414CA1 /* cdclengthgirls.txt */,
+				4264369918C4459800414CA1 /* cdcstatureboys.txt */,
+				4264369A18C4459800414CA1 /* cdcstaturegirls.txt */,
+				4264369B18C4459800414CA1 /* cdcweightboys.txt */,
+				4264369C18C4459800414CA1 /* cdcweightgirls.txt */,
+				4264369D18C4459800414CA1 /* cdcweightinfantboys.txt */,
+				4264369E18C4459800414CA1 /* cdcweightinfantgirls.txt */,
+				4264369F18C4459800414CA1 /* whobmiboys.txt */,
+				426436A018C4459800414CA1 /* whobmigirls.txt */,
+				426436A118C4459800414CA1 /* whohcboys.txt */,
+				426436A218C4459800414CA1 /* whohcgirls.txt */,
+				426436A318C4459800414CA1 /* wholengthboys.txt */,
+				426436A418C4459800414CA1 /* wholengthgirls.txt */,
+				426436A518C4459800414CA1 /* whoweightboys.txt */,
+				426436A618C4459800414CA1 /* whoweightgirls.txt */,
 			);
 			name = "Data files";
 			sourceTree = "<group>";
@@ -329,19 +357,31 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				42C7540E18C2C3020050F38A /* whobmiboys.txt in Resources */,
-				42C7540F18C2C3020050F38A /* whobmigirls.txt in Resources */,
-				42C7541018C2C3020050F38A /* whohcboys.txt in Resources */,
-				42C7541118C2C3020050F38A /* whohcgirls.txt in Resources */,
-				42C7541218C2C3020050F38A /* wholengthboys.txt in Resources */,
-				42C7541318C2C3020050F38A /* wholengthgirls.txt in Resources */,
-				42C7541418C2C3020050F38A /* whoweightboys.txt in Resources */,
-				42C7541518C2C3020050F38A /* whoweightgirls.txt in Resources */,
+				426436AA18C4459800414CA1 /* cdchcgirls.txt in Resources */,
+				426436B318C4459800414CA1 /* whobmiboys.txt in Resources */,
+				426436B218C4459800414CA1 /* cdcweightinfantgirls.txt in Resources */,
 				421C747718937535000E3C30 /* Main_iPad.storyboard in Resources */,
 				421C747F18937535000E3C30 /* Images.xcassets in Resources */,
 				429700CE18AED9AA0013A91B /* ACIP Schedule.plist in Resources */,
+				426436B118C4459800414CA1 /* cdcweightinfantboys.txt in Resources */,
+				426436AF18C4459800414CA1 /* cdcweightboys.txt in Resources */,
 				421C747418937535000E3C30 /* Main_iPhone.storyboard in Resources */,
+				426436AC18C4459800414CA1 /* cdclengthgirls.txt in Resources */,
+				426436B918C4459800414CA1 /* whoweightboys.txt in Resources */,
+				426436BA18C4459800414CA1 /* whoweightgirls.txt in Resources */,
+				426436B818C4459800414CA1 /* wholengthgirls.txt in Resources */,
 				421C746B18937535000E3C30 /* InfoPlist.strings in Resources */,
+				426436AD18C4459800414CA1 /* cdcstatureboys.txt in Resources */,
+				426436B018C4459800414CA1 /* cdcweightgirls.txt in Resources */,
+				426436B518C4459800414CA1 /* whohcboys.txt in Resources */,
+				426436B718C4459800414CA1 /* wholengthboys.txt in Resources */,
+				426436A918C4459800414CA1 /* cdchcboys.txt in Resources */,
+				426436A818C4459800414CA1 /* cdcbmigirls.txt in Resources */,
+				426436B418C4459800414CA1 /* whobmigirls.txt in Resources */,
+				426436B618C4459800414CA1 /* whohcgirls.txt in Resources */,
+				426436AB18C4459800414CA1 /* cdclengthboys.txt in Resources */,
+				426436AE18C4459800414CA1 /* cdcstaturegirls.txt in Resources */,
+				426436A718C4459800414CA1 /* cdcbmiboys.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -349,15 +389,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				42C7540918C2BBDC0050F38A /* wholengthboys.txt in Resources */,
-				42C7540818C2BBDC0050F38A /* whohcgirls.txt in Resources */,
-				42C7540B18C2BBDC0050F38A /* whoweightboys.txt in Resources */,
-				42C7540C18C2BBDC0050F38A /* whoweightgirls.txt in Resources */,
 				421C749018937536000E3C30 /* InfoPlist.strings in Resources */,
-				42C7540718C2BBDC0050F38A /* whohcboys.txt in Resources */,
-				42C7540518C2BBDC0050F38A /* whobmiboys.txt in Resources */,
-				42C7540A18C2BBDC0050F38A /* wholengthgirls.txt in Resources */,
-				42C7540618C2BBDC0050F38A /* whobmigirls.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
