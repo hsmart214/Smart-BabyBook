@@ -25,6 +25,7 @@
 		4248806618944C84009F2837 /* SBTBaby.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248806518944C84009F2837 /* SBTBaby.m */; };
 		4248806A189459D2009F2837 /* SBTEncounter.m in Sources */ = {isa = PBXBuildFile; fileRef = 42488069189459D2009F2837 /* SBTEncounter.m */; };
 		4248806D18945CE2009F2837 /* SBTVaccine.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248806C18945CE2009F2837 /* SBTVaccine.m */; };
+		4258BCF618C40E1900E8232F /* SBTCDCDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4258BCF518C40E1900E8232F /* SBTCDCDataSource.m */; };
 		426FF5D818C15DB000B66F36 /* SBTDataPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 426FF5D718C15DB000B66F36 /* SBTDataPoint.m */; };
 		426FF5DB18C1A56200B66F36 /* SBTGrowthDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 426FF5DA18C1A56200B66F36 /* SBTGrowthDataSource.m */; };
 		429700CE18AED9AA0013A91B /* ACIP Schedule.plist in Resources */ = {isa = PBXBuildFile; fileRef = 429700CD18AED9AA0013A91B /* ACIP Schedule.plist */; };
@@ -87,6 +88,8 @@
 		42488069189459D2009F2837 /* SBTEncounter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTEncounter.m; sourceTree = "<group>"; };
 		4248806B18945CE2009F2837 /* SBTVaccine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTVaccine.h; sourceTree = "<group>"; };
 		4248806C18945CE2009F2837 /* SBTVaccine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTVaccine.m; sourceTree = "<group>"; };
+		4258BCF418C40E1900E8232F /* SBTCDCDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTCDCDataSource.h; sourceTree = "<group>"; };
+		4258BCF518C40E1900E8232F /* SBTCDCDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTCDCDataSource.m; sourceTree = "<group>"; };
 		426FF5D618C15DB000B66F36 /* SBTDataPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTDataPoint.h; sourceTree = "<group>"; };
 		426FF5D718C15DB000B66F36 /* SBTDataPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTDataPoint.m; sourceTree = "<group>"; };
 		426FF5D918C1A56200B66F36 /* SBTGrowthDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTGrowthDataSource.h; sourceTree = "<group>"; };
@@ -226,6 +229,8 @@
 				426FF5DA18C1A56200B66F36 /* SBTGrowthDataSource.m */,
 				42E7F98A18C267AE00C49072 /* SBTWHODataSource.h */,
 				42E7F98B18C267AE00C49072 /* SBTWHODataSource.m */,
+				4258BCF418C40E1900E8232F /* SBTCDCDataSource.h */,
+				4258BCF518C40E1900E8232F /* SBTCDCDataSource.m */,
 				4226B8CB189F5F3B00682A6A /* NSDateComponents+Today.h */,
 				4226B8CC189F5F3B00682A6A /* NSDateComponents+Today.m */,
 			);
@@ -368,6 +373,7 @@
 				42B601301895E1E6000C15F4 /* SBTVaccineSchedule.m in Sources */,
 				421C747118937535000E3C30 /* SBTAppDelegate.m in Sources */,
 				4248806A189459D2009F2837 /* SBTEncounter.m in Sources */,
+				4258BCF618C40E1900E8232F /* SBTCDCDataSource.m in Sources */,
 				4248806618944C84009F2837 /* SBTBaby.m in Sources */,
 				421C746D18937535000E3C30 /* main.m in Sources */,
 				4248806D18945CE2009F2837 /* SBTVaccine.m in Sources */,

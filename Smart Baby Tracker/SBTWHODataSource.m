@@ -102,7 +102,7 @@
 }
 
 
-+(SBTWHODataSource *)sharedDataSource
++(instancetype)sharedDataSource
 {
     static SBTWHODataSource *source = nil;
     static dispatch_once_t onceToken;
@@ -112,7 +112,7 @@
     return source;
 }
 
--(SBTWHODataSource *)init
+-(instancetype)init
 {
     if (self = [super init]){
         return self;
