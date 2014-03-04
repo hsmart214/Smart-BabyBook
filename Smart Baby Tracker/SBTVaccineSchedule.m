@@ -97,7 +97,8 @@
         }
     }
     // TODO: track the overall vaccine component status and return the final determination
-    return 0;
+    
+    return SBTVaccinationUTD;
 }
 
 @end

@@ -55,7 +55,7 @@
     if (!_infantBoyWeightData){
         _infantBoyWeightData = [self filledDataArrayFromFile:CDC_BOY_INFANT_WEIGHT_FILENAME];
     }
-    return _boyWeightData;
+    return _infantBoyWeightData;
 }
 
 -(NSArray *)boyWeightData
@@ -71,7 +71,7 @@
     if (!_boyStatureData){
         _boyStatureData = [self filledDataArrayFromFile:CDC_BOY_STATURE_FILENAME];
     }
-    return _boyLengthData;
+    return _boyStatureData;
 }
 
 -(NSArray *)boyLengthData
@@ -102,7 +102,7 @@
     if (!_infantGirlWeightData){
         _infantGirlWeightData = [self filledDataArrayFromFile:CDC_GIRL_INFANT_WEIGHT_FILENAME];
     }
-    return _boyWeightData;
+    return _infantGirlWeightData;
 }
 
 -(NSArray *)girlWeightData
@@ -118,7 +118,7 @@
     if (!_girlStatureData){
         _girlStatureData = [self filledDataArrayFromFile:CDC_GIRL_STATURE_FILENAME];
     }
-    return _boyLengthData;
+    return _girlStatureData;
 }
 
 -(NSArray *)girlLengthData
@@ -234,6 +234,8 @@
     SBTDataPoint *firstDataPoint, *secondDataPoint, *dataPoint;
     firstDataPoint = [data firstObject];
     secondDataPoint = [data firstObject];
+    
+    dataPoint = [[SBTDataPoint alloc] init];
     
     for (SBTDataPoint *dp in data){
         firstDataPoint = secondDataPoint;

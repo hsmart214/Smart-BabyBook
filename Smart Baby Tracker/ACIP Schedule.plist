@@ -30,7 +30,7 @@
 				<key>doseRecommendedAge</key>
 				<integer>1461</integer>
 				<key>doseRecommendedAgeUpperLimit</key>
-				<integer>2191</integer>
+				<real>2192</real>
 				<key>doseRecommendedInterval</key>
 				<integer>0</integer>
 				<key>doseAgeFlagLate</key>
@@ -153,11 +153,11 @@
 				<key>doseMinimumInterval</key>
 				<integer>0</integer>
 				<key>doseRecommendedAge</key>
-				<integer>1460</integer>
+				<real>1461</real>
 				<key>doseRecommendedAgeUpperLimit</key>
-				<integer>2192</integer>
+				<real>2192</real>
 				<key>doseAgeFlagLate</key>
-				<integer>2192</integer>
+				<real>2193</real>
 			</dict>
 		</array>
 	</dict>

@@ -59,11 +59,11 @@
     [super tearDown];
 }
 
-- (void)testExample
+- (void)testDTaPStatus2doses
 {
     SBTVaccineSchedule *sched = [SBTVaccineSchedule sharedSchedule];
     SBTVaccinationStatus status = [sched baby:self.baby vaccinationStatusForVaccineComponent:SBTComponentDTaP];
-    XCTAssertTrue(status == SBTVaccineDoseLate , @"Incorrect calculation of DTaP status with two doses.");
+    XCTAssertTrue(status == SBTVaccinationUTD , @"Incorrect calculation of DTaP status with two doses.");
 }
 
 @end

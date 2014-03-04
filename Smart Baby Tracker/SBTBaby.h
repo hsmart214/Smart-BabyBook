@@ -41,5 +41,6 @@
 // will return an EMPTY ARRAY (not nil) if never received the component
 // to simplfy, the ages are given in DAYS as NSDateComponents * objects (not NSTimeIntervals)
 -(NSArray *)daysGivenVaccineComponent:(SBTComponent)component;
+-(NSArray *)daysGivenLiveVaccineComponent;
 
 @end

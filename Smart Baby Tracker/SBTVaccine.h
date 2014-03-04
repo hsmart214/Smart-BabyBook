@@ -16,6 +16,7 @@ typedef enum {SBTVaccineDoseOnTime, SBTVaccineDoseTooEarly, SBTVaccineDoseLate, 
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSArray *displayNames;
 @property (nonatomic) SBTVaccineDoseStatus status;
+@property (nonatomic) BOOL liveVaccine;
 // Optional
 @property (nonatomic) SBTVaccineRoute route;
 @property (nonatomic, copy) NSString *manufacturer;

@@ -33,7 +33,7 @@
         z = log(measurement/mean)/stdev;
     }
     pct = 0.5 * (1 + erf(z * M_SQRT1_2)); // don't ask me where I got this! (StackOverflow)
-    return pct;
+    return pct * 100.0;
 }
 
 -(void)encodeWithCoder:(NSCoder *)aCoder

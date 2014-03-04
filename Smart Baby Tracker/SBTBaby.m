@@ -86,7 +86,22 @@
             }
         }
     }
-    return [days copy];
+    return days;
+}
+
+-(NSArray *)daysGivenLiveVaccineComponent
+{
+    NSMutableArray *liveDays = [NSMutableArray array];
+    
+    for (SBTEncounter *enc in self.encounters){
+        for (SBTVaccine *vacc in enc.vaccinesGiven){
+            if ([vacc liveVaccine]){
+                [liveDays addObject:[self ageInDaysAtEncounter:enc]];
+            }
+        }
+    }
+    
+    return liveDays;
 }
 
 -(void)addEncounter:(SBTEncounter *)encounter

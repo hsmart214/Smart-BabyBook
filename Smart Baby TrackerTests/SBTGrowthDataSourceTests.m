@@ -12,24 +12,27 @@
 #import "SBTVaccine.h"
 #import "SBTVaccineSchedule.h"
 #import "SBTWHODataSource.h"
+#import "SBTCDCDataSource.h"
 
-@interface SBTWHODataTests : XCTestCase
+@interface SBTGrowthDataSourceTests : XCTestCase
 
 {
     SBTWHODataSource *whoData;
+    SBTCDCDataSource *cdcData;
 }
 
 @property (nonatomic, strong) SBTBaby *baby;
 
 @end
 
-@implementation SBTWHODataTests
+@implementation SBTGrowthDataSourceTests
 
 - (void)setUp
 {
     [super setUp];
     
     whoData = [SBTWHODataSource sharedDataSource];
+    cdcData = [SBTCDCDataSource sharedDataSource];
     
     NSDateComponents *twoMonths = [[NSDateComponents alloc] init];
     twoMonths.month = 2;
@@ -70,14 +73,24 @@
     [super tearDown];
 }
 
-- (void)testGirlWeight
+- (void)testWHOGirlWeight
 {
     double w = 5.1315;
     double pct = [whoData percentileOfMeasurement:w
                                            forAge:61
                                         parameter:SBTWeight
                                         andGender:SBTFemale];
-    XCTAssert(((pct-50.0)<= 0.00001), @"Not calculating female weight percentile correctly");
+    XCTAssert((fabs(pct-50.0)<= 0.00001), @"Not calculating 2 mo female WHO weight percentile correctly");
+}
+
+- (void)testCDCGirlWeight
+{
+    double w = 4.8877f;
+    double pct = [cdcData percentileOfMeasurement:w
+                                           forAge:61
+                                        parameter:SBTWeight
+                                        andGender:SBTFemale];
+    XCTAssert((fabs(pct-50.0)<= 0.01), @"Not calculating 2 mo female CDC weight percentile correctly");
 }
 
 @end
