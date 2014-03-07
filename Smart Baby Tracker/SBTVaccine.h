@@ -6,8 +6,6 @@
 //  Copyright (c) 2014 J. HOWARD SMART. All rights reserved.
 //
 
-typedef enum {SBTVaccineDoseOnTime, SBTVaccineDoseTooEarly, SBTVaccineDoseLate, SBTVaccineTooSoonAfterLiveVaccine} SBTVaccineDoseStatus;
-
 @import Foundation;
 
 @interface SBTVaccine : NSObject <NSSecureCoding, NSCopying>
@@ -15,7 +13,6 @@ typedef enum {SBTVaccineDoseOnTime, SBTVaccineDoseTooEarly, SBTVaccineDoseLate, 
 // Required
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSArray *displayNames;
-@property (nonatomic) SBTVaccineDoseStatus status;
 @property (nonatomic) BOOL liveVaccine;
 // Optional
 @property (nonatomic) SBTVaccineRoute route;
@@ -35,5 +32,6 @@ typedef enum {SBTVaccineDoseOnTime, SBTVaccineDoseTooEarly, SBTVaccineDoseLate, 
 
 +(NSDictionary *)vaccinesByTradeName;
 +(NSDictionary *)vaccinesByGenericName;
++(NSSet *)liveVaccineComponents;
 
 @end

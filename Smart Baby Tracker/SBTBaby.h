@@ -21,7 +21,8 @@
 -(BOOL)isPremature;
 
 // years, days only (no months)
--(NSDateComponents *)ageAtDate:(NSDate *)date;
+-(NSDateComponents *)ageYYDDAtDate:(NSDate *)date;
+-(NSDateComponents *)ageDDAtDate:(NSDate *)date;
 
 // this DOB should have its calendar property set to the local calendar used to create it.
 // if the DOB has a time as well, its timeZone property should also be set.
@@ -39,8 +40,9 @@
 -(NSDateComponents *)ageInDaysAtEncounter:(SBTEncounter *)encounter;
 
 // will return an EMPTY ARRAY (not nil) if never received the component
-// to simplfy, the ages are given in DAYS as NSDateComponents * objects (not NSTimeIntervals)
+// to simplify, the ages are given in DAYS as NSDateComponents * objects (not NSTimeIntervals or NSIntegers)
 -(NSArray *)daysGivenVaccineComponent:(SBTComponent)component;
 -(NSArray *)daysGivenLiveVaccineComponent;
+-(BOOL)dayIsDuringLiveBlackout:(NSDateComponents *)dayOfLife;
 
 @end

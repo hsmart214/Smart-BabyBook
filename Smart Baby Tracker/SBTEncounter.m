@@ -76,6 +76,21 @@
     return [days day];
 }
 
+-(NSInteger)daysSinceDate:(NSDate *)date
+{
+    NSCalendar *cal = [NSCalendar currentCalendar];
+    NSCalendarUnit unit = NSCalendarUnitDay;
+    NSDateComponents *days = [cal components:unit fromDate:self.universalDate toDate:date options:0];
+    return [days day];
+}
+
+-(NSComparisonResult)compare:(SBTEncounter *)encounter
+{
+    NSDate *date = self.universalDate;
+    NSDate *otherDate = encounter.universalDate;
+    return [date compare:otherDate];
+}
+
 -(instancetype)init{
     // Give a default encounter date of today.
     NSDate *simpleDate = [[NSCalendar currentCalendar] dateFromComponents:[NSDateComponents today]];

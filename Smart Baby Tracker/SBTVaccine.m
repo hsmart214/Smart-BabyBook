@@ -56,7 +56,6 @@
 {
     [aCoder encodeObject:self.name forKey:@"name"];
     [aCoder encodeObject:self.displayNames forKey:@"displayName"];
-    [aCoder encodeInteger:self.status forKey:@"status"];
     [aCoder encodeObject:self.manufacturer forKey:@"manufacturer"];
     [aCoder encodeObject:self.lotNumber forKey:@"lotNumber"];
     [aCoder encodeObject:self.expirationDate forKey:@"expDate"];
@@ -69,7 +68,6 @@
     if (self = [super init]){
         self.name = [aDecoder decodeObjectOfClass:[NSString class] forKey:@"name"];
         self.displayNames = [aDecoder decodeObjectOfClass:[NSArray class] forKey:@"displayName"];
-        self.status = (SBTVaccineDoseStatus)[aDecoder decodeIntegerForKey:@"status"];
         self.manufacturer = [aDecoder decodeObjectOfClass:[NSString class] forKey:@"manufacturer"];
         self.lotNumber = [aDecoder decodeObjectOfClass:[NSString class] forKey:@"lotNumber"];
         self.expirationDate = [aDecoder decodeObjectOfClass:[NSDate class] forKey:@"expDate"];

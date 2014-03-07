@@ -32,6 +32,8 @@
 -(void)removeVaccines:(NSArray *)vaccinesToRemove;
 
 -(NSInteger)daysSinceEncounter:(SBTEncounter *)encounter;
+-(NSInteger)daysSinceDate:(NSDate *)date;
+-(NSComparisonResult)compare:(SBTEncounter *)encounter;
 
 // an array of SBTVaccine * objects
 -(NSArray *)vaccinesGiven;

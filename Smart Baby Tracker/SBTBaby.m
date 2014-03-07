@@ -12,10 +12,11 @@
 #import "NSDateComponents+Today.h"
 
 #define PREMATURE_DAYS_EARLY 21
+#define LIVE_VACCINE_BLACKOUT 28
 
 @interface SBTBaby ()
 
-@property (nonatomic, strong) NSMutableSet *encounters;
+@property (nonatomic, strong) NSMutableArray *encounters;
 @property (nonatomic, copy) NSDate *dateCreated;
 @property (nonatomic, copy) NSDate *dateModified;
 
@@ -32,7 +33,7 @@
     return [comps day] > PREMATURE_DAYS_EARLY;
 }
 
--(NSDateComponents *)ageAtDate:(NSDate *)date
+-(NSDateComponents *)ageYYDDAtDate:(NSDate *)date
 {
     NSCalendarUnit unitFlags = NSCalendarUnitYear | NSCalendarUnitDay;
     NSCalendar *cal = [NSCalendar currentCalendar];
@@ -45,6 +46,21 @@
     NSDateComponents *comps = [cal components:unitFlags fromDate:simpleDOB toDate:date options:0];
     return comps;
 }
+
+-(NSDateComponents *)ageDDAtDate:(NSDate *)date
+{
+    NSCalendarUnit unitFlags = NSCalendarUnitYear | NSCalendarUnitDay;
+    NSCalendar *cal = [NSCalendar currentCalendar];
+    // strip the birth time out of the DOB components
+    NSDateComponents *simpleDOBcomps = [[NSDateComponents alloc] init];
+    simpleDOBcomps.year = self.DOB.year;
+    simpleDOBcomps.month = self.DOB.month;
+    simpleDOBcomps.day = self.DOB.day;
+    NSDate *simpleDOB = [self.DOB.calendar dateFromComponents:simpleDOBcomps];
+    NSDateComponents *comps = [cal components:unitFlags fromDate:simpleDOB toDate:date options:0];
+    return comps;
+}
+
 
 -(void)setName:(NSString *)name
 {
@@ -67,10 +83,10 @@
     self.dateModified = [NSDate date];
 }
 
--(NSMutableSet *)encounters
+-(NSMutableArray *)encounters
 {
     if (!_encounters){
-        _encounters = [NSMutableSet set];
+        _encounters = [NSMutableArray array];
     }
     return _encounters;
 }
@@ -100,13 +116,24 @@
             }
         }
     }
-    
     return liveDays;
+}
+
+-(BOOL)dayIsDuringLiveBlackout:(NSDateComponents *)dayOfLife
+{
+    for (NSDateComponents *comps in [self daysGivenLiveVaccineComponent]){
+        NSInteger interval = dayOfLife.day - comps.day;
+        if (interval > 0 && interval < LIVE_VACCINE_BLACKOUT){
+            return YES;
+        }
+    }
+    return NO;
 }
 
 -(void)addEncounter:(SBTEncounter *)encounter
 {
     [self.encounters addObject:encounter];
+    [_encounters sortUsingSelector:@selector(compare:)];
     self.dateModified = [NSDate date];
 }
 
