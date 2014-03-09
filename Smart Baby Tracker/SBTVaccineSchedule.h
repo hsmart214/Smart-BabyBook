@@ -21,9 +21,12 @@ typedef enum {SBTVaccineDoseValid, SBTVaccineDoseTooEarly, SBTVaccineDoseLate, S
 
 @interface SBTVaccineSchedule : NSObject
 
--(SBTVaccinationStatus)baby:(SBTBaby *)baby vaccinationStatusForVaccineComponent:(SBTComponent)component;
--(SBTVaccineDoseStatus)statusOfVaccineComponent:(SBTComponent)component forDose:(NSInteger)dose forBaby:(SBTBaby *)baby;
-
+-(SBTVaccinationStatus)vaccinationStatusForVaccineComponent:(SBTComponent)component
+                                                    forBaby:(SBTBaby *)baby;
+-(SBTVaccineDoseStatus)statusOfVaccineComponent:(SBTComponent)component
+                             forGivenDoseNumber:(NSInteger)doseNum
+                                        forDose:(NSInteger)doseOrd
+                                        forBaby:(SBTBaby *)baby;
 +(SBTVaccineSchedule *)sharedSchedule;
 
 @end

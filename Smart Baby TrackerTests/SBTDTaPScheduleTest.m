@@ -11,10 +11,12 @@
 #import "SBTEncounter.h"
 #import "SBTVaccine.h"
 #import "SBTVaccineSchedule.h"
+#import "NSDateComponents+Today.h"
 
 @interface SBTDTaPScheduleTest : XCTestCase
 
 @property (nonatomic, strong) SBTBaby *baby;
+@property (nonatomic, strong) SBTBaby *sevenYearOld;
 
 @end
 
@@ -34,7 +36,7 @@
     comps.year = 1996;
     comps.calendar = [NSCalendar currentCalendar];
     comps.timeZone = [NSTimeZone localTimeZone];
-    self.baby = [[SBTBaby alloc] initWithName:@"Jennifer" andDOB:comps];
+    self.baby = [[SBTBaby alloc] initWithName:@"Jennifer" andDOB:comps.date];
     self.baby.gender = SBTFemale;
     self.baby.dueDate = [comps copy];
     NSDate *birth = [comps.calendar dateFromComponents:comps];
@@ -51,6 +53,12 @@
     SBTEncounter *enc2 = [[SBTEncounter alloc] initWithDate:date];
     [enc2 addVaccines:@[[vaccine copy]]];
     [self.baby addEncounter:enc2];
+    
+    NSDateComponents *minus7y = [NSDateComponents new];
+    minus7y.year = -7;
+    NSDate *birthday7 = [[NSCalendar currentCalendar] dateByAddingComponents:minus7y toDate:[NSDate date] options:0];
+    self.sevenYearOld = [[SBTBaby alloc] initWithName:@"Seven" andDOB:birthday7];
+    
 }
 
 - (void)tearDown
@@ -62,8 +70,153 @@
 - (void)testDTaPStatus2doses
 {
     SBTVaccineSchedule *sched = [SBTVaccineSchedule sharedSchedule];
-    SBTVaccinationStatus status = [sched baby:self.baby vaccinationStatusForVaccineComponent:SBTComponentDTaP];
-    XCTAssertTrue(status == SBTVaccinationUTD , @"Incorrect calculation of DTaP status with two doses.");
+    SBTVaccinationStatus status = [sched vaccinationStatusForVaccineComponent:SBTComponentDTaP forBaby:self.baby];
+    XCTAssertTrue(status == SBTVaccinationDue , @"Incorrect calculation of DTaP status with two doses.");
 }
+
+-(void)testSevenYearOld_Regular
+{
+    NSDateComponents *xMonths = [[NSDateComponents alloc] init];
+    xMonths.month = 2;
+    xMonths.calendar = [NSCalendar currentCalendar];
+    
+    NSDate *birth = [self.sevenYearOld DOB];
+    //two months
+    NSDate *date = [[NSCalendar currentCalendar] dateByAddingComponents:xMonths toDate:birth options:0];
+    SBTEncounter *enc = [[SBTEncounter alloc] initWithDate:date];
+    SBTVaccine *vaccine = [[SBTVaccine alloc] initWithName:@"Daptacel" displayNames:@[@"DTaP"] manufacturer:Sanofi andComponents:@[@(SBTComponentDTaP)]];
+    SBTVaccine *vaccine2 =[[SBTVaccine alloc] initWithName:@"Pentacel" displayNames:@[@"DTaP", @"HiB", @"PCV"] manufacturer:Sanofi andComponents:@[@(SBTComponentDTaP), @(SBTComponentPRP_OMP), @(SBTComponentPCV13)]];
+
+    vaccine.route = Intramuscular;
+    vaccine2.route = Intramuscular;
+    [enc addVaccines: @[vaccine2]];
+    [self.sevenYearOld addEncounter:enc];
+    //four months
+    date = [[NSCalendar currentCalendar] dateByAddingComponents:xMonths toDate:date options:0];
+    SBTEncounter *enc2 = [[SBTEncounter alloc] initWithDate:date];
+    [enc2 addVaccines:@[[vaccine2 copy]]];
+    [self.sevenYearOld addEncounter:enc2];
+    //six months
+    date = [[NSCalendar currentCalendar] dateByAddingComponents:xMonths toDate:date options:0];
+    enc2 = [[SBTEncounter alloc] initWithDate:date];
+    [enc2 addVaccines:@[[vaccine2 copy]]];
+    [self.sevenYearOld addEncounter:enc2];
+    //fifteen months
+    xMonths.month = 9;
+    date = [[NSCalendar currentCalendar] dateByAddingComponents:xMonths toDate:date options:0];
+    enc2 = [[SBTEncounter alloc] initWithDate:date];
+    [enc2 addVaccines:@[[vaccine copy]]];
+    [self.sevenYearOld addEncounter:enc2];
+    //four years
+    xMonths.month = 0;
+    xMonths.year = 3;
+    date = [[NSCalendar currentCalendar] dateByAddingComponents:xMonths toDate:date options:0];
+    enc2 = [[SBTEncounter alloc] initWithDate:date];
+    [enc2 addVaccines:@[[vaccine copy]]];
+    [self.sevenYearOld addEncounter:enc2];
+    
+    SBTVaccineSchedule *sched = [SBTVaccineSchedule sharedSchedule];
+    SBTVaccinationStatus status = [sched vaccinationStatusForVaccineComponent:SBTComponentDTaP forBaby:self.sevenYearOld];
+    XCTAssertTrue(status == SBTVaccinationUTD , @"Incorrect calculation of DTaP status with five regular doses.");
+}
+
+-(void)testSevenYearOld_FifthDoseTooEarly
+{
+    NSDateComponents *xMonths = [[NSDateComponents alloc] init];
+    xMonths.month = 2;
+    xMonths.calendar = [NSCalendar currentCalendar];
+    
+    NSDate *birth = [self.sevenYearOld DOB];
+    //two months
+    NSDate *date = [[NSCalendar currentCalendar] dateByAddingComponents:xMonths toDate:birth options:0];
+    SBTEncounter *enc = [[SBTEncounter alloc] initWithDate:date];
+    SBTVaccine *vaccine = [[SBTVaccine alloc] initWithName:@"Daptacel" displayNames:@[@"DTaP"] manufacturer:Sanofi andComponents:@[@(SBTComponentDTaP)]];
+    SBTVaccine *vaccine2 =[[SBTVaccine alloc] initWithName:@"Pentacel" displayNames:@[@"DTaP", @"HiB", @"PCV"] manufacturer:Sanofi andComponents:@[@(SBTComponentDTaP), @(SBTComponentPRP_OMP), @(SBTComponentPCV13)]];
+    
+    vaccine.route = Intramuscular;
+    vaccine2.route = Intramuscular;
+    [enc addVaccines: @[vaccine2]];
+    [self.sevenYearOld addEncounter:enc];
+    //four months
+    date = [[NSCalendar currentCalendar] dateByAddingComponents:xMonths toDate:date options:0];
+    SBTEncounter *enc2 = [[SBTEncounter alloc] initWithDate:date];
+    [enc2 addVaccines:@[[vaccine2 copy]]];
+    [self.sevenYearOld addEncounter:enc2];
+    //six months
+    date = [[NSCalendar currentCalendar] dateByAddingComponents:xMonths toDate:date options:0];
+    enc2 = [[SBTEncounter alloc] initWithDate:date];
+    [enc2 addVaccines:@[[vaccine2 copy]]];
+    [self.sevenYearOld addEncounter:enc2];
+    //fifteen months
+    xMonths.month = 9;
+    date = [[NSCalendar currentCalendar] dateByAddingComponents:xMonths toDate:date options:0];
+    enc2 = [[SBTEncounter alloc] initWithDate:date];
+    [enc2 addVaccines:@[[vaccine copy]]];
+    [self.sevenYearOld addEncounter:enc2];
+    //three years
+    xMonths.month = 0;
+    xMonths.year = 2;
+    date = [[NSCalendar currentCalendar] dateByAddingComponents:xMonths toDate:date options:0];
+    enc2 = [[SBTEncounter alloc] initWithDate:date];
+    [enc2 addVaccines:@[[vaccine copy]]];
+    [self.sevenYearOld addEncounter:enc2];
+    
+    SBTVaccineSchedule *sched = [SBTVaccineSchedule sharedSchedule];
+    SBTVaccinationStatus status = [sched vaccinationStatusForVaccineComponent:SBTComponentDTaP forBaby:self.sevenYearOld];
+    XCTAssertTrue(status == SBTVaccinationDue , @"Incorrect calculation of DTaP status with five regular doses.");
+}
+
+-(void)testSevenYearOld_ExtraDoseTooEarly
+{
+    NSDateComponents *xMonths = [[NSDateComponents alloc] init];
+    xMonths.month = 2;
+    xMonths.calendar = [NSCalendar currentCalendar];
+    
+    NSDate *birth = [self.sevenYearOld DOB];
+    //two months
+    NSDate *date = [[NSCalendar currentCalendar] dateByAddingComponents:xMonths toDate:birth options:0];
+    SBTEncounter *enc = [[SBTEncounter alloc] initWithDate:date];
+    SBTVaccine *vaccine = [[SBTVaccine alloc] initWithName:@"Daptacel" displayNames:@[@"DTaP"] manufacturer:Sanofi andComponents:@[@(SBTComponentDTaP)]];
+    SBTVaccine *vaccine2 =[[SBTVaccine alloc] initWithName:@"Pentacel" displayNames:@[@"DTaP", @"HiB", @"PCV"] manufacturer:Sanofi andComponents:@[@(SBTComponentDTaP), @(SBTComponentPRP_OMP), @(SBTComponentPCV13)]];
+    
+    vaccine.route = Intramuscular;
+    vaccine2.route = Intramuscular;
+    [enc addVaccines: @[vaccine2]];
+    [self.sevenYearOld addEncounter:enc];
+    //four months
+    date = [[NSCalendar currentCalendar] dateByAddingComponents:xMonths toDate:date options:0];
+    SBTEncounter *enc2 = [[SBTEncounter alloc] initWithDate:date];
+    [enc2 addVaccines:@[[vaccine2 copy]]];
+    [self.sevenYearOld addEncounter:enc2];
+    //six months
+    date = [[NSCalendar currentCalendar] dateByAddingComponents:xMonths toDate:date options:0];
+    enc2 = [[SBTEncounter alloc] initWithDate:date];
+    [enc2 addVaccines:@[[vaccine2 copy]]];
+    [self.sevenYearOld addEncounter:enc2];
+    //nine months
+    xMonths.month = 3;
+    date = [[NSCalendar currentCalendar] dateByAddingComponents:xMonths toDate:date options:0];
+    enc2 = [[SBTEncounter alloc] initWithDate:date];
+    [enc2 addVaccines:@[[vaccine copy]]];
+    [self.sevenYearOld addEncounter:enc2];
+    //fifteen months
+    xMonths.month = 6;
+    date = [[NSCalendar currentCalendar] dateByAddingComponents:xMonths toDate:date options:0];
+    enc2 = [[SBTEncounter alloc] initWithDate:date];
+    [enc2 addVaccines:@[[vaccine copy]]];
+    [self.sevenYearOld addEncounter:enc2];
+    //four years
+    xMonths.month = 0;
+    xMonths.year = 3;
+    date = [[NSCalendar currentCalendar] dateByAddingComponents:xMonths toDate:date options:0];
+    enc2 = [[SBTEncounter alloc] initWithDate:date];
+    [enc2 addVaccines:@[[vaccine copy]]];
+    [self.sevenYearOld addEncounter:enc2];
+    
+    SBTVaccineSchedule *sched = [SBTVaccineSchedule sharedSchedule];
+    SBTVaccinationStatus status = [sched vaccinationStatusForVaccineComponent:SBTComponentDTaP forBaby:self.sevenYearOld];
+    XCTAssertTrue(status == SBTVaccinationDue , @"Incorrect calculation of DTaP status with five regular doses.");
+}
+
 
 @end

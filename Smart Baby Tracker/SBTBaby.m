@@ -29,7 +29,7 @@
     if (!_dueDate) return  NO;
     NSCalendar *cal = [NSCalendar currentCalendar];
     NSCalendarUnit unitFlag = NSCalendarUnitDay;
-    NSDateComponents *comps = [cal components:unitFlag fromDate:self.dueDate.date toDate:self.DOB.date options:0];
+    NSDateComponents *comps = [cal components:unitFlag fromDate:self.dueDate.date toDate:self.DOBComponents.date options:0];
     return [comps day] > PREMATURE_DAYS_EARLY;
 }
 
@@ -39,24 +39,24 @@
     NSCalendar *cal = [NSCalendar currentCalendar];
     // strip the birth time out of the DOB components
     NSDateComponents *simpleDOBcomps = [[NSDateComponents alloc] init];
-    simpleDOBcomps.year = self.DOB.year;
-    simpleDOBcomps.month = self.DOB.month;
-    simpleDOBcomps.day = self.DOB.day;
-    NSDate *simpleDOB = [self.DOB.calendar dateFromComponents:simpleDOBcomps];
+    simpleDOBcomps.year = self.DOBComponents.year;
+    simpleDOBcomps.month = self.DOBComponents.month;
+    simpleDOBcomps.day = self.DOBComponents.day;
+    NSDate *simpleDOB = [cal dateFromComponents:simpleDOBcomps];
     NSDateComponents *comps = [cal components:unitFlags fromDate:simpleDOB toDate:date options:0];
     return comps;
 }
 
 -(NSDateComponents *)ageDDAtDate:(NSDate *)date
 {
-    NSCalendarUnit unitFlags = NSCalendarUnitYear | NSCalendarUnitDay;
+    NSCalendarUnit unitFlags = NSCalendarUnitDay;
     NSCalendar *cal = [NSCalendar currentCalendar];
     // strip the birth time out of the DOB components
     NSDateComponents *simpleDOBcomps = [[NSDateComponents alloc] init];
-    simpleDOBcomps.year = self.DOB.year;
-    simpleDOBcomps.month = self.DOB.month;
-    simpleDOBcomps.day = self.DOB.day;
-    NSDate *simpleDOB = [self.DOB.calendar dateFromComponents:simpleDOBcomps];
+    simpleDOBcomps.year = self.DOBComponents.year;
+    simpleDOBcomps.month = self.DOBComponents.month;
+    simpleDOBcomps.day = self.DOBComponents.day;
+    NSDate *simpleDOB = [cal dateFromComponents:simpleDOBcomps];
     NSDateComponents *comps = [cal components:unitFlags fromDate:simpleDOB toDate:date options:0];
     return comps;
 }
@@ -70,10 +70,10 @@
     }
 }
 
--(void)setDOB:(NSDateComponents *)DOB
+-(void)setDOBComponents:(NSDateComponents *)DOBComps
 {
     // DOB.calendar = [NSCalendar currentCalendar];
-    _DOB = DOB;
+    _DOBComponents = DOBComps;
     self.dateModified = [NSDate date];
 }
 
@@ -149,20 +149,22 @@
 
 -(NSDateComponents *)ageInYearsAndDaysAtEncounter:(SBTEncounter *)encounter
 {
-    NSDateComponents *comps = [[NSCalendar currentCalendar] components:(NSCalendarUnitDay | NSCalendarUnitYear) fromDate:encounter.dateComps.date toDate:self.DOB.date options:0];
+    NSDateComponents *comps = [[NSCalendar currentCalendar] components:(NSCalendarUnitDay | NSCalendarUnitYear) fromDate:self.DOB toDate:encounter.dateComps.date options:0];
     return comps;
 }
 
 -(NSDateComponents *)ageInMonthsAndDaysAtEncounter:(SBTEncounter *)encounter
 {
-    NSDateComponents *comps = [[NSCalendar currentCalendar] components:(NSCalendarUnitDay | NSCalendarUnitMonth) fromDate:encounter.dateComps.date toDate:self.DOB.date options:0];
+    NSDateComponents *comps = [[NSCalendar currentCalendar] components:(NSCalendarUnitDay | NSCalendarUnitMonth) fromDate:self.DOB toDate:encounter.dateComps.date options:0];
     return comps;
 }
 
 
 -(NSDateComponents *)ageInDaysAtEncounter:(SBTEncounter *)encounter
 {
-    NSDateComponents *comps = [[NSCalendar currentCalendar] components:(NSCalendarUnitDay) fromDate:encounter.dateComps.date toDate:self.DOB.date options:0];
+    
+    NSDateComponents *comps = [NSDateComponents new];
+    comps.day = [encounter daysSinceDate:self.DOB];
     return comps;
 }
 
@@ -183,7 +185,7 @@
 -(void)encodeWithCoder:(NSCoder *)aCoder
 {
     [aCoder encodeObject:self.name forKey:@"name"];
-    [aCoder encodeObject:self.DOB forKey:@"DOB"];
+    [aCoder encodeObject:self.DOB forKey:@"DOBComponents"];
     [aCoder encodeObject:self.dueDate forKey:@"dueDate"];
     [aCoder encodeInteger:self.gender forKey:@"gender"];
     [aCoder encodeObject:self.encounters forKey:@"encounters"];
@@ -195,7 +197,7 @@
 {
     if (self = [super init]){
         self.name = [aDecoder decodeObjectOfClass:[NSString class] forKey:@"name"];
-        self.DOB = [aDecoder decodeObjectOfClass:[NSDateComponents class] forKey:@"DOB"];
+        self.DOBComponents = [aDecoder decodeObjectOfClass:[NSDateComponents class] forKey:@"DOBComponents"];
         self.dueDate = [aDecoder decodeObjectOfClass:[NSDateComponents class] forKey:@"dueDate"];
         self.gender = (SBTGender)[aDecoder decodeIntegerForKey:@"gender"];
         self.encounters = [aDecoder decodeObjectOfClass:[NSMutableSet class] forKey:@"encounters"];
@@ -205,16 +207,19 @@
     return self;
 }
 
--(instancetype)initWithName:(NSString *)name andDOB:(NSDateComponents *)dob
+-(instancetype)initWithName:(NSString *)name andDOB:(NSDate *)dob
 {
+    NSCalendarUnit MDY_HM = NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear | NSCalendarUnitHour | NSCalendarUnitMinute;
+    NSCalendarUnit MDY = NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear;
     if (self = [super init]){
         self.name = name;
         if (dob){
-            self.DOB = dob;
+            _DOB = [dob copy];
+            self.DOBComponents = [[NSCalendar currentCalendar] components:MDY_HM fromDate:dob];
         }else{
-            NSCalendarUnit unit = NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear;
-            self.DOB = [[NSCalendar currentCalendar] components:unit fromDate:[NSDate date]];
-            self.DOB.calendar = [NSCalendar currentCalendar];
+            _DOB = [NSDate date];
+            self.DOBComponents = [[NSCalendar currentCalendar] components:MDY fromDate:[NSDate date]];
+            self.DOBComponents.calendar = [NSCalendar currentCalendar];
         }
         self.dateCreated = [NSDate date];
         self.dateModified = [NSDate date];
@@ -223,7 +228,7 @@
 }
 
 -(instancetype)init{
-    return [self initWithName:nil andDOB:nil];
+    return [self initWithName:@"Baby" andDOB:[NSDate date]];
 }
 
 +(BOOL)supportsSecureCoding

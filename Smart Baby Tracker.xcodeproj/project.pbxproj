@@ -48,6 +48,8 @@
 		426436BA18C4459800414CA1 /* whoweightgirls.txt in Resources */ = {isa = PBXBuildFile; fileRef = 426436A618C4459800414CA1 /* whoweightgirls.txt */; };
 		426FF5D818C15DB000B66F36 /* SBTDataPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 426FF5D718C15DB000B66F36 /* SBTDataPoint.m */; };
 		426FF5DB18C1A56200B66F36 /* SBTGrowthDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 426FF5DA18C1A56200B66F36 /* SBTGrowthDataSource.m */; };
+		42901BD818CB9756002EB9E9 /* SBTMMRScheduleTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42901BD718CB9756002EB9E9 /* SBTMMRScheduleTest.m */; };
+		42901BDA18CBD0B6002EB9E9 /* SBTHepBScheduleTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42901BD918CBD0B6002EB9E9 /* SBTHepBScheduleTest.m */; };
 		429700CE18AED9AA0013A91B /* ACIP Schedule.plist in Resources */ = {isa = PBXBuildFile; fileRef = 429700CD18AED9AA0013A91B /* ACIP Schedule.plist */; };
 		42B601301895E1E6000C15F4 /* SBTVaccineSchedule.m in Sources */ = {isa = PBXBuildFile; fileRef = 42B6012F1895E1E6000C15F4 /* SBTVaccineSchedule.m */; };
 		42C753DB18C2B5630050F38A /* SBTGrowthDataSourceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C753DA18C2B5630050F38A /* SBTGrowthDataSourceTests.m */; };
@@ -118,6 +120,8 @@
 		426FF5D718C15DB000B66F36 /* SBTDataPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTDataPoint.m; sourceTree = "<group>"; };
 		426FF5D918C1A56200B66F36 /* SBTGrowthDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTGrowthDataSource.h; sourceTree = "<group>"; };
 		426FF5DA18C1A56200B66F36 /* SBTGrowthDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTGrowthDataSource.m; sourceTree = "<group>"; };
+		42901BD718CB9756002EB9E9 /* SBTMMRScheduleTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTMMRScheduleTest.m; sourceTree = "<group>"; };
+		42901BD918CBD0B6002EB9E9 /* SBTHepBScheduleTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTHepBScheduleTest.m; sourceTree = "<group>"; };
 		429700CD18AED9AA0013A91B /* ACIP Schedule.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ACIP Schedule.plist"; sourceTree = "<group>"; };
 		42B6012E1895E1E6000C15F4 /* SBTVaccineSchedule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTVaccineSchedule.h; sourceTree = "<group>"; };
 		42B6012F1895E1E6000C15F4 /* SBTVaccineSchedule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTVaccineSchedule.m; sourceTree = "<group>"; };
@@ -211,8 +215,10 @@
 		421C748B18937536000E3C30 /* Smart Baby TrackerTests */ = {
 			isa = PBXGroup;
 			children = (
+				42901BD918CBD0B6002EB9E9 /* SBTHepBScheduleTest.m */,
 				421C749118937536000E3C30 /* Smart_Baby_TrackerTests.m */,
 				42F66E3518BC581D0099137F /* SBTDTaPScheduleTest.m */,
+				42901BD718CB9756002EB9E9 /* SBTMMRScheduleTest.m */,
 				42C753DA18C2B5630050F38A /* SBTGrowthDataSourceTests.m */,
 				421C748C18937536000E3C30 /* Supporting Files */,
 			);
@@ -419,6 +425,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				42C753DB18C2B5630050F38A /* SBTGrowthDataSourceTests.m in Sources */,
+				42901BDA18CBD0B6002EB9E9 /* SBTHepBScheduleTest.m in Sources */,
+				42901BD818CB9756002EB9E9 /* SBTMMRScheduleTest.m in Sources */,
 				421C749218937536000E3C30 /* Smart_Baby_TrackerTests.m in Sources */,
 				42F66E3618BC581D0099137F /* SBTDTaPScheduleTest.m in Sources */,
 			);

@@ -72,7 +72,7 @@
 {
     NSCalendar *cal = [NSCalendar currentCalendar];
     NSCalendarUnit unit = NSCalendarUnitDay;
-    NSDateComponents *days = [cal components:unit fromDate:self.universalDate toDate:encounter.universalDate options:0];
+    NSDateComponents *days = [cal components:unit fromDate:encounter.universalDate toDate:self.universalDate options:0];
     return [days day];
 }
 
@@ -80,7 +80,7 @@
 {
     NSCalendar *cal = [NSCalendar currentCalendar];
     NSCalendarUnit unit = NSCalendarUnitDay;
-    NSDateComponents *days = [cal components:unit fromDate:self.universalDate toDate:date options:0];
+    NSDateComponents *days = [cal components:unit fromDate:date toDate:self.universalDate options:0];
     return [days day];
 }
 

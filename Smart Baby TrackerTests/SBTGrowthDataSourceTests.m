@@ -44,7 +44,7 @@
     comps.year = 1996;
     comps.calendar = [NSCalendar currentCalendar];
     comps.timeZone = [NSTimeZone localTimeZone];
-    self.baby = [[SBTBaby alloc] initWithName:@"Jennifer" andDOB:comps];
+    self.baby = [[SBTBaby alloc] initWithName:@"Jennifer" andDOB:comps.date];
     self.baby.gender = SBTFemale;
     self.baby.dueDate = [comps copy];
     NSDate *birth = [comps.calendar dateFromComponents:comps];

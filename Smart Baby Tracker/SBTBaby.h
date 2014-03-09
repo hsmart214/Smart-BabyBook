@@ -13,7 +13,8 @@
 @interface SBTBaby : NSObject <NSSecureCoding, NSCopying>
 
 @property (nonatomic, copy) NSString *name;
-@property (nonatomic, copy) NSDateComponents *DOB;
+@property (nonatomic, copy) NSDateComponents *DOBComponents;
+@property (nonatomic, readonly) NSDate *DOB;
 
 @property (nonatomic, copy) NSDateComponents *dueDate;    // this is optional.  If no due date, assume full term baby.
 @property (assign) SBTGender gender;
@@ -26,7 +27,7 @@
 
 // this DOB should have its calendar property set to the local calendar used to create it.
 // if the DOB has a time as well, its timeZone property should also be set.
--(instancetype)initWithName:(NSString *)name andDOB:(NSDateComponents *)dob;
+-(instancetype)initWithName:(NSString *)name andDOB:(NSDate *)dob;
 -(instancetype)initWithCoder:(NSCoder *)aDecoder;
 -(void)encodeWithCoder:(NSCoder *)aCoder;
 

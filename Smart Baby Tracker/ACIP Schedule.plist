@@ -2,6 +2,54 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>Hep B</key>
+	<dict>
+		<key>Customary</key>
+		<array>
+			<dict>
+				<key>doseMinimumAge</key>
+				<integer>0</integer>
+				<key>doseMinimumInterval</key>
+				<integer>28</integer>
+				<key>doseRecommendedAge</key>
+				<integer>0</integer>
+				<key>doseRecommendedAgeUpperLimit</key>
+				<integer>7</integer>
+				<key>doseRecommendedInterval</key>
+				<integer>28</integer>
+				<key>doseAgeFlagLate</key>
+				<integer>28</integer>
+			</dict>
+			<dict>
+				<key>doseMinimumAge</key>
+				<integer>28</integer>
+				<key>doseMinimumInterval</key>
+				<integer>56</integer>
+				<key>doseRecommendedAge</key>
+				<integer>28</integer>
+				<key>doseRecommendedAgeUpperLimit</key>
+				<integer>61</integer>
+				<key>doseRecommendedInterval</key>
+				<integer>56</integer>
+				<key>doseAgeFlagLate</key>
+				<integer>448</integer>
+			</dict>
+			<dict>
+				<key>doseMinimumAge</key>
+				<integer>168</integer>
+				<key>doseMinimumInterval</key>
+				<integer>0</integer>
+				<key>doseRecommendedAge</key>
+				<integer>180</integer>
+				<key>doseRecommendedAgeUpperLimit</key>
+				<integer>548</integer>
+				<key>doseRecommendedInterval</key>
+				<integer>0</integer>
+				<key>doseAgeFlagLate</key>
+				<integer>548</integer>
+			</dict>
+		</array>
+	</dict>
 	<key>MMR</key>
 	<dict>
 		<key>Customary</key>
@@ -19,8 +67,6 @@
 				<integer>1096</integer>
 				<key>doseAgeFlagLate</key>
 				<integer>485</integer>
-				<key>doseCausesLiveLockout</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>doseMinimumAge</key>
@@ -35,8 +81,6 @@
 				<integer>0</integer>
 				<key>doseAgeFlagLate</key>
 				<integer>2193</integer>
-				<key>doseCausesLiveLockout</key>
-				<true/>
 			</dict>
 		</array>
 	</dict>
