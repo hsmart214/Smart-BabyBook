@@ -201,13 +201,13 @@
 			isa = PBXGroup;
 			children = (
 				42C7540D18C2BBEE0050F38A /* Data files */,
+				421C746E18937535000E3C30 /* Smart Baby Tracker-Prefix.pch */,
 				421C746F18937535000E3C30 /* SBTAppDelegate.h */,
 				421C747018937535000E3C30 /* SBTAppDelegate.m */,
 				429700CD18AED9AA0013A91B /* ACIP Schedule.plist */,
 				421C746818937535000E3C30 /* Smart Baby Tracker-Info.plist */,
 				421C746918937535000E3C30 /* InfoPlist.strings */,
 				421C746C18937535000E3C30 /* main.m */,
-				421C746E18937535000E3C30 /* Smart Baby Tracker-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";

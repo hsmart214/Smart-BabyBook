@@ -215,7 +215,7 @@
     
     SBTVaccineSchedule *sched = [SBTVaccineSchedule sharedSchedule];
     SBTVaccinationStatus status = [sched vaccinationStatusForVaccineComponent:SBTComponentDTaP forBaby:self.sevenYearOld];
-    XCTAssertTrue(status == SBTVaccinationDue , @"Incorrect calculation of DTaP status with five regular doses.");
+    XCTAssertTrue(status == SBTVaccinationUTD , @"Incorrect calculation of DTaP status with five regular doses.");
 }
 
 

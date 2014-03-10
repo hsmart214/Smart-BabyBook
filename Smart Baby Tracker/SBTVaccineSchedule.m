@@ -19,10 +19,6 @@
 #define REC_AGE_UPPER_KEY @"doseRecommendedAgeUpperLimit"
 #define REC_INTERVAL_KEY @"doseRecommendedInterval"
 #define AGE_LATE_KEY @"doseAgeFlagLate"
-#define LIVE_LOCKOUT_KEY @"doseCausesLiveLockout"
-
-#define LIVE_LOCKOUT_PERIOD 28
-
 
 @interface SBTVaccineSchedule()
 
@@ -57,6 +53,9 @@
             return @"MMR";
         case SBTComponentHepB:
             return @"Hep B";
+        case SBTComponentPCV13:
+        case SBTComponentPCV7:
+            return @"PCV";
         default:
             break;
     }
@@ -68,39 +67,25 @@
                                         forDose:(NSInteger)doseOrd
                                         forBaby:(SBTBaby *)baby
 {
-    NSInteger vaccineOrdinal = 0;   // we will use this to keep track of which dose we are dealing with
-    SBTVaccineDoseStatus status = SBTVaccineDoseValid;
     NSArray *datesGiven = [baby daysGivenVaccineComponent:component];
+    NSDateComponents *dayGiven = datesGiven[doseNum];
+    
+    if ([baby dayIsDuringLiveBlackout:dayGiven]) return SBTVaccineDoseTooSoonAfterLiveVaccine;
+    
     NSAssert(doseOrd < [datesGiven count], @"Invalid dose number %ld given to status check routine.", (long)doseOrd);
     NSString *key = [SBTVaccineSchedule keyForVaccineComponent:component];
     NSArray *recommendedDoses = rules[key][REG_SCHED_KEY];
-    NSInteger earliestValidDay = [[recommendedDoses firstObject][MIN_AGE_KEY] integerValue];
     
-    for (NSInteger i = 0; i <= doseNum; i++){
-        NSDateComponents *comps = datesGiven[i];
-        
-        if (comps.day < earliestValidDay  || [baby dayIsDuringLiveBlackout:comps]){
-            if (doseOrd == vaccineOrdinal){
-                if ([baby dayIsDuringLiveBlackout:comps]) status = SBTVaccineDoseTooSoonAfterLiveVaccine;
-                if (comps.day < earliestValidDay) status = SBTVaccineDoseTooEarly;
-            }
-            continue;     // the dose was too early, skip it like it never happened
-        }
-        if (vaccineOrdinal == doseOrd){
-            NSDateComponents *dateComps = datesGiven[doseOrd];
-            if (dateComps.day < [recommendedDoses[doseOrd][AGE_LATE_KEY] integerValue]){
-                status = SBTVaccineDoseValid;
-            }else{
-                status = SBTVaccineDoseLate;
-            }
-            break;
-        }else{
-            earliestValidDay = comps.day + [recommendedDoses[vaccineOrdinal++][MIN_INTERVAL_KEY] integerValue];
-            if (vaccineOrdinal == [recommendedDoses count]) vaccineOrdinal--;
-            earliestValidDay = MAX(earliestValidDay, [recommendedDoses[vaccineOrdinal][MIN_AGE_KEY] integerValue]);
-        }
+    NSInteger earliestAllowed = [recommendedDoses[doseOrd][MIN_AGE_KEY] integerValue];
+    
+    if (doseOrd > 0){
+        NSDateComponents *prevDoseDay = datesGiven[doseNum - 1];
+        NSInteger minInterval = [recommendedDoses[doseOrd - 1][MIN_INTERVAL_KEY] integerValue];
+        earliestAllowed = MAX(earliestAllowed, prevDoseDay.day + minInterval);
     }
-    return status;
+    if (dayGiven.day < earliestAllowed) return SBTVaccineDoseTooEarly;
+    if (dayGiven.day > [recommendedDoses[doseOrd][AGE_LATE_KEY] integerValue]) return SBTVaccineDoseLate;
+    return SBTVaccineDoseValid;
 }
 
 
@@ -115,7 +100,7 @@
                                                   forGivenDoseNumber:i
                                                              forDose:doseOrdinal
                                                              forBaby:baby];
-        if (status != SBTVaccineDoseTooEarly && status != SBTVaccineDoseTooSoonAfterLiveVaccine){
+        if (status == SBTVaccineDoseValid || status == SBTVaccineDoseLate){
             doseOrdinal++;
         }
         [doseStatuses addObject:@(status)];
