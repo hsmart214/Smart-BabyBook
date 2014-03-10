@@ -48,6 +48,8 @@
 		426436BA18C4459800414CA1 /* whoweightgirls.txt in Resources */ = {isa = PBXBuildFile; fileRef = 426436A618C4459800414CA1 /* whoweightgirls.txt */; };
 		426FF5D818C15DB000B66F36 /* SBTDataPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 426FF5D718C15DB000B66F36 /* SBTDataPoint.m */; };
 		426FF5DB18C1A56200B66F36 /* SBTGrowthDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 426FF5DA18C1A56200B66F36 /* SBTGrowthDataSource.m */; };
+		4287698618CD6F2E007862AB /* SBTChildrenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4287698518CD6F2E007862AB /* SBTChildrenViewController.m */; };
+		4287698918CD77AE007862AB /* SBTBabyEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4287698818CD77AE007862AB /* SBTBabyEditViewController.m */; };
 		42901BD818CB9756002EB9E9 /* SBTMMRScheduleTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42901BD718CB9756002EB9E9 /* SBTMMRScheduleTest.m */; };
 		42901BDA18CBD0B6002EB9E9 /* SBTHepBScheduleTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42901BD918CBD0B6002EB9E9 /* SBTHepBScheduleTest.m */; };
 		429700CE18AED9AA0013A91B /* ACIP Schedule.plist in Resources */ = {isa = PBXBuildFile; fileRef = 429700CD18AED9AA0013A91B /* ACIP Schedule.plist */; };
@@ -120,6 +122,10 @@
 		426FF5D718C15DB000B66F36 /* SBTDataPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTDataPoint.m; sourceTree = "<group>"; };
 		426FF5D918C1A56200B66F36 /* SBTGrowthDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTGrowthDataSource.h; sourceTree = "<group>"; };
 		426FF5DA18C1A56200B66F36 /* SBTGrowthDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTGrowthDataSource.m; sourceTree = "<group>"; };
+		4287698418CD6F2E007862AB /* SBTChildrenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTChildrenViewController.h; sourceTree = "<group>"; };
+		4287698518CD6F2E007862AB /* SBTChildrenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTChildrenViewController.m; sourceTree = "<group>"; };
+		4287698718CD77AE007862AB /* SBTBabyEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTBabyEditViewController.h; sourceTree = "<group>"; };
+		4287698818CD77AE007862AB /* SBTBabyEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTBabyEditViewController.m; sourceTree = "<group>"; };
 		42901BD718CB9756002EB9E9 /* SBTMMRScheduleTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTMMRScheduleTest.m; sourceTree = "<group>"; };
 		42901BD918CBD0B6002EB9E9 /* SBTHepBScheduleTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTHepBScheduleTest.m; sourceTree = "<group>"; };
 		429700CD18AED9AA0013A91B /* ACIP Schedule.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ACIP Schedule.plist"; sourceTree = "<group>"; };
@@ -188,8 +194,12 @@
 		421C746618937535000E3C30 /* Smart Baby Tracker */ = {
 			isa = PBXGroup;
 			children = (
-				421C747218937535000E3C30 /* Main_iPhone.storyboard */,
 				421C747518937535000E3C30 /* Main_iPad.storyboard */,
+				421C747218937535000E3C30 /* Main_iPhone.storyboard */,
+				4287698718CD77AE007862AB /* SBTBabyEditViewController.h */,
+				4287698818CD77AE007862AB /* SBTBabyEditViewController.m */,
+				4287698418CD6F2E007862AB /* SBTChildrenViewController.h */,
+				4287698518CD6F2E007862AB /* SBTChildrenViewController.m */,
 				4248806718944C90009F2837 /* Model */,
 				421C747E18937535000E3C30 /* Images.xcassets */,
 				421C746718937535000E3C30 /* Supporting Files */,
@@ -409,12 +419,14 @@
 				426FF5DB18C1A56200B66F36 /* SBTGrowthDataSource.m in Sources */,
 				42E7F98C18C267AE00C49072 /* SBTWHODataSource.m in Sources */,
 				42B601301895E1E6000C15F4 /* SBTVaccineSchedule.m in Sources */,
+				4287698618CD6F2E007862AB /* SBTChildrenViewController.m in Sources */,
 				421C747118937535000E3C30 /* SBTAppDelegate.m in Sources */,
 				4248806A189459D2009F2837 /* SBTEncounter.m in Sources */,
 				4258BCF618C40E1900E8232F /* SBTCDCDataSource.m in Sources */,
 				4248806618944C84009F2837 /* SBTBaby.m in Sources */,
 				421C746D18937535000E3C30 /* main.m in Sources */,
 				4248806D18945CE2009F2837 /* SBTVaccine.m in Sources */,
+				4287698918CD77AE007862AB /* SBTBabyEditViewController.m in Sources */,
 				426FF5D818C15DB000B66F36 /* SBTDataPoint.m in Sources */,
 				4226B8CD189F5F3B00682A6A /* NSDateComponents+Today.m in Sources */,
 			);

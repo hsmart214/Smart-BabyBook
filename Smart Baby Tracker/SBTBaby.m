@@ -29,7 +29,7 @@
     if (!_dueDate) return  NO;
     NSCalendar *cal = [NSCalendar currentCalendar];
     NSCalendarUnit unitFlag = NSCalendarUnitDay;
-    NSDateComponents *comps = [cal components:unitFlag fromDate:self.dueDate.date toDate:self.DOBComponents.date options:0];
+    NSDateComponents *comps = [cal components:unitFlag fromDate:self.DOB toDate:self.dueDate.date options:0];
     return [comps day] > PREMATURE_DAYS_EARLY;
 }
 
