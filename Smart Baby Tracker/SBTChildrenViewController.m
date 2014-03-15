@@ -8,6 +8,7 @@
 
 #import "SBTChildrenViewController.h"
 #import "SBTBaby.h"
+#import "SBTBabyInfoTVC.h"
 
 @interface SBTChildrenViewController ()
 
@@ -71,17 +72,17 @@
     if (comps.year < 2){
         if (comps.year < 1){
             if (comps.month < 1){
-                age = [NSString stringWithFormat:@"%d day", comps.day];
+                age = [NSString stringWithFormat:@"%ld day", (long)comps.day];
                 if (comps.day > 1) age = [age stringByAppendingString:@"s"];
             }else{
-                age = [NSString stringWithFormat:@"%d mo", comps.month];
+                age = [NSString stringWithFormat:@"%ld mo", (long)comps.month];
                 if (comps.month > 1) age = [age stringByAppendingString:@"s"];
             }
         }else{
-            age = [NSString stringWithFormat:@"%d mos", comps.month];
+            age = [NSString stringWithFormat:@"%ld mos", (long)comps.month];
         }
     }else{
-        age = [NSString stringWithFormat:@"%d yrs", comps.year];
+        age = [NSString stringWithFormat:@"%ld yrs", (long)comps.year];
     }
     cell.detailTextLabel.text = age;
     
@@ -111,9 +112,12 @@
 {
     if ([segue.identifier isEqualToString:@"New Child"]){
         [segue.destinationViewController setDelegate:self];
+    }else if ([segue.identifier isEqualToString:@"showBabyInfo"]){
+        SBTBabyInfoTVC *dest = segue.destinationViewController;
+        NSIndexPath *ip = [self.tableView indexPathForCell:sender];
+        [dest setBaby:self.children[ip.row]];
     }
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    
 }
 
 @end

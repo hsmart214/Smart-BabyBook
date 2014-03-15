@@ -15,6 +15,9 @@
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSDateComponents *DOBComponents;
 @property (nonatomic, readonly) NSDate *DOB;
+@property (nonatomic, strong) NSString *imageKey;
+@property (nonatomic, retain) NSData * thumbnailData;
+@property (nonatomic, strong) UIImage *thumbnail;
 
 @property (nonatomic, copy) NSDateComponents *dueDate;    // this is optional.  If no due date, assume full term baby.
 @property (assign) SBTGender gender;
@@ -40,10 +43,13 @@
 -(NSDateComponents *)ageInMonthsAndDaysAtEncounter:(SBTEncounter *)encounter;
 -(NSDateComponents *)ageInDaysAtEncounter:(SBTEncounter *)encounter;
 
+-(void)setThumbnailDataFromImage:(UIImage *)image;
+
 // will return an EMPTY ARRAY (not nil) if never received the component
 // to simplify, the ages are given in DAYS as NSDateComponents * objects (not NSTimeIntervals or NSIntegers)
 -(NSArray *)daysGivenVaccineComponent:(SBTComponent)component;
 -(NSArray *)daysGivenLiveVaccineComponent;
 -(BOOL)dayIsDuringLiveBlackout:(NSDateComponents *)dayOfLife;
+-(NSArray *)encountersList;
 
 @end

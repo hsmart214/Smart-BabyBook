@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="rS3-R9-Ivy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="rS3-R9-Ivy">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -46,7 +46,7 @@
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <segue destination="oRm-6A-Jx5" kind="push" id="c2h-At-6Zi"/>
+                                    <segue destination="oRm-6A-Jx5" kind="push" identifier="showBabyInfo" id="c2h-At-6Zi"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -96,11 +96,11 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Nz8-jG-fyD">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Child Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Nz8-jG-fyD">
                                 <rect key="frame" x="74" y="64" width="231" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no"/>
                             </textField>
                             <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="PbL-QL-BxO">
                                 <rect key="frame" x="20" y="102" width="285" height="162"/>
@@ -168,7 +168,11 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="vpC-QK-JY0"/>
-                                    <barButtonItem systemItem="camera" id="UIf-XY-bgZ"/>
+                                    <barButtonItem systemItem="camera" id="UIf-XY-bgZ">
+                                        <connections>
+                                            <action selector="takeBabyPic:" destination="Z4M-59-kTW" id="qzv-pf-KTg"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Vst-w6-R8x"/>
                                     <barButtonItem systemItem="done" id="kvs-q6-AAz">
                                         <connections>
@@ -177,6 +181,10 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                     </barButtonItem>
                                 </items>
                             </toolbar>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g5Y-FR-POd">
+                                <rect key="frame" x="110" y="442" width="100" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -186,7 +194,9 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="babyPic" destination="g5Y-FR-POd" id="AOE-Ed-Xjk"/>
                         <outlet property="birthTimePicker" destination="5W4-wT-dMN" id="Tjw-N0-97I"/>
+                        <outlet property="cameraButton" destination="UIf-XY-bgZ" id="6L4-aD-T1s"/>
                         <outlet property="dobPicker" destination="PbL-QL-BxO" id="nvm-ua-04d"/>
                         <outlet property="nameField" destination="Nz8-jG-fyD" id="9wb-Ys-LGW"/>
                         <outlet property="titleButton" destination="def-VP-IuZ" id="sGu-Y3-cnh"/>
@@ -210,7 +220,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="rva-0N-OdA">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="VaccineCell" id="rva-0N-OdA">
                                 <rect key="frame" x="0.0" y="64" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -231,19 +241,19 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             </objects>
             <point key="canvasLocation" x="1443" y="-643"/>
         </scene>
-        <!--Table View Controller - Name of Child-->
+        <!--Baby InfoTVC - Name of Child-->
         <scene sceneID="Tnj-2X-fvn">
             <objects>
-                <tableViewController id="oRm-6A-Jx5" sceneMemberID="viewController">
+                <tableViewController id="oRm-6A-Jx5" customClass="SBTBabyInfoTVC" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="LTg-Vv-HpO">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <sections>
-                            <tableViewSection headerTitle="Section-1" id="mcb-DV-Wu8">
+                            <tableViewSection id="mcb-DV-Wu8">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="QQ9-4y-tEn" detailTextLabel="vZa-m3-sY0" style="IBUITableViewCellStyleValue1" id="Qol-M2-7EP">
-                                        <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="64" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Qol-M2-7EP" id="Sok-LT-3s1">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -267,7 +277,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="hR1-aj-SW9" detailTextLabel="osJ-h6-tth" style="IBUITableViewCellStyleValue1" id="ycS-0r-vCH">
-                                        <rect key="frame" x="0.0" y="130" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="108" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ycS-0r-vCH" id="9tT-9J-f8A">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -291,7 +301,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="200" id="NoA-eN-dfr">
-                                        <rect key="frame" x="0.0" y="174" width="320" height="200"/>
+                                        <rect key="frame" x="0.0" y="152" width="320" height="200"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NoA-eN-dfr" id="shT-Bf-jHU">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="199"/>
@@ -305,7 +315,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="ni9-IL-Rem" detailTextLabel="Yhd-j6-kS0" style="IBUITableViewCellStyleValue1" id="lmQ-gX-oUZ">
-                                        <rect key="frame" x="0.0" y="374" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="352" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lmQ-gX-oUZ" id="0fM-qv-wVd">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
@@ -332,7 +342,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="r5T-sR-GQF" detailTextLabel="7vq-RH-nxK" style="IBUITableViewCellStyleValue1" id="ZDV-bP-2ct">
-                                        <rect key="frame" x="0.0" y="418" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="396" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZDV-bP-2ct" id="G00-Va-Trn">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
@@ -359,7 +369,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="x6M-70-Fq8" detailTextLabel="dcp-UB-Aoy" style="IBUITableViewCellStyleValue1" id="YS1-Fv-HGJ">
-                                        <rect key="frame" x="0.0" y="462" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="440" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YS1-Fv-HGJ" id="EmV-SA-VVK">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
@@ -393,6 +403,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                             <outlet property="delegate" destination="oRm-6A-Jx5" id="q6a-Gy-GES"/>
                         </connections>
                     </tableView>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" title="Name of Child" id="q0h-pY-4uA">
                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="pgG-kA-koh">
                             <connections>
@@ -400,6 +411,14 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="babyPic" destination="pUM-RY-AoQ" id="tE4-8B-YUb"/>
+                        <outlet property="birthDateLable" destination="vZa-m3-sY0" id="YGl-j9-AM2"/>
+                        <outlet property="birthTimeLabel" destination="osJ-h6-tth" id="AhO-4n-5af"/>
+                        <outlet property="growthChartDescriptionLabel" destination="7vq-RH-nxK" id="6bK-g0-kHW"/>
+                        <outlet property="numberOfEncountersLabel" destination="Yhd-j6-kS0" id="X1g-Vm-5O4"/>
+                        <outlet property="vaccineStatusLabel" destination="dcp-UB-Aoy" id="Veb-4F-ygy"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XxQ-cE-SRL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -14,6 +14,8 @@
 #define PREMATURE_DAYS_EARLY 21
 #define LIVE_VACCINE_BLACKOUT 28
 
+#define THUMBNAIL_DIMENSION 100
+
 @interface SBTBaby ()
 
 @property (nonatomic, strong) NSMutableArray *encounters;
@@ -130,6 +132,11 @@
     return NO;
 }
 
+-(NSArray *)encountersList
+{
+    return self.encounters;
+}
+
 -(void)addEncounter:(SBTEncounter *)encounter
 {
     [self.encounters addObject:encounter];
@@ -166,6 +173,34 @@
     NSDateComponents *comps = [NSDateComponents new];
     comps.day = [encounter daysSinceDate:self.DOB];
     return comps;
+}
+
+-(void)setThumbnailDataFromImage:(UIImage *)image
+{
+    CGSize origImageSize = [image size];
+    
+    CGRect newRect = CGRectMake(0, 0, THUMBNAIL_DIMENSION, THUMBNAIL_DIMENSION);
+    CGFloat ratio = MAX(newRect.size.width / origImageSize.width,
+                        newRect.size.height / origImageSize.height);
+    UIGraphicsBeginImageContextWithOptions(newRect.size, NO, 0.0);
+    UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:newRect
+                                                    cornerRadius:5.0];
+    [path addClip];
+    CGRect projectRect;
+    projectRect.size.width = ratio * origImageSize.width;
+    projectRect.size.height = ratio * origImageSize.height;
+    projectRect.origin.x = (newRect.size.width - projectRect.size.width) / 2.0;
+    projectRect.origin.y = (newRect.size.height - projectRect.size.height) / 2.0;
+    
+    [image drawInRect:projectRect];
+    
+    UIImage *smallImage = UIGraphicsGetImageFromCurrentImageContext();
+    self.thumbnail = smallImage;
+    
+    NSData *data = UIImagePNGRepresentation(smallImage);
+    self.thumbnailData = data;
+    
+    UIGraphicsEndImageContext();
 }
 
 -(instancetype)copyWithZone:(NSZone *)zone

@@ -27,5 +27,7 @@
 @property (weak, nonatomic) IBOutlet UIDatePicker *birthTimePicker;
 
 @property (nonatomic, strong) SBTBaby *baby;
+@property (nonatomic, copy) void (^dismissBlock)(void);
+
 
 @end

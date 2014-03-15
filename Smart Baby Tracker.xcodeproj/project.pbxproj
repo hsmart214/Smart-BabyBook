@@ -55,6 +55,8 @@
 		429700CE18AED9AA0013A91B /* ACIP Schedule.plist in Resources */ = {isa = PBXBuildFile; fileRef = 429700CD18AED9AA0013A91B /* ACIP Schedule.plist */; };
 		42B601301895E1E6000C15F4 /* SBTVaccineSchedule.m in Sources */ = {isa = PBXBuildFile; fileRef = 42B6012F1895E1E6000C15F4 /* SBTVaccineSchedule.m */; };
 		42C753DB18C2B5630050F38A /* SBTGrowthDataSourceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C753DA18C2B5630050F38A /* SBTGrowthDataSourceTests.m */; };
+		42CB9A5118D4F7260097BBE3 /* SBTBabyInfoTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 42CB9A5018D4F7260097BBE3 /* SBTBabyInfoTVC.m */; };
+		42CB9A5418D5092F0097BBE3 /* SBTImageStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 42CB9A5318D5092F0097BBE3 /* SBTImageStore.m */; };
 		42E7F98C18C267AE00C49072 /* SBTWHODataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E7F98B18C267AE00C49072 /* SBTWHODataSource.m */; };
 		42F66E3618BC581D0099137F /* SBTDTaPScheduleTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F66E3518BC581D0099137F /* SBTDTaPScheduleTest.m */; };
 /* End PBXBuildFile section */
@@ -132,6 +134,10 @@
 		42B6012E1895E1E6000C15F4 /* SBTVaccineSchedule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTVaccineSchedule.h; sourceTree = "<group>"; };
 		42B6012F1895E1E6000C15F4 /* SBTVaccineSchedule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTVaccineSchedule.m; sourceTree = "<group>"; };
 		42C753DA18C2B5630050F38A /* SBTGrowthDataSourceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTGrowthDataSourceTests.m; sourceTree = "<group>"; };
+		42CB9A4F18D4F7260097BBE3 /* SBTBabyInfoTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTBabyInfoTVC.h; sourceTree = "<group>"; };
+		42CB9A5018D4F7260097BBE3 /* SBTBabyInfoTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTBabyInfoTVC.m; sourceTree = "<group>"; };
+		42CB9A5218D5092F0097BBE3 /* SBTImageStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBTImageStore.h; path = ../SBTImageStore.h; sourceTree = "<group>"; };
+		42CB9A5318D5092F0097BBE3 /* SBTImageStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBTImageStore.m; path = ../SBTImageStore.m; sourceTree = "<group>"; };
 		42E7F98A18C267AE00C49072 /* SBTWHODataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTWHODataSource.h; sourceTree = "<group>"; };
 		42E7F98B18C267AE00C49072 /* SBTWHODataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTWHODataSource.m; sourceTree = "<group>"; };
 		42F66E3518BC581D0099137F /* SBTDTaPScheduleTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTDTaPScheduleTest.m; sourceTree = "<group>"; };
@@ -196,10 +202,14 @@
 			children = (
 				421C747518937535000E3C30 /* Main_iPad.storyboard */,
 				421C747218937535000E3C30 /* Main_iPhone.storyboard */,
+				42CB9A4F18D4F7260097BBE3 /* SBTBabyInfoTVC.h */,
+				42CB9A5018D4F7260097BBE3 /* SBTBabyInfoTVC.m */,
 				4287698718CD77AE007862AB /* SBTBabyEditViewController.h */,
 				4287698818CD77AE007862AB /* SBTBabyEditViewController.m */,
 				4287698418CD6F2E007862AB /* SBTChildrenViewController.h */,
 				4287698518CD6F2E007862AB /* SBTChildrenViewController.m */,
+				42CB9A5218D5092F0097BBE3 /* SBTImageStore.h */,
+				42CB9A5318D5092F0097BBE3 /* SBTImageStore.m */,
 				4248806718944C90009F2837 /* Model */,
 				421C747E18937535000E3C30 /* Images.xcassets */,
 				421C746718937535000E3C30 /* Supporting Files */,
@@ -341,7 +351,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = SBT;
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "J. HOWARD SMART";
 				TargetAttributes = {
 					421C748318937535000E3C30 = {
@@ -419,12 +429,14 @@
 				426FF5DB18C1A56200B66F36 /* SBTGrowthDataSource.m in Sources */,
 				42E7F98C18C267AE00C49072 /* SBTWHODataSource.m in Sources */,
 				42B601301895E1E6000C15F4 /* SBTVaccineSchedule.m in Sources */,
+				42CB9A5418D5092F0097BBE3 /* SBTImageStore.m in Sources */,
 				4287698618CD6F2E007862AB /* SBTChildrenViewController.m in Sources */,
 				421C747118937535000E3C30 /* SBTAppDelegate.m in Sources */,
 				4248806A189459D2009F2837 /* SBTEncounter.m in Sources */,
 				4258BCF618C40E1900E8232F /* SBTCDCDataSource.m in Sources */,
 				4248806618944C84009F2837 /* SBTBaby.m in Sources */,
 				421C746D18937535000E3C30 /* main.m in Sources */,
+				42CB9A5118D4F7260097BBE3 /* SBTBabyInfoTVC.m in Sources */,
 				4248806D18945CE2009F2837 /* SBTVaccine.m in Sources */,
 				4287698918CD77AE007862AB /* SBTBabyEditViewController.m in Sources */,
 				426FF5D818C15DB000B66F36 /* SBTDataPoint.m in Sources */,
@@ -494,7 +506,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -534,7 +545,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -593,7 +603,6 @@
 		421C749918937536000E3C30 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Smart Baby Tracker.app/Smart Baby Tracker";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -616,7 +625,6 @@
 		421C749A18937536000E3C30 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Smart Baby Tracker.app/Smart Baby Tracker";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
