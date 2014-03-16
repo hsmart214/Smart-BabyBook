@@ -36,28 +36,32 @@
 -(NSDateComponents *)ageYYDDAtDate:(NSDate *)date
 {
     NSCalendarUnit unitFlags = NSCalendarUnitYear | NSCalendarUnitDay;
-    NSCalendar *cal = [NSCalendar currentCalendar];
-    // strip the birth time out of the DOB components
-    NSDateComponents *simpleDOBcomps = [[NSDateComponents alloc] init];
-    simpleDOBcomps.year = self.DOBComponents.year;
-    simpleDOBcomps.month = self.DOBComponents.month;
-    simpleDOBcomps.day = self.DOBComponents.day;
-    NSDate *simpleDOB = [cal dateFromComponents:simpleDOBcomps];
-    NSDateComponents *comps = [cal components:unitFlags fromDate:simpleDOB toDate:date options:0];
-    return comps;
+    return [self ageAtDate:date withCalendarUnits:unitFlags];
 }
 
 -(NSDateComponents *)ageDDAtDate:(NSDate *)date
 {
     NSCalendarUnit unitFlags = NSCalendarUnitDay;
-    NSCalendar *cal = [NSCalendar currentCalendar];
+    return [self ageAtDate:date withCalendarUnits:unitFlags];
+}
+
+-(NSDateComponents *)ageMDYAtDate:(NSDate *)date
+{
+    NSCalendarUnit unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay;
+    return [self ageAtDate:date withCalendarUnits:unitFlags];
+}
+
+-(NSDateComponents *)ageAtDate:(NSDate *)date withCalendarUnits:(NSCalendarUnit)units
+{
+    NSCalendar *cal = self.DOBComponents.calendar;
+    if (!cal) cal = [NSCalendar currentCalendar];
     // strip the birth time out of the DOB components
     NSDateComponents *simpleDOBcomps = [[NSDateComponents alloc] init];
     simpleDOBcomps.year = self.DOBComponents.year;
     simpleDOBcomps.month = self.DOBComponents.month;
     simpleDOBcomps.day = self.DOBComponents.day;
     NSDate *simpleDOB = [cal dateFromComponents:simpleDOBcomps];
-    NSDateComponents *comps = [cal components:unitFlags fromDate:simpleDOB toDate:date options:0];
+    NSDateComponents *comps = [[NSCalendar currentCalendar] components:units fromDate:simpleDOB toDate:date options:0];
     return comps;
 }
 
@@ -171,34 +175,6 @@
     NSDateComponents *comps = [NSDateComponents new];
     comps.day = [encounter daysSinceDate:self.DOB];
     return comps;
-}
-
--(void)setThumbnailDataFromImage:(UIImage *)image
-{
-    CGSize origImageSize = [image size];
-    
-    CGRect newRect = CGRectMake(0, 0, THUMBNAIL_DIMENSION, THUMBNAIL_DIMENSION);
-    CGFloat ratio = MAX(newRect.size.width / origImageSize.width,
-                        newRect.size.height / origImageSize.height);
-    UIGraphicsBeginImageContextWithOptions(newRect.size, NO, 0.0);
-    UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:newRect
-                                                    cornerRadius:5.0];
-    [path addClip];
-    CGRect projectRect;
-    projectRect.size.width = ratio * origImageSize.width;
-    projectRect.size.height = ratio * origImageSize.height;
-    projectRect.origin.x = (newRect.size.width - projectRect.size.width) / 2.0;
-    projectRect.origin.y = (newRect.size.height - projectRect.size.height) / 2.0;
-    
-    [image drawInRect:projectRect];
-    
-    UIImage *smallImage = UIGraphicsGetImageFromCurrentImageContext();
-    self.thumbnail = smallImage;
-    
-    NSData *data = UIImagePNGRepresentation(smallImage);
-    self.thumbnailData = data;
-    
-    UIGraphicsEndImageContext();
 }
 
 -(instancetype)copyWithZone:(NSZone *)zone

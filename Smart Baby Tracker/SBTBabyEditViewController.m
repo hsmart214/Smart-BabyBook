@@ -8,6 +8,7 @@
 
 #import "SBTBabyEditViewController.h"
 #import "SBTImageStore.h"
+@import MobileCoreServices;
 
 @interface SBTBabyEditViewController ()<UITextFieldDelegate, UIPopoverControllerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *babyPic;
@@ -36,7 +37,7 @@
         }
         newBaby.gender = (SBTGender)self.genderControl.selectedSegmentIndex;
         [newBaby setImageKey:imageKey];
-        [newBaby setThumbnailDataFromImage:image];
+        newBaby.thumbnail = image;
         [self.delegate babyEditViewController:self didSaveBaby:newBaby];
         [self dismissViewControllerAnimated:YES completion:nil];
     }
@@ -70,6 +71,13 @@
 
 }
 
+#pragma mark - UITableViewDelegate
+
+-(BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return NO;
+}
+
 #pragma mark - UIPopoverController Delegate
 
 -(void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
@@ -87,6 +95,7 @@
     image = [self reducedSizeImage: info[UIImagePickerControllerOriginalImage]];
     CFUUIDRef newUniqueID = CFUUIDCreate(kCFAllocatorDefault);
     CFStringRef newUniqueIDCFString = CFUUIDCreateString(kCFAllocatorDefault, newUniqueID);
+    //TODO: Decide whether I really need to store the images
     imageKey = (__bridge NSString *)newUniqueIDCFString;
     [[SBTImageStore sharedStore] setImage:image forKey:imageKey];
     

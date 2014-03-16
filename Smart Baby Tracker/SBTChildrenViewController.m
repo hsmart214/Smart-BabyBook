@@ -68,7 +68,7 @@
     
     SBTBaby *baby = self.children[indexPath.row];
     cell.textLabel.text = baby.name;
-    NSDateComponents *comps = baby.DOBComponents;
+    NSDateComponents *comps = [baby ageMDYAtDate:[NSDate date]];
     NSString *age;
     if (comps.year < 2){
         if (comps.year < 1){
@@ -80,7 +80,7 @@
                 if (comps.month > 1) age = [age stringByAppendingString:@"s"];
             }
         }else{
-            age = [NSString stringWithFormat:@"%ld mos", (long)comps.month];
+            age = [NSString stringWithFormat:@"%ld mos", (long)(comps.month + 12 * comps.year)];
         }
     }else{
         age = [NSString stringWithFormat:@"%ld yrs", (long)comps.year];

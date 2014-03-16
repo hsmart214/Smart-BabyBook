@@ -27,6 +27,7 @@
 // years, days only (no months)
 -(NSDateComponents *)ageYYDDAtDate:(NSDate *)date;
 -(NSDateComponents *)ageDDAtDate:(NSDate *)date;
+-(NSDateComponents *)ageMDYAtDate:(NSDate *)date;
 
 // this DOB should have its calendar property set to the local calendar used to create it.
 // if the DOB has a time as well, its timeZone property should also be set.
@@ -43,8 +44,6 @@
 -(NSDateComponents *)ageInYearsAndDaysAtEncounter:(SBTEncounter *)encounter;
 -(NSDateComponents *)ageInMonthsAndDaysAtEncounter:(SBTEncounter *)encounter;
 -(NSDateComponents *)ageInDaysAtEncounter:(SBTEncounter *)encounter;
-
--(void)setThumbnailDataFromImage:(UIImage *)image;
 
 // will return an EMPTY ARRAY (not nil) if never received the component
 // to simplify, the ages are given in DAYS as NSDateComponents * objects (not NSTimeIntervals or NSIntegers)
