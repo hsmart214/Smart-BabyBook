@@ -8,8 +8,9 @@
 
 #import "SBTBabyInfoTVC.h"
 #import "SBTBaby.h"
+#import "SBTBabyEditViewController.h"
 
-@interface SBTBabyInfoTVC ()
+@interface SBTBabyInfoTVC ()<SBTBabyEditDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *birthDateLable;
 @property (weak, nonatomic) IBOutlet UILabel *birthTimeLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *babyPic;
@@ -21,7 +22,15 @@
 
 @implementation SBTBabyInfoTVC
 
--(void)viewDidLoad
+#pragma mark - SBTBabyEditDelegate methods
+
+-(void)babyEditViewController:(SBTBabyEditViewController *)babyEditVC didSaveBaby:(SBTBaby *)baby
+{
+    self.baby = baby;
+    [self updateDisplay];
+}
+
+-(void)updateDisplay
 {
     [self setTitle:self.baby.name];
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
@@ -39,6 +48,11 @@
     self.numberOfEncountersLabel.text = [NSString stringWithFormat:@"%ld %@", (long)num, suffix];
 }
 
+-(void)viewDidLoad
+{
+    [self updateDisplay];
+}
+
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -49,7 +63,12 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    
+    if ([segue.identifier isEqualToString:@"editBabySegue"]){
+        UINavigationController *nav = segue.destinationViewController;
+        SBTBabyEditViewController *bevc = nav.viewControllers[0];
+        bevc.baby = self.baby;
+        bevc.delegate = self;
+    }
 }
 
 

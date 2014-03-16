@@ -111,10 +111,11 @@
 // In a story board-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"New Child"]){
-        [segue.destinationViewController setDelegate:self];
+    if ([segue.identifier isEqualToString:@"addBabySegue"]){
+        UINavigationController *nav = segue.destinationViewController;
+        SBTBabyEditViewController *bevc = nav.viewControllers[0];
+        [bevc setDelegate:self];
         __weak SBTChildrenViewController *myWeakSelf = self;
-        SBTBabyEditViewController *bevc = segue.destinationViewController;
         [bevc setDismissBlock:^{
             [myWeakSelf.tableView reloadData];
         }];

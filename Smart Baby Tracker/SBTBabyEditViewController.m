@@ -9,7 +9,7 @@
 #import "SBTBabyEditViewController.h"
 #import "SBTImageStore.h"
 
-@interface SBTBabyEditViewController ()<UITextFieldDelegate, UIPopoverControllerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface SBTBabyEditViewController ()<UITextFieldDelegate, UIPopoverControllerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *babyPic;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *cameraButton;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *genderControl;
@@ -22,7 +22,7 @@
     NSString *imageKey;
 }
 
-// wait until the last minute to create the new baby and return it.
+// wait until the last minute to create the new baby and send it back to the delegate.
 
 - (IBAction)pressedDone:(id)sender {
     SBTBaby *newBaby;
@@ -84,7 +84,7 @@
     if (self.baby.imageKey){
         [[SBTImageStore sharedStore] deleteImageForKey:self.baby.imageKey];
     }
-    image = info[UIImagePickerControllerOriginalImage];
+    image = [self reducedSizeImage: info[UIImagePickerControllerOriginalImage]];
     CFUUIDRef newUniqueID = CFUUIDCreate(kCFAllocatorDefault);
     CFStringRef newUniqueIDCFString = CFUUIDCreateString(kCFAllocatorDefault, newUniqueID);
     imageKey = (__bridge NSString *)newUniqueIDCFString;
@@ -99,6 +99,7 @@
     }else{
         [self dismissViewControllerAnimated:YES completion:self.dismissBlock];
     }
+    [self updateDisplay];
 }
 
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
@@ -109,6 +110,34 @@
     }else{
         [self dismissViewControllerAnimated:YES completion:self.dismissBlock];
     }
+}
+
+-(UIImage *)reducedSizeImage:(UIImage *)largeImage
+{
+    CGSize origImageSize = [largeImage size];
+    
+    CGRect newRect = CGRectMake(0, 0, THUMBNAIL_DIMENSION, THUMBNAIL_DIMENSION);
+    CGFloat ratio = MAX(newRect.size.width / origImageSize.width,
+                        newRect.size.height / origImageSize.height);
+    UIGraphicsBeginImageContextWithOptions(newRect.size, NO, 0.0);
+    UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:newRect
+                                                    cornerRadius:5.0];
+    [path addClip];
+    CGRect projectRect;
+    projectRect.size.width = ratio * origImageSize.width;
+    projectRect.size.height = ratio * origImageSize.height;
+    projectRect.origin.x = (newRect.size.width - projectRect.size.width) / 2.0;
+    projectRect.origin.y = (newRect.size.height - projectRect.size.height) / 2.0;
+    
+    [largeImage drawInRect:projectRect];
+    
+    UIImage *smallImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    //    NSData *data = UIImagePNGRepresentation(image);
+    
+    UIGraphicsEndImageContext();
+    
+    return smallImage;
 }
 
 
@@ -125,13 +154,18 @@
     return YES;
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+-(void)updateDisplay
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
+    if (self.baby){
+        self.title = self.baby.name;
+        self.nameField.text = self.baby.name;
+        self.babyPic.image = self.baby.thumbnail;
+        [self.dobPicker setDate:self.baby.DOB];
+        [self.birthTimePicker setDate:self.baby.DOB];
+        [self.genderControl setSelectedSegmentIndex:self.baby.gender];
     }
-    return self;
+    if (image) self.babyPic.image = image;
+    
 }
 
 - (void)viewDidLoad
@@ -139,6 +173,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     self.nameField.delegate = self;
+    [self updateDisplay];
 }
 
 @end

@@ -18,10 +18,9 @@
 
 @end
 
-@interface SBTBabyEditViewController : UIViewController
+@interface SBTBabyEditViewController : UITableViewController
 
 @property (weak, nonatomic) id<SBTBabyEditDelegate> delegate;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *titleButton;
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
 @property (weak, nonatomic) IBOutlet UIDatePicker *dobPicker;
 @property (weak, nonatomic) IBOutlet UIDatePicker *birthTimePicker;

@@ -14,8 +14,6 @@
 #define PREMATURE_DAYS_EARLY 21
 #define LIVE_VACCINE_BLACKOUT 28
 
-#define THUMBNAIL_DIMENSION 100
-
 @interface SBTBaby ()
 
 @property (nonatomic, strong) NSMutableArray *encounters;
