@@ -28,7 +28,7 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    SBTEncounterTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Encounter Cell"];
+    SBTEncounterTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Encounter Cell" forIndexPath:indexPath];
     SBTEncounter *enc = self.encounters[indexPath.row];
     cell.dateLabel.text = [self.dateFormatter stringFromDate:enc.dateComps.date];
     if (enc.weight != 0.0){

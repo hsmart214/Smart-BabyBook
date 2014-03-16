@@ -59,6 +59,7 @@
 		42CB9A5418D5092F0097BBE3 /* SBTImageStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 42CB9A5318D5092F0097BBE3 /* SBTImageStore.m */; };
 		42CB9A5718D5731C0097BBE3 /* SBTEncounterTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 42CB9A5618D5731C0097BBE3 /* SBTEncounterTableViewCell.m */; };
 		42CB9A5A18D57C4E0097BBE3 /* SBTEncountersTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 42CB9A5918D57C4E0097BBE3 /* SBTEncountersTVC.m */; };
+		42CB9A5D18D589C30097BBE3 /* SBTVaccinesGivenTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 42CB9A5C18D589C30097BBE3 /* SBTVaccinesGivenTVC.m */; };
 		42E7F98C18C267AE00C49072 /* SBTWHODataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E7F98B18C267AE00C49072 /* SBTWHODataSource.m */; };
 		42F66E3618BC581D0099137F /* SBTDTaPScheduleTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F66E3518BC581D0099137F /* SBTDTaPScheduleTest.m */; };
 /* End PBXBuildFile section */
@@ -144,6 +145,8 @@
 		42CB9A5618D5731C0097BBE3 /* SBTEncounterTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTEncounterTableViewCell.m; sourceTree = "<group>"; };
 		42CB9A5818D57C4E0097BBE3 /* SBTEncountersTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTEncountersTVC.h; sourceTree = "<group>"; };
 		42CB9A5918D57C4E0097BBE3 /* SBTEncountersTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTEncountersTVC.m; sourceTree = "<group>"; };
+		42CB9A5B18D589C30097BBE3 /* SBTVaccinesGivenTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTVaccinesGivenTVC.h; sourceTree = "<group>"; };
+		42CB9A5C18D589C30097BBE3 /* SBTVaccinesGivenTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTVaccinesGivenTVC.m; sourceTree = "<group>"; };
 		42E7F98A18C267AE00C49072 /* SBTWHODataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTWHODataSource.h; sourceTree = "<group>"; };
 		42E7F98B18C267AE00C49072 /* SBTWHODataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTWHODataSource.m; sourceTree = "<group>"; };
 		42F66E3518BC581D0099137F /* SBTDTaPScheduleTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTDTaPScheduleTest.m; sourceTree = "<group>"; };
@@ -218,6 +221,8 @@
 				4287698518CD6F2E007862AB /* SBTChildrenViewController.m */,
 				42CB9A5818D57C4E0097BBE3 /* SBTEncountersTVC.h */,
 				42CB9A5918D57C4E0097BBE3 /* SBTEncountersTVC.m */,
+				42CB9A5B18D589C30097BBE3 /* SBTVaccinesGivenTVC.h */,
+				42CB9A5C18D589C30097BBE3 /* SBTVaccinesGivenTVC.m */,
 				42CB9A5218D5092F0097BBE3 /* SBTImageStore.h */,
 				42CB9A5318D5092F0097BBE3 /* SBTImageStore.m */,
 				4248806718944C90009F2837 /* Model */,
@@ -441,6 +446,7 @@
 				42B601301895E1E6000C15F4 /* SBTVaccineSchedule.m in Sources */,
 				42CB9A5418D5092F0097BBE3 /* SBTImageStore.m in Sources */,
 				4287698618CD6F2E007862AB /* SBTChildrenViewController.m in Sources */,
+				42CB9A5D18D589C30097BBE3 /* SBTVaccinesGivenTVC.m in Sources */,
 				42CB9A5718D5731C0097BBE3 /* SBTEncounterTableViewCell.m in Sources */,
 				421C747118937535000E3C30 /* SBTAppDelegate.m in Sources */,
 				4248806A189459D2009F2837 /* SBTEncounter.m in Sources */,
