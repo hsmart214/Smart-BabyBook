@@ -28,6 +28,7 @@
 -(NSDateComponents *)ageYYDDAtDate:(NSDate *)date;
 -(NSDateComponents *)ageDDAtDate:(NSDate *)date;
 -(NSDateComponents *)ageMDYAtDate:(NSDate *)date;
+-(NSString *)ageDescriptionAtDate:(NSDate *)date;
 
 // this DOB should have its calendar property set to the local calendar used to create it.
 // if the DOB has a time as well, its timeZone property should also be set.
