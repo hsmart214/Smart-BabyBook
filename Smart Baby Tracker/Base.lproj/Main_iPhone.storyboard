@@ -89,20 +89,20 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="wnc-D1-7u4"/>
                                 </items>
                             </toolbar>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IBh-vZ-U1m">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IBh-vZ-U1m">
                                 <rect key="frame" x="20" y="68" width="46" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Child Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Nz8-jG-fyD">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Child Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Nz8-jG-fyD">
                                 <rect key="frame" x="74" y="64" width="231" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no"/>
                             </textField>
-                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="PbL-QL-BxO">
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="PbL-QL-BxO">
                                 <rect key="frame" x="20" y="102" width="285" height="162"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <date key="date" timeIntervalSinceReferenceDate="416118167.62224501">
@@ -130,7 +130,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
 </data>
                                 </timeZone>
                             </datePicker>
-                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="5W4-wT-dMN">
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="5W4-wT-dMN">
                                 <rect key="frame" x="20" y="272" width="285" height="162"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <date key="date" timeIntervalSinceReferenceDate="416118410.19457698">
@@ -158,7 +158,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
 </data>
                                 </timeZone>
                             </datePicker>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v4z-PB-ayt">
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v4z-PB-ayt">
                                 <rect key="frame" x="0.0" y="524" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
@@ -181,16 +181,44 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g5Y-FR-POd">
-                                <rect key="frame" x="110" y="442" width="100" height="100"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="g5Y-FR-POd">
+                                <rect key="frame" x="20" y="442" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="bC7-oj-mDp">
+                                <rect key="frame" x="188" y="478" width="117" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="Male"/>
+                                    <segment title="Female"/>
+                                </segments>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="hEG-zS-KyY" firstAttribute="top" secondItem="0Ts-pw-zni" secondAttribute="bottom" id="Eg9-u5-go8"/>
-                            <constraint firstAttribute="trailing" secondItem="hEG-zS-KyY" secondAttribute="trailing" id="UuZ-iz-46d"/>
-                            <constraint firstItem="hEG-zS-KyY" firstAttribute="leading" secondItem="6Nn-tx-0tp" secondAttribute="leading" id="Z5I-tq-WE4"/>
+                            <constraint firstItem="5W4-wT-dMN" firstAttribute="leading" secondItem="PbL-QL-BxO" secondAttribute="leading" id="1ib-FJ-t7p"/>
+                            <constraint firstAttribute="trailing" secondItem="Nz8-jG-fyD" secondAttribute="trailing" constant="15" id="5uZ-gh-TBf"/>
+                            <constraint firstItem="Nz8-jG-fyD" firstAttribute="top" secondItem="hEG-zS-KyY" secondAttribute="bottom" id="8GH-Lu-Qzm"/>
+                            <constraint firstItem="PbL-QL-BxO" firstAttribute="trailing" secondItem="Nz8-jG-fyD" secondAttribute="trailing" id="8fd-Cp-nJC"/>
+                            <constraint firstItem="bC7-oj-mDp" firstAttribute="trailing" secondItem="5W4-wT-dMN" secondAttribute="trailing" id="ALs-jd-DFF"/>
+                            <constraint firstItem="IBh-vZ-U1m" firstAttribute="top" secondItem="hEG-zS-KyY" secondAttribute="bottom" constant="4" id="Kdf-dx-mHu"/>
+                            <constraint firstItem="v4z-PB-ayt" firstAttribute="top" secondItem="bC7-oj-mDp" secondAttribute="bottom" constant="18" id="NqB-5E-aDF"/>
+                            <constraint firstItem="5W4-wT-dMN" firstAttribute="top" secondItem="PbL-QL-BxO" secondAttribute="bottom" constant="8" symbolic="YES" id="Ya6-Mw-NWV"/>
+                            <constraint firstItem="v4z-PB-ayt" firstAttribute="trailing" secondItem="hEG-zS-KyY" secondAttribute="trailing" id="d87-sj-vzd"/>
+                            <constraint firstItem="g5Y-FR-POd" firstAttribute="top" secondItem="5W4-wT-dMN" secondAttribute="bottom" constant="8" symbolic="YES" id="dbe-Ac-OK3"/>
+                            <constraint firstItem="hEG-zS-KyY" firstAttribute="leading" secondItem="6Nn-tx-0tp" secondAttribute="leading" id="dpC-i8-Toj"/>
+                            <constraint firstItem="bC7-oj-mDp" firstAttribute="centerY" secondItem="g5Y-FR-POd" secondAttribute="centerY" id="fId-g3-KKe"/>
+                            <constraint firstItem="5W4-wT-dMN" firstAttribute="trailing" secondItem="PbL-QL-BxO" secondAttribute="trailing" id="fMF-iP-bX6"/>
+                            <constraint firstAttribute="bottom" secondItem="v4z-PB-ayt" secondAttribute="bottom" id="gxY-As-5aa"/>
+                            <constraint firstItem="IBh-vZ-U1m" firstAttribute="leading" secondItem="PbL-QL-BxO" secondAttribute="leading" id="gxg-ew-vXd"/>
+                            <constraint firstAttribute="trailing" secondItem="hEG-zS-KyY" secondAttribute="trailing" id="kTX-Bs-ThQ"/>
+                            <constraint firstItem="PbL-QL-BxO" firstAttribute="top" secondItem="Nz8-jG-fyD" secondAttribute="bottom" constant="8" symbolic="YES" id="pUg-LZ-HvN"/>
+                            <constraint firstItem="IBh-vZ-U1m" firstAttribute="leading" secondItem="6Nn-tx-0tp" secondAttribute="leading" constant="20" symbolic="YES" id="q5V-yi-L6U"/>
+                            <constraint firstItem="Nz8-jG-fyD" firstAttribute="leading" secondItem="IBh-vZ-U1m" secondAttribute="trailing" constant="8" symbolic="YES" id="u8r-mT-Drm"/>
+                            <constraint firstItem="JVB-R2-GwI" firstAttribute="top" secondItem="g5Y-FR-POd" secondAttribute="bottom" constant="26" id="ueH-pu-JPf"/>
+                            <constraint firstItem="g5Y-FR-POd" firstAttribute="leading" secondItem="5W4-wT-dMN" secondAttribute="leading" id="vRe-sV-52e"/>
+                            <constraint firstItem="hEG-zS-KyY" firstAttribute="leading" secondItem="v4z-PB-ayt" secondAttribute="leading" id="y5B-Ow-KtZ"/>
+                            <constraint firstItem="bC7-oj-mDp" firstAttribute="leading" secondItem="g5Y-FR-POd" secondAttribute="trailing" constant="68" id="z3Y-Li-R7u"/>
                         </constraints>
                     </view>
                     <connections>
@@ -198,6 +226,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <outlet property="birthTimePicker" destination="5W4-wT-dMN" id="Tjw-N0-97I"/>
                         <outlet property="cameraButton" destination="UIf-XY-bgZ" id="6L4-aD-T1s"/>
                         <outlet property="dobPicker" destination="PbL-QL-BxO" id="nvm-ua-04d"/>
+                        <outlet property="genderControl" destination="bC7-oj-mDp" id="I5V-f4-3BV"/>
                         <outlet property="nameField" destination="Nz8-jG-fyD" id="9wb-Ys-LGW"/>
                         <outlet property="titleButton" destination="def-VP-IuZ" id="sGu-Y3-cnh"/>
                     </connections>
@@ -510,6 +539,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             <point key="canvasLocation" x="1443" y="767"/>
         </scene>
     </scenes>
+    <color key="tintColor" red="0.0" green="0.33588047450000003" blue="0.085452782850000006" alpha="1" colorSpace="calibratedRGB"/>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

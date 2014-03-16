@@ -12,16 +12,31 @@
 @interface SBTBabyEditViewController ()<UITextFieldDelegate, UIPopoverControllerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *babyPic;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *cameraButton;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *genderControl;
 @property (nonatomic, strong) UIPopoverController *popCon;
 @end
 
 @implementation SBTBabyEditViewController
+{
+    UIImage *image;
+    NSString *imageKey;
+}
+
+// wait until the last minute to create the new baby and return it.
 
 - (IBAction)pressedDone:(id)sender {
+    SBTBaby *newBaby;
     if ([self.nameField.text isEqualToString:@""]){
         [self pressedCancel:self];
     }else{
-        SBTBaby *newBaby = [[SBTBaby alloc] initWithName:self.nameField.text andDOB:self.dobPicker.date];
+        if (self.baby){
+            newBaby = [self.baby copyWithNewName:self.nameField.text andDOB:self.dobPicker.date];
+        }else{
+            newBaby = [[SBTBaby alloc] initWithName:self.nameField.text andDOB:self.dobPicker.date];
+        }
+        newBaby.gender = (SBTGender)self.genderControl.selectedSegmentIndex;
+        [newBaby setImageKey:imageKey];
+        [newBaby setThumbnailDataFromImage:image];
         [self.delegate babyEditViewController:self didSaveBaby:newBaby];
         [self dismissViewControllerAnimated:YES completion:nil];
     }
@@ -69,13 +84,11 @@
     if (self.baby.imageKey){
         [[SBTImageStore sharedStore] deleteImageForKey:self.baby.imageKey];
     }
-    UIImage *image = info[UIImagePickerControllerOriginalImage];
-    [self.baby setThumbnailDataFromImage:image];
+    image = info[UIImagePickerControllerOriginalImage];
     CFUUIDRef newUniqueID = CFUUIDCreate(kCFAllocatorDefault);
     CFStringRef newUniqueIDCFString = CFUUIDCreateString(kCFAllocatorDefault, newUniqueID);
-    NSString *key = (__bridge NSString *)newUniqueIDCFString;
-    [self.baby setImageKey:key];
-    [[SBTImageStore sharedStore] setImage:image forKey:key];
+    imageKey = (__bridge NSString *)newUniqueIDCFString;
+    [[SBTImageStore sharedStore] setImage:image forKey:imageKey];
     
     CFRelease(newUniqueID);
     CFRelease(newUniqueIDCFString);

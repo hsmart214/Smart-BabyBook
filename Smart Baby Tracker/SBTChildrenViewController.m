@@ -9,6 +9,7 @@
 #import "SBTChildrenViewController.h"
 #import "SBTBaby.h"
 #import "SBTBabyInfoTVC.h"
+#import "SBTBabyEditViewController.h"
 
 @interface SBTChildrenViewController ()
 
@@ -112,6 +113,11 @@
 {
     if ([segue.identifier isEqualToString:@"New Child"]){
         [segue.destinationViewController setDelegate:self];
+        __weak SBTChildrenViewController *myWeakSelf = self;
+        SBTBabyEditViewController *bevc = segue.destinationViewController;
+        [bevc setDismissBlock:^{
+            [myWeakSelf.tableView reloadData];
+        }];
     }else if ([segue.identifier isEqualToString:@"showBabyInfo"]){
         SBTBabyInfoTVC *dest = segue.destinationViewController;
         NSIndexPath *ip = [self.tableView indexPathForCell:sender];

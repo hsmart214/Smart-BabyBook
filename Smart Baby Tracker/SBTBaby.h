@@ -36,6 +36,7 @@
 
 -(instancetype)copyWithZone:(NSZone *)zone;
 -(instancetype)copy;
+-(instancetype)copyWithNewName:(NSString *)name andDOB:(NSDate *)dob;
 
 -(void)addEncounter:(SBTEncounter *)encounter;
 -(BOOL)removeEncounter:(SBTEncounter *)encounter;   // returns NO if encounter not present in the Baby's set of encounters

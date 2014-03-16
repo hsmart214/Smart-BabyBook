@@ -217,6 +217,15 @@
     return [self copyWithZone:nil];
 }
 
+-(instancetype)copyWithNewName:(NSString *)name andDOB:(NSDate *)dob
+{
+    SBTBaby *newBaby = [[SBTBaby alloc] initWithName:name andDOB:dob];
+    newBaby.dueDate = self.dueDate;
+    newBaby.gender = self.gender;
+    newBaby.encounters = [self.encounters mutableCopy];
+    return newBaby;
+}
+
 -(void)encodeWithCoder:(NSCoder *)aCoder
 {
     [aCoder encodeObject:self.name forKey:@"name"];
