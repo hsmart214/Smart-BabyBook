@@ -14,6 +14,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *babyPic;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *cameraButton;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *genderControl;
+@property (weak, nonatomic) IBOutlet UILabel *dobLabel;
+@property (weak, nonatomic) IBOutlet UILabel *birthTimeLabel;
 @property (nonatomic, strong) UIPopoverController *popCon;
 @end
 
@@ -21,6 +23,13 @@
 {
     UIImage *image;
     NSString *imageKey;
+    
+    BOOL editingDOB;
+    BOOL editingBirthTime;
+    
+    NSDate *tempDOB;
+    NSDate *tempBirthTime;
+    NSDateFormatter *df;
 }
 
 // wait until the last minute to create the new baby and send it back to the delegate.
@@ -75,7 +84,49 @@
 
 -(BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return NO;
+    if (indexPath.row == 1 || indexPath.row == 3){
+        return YES;
+    }else{
+        return NO;
+    }
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == 2){
+        return editingDOB ? 219.0 : 0.0;
+    }else if (indexPath.row == 4){
+        return editingBirthTime ? 219.0 : 0.0;
+    }else{
+        return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+    }
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (indexPath.row == 1){
+        editingDOB = !editingDOB;
+        [self.dobPicker setHidden:!editingDOB];
+        if (!editingDOB){
+            df.timeStyle = NSDateFormatterNoStyle;
+            df.dateStyle = NSDateFormatterMediumStyle;
+            self.dobLabel.text = [df stringFromDate:self.dobPicker.date];
+            tempDOB = self.dobPicker.date;
+        }
+    }
+    if (indexPath.row == 3) {
+        editingBirthTime = !editingBirthTime;
+        [self.birthTimePicker setHidden:!editingBirthTime];
+        if (!editingBirthTime){
+            df.timeStyle = NSDateFormatterShortStyle;
+            df.dateStyle = NSDateFormatterNoStyle;
+            self.birthTimeLabel.text = [df stringFromDate:self.birthTimePicker.date];
+            tempBirthTime = self.birthTimePicker.date;
+        }
+    }
+    [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    [tableView reloadData];
 }
 
 #pragma mark - UIPopoverController Delegate
@@ -166,13 +217,26 @@
 -(void)updateDisplay
 {
     if (self.baby){
+        tempBirthTime = self.baby.DOB;
+        tempDOB = self.baby.DOB;
         self.title = self.baby.name;
         self.nameField.text = self.baby.name;
         self.babyPic.image = self.baby.thumbnail;
         [self.dobPicker setDate:self.baby.DOB];
         [self.birthTimePicker setDate:self.baby.DOB];
         [self.genderControl setSelectedSegmentIndex:self.baby.gender];
+    }else{
+        tempDOB = [NSDate date];
+        tempBirthTime = tempDOB;
     }
+    df.timeStyle = NSDateFormatterShortStyle;
+    df.dateStyle = NSDateFormatterNoStyle;
+    self.birthTimeLabel.text = [df stringFromDate:tempBirthTime];
+    
+    df.timeStyle = NSDateFormatterNoStyle;
+    df.dateStyle = NSDateFormatterMediumStyle;
+    self.dobLabel.text = [df stringFromDate:tempDOB];
+
     if (image) self.babyPic.image = image;
     
 }
@@ -182,7 +246,16 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     self.nameField.delegate = self;
+    df = [[NSDateFormatter alloc] init];
+    df.calendar = [NSCalendar currentCalendar];
+    [self.dobPicker setHidden:YES];
+    [self.birthTimePicker setHidden:YES];
     [self updateDisplay];
+}
+
+-(void)dealloc
+{
+    df = nil;
 }
 
 @end
