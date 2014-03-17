@@ -14,7 +14,7 @@
 // we are either editing an existing encounter or creating a new one
 // so if we are not handed one, we create a new one first, the n modify it as we go along
 
-@interface SBTEncounterEditTVC ()<SBTVaccinesGivenTVCDelegate>
+@interface SBTEncounterEditTVC ()<SBTVaccinesGivenTVCDelegate, UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
 @property (weak, nonatomic) IBOutlet UITextField *weightField2;
@@ -108,6 +108,19 @@
 -(void)vaccinesGivenTVC:(SBTVaccinesGivenTVC *)vaccinesGivenTVC updatedVaccines:(NSSet *)newVaccineSet
 {
     [self.encounter replaceVaccines:newVaccineSet];
+}
+
+#pragma mark - UITextFieldDelegate
+
+-(BOOL)textFieldShouldEndEditing:(UITextField *)textField
+{
+    return YES;
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
 }
 
 #pragma mark - Navigation

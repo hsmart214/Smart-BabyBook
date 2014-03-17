@@ -9,6 +9,7 @@
 #import "SBTBabyInfoTVC.h"
 #import "SBTBaby.h"
 #import "SBTBabyEditViewController.h"
+#import "SBTEncountersTVC.h"
 
 @interface SBTBabyInfoTVC ()<SBTBabyEditDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *birthDateLable;
@@ -50,6 +51,7 @@
 
 -(void)viewDidLoad
 {
+    NSAssert(self.baby != nil, @"No baby in Baby Info TVC");
     [self updateDisplay];
 }
 
@@ -65,9 +67,13 @@
 {
     if ([segue.identifier isEqualToString:@"editBabySegue"]){
         UINavigationController *nav = segue.destinationViewController;
-        SBTBabyEditViewController *bevc = nav.viewControllers[0];
+        SBTBabyEditViewController *bevc = [nav.viewControllers firstObject];
         bevc.baby = self.baby;
         bevc.delegate = self;
+    }
+    if ([segue.identifier isEqualToString:@"List Encounters Segue"]){
+        SBTEncountersTVC *encTVC = segue.destinationViewController;
+        encTVC.baby = self.baby;
     }
 }
 

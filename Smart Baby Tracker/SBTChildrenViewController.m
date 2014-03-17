@@ -105,7 +105,8 @@
     }else if ([segue.identifier isEqualToString:@"showBabyInfo"]){
         SBTBabyInfoTVC *dest = segue.destinationViewController;
         NSIndexPath *ip = [self.tableView indexPathForCell:sender];
-        [dest setBaby:self.children[ip.row]];
+        SBTBaby *baby = self.children[ip.row];
+        [dest setBaby:baby];
     }
     
 }

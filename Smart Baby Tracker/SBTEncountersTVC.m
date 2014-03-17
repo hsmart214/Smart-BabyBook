@@ -82,7 +82,7 @@
 {
     if ([segue.identifier isEqualToString:@"addEncounterSegue"]){
         UINavigationController *nav = segue.destinationViewController;
-        SBTEncounterEditTVC *editTVC = nav.viewControllers[0];
+        SBTEncounterEditTVC *editTVC = [nav.viewControllers firstObject];
         editTVC.baby = self.baby;
         editTVC.delegate = self;
     }
@@ -92,11 +92,13 @@
 
 -(void)viewDidLoad
 {
+    NSAssert(self.baby != nil, @"No baby in encounters TVC");
     [super viewDidLoad];
     self.dateFormatter = [[NSDateFormatter alloc] init];
     [self.dateFormatter setCalendar:[NSCalendar currentCalendar]];
     [self.dateFormatter setDateStyle:NSDateFormatterMediumStyle];
     [self.dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+    self.encounters = [self.baby encountersList];
 }
 
 @end
