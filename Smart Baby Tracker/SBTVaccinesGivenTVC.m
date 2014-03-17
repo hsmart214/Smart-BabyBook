@@ -31,6 +31,17 @@
     }
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    if ([cell accessoryType] == UITableViewCellAccessoryNone){
+        [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
+    }else{
+        [cell setAccessoryType:UITableViewCellAccessoryNone];
+    }
+}
+
 #pragma mark - UITableViewDatasource
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section

@@ -46,6 +46,8 @@
 		426436B818C4459800414CA1 /* wholengthgirls.txt in Resources */ = {isa = PBXBuildFile; fileRef = 426436A418C4459800414CA1 /* wholengthgirls.txt */; };
 		426436B918C4459800414CA1 /* whoweightboys.txt in Resources */ = {isa = PBXBuildFile; fileRef = 426436A518C4459800414CA1 /* whoweightboys.txt */; };
 		426436BA18C4459800414CA1 /* whoweightgirls.txt in Resources */ = {isa = PBXBuildFile; fileRef = 426436A618C4459800414CA1 /* whoweightgirls.txt */; };
+		4269473818D6597B00D5B06F /* SBTEncounterEditTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4269473718D6597B00D5B06F /* SBTEncounterEditTVC.m */; };
+		4269473B18D66CB700D5B06F /* SBTUnitsConvertor.m in Sources */ = {isa = PBXBuildFile; fileRef = 4269473A18D66CB700D5B06F /* SBTUnitsConvertor.m */; };
 		426FF5D818C15DB000B66F36 /* SBTDataPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 426FF5D718C15DB000B66F36 /* SBTDataPoint.m */; };
 		426FF5DB18C1A56200B66F36 /* SBTGrowthDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 426FF5DA18C1A56200B66F36 /* SBTGrowthDataSource.m */; };
 		4287698618CD6F2E007862AB /* SBTChildrenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4287698518CD6F2E007862AB /* SBTChildrenViewController.m */; };
@@ -123,6 +125,10 @@
 		426436A418C4459800414CA1 /* wholengthgirls.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = wholengthgirls.txt; sourceTree = "<group>"; };
 		426436A518C4459800414CA1 /* whoweightboys.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = whoweightboys.txt; sourceTree = "<group>"; };
 		426436A618C4459800414CA1 /* whoweightgirls.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = whoweightgirls.txt; sourceTree = "<group>"; };
+		4269473618D6597B00D5B06F /* SBTEncounterEditTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTEncounterEditTVC.h; sourceTree = "<group>"; };
+		4269473718D6597B00D5B06F /* SBTEncounterEditTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTEncounterEditTVC.m; sourceTree = "<group>"; };
+		4269473918D66CB700D5B06F /* SBTUnitsConvertor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTUnitsConvertor.h; sourceTree = "<group>"; };
+		4269473A18D66CB700D5B06F /* SBTUnitsConvertor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTUnitsConvertor.m; sourceTree = "<group>"; };
 		426FF5D618C15DB000B66F36 /* SBTDataPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTDataPoint.h; sourceTree = "<group>"; };
 		426FF5D718C15DB000B66F36 /* SBTDataPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTDataPoint.m; sourceTree = "<group>"; };
 		426FF5D918C1A56200B66F36 /* SBTGrowthDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTGrowthDataSource.h; sourceTree = "<group>"; };
@@ -221,6 +227,8 @@
 				4287698518CD6F2E007862AB /* SBTChildrenViewController.m */,
 				42CB9A5818D57C4E0097BBE3 /* SBTEncountersTVC.h */,
 				42CB9A5918D57C4E0097BBE3 /* SBTEncountersTVC.m */,
+				4269473618D6597B00D5B06F /* SBTEncounterEditTVC.h */,
+				4269473718D6597B00D5B06F /* SBTEncounterEditTVC.m */,
 				42CB9A5B18D589C30097BBE3 /* SBTVaccinesGivenTVC.h */,
 				42CB9A5C18D589C30097BBE3 /* SBTVaccinesGivenTVC.m */,
 				42CB9A5218D5092F0097BBE3 /* SBTImageStore.h */,
@@ -272,6 +280,8 @@
 		4248806718944C90009F2837 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4269473918D66CB700D5B06F /* SBTUnitsConvertor.h */,
+				4269473A18D66CB700D5B06F /* SBTUnitsConvertor.m */,
 				4248806418944C84009F2837 /* SBTBaby.h */,
 				4248806518944C84009F2837 /* SBTBaby.m */,
 				42488068189459D2009F2837 /* SBTEncounter.h */,
@@ -445,6 +455,7 @@
 				42E7F98C18C267AE00C49072 /* SBTWHODataSource.m in Sources */,
 				42B601301895E1E6000C15F4 /* SBTVaccineSchedule.m in Sources */,
 				42CB9A5418D5092F0097BBE3 /* SBTImageStore.m in Sources */,
+				4269473B18D66CB700D5B06F /* SBTUnitsConvertor.m in Sources */,
 				4287698618CD6F2E007862AB /* SBTChildrenViewController.m in Sources */,
 				42CB9A5D18D589C30097BBE3 /* SBTVaccinesGivenTVC.m in Sources */,
 				42CB9A5718D5731C0097BBE3 /* SBTEncounterTableViewCell.m in Sources */,
@@ -458,6 +469,7 @@
 				4248806D18945CE2009F2837 /* SBTVaccine.m in Sources */,
 				4287698918CD77AE007862AB /* SBTBabyEditViewController.m in Sources */,
 				426FF5D818C15DB000B66F36 /* SBTDataPoint.m in Sources */,
+				4269473818D6597B00D5B06F /* SBTEncounterEditTVC.m in Sources */,
 				4226B8CD189F5F3B00682A6A /* NSDateComponents+Today.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
