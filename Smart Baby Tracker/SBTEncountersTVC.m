@@ -10,8 +10,9 @@
 #import "SBTEncounterTableViewCell.h"
 #import "SBTEncounter.h"
 #import "SBTBaby.h"
+#import "SBTEncounterEditTVC.h"
 
-@interface SBTEncountersTVC ()
+@interface SBTEncountersTVC ()<SBTEncounterEditTVCDelegate>
 
 @property (nonatomic, strong) NSDateFormatter *dateFormatter;
 
@@ -62,6 +63,29 @@
 -(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
     
+}
+
+#pragma mark - SBTEncounterEditTVCDelegate
+
+-(void)SBTEncounterEditTVC:(SBTEncounterEditTVC *)editTVC updatedEncounter:(SBTEncounter *)encounter
+{
+    if (![self.encounters containsObject:encounter]){
+        [self.baby addEncounter:encounter];
+        self.encounters = [self.baby encountersList];
+    }
+    [self.tableView reloadData];
+}
+
+#pragma mark - Navigation
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"addEncounterSegue"]){
+        UINavigationController *nav = segue.destinationViewController;
+        SBTEncounterEditTVC *editTVC = nav.viewControllers[0];
+        editTVC.baby = self.baby;
+        editTVC.delegate = self;
+    }
 }
 
 #pragma mark - View Life Cycle

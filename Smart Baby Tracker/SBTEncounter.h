@@ -28,8 +28,7 @@
 -(instancetype)initWithCoder:(NSCoder *)aDecoder;
 -(void)encodeWithCoder:(NSCoder *)aCoder;
 
--(void)addVaccines:(NSArray *)vaccinesGiven;
--(void)removeVaccines:(NSArray *)vaccinesToRemove;
+-(void)replaceVaccines:(NSSet *)newVaccineSet;
 
 -(NSInteger)daysSinceEncounter:(SBTEncounter *)encounter;
 -(NSInteger)daysSinceDate:(NSDate *)date;

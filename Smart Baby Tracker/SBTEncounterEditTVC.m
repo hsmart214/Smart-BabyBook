@@ -9,11 +9,12 @@
 #import "SBTEncounterEditTVC.h"
 #import "SBTEncounter.h"
 #import "SBTUnitsConvertor.h"
+#import "SBTVaccinesGivenTVC.h"
 
 // we are either editing an existing encounter or creating a new one
 // so if we are not handed one, we create a new one first, the n modify it as we go along
 
-@interface SBTEncounterEditTVC ()
+@interface SBTEncounterEditTVC ()<SBTVaccinesGivenTVCDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
 @property (weak, nonatomic) IBOutlet UITextField *weightField2;
@@ -26,12 +27,24 @@
 @property (weak, nonatomic) IBOutlet UILabel *headCircUnitLabel;
 @property (weak, nonatomic) IBOutlet UIButton *heightMethodButton;
 
-
+@property (nonatomic, strong) NSMutableSet *vaccines;
 @end
 
 @implementation SBTEncounterEditTVC
 {
     NSDateFormatter *df;
+}
+
+-(NSMutableSet *)vaccines
+{
+    if (!_vaccines){
+        if (self.encounter){
+            _vaccines = [NSMutableSet setWithArray:[self.encounter vaccinesGiven]];
+        }else{
+            _vaccines = [NSMutableSet set];
+        }
+    }
+    return _vaccines;
 }
 
 - (IBAction)cancelEditing:(id)sender {
@@ -58,6 +71,7 @@
 
 -(void)updateDisplay
 {
+    //TODO: Fix the display for lbs/oz and ft/in
     df.timeStyle = NSDateFormatterNoStyle;
     df.dateStyle = NSDateFormatterMediumStyle;
     self.dateLabel.text = [df stringFromDate:self.encounter.dateComps.date];
@@ -89,5 +103,22 @@
     [self updateDisplay];
 }
 
+#pragma mark - SBTVaccinesGivenTVCDelegate
+
+-(void)vaccinesGivenTVC:(SBTVaccinesGivenTVC *)vaccinesGivenTVC updatedVaccines:(NSSet *)newVaccineSet
+{
+    [self.encounter replaceVaccines:newVaccineSet];
+}
+
+#pragma mark - Navigation
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"Vaccinations segue"]){
+        SBTVaccinesGivenTVC *dest = segue.destinationViewController;
+        dest.vaccinesGiven = self.vaccines;
+        dest.delegate = self;
+    }
+}
 
 @end

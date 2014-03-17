@@ -6,10 +6,20 @@
 //  Copyright (c) 2014 J. HOWARD SMART. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
+@class SBTVaccinesGivenTVC;
+
+@protocol SBTVaccinesGivenTVCDelegate <NSObject>
+
+@required
+
+-(void)vaccinesGivenTVC:(SBTVaccinesGivenTVC *)vaccinesGivenTVC updatedVaccines:(NSSet *)newVaccineSet;
+
+@end
 
 @interface SBTVaccinesGivenTVC : UITableViewController
 
 @property (nonatomic, strong) NSMutableSet *vaccinesGiven;
+@property (nonatomic, weak) id<SBTVaccinesGivenTVCDelegate> delegate;
 
 @end

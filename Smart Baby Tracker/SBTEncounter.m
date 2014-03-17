@@ -68,6 +68,11 @@
     self.dateModified = [NSDate date];
 }
 
+-(void)replaceVaccines:(NSSet *)newVaccineSet
+{
+    self.vaccines = [NSMutableSet setWithSet:newVaccineSet];
+}
+
 -(NSInteger)daysSinceEncounter:(SBTEncounter *)encounter
 {
     NSCalendar *cal = [NSCalendar currentCalendar];

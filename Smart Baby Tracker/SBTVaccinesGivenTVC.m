@@ -14,6 +14,9 @@
 @end
 
 @implementation SBTVaccinesGivenTVC
+{
+    NSMutableSet *selected; // we will load this with the names of the selected vaccines
+}
 
 #pragma mark - UITableViewDelegate
 
@@ -76,7 +79,40 @@
         }
     }
     cell.detailTextLabel.text = str;
+    if ([selected containsObject:vacc.name]){
+        [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
+    }else{
+        [cell setAccessoryType:UITableViewCellAccessoryNone];
+    }
     return cell;
+}
+
+#pragma mark - Navigation, View Life Cycle
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    selected = [NSMutableSet set];
+    for (SBTVaccine *vac in self.vaccinesGiven){
+        [selected addObject:vac.name];
+    }
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    NSMutableSet *newVaccineSet = [NSMutableSet set];
+    NSDictionary *genericVaccines = [SBTVaccine vaccinesByGenericName];
+    NSSet *genericNames = [NSSet setWithArray:[genericVaccines allKeys]];
+    NSDictionary *brandNameVaccines = [SBTVaccine vaccinesByTradeName];
+    for (NSString *vacName in selected){
+        if ([genericNames containsObject:vacName]){
+            [newVaccineSet addObject:genericVaccines[vacName]];
+        }else{
+            [newVaccineSet addObject:brandNameVaccines[vacName]];
+        }
+    }
+    [self.delegate vaccinesGivenTVC:self updatedVaccines:newVaccineSet];
+    [super viewWillDisappear:animated];
 }
 
 @end
