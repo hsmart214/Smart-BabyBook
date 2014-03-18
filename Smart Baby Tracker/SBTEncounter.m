@@ -12,7 +12,6 @@
 
 @interface SBTEncounter ()
 
-@property (nonatomic, strong) NSDate *universalDate;
 @property (nonatomic, strong) NSMutableSet *vaccines;
 @property (nonatomic, strong) NSDate *dateModified;
 
@@ -38,6 +37,15 @@
     _height = height;
     _length = 0.0F;
     self.dateModified = [NSDate date];
+}
+
+-(double)BMI
+{
+    double ht = self.height + self.weight;
+    if (ht <= 0.1){
+        return 0.0;
+    }
+    return self.weight / ht*ht;
 }
 
 -(void)setHeadCirc:(double)headCirc
@@ -127,10 +135,10 @@
 {
     if (self = [super init]){
         self.universalDate = [aDecoder decodeObjectOfClass:[NSDate class] forKey:@"date"];
-        self.weight = [aDecoder decodeFloatForKey:@"weight"];
-        self.height = [aDecoder decodeFloatForKey:@"height"];
-        self.length = [aDecoder decodeFloatForKey:@"length"];
-        self.headCirc = [aDecoder decodeFloatForKey:@"headCirc"];
+        self.weight = [aDecoder decodeDoubleForKey:@"weight"];
+        self.height = [aDecoder decodeDoubleForKey:@"height"];
+        self.length = [aDecoder decodeDoubleForKey:@"length"];
+        self.headCirc = [aDecoder decodeDoubleForKey:@"headCirc"];
         self.vaccines = [aDecoder decodeObjectOfClass:[NSMutableSet class] forKey:@"vaccines"];
         self.dateModified = [aDecoder decodeObjectOfClass:[NSDate class] forKey:@"dateModified"];
     }

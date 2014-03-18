@@ -23,6 +23,6 @@
 
 @property (nonatomic, strong) SBTEncounter *encounter;
 @property (nonatomic, strong) SBTBaby *baby;
-@property (nonatomic, weak) id delegate;
+@property (nonatomic, weak) id<SBTEncounterEditTVCDelegate> delegate;
 
 @end

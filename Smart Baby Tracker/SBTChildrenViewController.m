@@ -10,6 +10,7 @@
 #import "SBTBaby.h"
 #import "SBTBabyInfoTVC.h"
 #import "SBTBabyEditViewController.h"
+#import "SBTDataStore.h"
 
 @interface SBTChildrenViewController ()
 
@@ -17,33 +18,18 @@
 
 @implementation SBTChildrenViewController
 
--(NSMutableArray *)children
-{
-    if (!_children){
-        _children = [NSMutableArray array];
-    }
-    return _children;
-}
-
 -(void)babyEditViewController:(SBTBabyEditViewController *)babyEditVC didSaveBaby:(SBTBaby *)baby
 {
-    [self.children addObject:baby];
+    [[SBTDataStore sharedStore] storeBaby:baby];
+    self.children = [[SBTDataStore sharedStore] storedBabies];
     [self.tableView reloadData];
-}
-
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.children = [[SBTDataStore sharedStore] storedBabies];
 }
 
 

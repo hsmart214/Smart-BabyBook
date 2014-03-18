@@ -11,6 +11,6 @@
 
 @interface SBTChildrenViewController : UITableViewController<SBTBabyEditDelegate>
 
-@property (nonatomic, strong)NSMutableArray *children;
+@property (nonatomic, strong)NSArray *children;
 
 @end

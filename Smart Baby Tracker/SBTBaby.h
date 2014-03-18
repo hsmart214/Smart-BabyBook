@@ -15,8 +15,7 @@
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSDateComponents *DOBComponents;
 @property (nonatomic, readonly) NSDate *DOB;
-@property (nonatomic, strong) NSString *imageKey;
-@property (nonatomic, retain) NSData * thumbnailData;
+//@property (nonatomic, strong) NSString *imageKey;
 @property (nonatomic, strong) UIImage *thumbnail;
 
 @property (nonatomic, copy) NSDateComponents *dueDate;    // this is optional.  If no due date, assume full term baby.

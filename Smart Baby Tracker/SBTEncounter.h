@@ -14,6 +14,7 @@
 
 @interface SBTEncounter : NSObject <NSSecureCoding, NSCopying>
 
+@property (nonatomic, strong) NSDate *universalDate;
 @property (nonatomic, readonly) NSDateComponents *dateComps;
 // measurements in metric units
 @property (nonatomic, assign) double weight;

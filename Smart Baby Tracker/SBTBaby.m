@@ -224,12 +224,13 @@
 -(void)encodeWithCoder:(NSCoder *)aCoder
 {
     [aCoder encodeObject:self.name forKey:@"name"];
-    [aCoder encodeObject:self.DOB forKey:@"DOBComponents"];
+    [aCoder encodeObject:self.DOBComponents forKey:@"DOBComponents"];
     [aCoder encodeObject:self.dueDate forKey:@"dueDate"];
     [aCoder encodeInteger:self.gender forKey:@"gender"];
     [aCoder encodeObject:self.encounters forKey:@"encounters"];
     [aCoder encodeObject:self.dateCreated forKey:@"dateCreated"];
     [aCoder encodeObject:self.dateModified forKey:@"dateModified"];
+    [aCoder encodeObject:self.thumbnail forKey:@"thumbnailImage"];
 }
 
 -(instancetype)initWithCoder:(NSCoder *)aDecoder
@@ -237,11 +238,13 @@
     if (self = [super init]){
         self.name = [aDecoder decodeObjectOfClass:[NSString class] forKey:@"name"];
         self.DOBComponents = [aDecoder decodeObjectOfClass:[NSDateComponents class] forKey:@"DOBComponents"];
+        _DOB = self.DOBComponents.date;
         self.dueDate = [aDecoder decodeObjectOfClass:[NSDateComponents class] forKey:@"dueDate"];
         self.gender = (SBTGender)[aDecoder decodeIntegerForKey:@"gender"];
-        self.encounters = [aDecoder decodeObjectOfClass:[NSMutableSet class] forKey:@"encounters"];
+        self.encounters = [aDecoder decodeObjectOfClass:[NSMutableArray class] forKey:@"encounters"];
         self.dateCreated = [aDecoder decodeObjectOfClass:[NSDate class] forKey:@"dateCreated"];
         self.dateModified = [aDecoder decodeObjectOfClass:[NSDate class] forKey:@"dateModified"];
+        self.thumbnail = [aDecoder decodeObjectOfClass:[UIImage class] forKey:@"thumbnailImage"];
     }
     return self;
 }

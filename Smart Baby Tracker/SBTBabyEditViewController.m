@@ -45,7 +45,6 @@
             newBaby = [[SBTBaby alloc] initWithName:self.nameField.text andDOB:self.dobPicker.date];
         }
         newBaby.gender = (SBTGender)self.genderControl.selectedSegmentIndex;
-        [newBaby setImageKey:imageKey];
         newBaby.thumbnail = image;
         [self.delegate babyEditViewController:self didSaveBaby:newBaby];
         [self dismissViewControllerAnimated:YES completion:nil];
@@ -140,19 +139,8 @@
 
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    if (self.baby.imageKey){
-        [[SBTImageStore sharedStore] deleteImageForKey:self.baby.imageKey];
-    }
     image = [self reducedSizeImage: info[UIImagePickerControllerOriginalImage]];
-    CFUUIDRef newUniqueID = CFUUIDCreate(kCFAllocatorDefault);
-    CFStringRef newUniqueIDCFString = CFUUIDCreateString(kCFAllocatorDefault, newUniqueID);
-    //TODO: Decide whether I really need to store the images
-    imageKey = (__bridge NSString *)newUniqueIDCFString;
-    [[SBTImageStore sharedStore] setImage:image forKey:imageKey];
-    
-    CFRelease(newUniqueID);
-    CFRelease(newUniqueIDCFString);
-    
+        
     if (self.popCon) {
         [self.popCon dismissPopoverAnimated:YES];
         self.popCon = nil;

@@ -52,7 +52,18 @@
 }
 
 - (IBAction)saveEncounter:(id)sender {
-    
+    self.encounter.universalDate = self.datePicker.date;
+    self.encounter.weight = [SBTUnitsConvertor metricStandardOf:[self.weightField2.text doubleValue] forKey:MASS_UNIT_KEY];
+    NSString *method = self.heightMethodButton.titleLabel.text;
+    if ([method isEqualToString:NSLocalizedString(@"Recumbent", @"Description of supine measurement.")]){
+        self.encounter.length = [SBTUnitsConvertor metricStandardOf:[self.heightField.text doubleValue] forKey:LENGTH_UNIT_KEY];
+    }else{
+        self.encounter.height = [SBTUnitsConvertor metricStandardOf:[self.heightField.text doubleValue] forKey:LENGTH_UNIT_KEY];
+    }
+    self.encounter.headCirc = [SBTUnitsConvertor metricStandardOf:[self.headCircField.text doubleValue] forKey:LENGTH_UNIT_KEY];
+    [self.encounter replaceVaccines:self.vaccines];
+    [self.delegate SBTEncounterEditTVC:self updatedEncounter:self.encounter];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - UITableViewDelegate
