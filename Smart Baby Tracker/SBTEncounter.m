@@ -133,8 +133,8 @@
 
 -(instancetype)initWithCoder:(NSCoder *)aDecoder
 {
-    if (self = [super init]){
-        self.universalDate = [aDecoder decodeObjectOfClass:[NSDate class] forKey:@"date"];
+    NSDate *date = [aDecoder decodeObjectOfClass:[NSDate class] forKey:@"date"];
+    if (self = [self initWithDate:date]){
         self.weight = [aDecoder decodeDoubleForKey:@"weight"];
         self.height = [aDecoder decodeDoubleForKey:@"height"];
         self.length = [aDecoder decodeDoubleForKey:@"length"];
