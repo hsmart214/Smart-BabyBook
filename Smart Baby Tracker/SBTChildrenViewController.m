@@ -93,6 +93,7 @@
         NSIndexPath *ip = [self.tableView indexPathForCell:sender];
         SBTBaby *baby = self.children[ip.row];
         [dest setBaby:baby];
+        dest.delegate = self;
     }
     
 }

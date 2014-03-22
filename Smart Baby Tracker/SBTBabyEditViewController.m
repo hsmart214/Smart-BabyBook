@@ -106,6 +106,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.row == 1){
         editingDOB = !editingDOB;
+        editingBirthTime = NO;
         [self.dobPicker setHidden:!editingDOB];
         if (!editingDOB){
             df.timeStyle = NSDateFormatterNoStyle;
@@ -116,6 +117,7 @@
     }
     if (indexPath.row == 3) {
         editingBirthTime = !editingBirthTime;
+        editingDOB = NO;
         [self.birthTimePicker setHidden:!editingBirthTime];
         if (!editingBirthTime){
             df.timeStyle = NSDateFormatterShortStyle;

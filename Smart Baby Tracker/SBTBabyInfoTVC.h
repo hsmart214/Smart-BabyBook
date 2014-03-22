@@ -7,11 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SBTBabyEditViewController.h"
+
 @class SBTBaby;
 
 @interface SBTBabyInfoTVC : UITableViewController
 
 // model
 @property (nonatomic, strong) SBTBaby *baby;
+@property (nonatomic, weak) id<SBTBabyEditDelegate> delegate;
 
 @end

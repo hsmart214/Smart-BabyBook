@@ -31,7 +31,8 @@
 {
     SBTEncounterTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Encounter Cell" forIndexPath:indexPath];
     SBTEncounter *enc = self.encounters[indexPath.row];
-    cell.dateLabel.text = [self.dateFormatter stringFromDate:enc.dateComps.date];
+    NSDate *date = [enc.dateComps.calendar dateFromComponents:enc.dateComps];
+    cell.dateLabel.text = [self.dateFormatter stringFromDate:date];
     if (enc.weight != 0.0){
         [cell.weightIcon setAlpha:1.0];
     }else{

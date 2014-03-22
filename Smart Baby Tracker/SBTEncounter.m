@@ -22,7 +22,9 @@
 -(NSDateComponents *)dateComps
 {
     NSCalendarUnit unit = NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear;
-    return [[NSCalendar currentCalendar] components:unit fromDate:self.universalDate];
+    NSDateComponents *dc = [[NSCalendar currentCalendar] components:unit fromDate:self.universalDate];
+    dc.calendar = [NSCalendar currentCalendar];
+    return dc;
 }
 
 -(void)setLength:(double)length

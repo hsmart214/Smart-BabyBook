@@ -8,7 +8,6 @@
 
 #import "SBTBabyInfoTVC.h"
 #import "SBTBaby.h"
-#import "SBTBabyEditViewController.h"
 #import "SBTEncountersTVC.h"
 
 @interface SBTBabyInfoTVC ()<SBTBabyEditDelegate>
@@ -28,6 +27,7 @@
 -(void)babyEditViewController:(SBTBabyEditViewController *)babyEditVC didSaveBaby:(SBTBaby *)baby
 {
     self.baby = baby;
+    [self.delegate babyEditViewController:babyEditVC didSaveBaby:baby];
     [self updateDisplay];
 }
 
@@ -60,6 +60,7 @@
     [super viewWillAppear:animated];
     UIImage *image = self.baby.thumbnail;
     self.babyPic.image = image;
+    [self updateDisplay];
 }
 
 

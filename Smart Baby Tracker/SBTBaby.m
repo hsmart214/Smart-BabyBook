@@ -236,7 +236,8 @@
 {
     NSString *name = [aDecoder decodeObjectOfClass:[NSString class] forKey:@"name"];
     NSDateComponents *dobcomps = [aDecoder decodeObjectOfClass:[NSDateComponents class] forKey:@"DOBComponents"];
-    if (self = [self initWithName:name andDOB:dobcomps.date]){
+    NSDate *date = [dobcomps.calendar dateFromComponents:dobcomps];
+    if (self = [self initWithName:name andDOB:date]){
         self.dueDate = [aDecoder decodeObjectOfClass:[NSDateComponents class] forKey:@"dueDate"];
         self.gender = (SBTGender)[aDecoder decodeIntegerForKey:@"gender"];
         self.encounters = [aDecoder decodeObjectOfClass:[NSMutableArray class] forKey:@"encounters"];
@@ -255,6 +256,7 @@
         if (dob){
             _DOB = [dob copy];
             self.DOBComponents = [[NSCalendar currentCalendar] components:MDY_HM fromDate:dob];
+            self.DOBComponents.calendar = [NSCalendar currentCalendar];
         }else{
             _DOB = [NSDate date];
             self.DOBComponents = [[NSCalendar currentCalendar] components:MDY fromDate:[NSDate date]];
