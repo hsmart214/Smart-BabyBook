@@ -8,7 +8,10 @@
 
 #import "SBTBabyEditViewController.h"
 #import "SBTImageStore.h"
-@import MobileCoreServices;
+
+#define DOB_ROW 1
+#define BIRTH_TIME_ROW 3
+#define DATE_PICKER_HEIGHT 219.0F
 
 @interface SBTBabyEditViewController ()<UITextFieldDelegate, UIPopoverControllerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *babyPic;
@@ -22,7 +25,6 @@
 @implementation SBTBabyEditViewController
 {
     UIImage *image;
-    NSString *imageKey;
     
     BOOL editingDOB;
     BOOL editingBirthTime;
@@ -46,7 +48,7 @@
         }
         newBaby.gender = (SBTGender)self.genderControl.selectedSegmentIndex;
         newBaby.thumbnail = image;
-        [self.delegate babyEditViewController:self didSaveBaby:newBaby];
+        [self.delegate babyEditor:self didSaveBaby:newBaby];
         [self dismissViewControllerAnimated:YES completion:nil];
     }
 }
@@ -83,7 +85,7 @@
 
 -(BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 1 || indexPath.row == 3){
+    if (indexPath.row == DOB_ROW || indexPath.row == BIRTH_TIME_ROW){
         return YES;
     }else{
         return NO;
@@ -92,10 +94,10 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 2){
-        return editingDOB ? 219.0 : 0.0;
-    }else if (indexPath.row == 4){
-        return editingBirthTime ? 219.0 : 0.0;
+    if (indexPath.row == DOB_ROW + 1){
+        return editingDOB ? DATE_PICKER_HEIGHT : 0.0;
+    }else if (indexPath.row == BIRTH_TIME_ROW + 1){
+        return editingBirthTime ? DATE_PICKER_HEIGHT : 0.0;
     }else{
         return [super tableView:tableView heightForRowAtIndexPath:indexPath];
     }
@@ -104,9 +106,10 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (indexPath.row == 1){
+    if (indexPath.row == DOB_ROW){
         editingDOB = !editingDOB;
         editingBirthTime = NO;
+        [self.birthTimePicker setHidden:YES];
         [self.dobPicker setHidden:!editingDOB];
         if (!editingDOB){
             df.timeStyle = NSDateFormatterNoStyle;
@@ -115,9 +118,10 @@
             tempDOB = self.dobPicker.date;
         }
     }
-    if (indexPath.row == 3) {
+    if (indexPath.row == BIRTH_TIME_ROW) {
         editingBirthTime = !editingBirthTime;
         editingDOB = NO;
+        [self.dobPicker setHidden:YES];
         [self.birthTimePicker setHidden:!editingBirthTime];
         if (!editingBirthTime){
             df.timeStyle = NSDateFormatterShortStyle;

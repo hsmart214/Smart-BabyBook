@@ -24,10 +24,10 @@
 
 #pragma mark - SBTBabyEditDelegate methods
 
--(void)babyEditViewController:(SBTBabyEditViewController *)babyEditVC didSaveBaby:(SBTBaby *)baby
+-(void)babyEditor:(id)babyEditor didSaveBaby:(SBTBaby *)baby
 {
     self.baby = baby;
-    [self.delegate babyEditViewController:babyEditVC didSaveBaby:baby];
+    [self.delegate babyEditor:babyEditor didSaveBaby:baby];
     [self updateDisplay];
 }
 
@@ -75,6 +75,7 @@
     if ([segue.identifier isEqualToString:@"List Encounters Segue"]){
         SBTEncountersTVC *encTVC = segue.destinationViewController;
         encTVC.baby = self.baby;
+        encTVC.delegate = self;
     }
 }
 

@@ -61,6 +61,17 @@
     return [self.vaccines allObjects];
 }
 
+-(NSArray *)componentsGiven
+{
+    NSMutableArray *given = [NSMutableArray array];
+    for (SBTVaccine *vacc in self.vaccines){
+        for (NSNumber *compNum in vacc.components){
+            [given addObject:compNum];
+        }
+    }
+    return given;
+}
+
 -(void)addVaccines:(NSArray *)vaccinesGiven
 {
     // add a copy of each vaccine given in case someone wants to reuse objects.
@@ -117,7 +128,6 @@
     if (self = [super init]){
         self.universalDate = date;
         self.vaccines = [NSMutableSet set];
-        self.dateModified = [NSDate date];
     }
     return self;
 }
@@ -129,7 +139,8 @@
     [aCoder encodeFloat:self.length forKey:@"length"];
     [aCoder encodeFloat:self.height forKey:@"height"];
     [aCoder encodeFloat:self.headCirc forKey:@"headCirc"];
-    [aCoder encodeObject:self.vaccines forKey:@"vaccines"];
+    NSData *vaccineData = [NSKeyedArchiver archivedDataWithRootObject:self.vaccines];
+    [aCoder encodeObject:vaccineData forKey:@"vaccines"];
     [aCoder encodeObject:self.dateModified forKey:@"dateModified"];
 }
 
@@ -141,7 +152,8 @@
         self.height = [aDecoder decodeDoubleForKey:@"height"];
         self.length = [aDecoder decodeDoubleForKey:@"length"];
         self.headCirc = [aDecoder decodeDoubleForKey:@"headCirc"];
-        self.vaccines = [aDecoder decodeObjectOfClass:[NSMutableSet class] forKey:@"vaccines"];
+        NSData *vaccineData = [aDecoder decodeObjectOfClass:[NSMutableSet class] forKey:@"vaccines"];
+        self.vaccines = [NSKeyedUnarchiver unarchiveObjectWithData:vaccineData];
         self.dateModified = [aDecoder decodeObjectOfClass:[NSDate class] forKey:@"dateModified"];
     }
     return self;

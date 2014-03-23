@@ -609,6 +609,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                     <outlet property="headIcon" destination="kPa-JB-9NI" id="cEO-Hz-zYT"/>
                                     <outlet property="heightIcon" destination="Rq6-ky-88X" id="g0q-7B-cQ6"/>
                                     <outlet property="weightIcon" destination="IVf-pf-WSc" id="dgj-Mf-0M4"/>
+                                    <segue destination="Huh-1m-xed" kind="push" identifier="showEncounterInfo" id="her-gM-LYL"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -800,6 +801,9 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                                     <state key="normal" title="Standing">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="toggleLinearMeasurementMethod:" destination="XxK-6Y-BCS" eventType="touchUpInside" id="EEm-k0-xfv"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="cm" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ld-6w-aLo">
                                                     <rect key="frame" x="276" y="11" width="24" height="21"/>
@@ -988,6 +992,9 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                             <outlet property="delegate" destination="sla-9M-TXi" id="0MQ-Qi-mQD"/>
                         </connections>
                     </tableView>
+                    <toolbarItems>
+                        <barButtonItem title="Item" id="ZOw-EF-CYk"/>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="Vaccines Given" id="O8s-fd-g7k"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fsp-c6-IKy" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1021,6 +1028,52 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2nF-Mw-2xW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1443" y="767"/>
+        </scene>
+        <!--Encounter InfoTVC - Encounter <date>-->
+        <scene sceneID="43z-xS-hnh">
+            <objects>
+                <tableViewController storyboardIdentifier="EncounterInfoTVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Huh-1m-xed" customClass="SBTEncounterInfoTVC" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="z94-Q1-hKQ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="EncounterInfoCell" textLabel="Ut0-Tf-tzm" detailTextLabel="aA2-SM-YlK" style="IBUITableViewCellStyleValue1" id="pHM-ZR-SS8">
+                                <rect key="frame" x="0.0" y="119" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pHM-ZR-SS8" id="JxD-ev-43R">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Length" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ut0-Tf-tzm">
+                                            <rect key="frame" x="15" y="11" width="54" height="21"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aA2-SM-YlK">
+                                            <rect key="frame" x="261" y="11" width="44" height="21"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <sections/>
+                        <connections>
+                            <outlet property="dataSource" destination="Huh-1m-xed" id="P0b-td-zdi"/>
+                            <outlet property="delegate" destination="Huh-1m-xed" id="pKV-mC-RWr"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Encounter &lt;date>" id="0aF-zz-lMe"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ay1-ex-mLh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1961" y="778"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="uiE-Lm-XJA">

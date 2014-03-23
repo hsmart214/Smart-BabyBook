@@ -11,6 +11,7 @@
 #import "SBTEncounter.h"
 #import "SBTBaby.h"
 #import "SBTEncounterEditTVC.h"
+#import "SBTEncounterInfoTVC.h"
 
 @interface SBTEncountersTVC ()<SBTEncounterEditTVCDelegate>
 
@@ -73,6 +74,7 @@
     if (![self.encounters containsObject:encounter]){
         [self.baby addEncounter:encounter];
         self.encounters = [self.baby encountersList];
+        [self.delegate babyEditor:self didSaveBaby:self.baby];
     }
     [self.tableView reloadData];
 }
@@ -86,6 +88,11 @@
         SBTEncounterEditTVC *editTVC = [nav.viewControllers firstObject];
         editTVC.baby = self.baby;
         editTVC.delegate = self;
+    }
+    if ([segue.identifier isEqualToString:@"showEncounterInfo"]){
+        SBTEncounterInfoTVC *dest = segue.destinationViewController;
+        SBTEncounter *enc = self.encounters[[self.tableView indexPathForCell:sender].row];
+        dest.encounter = enc;
     }
 }
 

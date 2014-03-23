@@ -227,8 +227,10 @@
     [aCoder encodeObject:self.DOBComponents forKey:@"DOBComponents"];
     [aCoder encodeObject:self.dueDate forKey:@"dueDate"];
     [aCoder encodeInteger:self.gender forKey:@"gender"];
-    [aCoder encodeObject:self.encounters forKey:@"encounters"];
+    NSData *encounterData = [NSKeyedArchiver archivedDataWithRootObject:self.encounters];
+    [aCoder encodeObject:encounterData forKey:@"encounters"];
     [aCoder encodeObject:self.dateCreated forKey:@"dateCreated"];
+    [aCoder encodeObject:self.dateModified forKey:@"dateModified"];
     [aCoder encodeObject:self.thumbnail forKey:@"thumbnailImage"];
 }
 
@@ -240,8 +242,10 @@
     if (self = [self initWithName:name andDOB:date]){
         self.dueDate = [aDecoder decodeObjectOfClass:[NSDateComponents class] forKey:@"dueDate"];
         self.gender = (SBTGender)[aDecoder decodeIntegerForKey:@"gender"];
-        self.encounters = [aDecoder decodeObjectOfClass:[NSMutableArray class] forKey:@"encounters"];
+        NSData *encounterData = [aDecoder decodeObjectOfClass:[NSData class] forKey:@"encounters"];
+        self.encounters = [NSKeyedUnarchiver unarchiveObjectWithData:encounterData];
         self.dateCreated = [aDecoder decodeObjectOfClass:[NSDate class] forKey:@"dateCreated"];
+        self.dateModified = [aDecoder decodeObjectOfClass:[NSDate class] forKey:@"dateModified"];
         self.thumbnail = [aDecoder decodeObjectOfClass:[UIImage class] forKey:@"thumbnailImage"];
     }
     return self;

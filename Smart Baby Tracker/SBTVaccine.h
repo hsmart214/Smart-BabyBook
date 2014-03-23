@@ -11,6 +11,7 @@
 @interface SBTVaccine : NSObject <NSSecureCoding, NSCopying>
 
 // Required
+@property (nonatomic, strong, readonly) NSSet* components;
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSArray *displayNames;
 @property (nonatomic) BOOL liveVaccine;

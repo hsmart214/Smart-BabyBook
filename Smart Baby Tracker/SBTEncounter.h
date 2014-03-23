@@ -37,5 +37,6 @@
 
 // an array of SBTVaccine * objects
 -(NSArray *)vaccinesGiven;
-
+// an array of the individual components given
+-(NSArray *)componentsGiven;
 @end

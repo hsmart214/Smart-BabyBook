@@ -8,15 +8,8 @@
 
 @import UIKit;
 #import "SBTBaby.h"
+#import "SBTBabyEditDelegate.h"
 @class SBTBabyEditViewController;
-
-@protocol SBTBabyEditDelegate <NSObject>
-
-@required
-
--(void)babyEditViewController:(SBTBabyEditViewController *)babyEditVC didSaveBaby:(SBTBaby *)baby;
-
-@end
 
 @interface SBTBabyEditViewController : UITableViewController
 

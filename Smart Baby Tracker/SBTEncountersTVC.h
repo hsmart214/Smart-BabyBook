@@ -7,11 +7,13 @@
 //
 
 @import UIKit;
+#import "SBTBabyEditDelegate.h"
 @class SBTBaby;
 
 @interface SBTEncountersTVC : UITableViewController
 
 @property (nonatomic, strong) SBTBaby *baby;
+@property (nonatomic, weak) id<SBTBabyEditDelegate> delegate;
 @property (nonatomic, strong) NSArray *encounters;
 
 @end

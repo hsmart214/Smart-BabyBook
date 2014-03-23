@@ -10,7 +10,7 @@
 
 @interface SBTVaccine ()
 
-@property (nonatomic, copy) NSSet *components;
+@property (nonatomic, strong) NSSet *components;
 
 @end
 

@@ -18,7 +18,7 @@
 
 @implementation SBTChildrenViewController
 
--(void)babyEditViewController:(SBTBabyEditViewController *)babyEditVC didSaveBaby:(SBTBaby *)baby
+-(void)babyEditor:(id)babyEditor didSaveBaby:(SBTBaby *)baby
 {
     [[SBTDataStore sharedStore] storeBaby:baby];
     self.children = [[SBTDataStore sharedStore] storedBabies];

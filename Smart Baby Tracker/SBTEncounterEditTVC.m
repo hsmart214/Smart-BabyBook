@@ -47,6 +47,16 @@
     return _vaccines;
 }
 
+#pragma mark - Target/Action
+
+- (IBAction)toggleLinearMeasurementMethod:(UIButton *)sender {
+    if ([sender.titleLabel.text isEqualToString:NSLocalizedString(@"Recumbent", @"Description of supine measurement.")]){
+        [sender setTitle:NSLocalizedString(@"Standing", @"Description of standing measurement.") forState:UIControlStateNormal];
+    }else{
+        [sender setTitle:NSLocalizedString(@"Recumbent", @"Description of supine measurement.") forState:UIControlStateNormal];
+    }
+}
+
 - (IBAction)cancelEditing:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -87,9 +97,12 @@
     df.dateStyle = NSDateFormatterMediumStyle;
     self.dateLabel.text = [df stringFromDate:self.encounter.dateComps.date];
     self.weightField2.text = [NSString stringWithFormat:@"%0.2f", [SBTUnitsConvertor displayUnitsOf:self.encounter.weight forKey:MASS_UNIT_KEY]];
+    if (self.encounter.weight == 0.0) self.weightField2.text = @"";
     double len = self.encounter.length + self.encounter.height;  // one will be zero
     self.heightField.text = [NSString stringWithFormat:@"%1.2f", [SBTUnitsConvertor displayUnitsOf:len forKey:LENGTH_UNIT_KEY]];
+    if (len == 0.0) self.heightField.text = @"";
     self.headCircField.text = [NSString stringWithFormat:@"%1.2f", [SBTUnitsConvertor displayUnitsOf:self.encounter.headCirc forKey:LENGTH_UNIT_KEY]];
+    if (self.encounter.headCirc == 0.0) self.headCircField.text = @"";
     NSString *method;
     if (self.encounter.length > 0.0){
         method = NSLocalizedString(@"Recumbent", @"Description of supine measurement.");
