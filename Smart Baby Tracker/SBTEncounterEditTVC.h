@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-@class SBTBaby;
 @class SBTEncounter;
 @class SBTEncounterEditTVC;
+@class SBTBaby;
 
 @protocol SBTEncounterEditTVCDelegate <NSObject>
 
@@ -21,8 +21,8 @@
 
 @interface SBTEncounterEditTVC : UITableViewController
 
-@property (nonatomic, strong) SBTEncounter *encounter;
-@property (nonatomic, strong) SBTBaby *baby;
+@property (nonatomic, copy) SBTEncounter *encounter;
+@property (nonatomic, weak) SBTBaby *baby;
 @property (nonatomic, weak) id<SBTEncounterEditTVCDelegate> delegate;
 
 @end

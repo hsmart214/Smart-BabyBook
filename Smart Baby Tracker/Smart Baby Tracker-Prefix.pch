@@ -15,6 +15,20 @@
     #import <Foundation/Foundation.h>
 #endif
 
+#define USER_DEFAULTS_KEY @"com.mySmartSoftware.smartBabyTrackerDefaults"
+#define UNIT_PREFS_KEY @"com.mySmartSoftware.smartBabyTracker.unitPrefs"
+
+#define AGE_SWITCH_TO_DECIMAL_POUNDS 365    // maybe this should be a user preference?
+
+#define K_CENTIMETERS @"cm"
+#define K_INCHES @"in"
+#define K_KILOGRAMS @"kg"
+#define K_POUNDS @"lb"
+#define K_OUNCES @"oz"
+
+#define INCHES_PER_CENTIMETER 0.3937008F
+#define POUNDS_PER_KILOGRAM 2.2046226F
+
 #define THUMBNAIL_DIMENSION 100
 
 typedef enum {SBTMale, SBTFemale} SBTGender;

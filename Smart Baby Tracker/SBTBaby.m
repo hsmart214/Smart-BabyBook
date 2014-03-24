@@ -162,6 +162,7 @@
 
 -(void)addEncounter:(SBTEncounter *)encounter
 {
+    encounter.baby = self;
     [self.encounters addObject:encounter];
     [_encounters sortUsingSelector:@selector(compare:)];
     self.dateModified = [NSDate date];
@@ -244,6 +245,9 @@
         self.gender = (SBTGender)[aDecoder decodeIntegerForKey:@"gender"];
         NSData *encounterData = [aDecoder decodeObjectOfClass:[NSData class] forKey:@"encounters"];
         self.encounters = [NSKeyedUnarchiver unarchiveObjectWithData:encounterData];
+        for (SBTEncounter *enc in self.encounters){
+            enc.baby = self;
+        }
         self.dateCreated = [aDecoder decodeObjectOfClass:[NSDate class] forKey:@"dateCreated"];
         self.dateModified = [aDecoder decodeObjectOfClass:[NSDate class] forKey:@"dateModified"];
         self.thumbnail = [aDecoder decodeObjectOfClass:[UIImage class] forKey:@"thumbnailImage"];

@@ -9,8 +9,7 @@
 #import "SBTDataStore.h"
 #import "SBTBaby.h"
 
-#define USER_DEFAULTS_KEY @"com.mySmartSoftware.smartBabyTrackerDefaults"
-#define BABY_DICTIONARY_KEY @"com.mySmartSoftware.smartBabyTrackerBabyDictionary"
+//#define BABY_DICTIONARY_KEY @"com.mySmartSoftware.smartBabyTrackerBabyDictionary"
 
 @interface SBTDataStore()
 

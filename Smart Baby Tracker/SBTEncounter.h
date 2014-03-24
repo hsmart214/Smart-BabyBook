@@ -11,9 +11,11 @@
 /// the birth date.
 
 @import Foundation;
+@class SBTBaby;
 
 @interface SBTEncounter : NSObject <NSSecureCoding, NSCopying>
 
+@property (nonatomic, weak) SBTBaby * baby;
 @property (nonatomic, strong) NSDate *universalDate;
 @property (nonatomic, readonly) NSDateComponents *dateComps;
 // measurements in metric units

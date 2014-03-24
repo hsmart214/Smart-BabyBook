@@ -7,6 +7,7 @@
 //
 
 #import "SBTAppDelegate.h"
+#import "SBTUnitsConvertor.h"
 
 @implementation SBTAppDelegate
 
@@ -27,6 +28,12 @@
         UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
         UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
         splitViewController.delegate = (id)navigationController.topViewController;
+    }
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSDictionary *unitPrefs = [defaults dictionaryForKey:UNIT_PREFS_KEY];
+    if (!unitPrefs){ // first run
+        [defaults setObject:[SBTUnitsConvertor defaultUnitPrefs] forKey:UNIT_PREFS_KEY];
+        [defaults registerDefaults:[defaults dictionaryRepresentation]];
     }
     return YES;
 }

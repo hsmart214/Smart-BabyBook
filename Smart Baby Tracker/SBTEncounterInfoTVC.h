@@ -8,9 +8,12 @@
 
 @import UIKit;
 @class SBTEncounter;
+#import "SBTEncounterEditTVC.h"
+#import "SBTBabyEditDelegate.h"
 
 @interface SBTEncounterInfoTVC : UITableViewController
 
 @property (nonatomic, strong) SBTEncounter *encounter;
+@property (nonatomic, weak) id<SBTEncounterEditTVCDelegate> delegate;
 
 @end

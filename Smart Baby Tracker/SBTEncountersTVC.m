@@ -10,6 +10,7 @@
 #import "SBTEncounterTableViewCell.h"
 #import "SBTEncounter.h"
 #import "SBTBaby.h"
+#import "SBTBabyEditDelegate.h"
 #import "SBTEncounterEditTVC.h"
 #import "SBTEncounterInfoTVC.h"
 
@@ -57,6 +58,20 @@
 
 #pragma mark - UITableViewDelegate
 
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        [tableView beginUpdates];
+        SBTEncounter *enc = self.encounters[indexPath.row];
+        [self.baby removeEncounter:enc];
+        self.encounters =  [self.baby encountersList];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        [tableView reloadData];
+        [tableView endUpdates];
+        [self.delegate babyEditor:self didSaveBaby:self.baby];
+    }
+}
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -86,13 +101,16 @@
     if ([segue.identifier isEqualToString:@"addEncounterSegue"]){
         UINavigationController *nav = segue.destinationViewController;
         SBTEncounterEditTVC *editTVC = [nav.viewControllers firstObject];
-        editTVC.baby = self.baby;
         editTVC.delegate = self;
+        editTVC.baby = self.baby;
     }
     if ([segue.identifier isEqualToString:@"showEncounterInfo"]){
         SBTEncounterInfoTVC *dest = segue.destinationViewController;
         SBTEncounter *enc = self.encounters[[self.tableView indexPathForCell:sender].row];
         dest.encounter = enc;
+        NSString *dateString = [self.dateFormatter stringFromDate:enc.universalDate];
+        dest.title = dateString;
+        dest.delegate = self;
     }
 }
 
@@ -107,6 +125,11 @@
     [self.dateFormatter setDateStyle:NSDateFormatterMediumStyle];
     [self.dateFormatter setTimeStyle:NSDateFormatterNoStyle];
     self.encounters = [self.baby encountersList];
+}
+
+-(void)dealloc
+{
+    self.dateFormatter = nil;
 }
 
 @end

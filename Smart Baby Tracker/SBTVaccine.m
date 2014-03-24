@@ -178,4 +178,9 @@
     return genericVaccines;
 }
 
+-(NSString *)description
+{
+    return self.name;
+}
+
 @end

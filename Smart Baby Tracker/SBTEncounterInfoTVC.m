@@ -7,11 +7,14 @@
 //
 
 #import "SBTEncounterInfoTVC.h"
+#import "SBTEncounterEditTVC.h"
 #import "SBTEncounter.h"
 #import "SBTVaccine.h"
 #import "SBTUnitsConvertor.h"
+@class SBTBaby;
 
-@interface SBTEncounterInfoTVC ()
+
+@interface SBTEncounterInfoTVC ()<SBTEncounterEditTVCDelegate>
 
 @property (nonatomic, strong) NSMutableArray *vaccineComponents;       // store the names of each component from each vaccine given
 @property (nonatomic, strong) NSMutableArray *componentFromVaccine;    // store the name of the vaccine each component came from
@@ -22,17 +25,23 @@
 
 -(void)setEncounter:(SBTEncounter *)encounter
 {
-    if (encounter != _encounter){
-        _encounter = encounter;
-        _vaccineComponents = [NSMutableArray array];
-        _componentFromVaccine = [NSMutableArray array];
-        for (SBTVaccine *vacc in [encounter vaccinesGiven]){
-            for (NSString *displayName in vacc.displayNames){
-                [self.vaccineComponents addObject:displayName];
-                [self.componentFromVaccine addObject:vacc.name];
-            }
+    _encounter = encounter;
+    _vaccineComponents = [NSMutableArray array];
+    _componentFromVaccine = [NSMutableArray array];
+    for (SBTVaccine *vacc in [encounter vaccinesGiven]){
+        
+        for (NSString *displayName in vacc.displayNames){
+            [self.vaccineComponents addObject:displayName];
+            [self.componentFromVaccine addObject:vacc.name];
         }
     }
+    [self.tableView reloadData];
+}
+
+-(void)SBTEncounterEditTVC:(SBTEncounterEditTVC *)editTVC updatedEncounter:(SBTEncounter *)encounter
+{
+    self.encounter = encounter;
+    [self.delegate SBTEncounterEditTVC:editTVC updatedEncounter:encounter];
 }
 
 #pragma mark - UITableViewDelegate
@@ -77,7 +86,7 @@
     double stature = self.encounter.height + self.encounter.length;
     stature = [SBTUnitsConvertor displayUnitsOf:stature forKey:LENGTH_UNIT_KEY];
     double wt = [SBTUnitsConvertor displayUnitsOf:self.encounter.weight forKey:MASS_UNIT_KEY];
-    double hc = [SBTUnitsConvertor displayUnitsOf:self.encounter.headCirc forKey:LENGTH_UNIT_KEY];
+    double hc = [SBTUnitsConvertor displayUnitsOf:self.encounter.headCirc forKey:HC_UNIT_KEY];
     if (indexPath.section == 0){
         switch (indexPath.row) {
             case 0:
@@ -93,7 +102,7 @@
                 break;
             case 2:
                 cell.textLabel.text = @"Head Circumference";
-                cell.detailTextLabel.text = [NSString stringWithFormat:@"%1.1f %@", hc, [SBTUnitsConvertor displayStringForKey:LENGTH_UNIT_KEY]];
+                cell.detailTextLabel.text = [NSString stringWithFormat:@"%1.1f %@", hc, [SBTUnitsConvertor displayStringForKey:HC_UNIT_KEY]];
                 if (hc == 0.0) cell.detailTextLabel.text = @"";
                 break;
             default:
@@ -106,6 +115,18 @@
         cell.detailTextLabel.text = self.componentFromVaccine[offset];
     }
     return cell;
+}
+
+#pragma mark - Navigation
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"editThisEncounter"]){
+        UINavigationController *nav = segue.destinationViewController;
+        SBTEncounterEditTVC *editor = nav.viewControllers[0];
+        editor.encounter = self.encounter;
+        editor.delegate = self;
+    }
 }
 
 @end

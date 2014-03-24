@@ -40,8 +40,10 @@
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     if ([cell accessoryType] == UITableViewCellAccessoryNone){
         [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
+        [selected addObject:cell.textLabel.text];
     }else{
         [cell setAccessoryType:UITableViewCellAccessoryNone];
+        [selected removeObject:cell.textLabel.text];
     }
 }
 

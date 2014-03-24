@@ -14,14 +14,16 @@
 
 @interface SBTUnitsConvertor : NSObject
 
-+(NSString *)defaultUnitForKey:(NSString *)key;
++(NSString *)preferredUnitForKey:(NSString *)key;
 
-+(void)setDefaultUnit:(NSString *)unit forKey:(NSString *)key;
++(void)setPreferredUnit:(NSString *)unit forKey:(NSString *)key;
 
 +(double)metricStandardOf:(double)dimension forKey:(NSString *)dimKey;
 
 +(double)displayUnitsOf:(double)dimension forKey:(NSString *)dimKey;
 
 +(NSString *)displayStringForKey:(NSString *)dimKey;
+
++(NSDictionary *)defaultUnitPrefs;
 
 @end

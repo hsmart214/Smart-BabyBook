@@ -128,6 +128,7 @@
     if (self = [super init]){
         self.universalDate = date;
         self.vaccines = [NSMutableSet set];
+        self.dateModified = [NSDate date];
     }
     return self;
 }
@@ -148,8 +149,8 @@
 {
     NSDate *date = [aDecoder decodeObjectOfClass:[NSDate class] forKey:@"date"];
     if (self = [self initWithDate:date]){
-        self.weight = [aDecoder decodeDoubleForKey:@"weight"];
-        self.height = [aDecoder decodeDoubleForKey:@"height"];
+        self->_weight = [aDecoder decodeDoubleForKey:@"weight"];
+        self->_height = [aDecoder decodeDoubleForKey:@"height"];
         self.length = [aDecoder decodeDoubleForKey:@"length"];
         self.headCirc = [aDecoder decodeDoubleForKey:@"headCirc"];
         NSData *vaccineData = [aDecoder decodeObjectOfClass:[NSMutableSet class] forKey:@"vaccines"];
@@ -166,8 +167,9 @@
 -(instancetype)copyWithZone:(NSZone *)zone
 {
     SBTEncounter *newEnc = [[SBTEncounter alloc] initWithDate:self.universalDate];
-    newEnc.weight = self.weight;
-    newEnc.height = self.height;
+    newEnc.baby = self.baby;
+    newEnc->_weight = self.weight;
+    newEnc->_height = self.height;
     newEnc.length = self.length;
     newEnc.headCirc = self.headCirc;
     newEnc.vaccines = [self.vaccines copy];
@@ -177,6 +179,18 @@
 +(BOOL)supportsSecureCoding
 {
     return YES;
+}
+
+-(NSString *)description
+{
+    NSMutableString *descr = [NSMutableString string];
+    [descr appendString:[NSString stringWithFormat:@"Encounter date: %@\n", self.universalDate]];
+    [descr appendString:[NSString stringWithFormat:@"Height: %1.1f cm\n", self.height]];
+    [descr appendString:[NSString stringWithFormat:@"Length: %1.1f cm\n", self.length]];
+    [descr appendString:[NSString stringWithFormat:@"Weight: %1.1f kg\n", self.weight]];
+    [descr appendString:[NSString stringWithFormat:@"Head circ: %1.1f cm\n", self.headCirc]];
+    [descr appendString:[NSString stringWithFormat:@"Vaccines: %d", [self.vaccines count]]];
+    return descr;
 }
 
 @end

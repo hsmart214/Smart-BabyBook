@@ -8,25 +8,15 @@
 
 #import "SBTUnitsConvertor.h"
 
-#define UNIT_PREFS_KEY @"com.mySmartSoftware.smartBabyTracker.unitPrefs"
-
-#define K_CENTIMETERS @"cm"
-#define K_INCHES @"in"
-#define K_KILOGRAMS @"kg"
-#define K_POUNDS @"lb"
-
-#define INCHES_PER_CENTIMETER 2.54F
-#define POUNDS_PER_KILOGRAM 2.2046226F
-
 @implementation SBTUnitsConvertor
 
-+(NSString *)defaultUnitForKey:(NSString *)key{
++(NSString *)preferredUnitForKey:(NSString *)key{
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSDictionary *unitDefaults = [defaults objectForKey:UNIT_PREFS_KEY];
     return unitDefaults[key];
 }
 
-+(void)setDefaultUnit:(NSString *)unit forKey:(NSString *)key{
++(void)setPreferredUnit:(NSString *)unit forKey:(NSString *)key{
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSMutableDictionary *unitDefaults = [[defaults objectForKey:UNIT_PREFS_KEY] mutableCopy];
     unitDefaults[key] = unit;
@@ -104,9 +94,16 @@
                                      K_KILOGRAMS: @"kg",
                                      K_POUNDS: @"lbs",
                                      };
-    NSString *preferredUnit = [SBTUnitsConvertor defaultUnitForKey:dimKey];
+    NSString *preferredUnit = [SBTUnitsConvertor preferredUnitForKey:dimKey];
     return displayStrings[preferredUnit];
 }
 
++(NSDictionary *)defaultUnitPrefs
+{
+    return @{MASS_UNIT_KEY: K_POUNDS,
+             HC_UNIT_KEY: K_INCHES,
+             LENGTH_UNIT_KEY: K_INCHES,
+             };
+}
 
 @end
