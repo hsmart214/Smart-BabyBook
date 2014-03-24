@@ -61,7 +61,6 @@
 		42C753DB18C2B5630050F38A /* SBTGrowthDataSourceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C753DA18C2B5630050F38A /* SBTGrowthDataSourceTests.m */; };
 		42C9D55C18DFD22F000B4131 /* SBTLongPressLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C9D55B18DFD22F000B4131 /* SBTLongPressLabel.m */; };
 		42CB9A5118D4F7260097BBE3 /* SBTBabyInfoTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 42CB9A5018D4F7260097BBE3 /* SBTBabyInfoTVC.m */; };
-		42CB9A5418D5092F0097BBE3 /* SBTImageStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 42CB9A5318D5092F0097BBE3 /* SBTImageStore.m */; };
 		42CB9A5718D5731C0097BBE3 /* SBTEncounterTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 42CB9A5618D5731C0097BBE3 /* SBTEncounterTableViewCell.m */; };
 		42CB9A5A18D57C4E0097BBE3 /* SBTEncountersTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 42CB9A5918D57C4E0097BBE3 /* SBTEncountersTVC.m */; };
 		42CB9A5D18D589C30097BBE3 /* SBTVaccinesGivenTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 42CB9A5C18D589C30097BBE3 /* SBTVaccinesGivenTVC.m */; };
@@ -155,8 +154,6 @@
 		42C9D55B18DFD22F000B4131 /* SBTLongPressLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTLongPressLabel.m; sourceTree = "<group>"; };
 		42CB9A4F18D4F7260097BBE3 /* SBTBabyInfoTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTBabyInfoTVC.h; sourceTree = "<group>"; };
 		42CB9A5018D4F7260097BBE3 /* SBTBabyInfoTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTBabyInfoTVC.m; sourceTree = "<group>"; };
-		42CB9A5218D5092F0097BBE3 /* SBTImageStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBTImageStore.h; path = ../SBTImageStore.h; sourceTree = "<group>"; };
-		42CB9A5318D5092F0097BBE3 /* SBTImageStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBTImageStore.m; path = ../SBTImageStore.m; sourceTree = "<group>"; };
 		42CB9A5518D5731C0097BBE3 /* SBTEncounterTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTEncounterTableViewCell.h; sourceTree = "<group>"; };
 		42CB9A5618D5731C0097BBE3 /* SBTEncounterTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTEncounterTableViewCell.m; sourceTree = "<group>"; };
 		42CB9A5818D57C4E0097BBE3 /* SBTEncountersTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTEncountersTVC.h; sourceTree = "<group>"; };
@@ -244,8 +241,6 @@
 				4269473718D6597B00D5B06F /* SBTEncounterEditTVC.m */,
 				42CB9A5B18D589C30097BBE3 /* SBTVaccinesGivenTVC.h */,
 				42CB9A5C18D589C30097BBE3 /* SBTVaccinesGivenTVC.m */,
-				42CB9A5218D5092F0097BBE3 /* SBTImageStore.h */,
-				42CB9A5318D5092F0097BBE3 /* SBTImageStore.m */,
 				42BFE7D318D7F1DA00B0E2F4 /* SBTDataStore.h */,
 				42BFE7D418D7F1DA00B0E2F4 /* SBTDataStore.m */,
 				42C9D55A18DFD22F000B4131 /* SBTLongPressLabel.h */,
@@ -472,7 +467,6 @@
 				42E7F98C18C267AE00C49072 /* SBTWHODataSource.m in Sources */,
 				42B601301895E1E6000C15F4 /* SBTVaccineSchedule.m in Sources */,
 				425D58E218DEA5B100B0AA3C /* SBTEncounterInfoTVC.m in Sources */,
-				42CB9A5418D5092F0097BBE3 /* SBTImageStore.m in Sources */,
 				4269473B18D66CB700D5B06F /* SBTUnitsConvertor.m in Sources */,
 				4287698618CD6F2E007862AB /* SBTChildrenViewController.m in Sources */,
 				42CB9A5D18D589C30097BBE3 /* SBTVaccinesGivenTVC.m in Sources */,

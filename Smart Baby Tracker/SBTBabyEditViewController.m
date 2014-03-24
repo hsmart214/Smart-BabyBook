@@ -7,7 +7,6 @@
 //
 
 #import "SBTBabyEditViewController.h"
-#import "SBTImageStore.h"
 
 #define DOB_ROW 1
 #define BIRTH_TIME_ROW 3

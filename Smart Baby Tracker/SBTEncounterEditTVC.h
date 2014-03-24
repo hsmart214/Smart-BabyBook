@@ -21,7 +21,7 @@
 
 @interface SBTEncounterEditTVC : UITableViewController
 
-@property (nonatomic, copy) SBTEncounter *encounter;
+@property (nonatomic, strong) SBTEncounter *encounter;
 @property (nonatomic, weak) SBTBaby *baby;
 @property (nonatomic, weak) id<SBTEncounterEditTVCDelegate> delegate;
 

@@ -41,6 +41,12 @@
 -(void)SBTEncounterEditTVC:(SBTEncounterEditTVC *)editTVC updatedEncounter:(SBTEncounter *)encounter
 {
     self.encounter = encounter;
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    [df setCalendar:[NSCalendar currentCalendar]];
+    [df setDateStyle:NSDateFormatterMediumStyle];
+    [df setTimeStyle:NSDateFormatterNoStyle];
+    NSString *title = [df stringFromDate:encounter.universalDate];
+    [self setTitle:title];
     [self.delegate SBTEncounterEditTVC:editTVC updatedEncounter:encounter];
 }
 
@@ -110,7 +116,7 @@
                 break;
         }
     }else{
-        NSInteger offset = indexPath.row - 3;
+        NSInteger offset = indexPath.row;
         cell.textLabel.text = self.vaccineComponents[offset];
         cell.detailTextLabel.text = self.componentFromVaccine[offset];
     }

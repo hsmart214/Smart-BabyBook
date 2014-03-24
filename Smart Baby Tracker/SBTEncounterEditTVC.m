@@ -28,25 +28,14 @@
 @property (weak, nonatomic) IBOutlet UILabel *headCircUnitLabel;
 @property (weak, nonatomic) IBOutlet UIButton *heightMethodButton;
 
-@property (nonatomic, strong) NSMutableSet *vaccines;
 @end
 
 @implementation SBTEncounterEditTVC
 {
     NSDateFormatter *df;
+    SBTEncounter *originalEncounter;
 }
 
--(NSMutableSet *)vaccines
-{
-    if (!_vaccines){
-        if (self.encounter){
-            _vaccines = [NSMutableSet setWithArray:[self.encounter vaccinesGiven]];
-        }else{
-            _vaccines = [NSMutableSet set];
-        }
-    }
-    return _vaccines;
-}
 
 #pragma mark - Target/Action
 - (IBAction)changeLengthUnitLongPress:(UILongPressGestureRecognizer *)sender {
@@ -128,6 +117,15 @@
 }
 
 - (IBAction)cancelEditing:(id)sender {
+    //revert to the old values
+    SBTEncounter *enc = self.encounter;
+    enc.weight = originalEncounter.weight;
+    if (originalEncounter.height != 0.0) enc.height = originalEncounter.height;
+    if (originalEncounter.length != 0.0) enc.length = originalEncounter.length;
+    enc.headCirc = originalEncounter.headCirc;
+    enc.universalDate = originalEncounter.universalDate;
+    [enc replaceVaccines:[NSSet setWithArray:[originalEncounter vaccinesGiven]]];
+    [self.delegate SBTEncounterEditTVC:self updatedEncounter:enc];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -145,7 +143,6 @@
         self.encounter.height = [SBTUnitsConvertor metricStandardOf:[self.heightField.text doubleValue] forKey:LENGTH_UNIT_KEY];
     }
     self.encounter.headCirc = [SBTUnitsConvertor metricStandardOf:[self.headCircField.text doubleValue] forKey:HC_UNIT_KEY];
-    [self.encounter replaceVaccines:self.vaccines];
     [self.delegate SBTEncounterEditTVC:self updatedEncounter:self.encounter];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -168,7 +165,7 @@
 {
     df.timeStyle = NSDateFormatterNoStyle;
     df.dateStyle = NSDateFormatterMediumStyle;
-    self.dateLabel.text = [df stringFromDate:self.encounter.dateComps.date];
+    self.dateLabel.text = [df stringFromDate:self.datePicker.date];
     self.weightField2.text = [NSString stringWithFormat:@"%0.2f", [SBTUnitsConvertor displayUnitsOf:self.encounter.weight forKey:MASS_UNIT_KEY]];
     if (self.encounter.weight == 0.0) self.weightField2.text = @"";
     double len = self.encounter.length + self.encounter.height;  // one will be zero
@@ -227,7 +224,7 @@
 
 -(void)viewDidLoad
 {
-    
+    originalEncounter = [self.encounter copy];
     df = [[NSDateFormatter alloc] init];
     df.calendar = [NSCalendar currentCalendar];
     if (!self.encounter){
@@ -238,6 +235,7 @@
     self.weightUnitLabel.text = [SBTUnitsConvertor displayStringForKey:MASS_UNIT_KEY];
     self.heightUnitLabel.text = [SBTUnitsConvertor displayStringForKey:LENGTH_UNIT_KEY];
     self.headCircUnitLabel.text = [SBTUnitsConvertor displayStringForKey:HC_UNIT_KEY];
+    self.datePicker.date = self.encounter.universalDate;
     [self updateDisplay];
 }
 
@@ -287,7 +285,7 @@
 {
     if ([segue.identifier isEqualToString:@"Vaccinations segue"]){
         SBTVaccinesGivenTVC *dest = segue.destinationViewController;
-        dest.vaccinesGiven = self.vaccines;
+        dest.vaccinesGiven = [NSMutableSet setWithArray:[self.encounter vaccinesGiven]];
         dest.delegate = self;
     }
 }

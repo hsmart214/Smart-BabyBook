@@ -232,7 +232,8 @@
     [aCoder encodeObject:encounterData forKey:@"encounters"];
     [aCoder encodeObject:self.dateCreated forKey:@"dateCreated"];
     [aCoder encodeObject:self.dateModified forKey:@"dateModified"];
-    [aCoder encodeObject:self.thumbnail forKey:@"thumbnailImage"];
+    NSData *imageData = UIImageJPEGRepresentation(self.thumbnail, 1.0);
+    [aCoder encodeObject:imageData forKey:@"thumbnailImageData"];
 }
 
 -(instancetype)initWithCoder:(NSCoder *)aDecoder
@@ -250,7 +251,8 @@
         }
         self.dateCreated = [aDecoder decodeObjectOfClass:[NSDate class] forKey:@"dateCreated"];
         self.dateModified = [aDecoder decodeObjectOfClass:[NSDate class] forKey:@"dateModified"];
-        self.thumbnail = [aDecoder decodeObjectOfClass:[UIImage class] forKey:@"thumbnailImage"];
+        NSData *imageData = [aDecoder decodeObjectOfClass:[NSData class] forKey:@"thumbnailImageData"];
+        self.thumbnail = [UIImage imageWithData:imageData];
     }
     return self;
 }
