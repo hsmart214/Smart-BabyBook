@@ -19,6 +19,7 @@
 #define UNIT_PREFS_KEY @"com.mySmartSoftware.smartBabyTracker.unitPrefs"
 
 #define AGE_SWITCH_TO_DECIMAL_POUNDS 365    // maybe this should be a user preference?
+#define AAP_CUTOFF 731.0                    // age AAP recommends switch to CDC growth chart
 
 #define K_CENTIMETERS @"cm"
 #define K_INCHES @"in"

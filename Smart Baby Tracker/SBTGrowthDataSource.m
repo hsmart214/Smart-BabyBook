@@ -68,6 +68,16 @@
     return data;
 }
 
+-(double)dataAgeRange
+{
+    return 0.0;
+}
+
+-(double)dataMeasurementRange97PercentForParameter:(SBTGrowthParameter)parameter forGender:(SBTGender)gender
+{
+    return 0.0;
+}
+
 -(double)percentileOfMeasurement:(double)measurement
                           forAge:(NSInteger)days
                        parameter:(SBTGrowthParameter)parameter

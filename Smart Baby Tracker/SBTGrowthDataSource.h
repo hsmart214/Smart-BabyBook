@@ -21,6 +21,9 @@ typedef enum {SBTStature, SBTLength, SBTWeight, SBTHeadCircumference, SBTBMI} SB
                        parameter:(SBTGrowthParameter)parameter
                        andGender:(SBTGender)gender;
 
+-(double)dataAgeRange;
+-(double)dataMeasurementRange97PercentForParameter:(SBTGrowthParameter)parameter forGender:(SBTGender)gender;
+
 +(instancetype)sharedDataSource;
 
 @end

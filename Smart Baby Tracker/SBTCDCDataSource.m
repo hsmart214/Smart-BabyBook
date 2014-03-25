@@ -12,7 +12,6 @@
 
 #define CDC_MAX_AGE 7305.0f
 #define CDC_INFANT_MAX_AGE 1097.0
-#define AAP_CUTOFF 731.0
 // these files define standards for 0-36 months
 // length is a supine measurement
 #define CDC_BOY_INFANT_WEIGHT_FILENAME @"cdcweightinfantboys"
@@ -145,6 +144,53 @@
     return _girlBMIData;
 }
 
+-(double)dataAgeRange
+{
+    return CDC_MAX_AGE;
+}
+
+-(double)dataMeasurementRange97PercentForParameter:(SBTGrowthParameter)parameter forGender:(SBTGender)gender
+{
+    SBTDataPoint *dp;
+    switch (gender) {
+        case SBTFemale:
+            switch (parameter) {
+                case SBTLength:
+                    dp = [self.girlLengthData lastObject];
+                    break;
+                case SBTStature:
+                    dp = [self.girlStatureData lastObject];
+                    break;
+                case SBTWeight:
+                    dp = [self.girlWeightData lastObject];
+                    break;
+                case SBTHeadCircumference:
+                    dp = [self.girlHCData lastObject];
+                    break;
+                case SBTBMI:
+                    dp = [self.girlBMIData lastObject];
+            }
+            break;
+        case SBTMale:
+            switch (parameter) {
+                case SBTLength:
+                    dp = [self.boyLengthData lastObject];
+                    break;
+                case SBTStature:
+                    dp = [self.boyStatureData lastObject];
+                    break;
+                case SBTWeight:
+                    dp = [self.boyWeightData lastObject];
+                    break;
+                case SBTHeadCircumference:
+                    dp = [self.boyHCData lastObject];
+                    break;
+                case SBTBMI:
+                    dp = [self.boyBMIData lastObject];
+            }
+    }
+    return dp->mean + 3*dp->stdev; // This is overly simplistic, but not critical
+}
 
 +(instancetype)sharedDataSource
 {

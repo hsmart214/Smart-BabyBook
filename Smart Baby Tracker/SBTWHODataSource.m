@@ -101,6 +101,49 @@
     return _girlBMIData;
 }
 
+-(double)dataAgeRange
+{
+    return WHO_MAX_AGE;
+}
+
+-(double)dataMeasurementRange97PercentForParameter:(SBTGrowthParameter)parameter forGender:(SBTGender)gender
+{
+    SBTDataPoint *dp;
+    switch (gender) {
+        case SBTFemale:
+            switch (parameter) {
+                case SBTLength:
+                case SBTStature:
+                    dp = [self.girlLengthData lastObject];
+                    break;
+                case SBTWeight:
+                    dp = [self.girlWeightData lastObject];
+                    break;
+                case SBTHeadCircumference:
+                    dp = [self.girlHCData lastObject];
+                    break;
+                case SBTBMI:
+                    dp = [self.girlBMIData lastObject];
+            }
+            break;
+        case SBTMale:
+            switch (parameter) {
+                case SBTLength:
+                case SBTStature:
+                    dp = [self.boyLengthData lastObject];
+                    break;
+                case SBTWeight:
+                    dp = [self.boyWeightData lastObject];
+                    break;
+                case SBTHeadCircumference:
+                    dp = [self.boyHCData lastObject];
+                    break;
+                case SBTBMI:
+                    dp = [self.boyBMIData lastObject];
+            }
+    }
+    return dp->mean + 3*dp->stdev;
+}
 
 +(instancetype)sharedDataSource
 {
