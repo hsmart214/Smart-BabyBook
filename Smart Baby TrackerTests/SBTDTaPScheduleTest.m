@@ -46,12 +46,12 @@
     SBTEncounter *enc = [[SBTEncounter alloc] initWithDate:date];
     SBTVaccine *vaccine = [[SBTVaccine alloc] initWithName:@"Daptacel" displayNames:@[@"DTaP"] manufacturer:Sanofi andComponents:@[@(SBTComponentDTaP)]];
     vaccine.route = Intramuscular;
-    [enc addVaccines: @[vaccine]];
+    [enc replaceVaccines:[NSSet setWithArray:@[vaccine]]];
     [self.baby addEncounter:enc];
     
     date = [[NSCalendar currentCalendar] dateByAddingComponents:twoMonths toDate:date options:0];
     SBTEncounter *enc2 = [[SBTEncounter alloc] initWithDate:date];
-    [enc2 addVaccines:@[[vaccine copy]]];
+    [enc replaceVaccines:[NSSet setWithArray:@[[vaccine copy]]]];
     [self.baby addEncounter:enc2];
     
     NSDateComponents *minus7y = [NSDateComponents new];
@@ -89,30 +89,30 @@
 
     vaccine.route = Intramuscular;
     vaccine2.route = Intramuscular;
-    [enc addVaccines: @[vaccine2]];
+    [enc replaceVaccines:[NSSet setWithArray:@[vaccine2]]];
     [self.sevenYearOld addEncounter:enc];
     //four months
     date = [[NSCalendar currentCalendar] dateByAddingComponents:xMonths toDate:date options:0];
     SBTEncounter *enc2 = [[SBTEncounter alloc] initWithDate:date];
-    [enc2 addVaccines:@[[vaccine2 copy]]];
+    [enc2 replaceVaccines:[NSSet setWithArray:@[[vaccine2 copy]]]];
     [self.sevenYearOld addEncounter:enc2];
     //six months
     date = [[NSCalendar currentCalendar] dateByAddingComponents:xMonths toDate:date options:0];
     enc2 = [[SBTEncounter alloc] initWithDate:date];
-    [enc2 addVaccines:@[[vaccine2 copy]]];
+    [enc2 replaceVaccines:[NSSet setWithArray:@[[vaccine2 copy]]]];
     [self.sevenYearOld addEncounter:enc2];
     //fifteen months
     xMonths.month = 9;
     date = [[NSCalendar currentCalendar] dateByAddingComponents:xMonths toDate:date options:0];
     enc2 = [[SBTEncounter alloc] initWithDate:date];
-    [enc2 addVaccines:@[[vaccine copy]]];
+    [enc2 replaceVaccines:[NSSet setWithArray:@[[vaccine2 copy]]]];
     [self.sevenYearOld addEncounter:enc2];
     //four years
     xMonths.month = 0;
     xMonths.year = 3;
     date = [[NSCalendar currentCalendar] dateByAddingComponents:xMonths toDate:date options:0];
     enc2 = [[SBTEncounter alloc] initWithDate:date];
-    [enc2 addVaccines:@[[vaccine copy]]];
+    [enc2 replaceVaccines:[NSSet setWithArray:@[[vaccine copy]]]];
     [self.sevenYearOld addEncounter:enc2];
     
     SBTVaccineSchedule *sched = [SBTVaccineSchedule sharedSchedule];
@@ -135,30 +135,30 @@
     
     vaccine.route = Intramuscular;
     vaccine2.route = Intramuscular;
-    [enc addVaccines: @[vaccine2]];
+    [enc replaceVaccines:[NSSet setWithArray:@[vaccine2]]];
     [self.sevenYearOld addEncounter:enc];
     //four months
     date = [[NSCalendar currentCalendar] dateByAddingComponents:xMonths toDate:date options:0];
     SBTEncounter *enc2 = [[SBTEncounter alloc] initWithDate:date];
-    [enc2 addVaccines:@[[vaccine2 copy]]];
+    [enc replaceVaccines:[NSSet setWithArray:@[[vaccine2 copy]]]];
     [self.sevenYearOld addEncounter:enc2];
     //six months
     date = [[NSCalendar currentCalendar] dateByAddingComponents:xMonths toDate:date options:0];
     enc2 = [[SBTEncounter alloc] initWithDate:date];
-    [enc2 addVaccines:@[[vaccine2 copy]]];
+    [enc replaceVaccines:[NSSet setWithArray:@[[vaccine2 copy]]]];
     [self.sevenYearOld addEncounter:enc2];
     //fifteen months
     xMonths.month = 9;
     date = [[NSCalendar currentCalendar] dateByAddingComponents:xMonths toDate:date options:0];
     enc2 = [[SBTEncounter alloc] initWithDate:date];
-    [enc2 addVaccines:@[[vaccine copy]]];
+    [enc replaceVaccines:[NSSet setWithArray:@[[vaccine copy]]]];
     [self.sevenYearOld addEncounter:enc2];
     //three years
     xMonths.month = 0;
     xMonths.year = 2;
     date = [[NSCalendar currentCalendar] dateByAddingComponents:xMonths toDate:date options:0];
     enc2 = [[SBTEncounter alloc] initWithDate:date];
-    [enc2 addVaccines:@[[vaccine copy]]];
+    [enc replaceVaccines:[NSSet setWithArray:@[[vaccine copy]]]];
     [self.sevenYearOld addEncounter:enc2];
     
     SBTVaccineSchedule *sched = [SBTVaccineSchedule sharedSchedule];
@@ -181,36 +181,36 @@
     
     vaccine.route = Intramuscular;
     vaccine2.route = Intramuscular;
-    [enc addVaccines: @[vaccine2]];
+    [enc replaceVaccines: [NSSet setWithArray:@[vaccine2]]];
     [self.sevenYearOld addEncounter:enc];
     //four months
     date = [[NSCalendar currentCalendar] dateByAddingComponents:xMonths toDate:date options:0];
     SBTEncounter *enc2 = [[SBTEncounter alloc] initWithDate:date];
-    [enc2 addVaccines:@[[vaccine2 copy]]];
+    [enc2 replaceVaccines:[NSSet setWithArray:@[[vaccine2 copy]]]];
     [self.sevenYearOld addEncounter:enc2];
     //six months
     date = [[NSCalendar currentCalendar] dateByAddingComponents:xMonths toDate:date options:0];
     enc2 = [[SBTEncounter alloc] initWithDate:date];
-    [enc2 addVaccines:@[[vaccine2 copy]]];
+    [enc2 replaceVaccines:[NSSet setWithArray:@[[vaccine2 copy]]]];
     [self.sevenYearOld addEncounter:enc2];
     //nine months
     xMonths.month = 3;
     date = [[NSCalendar currentCalendar] dateByAddingComponents:xMonths toDate:date options:0];
     enc2 = [[SBTEncounter alloc] initWithDate:date];
-    [enc2 addVaccines:@[[vaccine copy]]];
+    [enc2 replaceVaccines:[NSSet setWithArray:@[[vaccine copy]]]];
     [self.sevenYearOld addEncounter:enc2];
     //fifteen months
     xMonths.month = 6;
     date = [[NSCalendar currentCalendar] dateByAddingComponents:xMonths toDate:date options:0];
     enc2 = [[SBTEncounter alloc] initWithDate:date];
-    [enc2 addVaccines:@[[vaccine copy]]];
+    [enc2 replaceVaccines:[NSSet setWithArray:@[[vaccine copy]]]];
     [self.sevenYearOld addEncounter:enc2];
     //four years
     xMonths.month = 0;
     xMonths.year = 3;
     date = [[NSCalendar currentCalendar] dateByAddingComponents:xMonths toDate:date options:0];
     enc2 = [[SBTEncounter alloc] initWithDate:date];
-    [enc2 addVaccines:@[[vaccine copy]]];
+    [enc2 replaceVaccines:[NSSet setWithArray:@[[vaccine copy]]]];
     [self.sevenYearOld addEncounter:enc2];
     
     SBTVaccineSchedule *sched = [SBTVaccineSchedule sharedSchedule];

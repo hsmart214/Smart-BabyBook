@@ -58,10 +58,10 @@
     SBTVaccine *hepB = [SBTVaccine vaccinesByTradeName][@"Engerix-B"];
     XCTAssertNotNil(hepB, @"Failed to find Engerix-B by name in the trade name dictionary.");
     SBTEncounter *enc = [[SBTEncounter alloc] initWithDate:[NSDate date]];
-    [enc addVaccines:@[hepB]];
+    [enc replaceVaccines:[NSSet setWithArray:@[hepB]]];
     [self.baby addEncounter:enc];
     enc = [[SBTEncounter alloc] initWithDate:prevEncounterDate];
-    [enc addVaccines:@[hepB]];
+    [enc replaceVaccines:[NSSet setWithArray:@[hepB]]];
     [self.baby addEncounter:enc];
     SBTVaccinationStatus status = [self.sched vaccinationStatusForVaccineComponent:SBTComponentHepB forBaby:self.baby];
     XCTAssertTrue(status == SBTVaccinationUTD , @"Incorrect calculation of Hep B status with two valid doses, not due yet.");
@@ -87,16 +87,16 @@
     NSDate *encounter3date = [[NSCalendar currentCalendar] dateByAddingComponents:difference toDate:encounterMMRdate options:0];
 
     SBTEncounter *enc = [[SBTEncounter alloc] initWithDate:encounter1date];
-    [enc addVaccines:@[hepB]];
+    [enc replaceVaccines:[NSSet setWithArray:@[hepB]]];
     [self.toddler addEncounter:enc];
     enc = [[SBTEncounter alloc] initWithDate:encounter2date];
-    [enc addVaccines:@[hepB]];
+    [enc replaceVaccines:[NSSet setWithArray:@[hepB]]];
     [self.toddler addEncounter:enc];
     enc = [[SBTEncounter alloc] initWithDate:encounterMMRdate];
-    [enc addVaccines:@[mmr]];
+    [enc replaceVaccines:[NSSet setWithArray:@[mmr]]];
     [self.toddler addEncounter:enc];
     enc = [[SBTEncounter alloc] initWithDate:encounter3date];
-    [enc addVaccines:@[hepB]];
+    [enc replaceVaccines:[NSSet setWithArray:@[hepB]]];
     [self.toddler addEncounter:enc];
     SBTVaccinationStatus status = [self.sched vaccinationStatusForVaccineComponent:SBTComponentHepB forBaby:self.toddler];
     XCTAssertTrue(status == SBTVaccinationDue , @"Incorrect calculation of Hep B status with two valid doses, not due yet.");
@@ -118,16 +118,16 @@
     NSDate *encounter3date = [[NSCalendar currentCalendar] dateByAddingComponents:difference toDate:encounter4date options:0];
     
     SBTEncounter *enc = [[SBTEncounter alloc] initWithDate:encounter1date];
-    [enc addVaccines:@[hepB]];
+    [enc replaceVaccines:[NSSet setWithArray:@[hepB]]];
     [self.baby2 addEncounter:enc];
     enc = [[SBTEncounter alloc] initWithDate:encounter2date];
-    [enc addVaccines:@[hepB]];
+    [enc replaceVaccines:[NSSet setWithArray:@[hepB]]];
     [self.baby2 addEncounter:enc];
     enc = [[SBTEncounter alloc] initWithDate:encounter4date];
-    [enc addVaccines:@[hepB]];
+    [enc replaceVaccines:[NSSet setWithArray:@[hepB]]];
     [self.baby2 addEncounter:enc];
     enc = [[SBTEncounter alloc] initWithDate:encounter3date];
-    [enc addVaccines:@[hepB]];
+    [enc replaceVaccines:[NSSet setWithArray:@[hepB]]];
     [self.baby2 addEncounter:enc];
     SBTVaccinationStatus status = [self.sched vaccinationStatusForVaccineComponent:SBTComponentHepB forBaby:self.baby2];
     XCTAssertTrue(status == SBTVaccinationUTD , @"Incorrect calculation of Hep B status with four doses, third too soon.");

@@ -22,7 +22,7 @@
     }
 }
 
--(double)percentileForMeasurment:(double)measurement
+-(double)percentileForMeasurement:(double)measurement
 {
     double pct = 0.0;
     double z = 0.0;
@@ -36,6 +36,40 @@
     return pct * 100.0;
 }
 
+-(double)dataForPercentile:(SBTPercentile)percentile
+{
+    NSInteger index = [self translatePercentileToIndex:percentile];
+    return [percentileData[index] doubleValue];
+}
+
+-(NSInteger)translatePercentileToIndex:(SBTPercentile)percentile
+{
+    if ([percentileData count] == 15) return (NSInteger)percentile;
+    if ([percentileData count] == 10){
+        switch (percentile) {
+            case P3:
+            case P5:
+            case P10:
+                return (NSInteger)percentile - 3;
+            default:
+                return (NSInteger)percentile - 2;
+        }
+    }else{
+        switch (percentile) {
+            case P3:
+            case P5:
+            case P10:
+                return (NSInteger)percentile - 4;
+            case P25:
+            case P50:
+            case P75:
+                return (NSInteger)percentile - 3;
+            default:
+                return (NSInteger)percentile - 2;
+        }
+    }
+}
+
 -(void)encodeWithCoder:(NSCoder *)aCoder
 {
     [aCoder encodeDouble:ageDays forKey:@"ageDays"];
@@ -43,6 +77,7 @@
     [aCoder encodeDouble:skew forKey:@"skew"];
     [aCoder encodeDouble:mean forKey:@"mean"];
     [aCoder encodeDouble:stdev forKey:@"stdev"];
+    [aCoder encodeObject:percentileData forKey:@"percentileData"];
 }
 
 -(instancetype)initWithCoder:(NSCoder *)aDecoder
@@ -53,6 +88,7 @@
         skew = [aDecoder decodeDoubleForKey:@"skew"];
         mean = [aDecoder decodeDoubleForKey:@"mean"];
         stdev = [aDecoder decodeDoubleForKey:@"stdev"];
+        percentileData = [aDecoder decodeObjectOfClass:[NSArray class] forKey:@"percentileData"];
     }
     return self;
 }
@@ -65,6 +101,7 @@
         skew = [plist[@"skew"] doubleValue];
         mean = [plist[@"mean"] doubleValue];
         stdev = [plist[@"stdev"] doubleValue];
+        percentileData = plist[@"percentileData"];
     }
     return self;
 }
@@ -77,6 +114,7 @@
              @"skew": @(skew),
              @"mean": @(mean),
              @"stdev": @(stdev),
+             @"percentileData": percentileData,
              };
 }
 

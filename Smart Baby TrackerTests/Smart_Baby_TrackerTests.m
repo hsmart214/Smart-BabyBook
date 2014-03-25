@@ -63,12 +63,12 @@
     enc1 = [[SBTEncounter alloc] initWithDate:[dc.calendar dateFromComponents:dc]];
     vac1 = [[SBTVaccine alloc] initWithName:@"TriHiBit" displayNames:@[@"DTaP", @"HiB"] andComponents:@[@(SBTComponentDTaP), @(SBTComponentHiB)]];
     vac2 = [[SBTVaccine alloc] initWithName:@"IPOL" displayNames:@[@"IPV"] andComponents:@[@(SBTComponentIPV)]];
-    [enc1 addVaccines:@[vac1, vac2]];
+    [enc1 replaceVaccines:[NSSet setWithArray:@[vac1, vac2]]];
     dc.year = 1995;
     dc.month = 1;
     dc.day = 23;
     enc2 = [[SBTEncounter alloc] initWithDate:[dc.calendar dateFromComponents:dc]];
-    [enc2 addVaccines:@[vac1, vac2]];
+    [enc2 replaceVaccines:[NSSet setWithArray:@[vac1, vac2]]];
     [baby addEncounter:enc1];
     [baby addEncounter:enc2];
     NSArray *days = [baby daysGivenVaccineComponent:SBTComponentDTaP];

@@ -1029,15 +1029,15 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             </objects>
             <point key="canvasLocation" x="2807" y="61"/>
         </scene>
-        <!--View Controller - Growth Chart-->
+        <!--Graph View Controller - Growth Chart-->
         <scene sceneID="GA8-TG-7br">
             <objects>
-                <viewController storyboardIdentifier="Growth Chart" useStoryboardIdentifierAsRestorationIdentifier="YES" id="hNh-is-lQx" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Growth Chart" useStoryboardIdentifierAsRestorationIdentifier="YES" id="hNh-is-lQx" customClass="SBTGraphViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="U8O-ZE-6vi"/>
                         <viewControllerLayoutGuide type="bottom" id="7Fz-w4-LSc"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="xKm-ap-RY3">
+                    <view key="view" contentMode="scaleToFill" id="xKm-ap-RY3" customClass="SBTGraphView">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
@@ -1050,10 +1050,25 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                             </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="Jok-Wo-Vj4" appends="YES" id="us9-mp-9gg"/>
+                            <outletCollection property="gestureRecognizers" destination="WPM-Hf-jEa" appends="YES" id="am3-Ak-PMT"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Growth Chart" id="AO0-IE-pzc"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2nF-Mw-2xW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <pinchGestureRecognizer id="Jok-Wo-Vj4">
+                    <connections>
+                        <action selector="pinch:" destination="hNh-is-lQx" id="0pH-H7-gve"/>
+                    </connections>
+                </pinchGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="WPM-Hf-jEa">
+                    <connections>
+                        <action selector="pan:" destination="hNh-is-lQx" id="fI7-S4-bD4"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1443" y="767"/>
         </scene>

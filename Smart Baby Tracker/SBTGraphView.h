@@ -14,7 +14,9 @@
 @required
 
 -(NSArray *)dataPointsInRange:(NSRange)ageRange;
--(CGFloat)valueForPercentile:(CGFloat)percentile forAge:(CGFloat)age forMeasure:(SBTGrowthParameter)parameter;
+-(CGFloat)valueForPercentile:(SBTPercentile)percentile
+                      forAge:(CGFloat)age
+                  forMeasure:(SBTGrowthParameter)parameter;
 -(CGFloat)horizRange;
 -(CGFloat)vertRange;
 

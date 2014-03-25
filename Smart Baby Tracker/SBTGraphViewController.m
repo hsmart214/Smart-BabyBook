@@ -16,6 +16,16 @@
 
 @implementation SBTGraphViewController
 
+#pragma mark - Gestures
+
+- (IBAction)pinch:(UIPinchGestureRecognizer *)sender {
+    
+}
+
+- (IBAction)pan:(UIPanGestureRecognizer *)sender {
+    
+}
+
 #pragma mark - SBTGraphViewDataSource
 
 -(NSArray *)dataPointsInRange:(NSRange)ageRange
@@ -24,7 +34,9 @@
     return points;
 }
 
--(CGFloat)valueForPercentile:(CGFloat)percentile forAge:(CGFloat)age forMeasure:(SBTGrowthParameter)parameter
+-(CGFloat)valueForPercentile:(SBTPercentile)percentile
+                      forAge:(CGFloat)age
+                  forMeasure:(SBTGrowthParameter)parameter
 {
     return 0.0;
 }

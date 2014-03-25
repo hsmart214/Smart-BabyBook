@@ -106,6 +106,14 @@
     return WHO_MAX_AGE;
 }
 
+-(double)dataForPercentile:(SBTPercentile)percentile
+                    forAge:(double)age
+                 parameter:(SBTGrowthParameter)parameter
+                 andGender:(SBTGender)gender
+{
+    return 0.0;
+}
+
 -(double)dataMeasurementRange97PercentForParameter:(SBTGrowthParameter)parameter forGender:(SBTGender)gender
 {
     SBTDataPoint *dp;
@@ -221,7 +229,7 @@
     // so no interpolation will be necessary (not so with CDC data)
     // the array is ordered by age in days, so we should be able to index to the correct day directly, no searching
     SBTDataPoint *dataPoint = data[days];
-    double percentile = [dataPoint percentileForMeasurment:measurement];
+    double percentile = [dataPoint percentileForMeasurement:measurement];
     return percentile;
 }
 

@@ -46,7 +46,9 @@
     [textLines removeObjectAtIndex:0];
     for (NSString *line in textLines){
         chunks = [line componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-        // the columns are 'Age	L	M	S	P01	P1	P3	P5	P10	P15	P25	P50	P75	P85	P90	P95	P97	P99	P999'
+        // WHO columns are 'Age	L	M	S	P01	P1	P3	P5	P10	P15	P25	P50	P75	P85	P90	P95	P97	P99	P999' (15 percentile data items)
+        // CDC columns are 'Age L	M	S	P3	P5	P10	P25	P50	P75 P90	P95	P97' (9 percentile data items)
+        // except CDC BMI which adds P85 (10 percentile data items)
         SBTDataPoint *dp = [[SBTDataPoint alloc] init];
         if (days) {
             dp->ageDays = [chunks[0] doubleValue];
@@ -56,6 +58,11 @@
         dp->skew = [chunks[1] doubleValue];
         dp->mean = [chunks[2] doubleValue];
         dp->stdev = [chunks[3] doubleValue];
+        NSMutableArray *pd = [NSMutableArray array];
+        for (int i = 4; i < [chunks count]; i++){
+            [pd addObject:@([chunks[i] doubleValue])];
+        }
+        dp->percentileData = [pd copy];
         
         [data addObject:dp];
         [plist addObject:[dp propertyList]];
@@ -73,7 +80,16 @@
     return 0.0;
 }
 
--(double)dataMeasurementRange97PercentForParameter:(SBTGrowthParameter)parameter forGender:(SBTGender)gender
+-(double)dataForPercentile:(SBTPercentile)percentile
+                    forAge:(double)age
+                 parameter:(SBTGrowthParameter)parameter
+                 andGender:(SBTGender)gender
+{
+    return 0.0;
+}
+
+-(double)dataMeasurementRange97PercentForParameter:(SBTGrowthParameter)parameter
+                                         forGender:(SBTGender)gender
 {
     return 0.0;
 }

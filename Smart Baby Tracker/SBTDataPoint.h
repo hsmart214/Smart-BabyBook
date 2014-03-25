@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SBTGrowthDataSource.h"
 
 #define AVG_MONTH 30.4375f //average days in a Gregorian month
 
@@ -22,12 +23,14 @@
     double skew;
     double mean;
     double stdev;
+    NSArray *percentileData;
 }
 
 // rounded to the nearest whole day
 @property (nonatomic, readonly) double ageInDays;
 
--(double)percentileForMeasurment:(double)measurement;
+-(double)percentileForMeasurement:(double)measurement;
+-(double)dataForPercentile:(SBTPercentile)percentile;
 
 -(NSDictionary *)propertyList;
 -(instancetype)initWithPlist:(NSDictionary *)plist;

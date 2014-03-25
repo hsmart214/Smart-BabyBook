@@ -47,7 +47,7 @@
 {
     SBTVaccine *mmr = [[SBTVaccine alloc] initWithName:@"MMR-II" displayNames:@[@"MMR"] manufacturer:Wyeth andComponents:@[@(SBTComponentMMR)]];
     SBTEncounter *enc = [[SBTEncounter alloc] initWithDate:[NSDate date]];
-    [enc addVaccines:@[mmr]];
+    [enc replaceVaccines:[NSSet setWithArray:@[mmr]]];
     [self.baby1yr addEncounter:enc];
     SBTVaccinationStatus status = [self.sched vaccinationStatusForVaccineComponent:SBTComponentMMR forBaby:self.baby1yr];
     XCTAssertTrue(status == SBTVaccinationUTD , @"Incorrect calculation of DTaP status with five regular doses.");
@@ -61,10 +61,10 @@
     NSDate *prevEncounterDate = [[NSCalendar currentCalendar] dateByAddingComponents:difference toDate:[NSDate date] options:0];
     SBTVaccine *mmr = [[SBTVaccine alloc] initWithName:@"MMR-II" displayNames:@[@"MMR"] manufacturer:Wyeth andComponents:@[@(SBTComponentMMR)]];
     SBTEncounter *enc = [[SBTEncounter alloc] initWithDate:[NSDate date]];
-    [enc addVaccines:@[mmr]];
+    [enc replaceVaccines:[NSSet setWithArray:@[mmr]]];
     [self.baby2yr addEncounter:enc];
     enc = [[SBTEncounter alloc] initWithDate:prevEncounterDate];
-    [enc addVaccines:@[mmr]];
+    [enc replaceVaccines:[NSSet setWithArray:@[mmr]]];
     [self.baby2yr addEncounter:enc];
     SBTVaccinationStatus status = [self.sched vaccinationStatusForVaccineComponent:SBTComponentMMR forBaby:self.baby2yr];
     XCTAssertTrue(status == SBTVaccinationUTD , @"Incorrect calculation of DTaP status with five regular doses.");
