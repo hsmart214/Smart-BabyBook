@@ -55,8 +55,9 @@
             [babyPink setStroke];
         }
         CGFloat x = 0.0;
-        CGFloat maxY = self.scrollView.bounds.size.height;
-        CGFloat y = maxY -[self.dataSource valueForPercentile:p forAge:0.0 forMeasure:self.measure] / vScale;
+        CGFloat maxY = self.scrollView.bounds.size.height * GRAPH_RATIO;
+        CGFloat measurement = [self.dataSource valueForPercentile:p forAge:0.0 forMeasure:self.measure];
+        CGFloat y = maxY - measurement / vScale;
         [path moveToPoint:CGPointMake(x, y)];
         while (x < imageSize.width){
             CGFloat age = x / hScale;
@@ -69,9 +70,9 @@
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     self.imageView.image = image;
-    self.imageView.backgroundColor = [UIColor whiteColor];
-    [self.imageView setBounds:CGRectMake(0.0, 0.0, image.size.width, image.size.height)];
-    [self.scrollView setZoomScale:1.0/GRAPH_RATIO];
+    self.scrollView.contentSize = self.imageView.image.size;
+    [self.imageView setFrame:CGRectMake(0.0, 0.0, image.size.width, image.size.height)];
+    //    [self.scrollView setZoomScale:1.0/GRAPH_RATIO];
     [self setNeedsDisplay];
 }
 
