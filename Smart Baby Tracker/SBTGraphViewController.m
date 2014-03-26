@@ -10,7 +10,11 @@
 #import "SBTGraphView.h"
 #import "SBTBaby.h"
 
-@interface SBTGraphViewController ()<SBTGraphViewDataSource>
+@interface SBTGraphViewController ()<SBTGraphViewDataSource, UIGestureRecognizerDelegate>
+{
+    CGFloat currentHRange, currentVRange, maxHRange, maxVRange;
+    SBTAgeRange currentAgeRange;
+}
 
 @end
 
@@ -18,19 +22,50 @@
 
 #pragma mark - Gestures
 
+-(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    return YES;
+}
+
 - (IBAction)pinch:(UIPinchGestureRecognizer *)sender {
-    
+    if (sender.state == UIGestureRecognizerStateBegan || sender.state == UIGestureRecognizerStateChanged) {
+        CGFloat ageSpread = currentAgeRange.endAge - currentAgeRange.beginAge;
+        ageSpread /= sender.scale;
+        currentAgeRange.endAge = currentAgeRange.beginAge + ageSpread;
+        [sender setScale:1.0];
+        [self.view setNeedsDisplay];
+    }
 }
 
 - (IBAction)pan:(UIPanGestureRecognizer *)sender {
-    
+    if (sender.state == UIGestureRecognizerStateBegan || sender.state == UIGestureRecognizerStateChanged) {
+        CGPoint trans = [sender translationInView:self.view];
+        //        if (currentAgeRange.beginAge + trans.x >= 0.0 && currentAgeRange.endAge + trans.x <= maxHRange){
+            currentAgeRange.beginAge += trans.x;
+            currentAgeRange.endAge += trans.x;
+        //        }
+        [sender setTranslation:CGPointZero inView:self.view];
+        [self.view setNeedsDisplay];
+    }
 }
 
 #pragma mark - SBTGraphViewDataSource
 
--(NSArray *)dataPointsInRange:(NSRange)ageRange
+-(SBTGender)gender
+{
+    return self.baby.gender;
+}
+
+-(NSArray *)dataPointsInRange:(SBTAgeRange)ageRange
 {
     NSMutableArray *points = [NSMutableArray array];
+    NSArray *encounters = [self.baby encountersList];
+    for (SBTEncounter *enc in encounters){
+        CGFloat age = [self.baby ageInDaysAtEncounter:enc].day;
+        if (age <= ageRange.beginAge && age <= ageRange.endAge) {
+            [points addObject:enc];
+        }
+    }
     return points;
 }
 
@@ -38,25 +73,38 @@
                       forAge:(CGFloat)age
                   forMeasure:(SBTGrowthParameter)parameter
 {
-    return 0.0;
+    return [self.growthDataSource dataForPercentile:percentile
+                                             forAge:age
+                                          parameter:parameter
+                                          andGender:self.baby.gender];
 }
 
--(CGFloat)horizRange
+-(SBTAgeRange)horizRange
 {
-    return [self.growthDataSource dataAgeRange];
+    return currentAgeRange;
 }
 
 -(CGFloat)vertRange
 {
-    return [self.growthDataSource dataMeasurementRange97PercentForParameter:self.parameter
-                                                                  forGender:self.baby.gender];
+    return currentVRange;
 }
 
 #pragma mark - View Life Cycle
 
 -(void)viewDidLoad
 {
-    
+    [super viewDidLoad];
+    currentVRange = [self.growthDataSource dataMeasurementRange97PercentForParameter:self.parameter
+                                                                           forGender:self.baby.gender];
+    currentHRange = [self.growthDataSource dataAgeRange];
+    maxHRange = currentHRange;
+    maxVRange = currentVRange;
+    currentAgeRange.beginAge = 0.0;
+    currentAgeRange.endAge = currentHRange;
+    SBTGraphView *view = (SBTGraphView *)self.view;
+    [view setDataSource:self];
+    [view setMeasure:self.parameter];
+    [view setUpOnce];
 }
 
 @end

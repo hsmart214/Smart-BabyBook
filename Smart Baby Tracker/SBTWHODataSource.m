@@ -111,9 +111,73 @@
                  parameter:(SBTGrowthParameter)parameter
                  andGender:(SBTGender)gender
 {
-    return 0.0;
+    NSArray *dp;
+    switch (gender) {
+        case SBTFemale:
+            switch (parameter) {
+                case SBTLength:
+                    dp = self.girlLengthData;
+                    break;
+                case SBTStature:
+                    dp = self.girlLengthData;
+                    break;
+                case SBTWeight:
+                    dp = self.girlWeightData;
+                    break;
+                case SBTHeadCircumference:
+                    dp = self.girlHCData;
+                    break;
+                case SBTBMI:
+                    dp = self.girlBMIData;
+            }
+            break;
+        case SBTMale:
+            switch (parameter) {
+                case SBTLength:
+                    dp = self.boyLengthData;
+                    break;
+                case SBTStature:
+                    dp = self.boyLengthData;
+                    break;
+                case SBTWeight:
+                    dp = self.boyWeightData;
+                    break;
+                case SBTHeadCircumference:
+                    dp = self.boyHCData;
+                    break;
+                case SBTBMI:
+                    dp = self.boyBMIData;
+            }
+    }
+    SBTDataPoint *pt1, *pt2;
+    int pivot = [dp count] / 2;
+    int delta = pivot / 2;
+    pt1 = dp[pivot];
+    pt2 = pt1;
+    while (delta >= 1) {
+        if ([pt1 ageInDays] < age) {
+            pivot += delta;
+        }else{
+            pivot -= delta;
+        }
+        delta /= 2;
+        pt1 = dp[pivot];
+    }
+    if ([pt1 ageInDays] < age){
+        pt2 = (pivot < [dp count] - 1) ? dp[pivot +1] : pt1;
+    }else{
+        pt2 = pt1;
+        pt1 = pivot > 0 ? dp[pivot - 1] : pt2;
+    }
+    if (pt1 == pt2) return [pt1 dataForPercentile:percentile];
+    // figure out how far between the two points we are and get a proportional delta
+    double d = [pt1 ageInDays];
+    double diff = [pt2 ageInDays] - d;
+    double frac = (age - d) / diff;
+    d = [pt1 dataForPercentile:percentile];
+    diff = [pt2 dataForPercentile:percentile] - d;
+    return d + frac * diff;
 }
-
 -(double)dataMeasurementRange97PercentForParameter:(SBTGrowthParameter)parameter forGender:(SBTGender)gender
 {
     SBTDataPoint *dp;

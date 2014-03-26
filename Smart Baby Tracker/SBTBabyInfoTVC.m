@@ -9,6 +9,9 @@
 #import "SBTBabyInfoTVC.h"
 #import "SBTBaby.h"
 #import "SBTEncountersTVC.h"
+#import "SBTGraphViewController.h"
+#import "SBTWHODataSource.h"
+#import "SBTCDCDataSource.h"
 
 @interface SBTBabyInfoTVC ()<SBTBabyEditDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *birthDateLable;
@@ -76,6 +79,12 @@
         SBTEncountersTVC *encTVC = segue.destinationViewController;
         encTVC.baby = self.baby;
         encTVC.delegate = self;
+    }
+    if ([segue.identifier isEqualToString:@"showGrowthChart"]){
+        SBTGraphViewController *dest = segue.destinationViewController;
+        dest.baby = self.baby;
+        dest.growthDataSource = [SBTWHODataSource sharedDataSource];
+        dest.parameter = SBTWeight;
     }
 }
 
