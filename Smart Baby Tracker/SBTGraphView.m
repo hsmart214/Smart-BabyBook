@@ -40,7 +40,7 @@
     [[UIColor whiteColor] setFill];
     [path fill];
     path = nil;
-    for (NSNumber *n in @[@(P3), @(P5), @(P10), @(P25), @(P50), @(P75), @(P90), @(P95), @(P97)]){
+    for (NSNumber *n in @[@(P5), @(P10), @(P25), @(P50), @(P75), @(P90), @(P95)]){
         SBTPercentile p = (SBTPercentile)[n integerValue];
         UIBezierPath *path = [[UIBezierPath alloc] init];
         [path setLineWidth:2.0];
