@@ -10,6 +10,8 @@
 #import "SBTGraphView.h"
 #import "SBTBaby.h"
 
+#define VERTICAL_RANGE_ADJUSTMENT 1.1f
+
 @interface SBTGraphViewController ()<SBTGraphViewDataSource, UIGestureRecognizerDelegate>
 {
     CGFloat currentHRange, currentVRange, maxHRange, maxVRange;
@@ -95,7 +97,7 @@
 {
     [super viewDidLoad];
     currentVRange = [self.growthDataSource dataMeasurementRange97PercentForParameter:self.parameter
-                                                                           forGender:self.baby.gender];
+                                                                           forGender:self.baby.gender] * VERTICAL_RANGE_ADJUSTMENT;
     currentHRange = [self.growthDataSource dataAgeRange];
     maxHRange = currentHRange;
     maxVRange = currentVRange;

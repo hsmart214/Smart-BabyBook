@@ -31,6 +31,7 @@
 
 -(double)percentileForMeasurement:(double)measurement;
 -(double)dataForPercentile:(SBTPercentile)percentile;
+-(NSInteger)translatePercentileToIndex:(SBTPercentile)percentile;
 
 -(NSDictionary *)propertyList;
 -(instancetype)initWithPlist:(NSDictionary *)plist;

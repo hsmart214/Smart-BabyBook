@@ -214,7 +214,9 @@
                     dp = [self.boyBMIData lastObject];
             }
     }
-    return dp->mean + 3*dp->stdev;
+    NSInteger index97 = [dp translatePercentileToIndex:P97];
+    return [dp->percentileData[index97] doubleValue];
+    //    return dp->mean + 3*dp->stdev;
 }
 
 +(instancetype)sharedDataSource

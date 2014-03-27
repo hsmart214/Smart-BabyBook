@@ -7,6 +7,7 @@
 //
 
 #import "SBTGraphView.h"
+#import "UIColor+SBTColors.h"
 
 #define GRAPH_RATIO 4.0f
 
@@ -14,8 +15,6 @@
 {
     CGFloat vScale;
     CGFloat hScale;
-    UIColor *babyBlue;
-    UIColor *babyPink;
 }
 
 #pragma mark - UIScrollView Delegate
@@ -30,8 +29,6 @@
 -(void)setUpOnce
 {
     self.scrollView.delegate = self;
-    babyBlue = [UIColor colorWithRed:200.0/255.0 green:230.0/255.0 blue:1.0 alpha:1.0];
-    babyPink = [UIColor colorWithRed:1.0 green:200.0/255.0 blue:230.0/255.0 alpha:1.0];
     vScale = [self.dataSource vertRange] / (self.scrollView.bounds.size.height * GRAPH_RATIO);
     hScale = [self.dataSource horizRange].endAge / (self.scrollView.bounds.size.width * GRAPH_RATIO);
     
@@ -44,15 +41,14 @@
     [path fill];
     path = nil;
     for (NSNumber *n in @[@(P3), @(P5), @(P10), @(P25), @(P50), @(P75), @(P90), @(P95), @(P97)]){
-        NSLog(@"%@", n);
         SBTPercentile p = (SBTPercentile)[n integerValue];
         UIBezierPath *path = [[UIBezierPath alloc] init];
         [path setLineWidth:2.0];
         [path setLineJoinStyle:kCGLineJoinRound];
         if ([self.dataSource gender] == SBTMale){
-            [babyBlue setStroke];
+            [[UIColor SBTBabyBlue] setStroke];
         }else{
-            [babyPink setStroke];
+            [[UIColor SBTBabyPink] setStroke];
         }
         CGFloat x = 0.0;
         CGFloat maxY = self.scrollView.bounds.size.height * GRAPH_RATIO;
@@ -60,19 +56,25 @@
         CGFloat y = maxY - measurement / vScale;
         [path moveToPoint:CGPointMake(x, y)];
         while (x < imageSize.width){
-            CGFloat age = x / hScale;
+            CGFloat age = x * hScale;
             y = maxY - [self.dataSource valueForPercentile:p forAge:age forMeasure:self.measure] / vScale;
             [path addLineToPoint:CGPointMake(x, y)];
             x += 1.0;
         }
         [path stroke];
     }
+//    path = [[UIBezierPath alloc] init];
+//    [path moveToPoint:CGPointZero];
+//    [path addLineToPoint:CGPointMake(self.scrollView.bounds.size.width * GRAPH_RATIO, self.scrollView.bounds.size.height * GRAPH_RATIO)];
+//    [[UIColor blueColor] setStroke];
+//    [path stroke];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     self.imageView.image = image;
     self.scrollView.contentSize = self.imageView.image.size;
     [self.imageView setFrame:CGRectMake(0.0, 0.0, image.size.width, image.size.height)];
     //    [self.scrollView setZoomScale:1.0/GRAPH_RATIO];
+    UIGraphicsEndImageContext();
     [self setNeedsDisplay];
 }
 

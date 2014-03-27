@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		421C2A7018E3D12100EE8A19 /* UIColor+SBTColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 421C2A6F18E3D12100EE8A19 /* UIColor+SBTColors.m */; };
 		421C746118937535000E3C30 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 421C746018937535000E3C30 /* Foundation.framework */; };
 		421C746318937535000E3C30 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 421C746218937535000E3C30 /* CoreGraphics.framework */; };
 		421C746518937535000E3C30 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 421C746418937535000E3C30 /* UIKit.framework */; };
@@ -81,6 +82,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		421C2A6E18E3D12100EE8A19 /* UIColor+SBTColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+SBTColors.h"; sourceTree = "<group>"; };
+		421C2A6F18E3D12100EE8A19 /* UIColor+SBTColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+SBTColors.m"; sourceTree = "<group>"; };
 		421C745D18937535000E3C30 /* Smart Baby Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Smart Baby Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		421C746018937535000E3C30 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		421C746218937535000E3C30 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -255,6 +258,8 @@
 				42BFE7D418D7F1DA00B0E2F4 /* SBTDataStore.m */,
 				42C9D55A18DFD22F000B4131 /* SBTLongPressLabel.h */,
 				42C9D55B18DFD22F000B4131 /* SBTLongPressLabel.m */,
+				421C2A6E18E3D12100EE8A19 /* UIColor+SBTColors.h */,
+				421C2A6F18E3D12100EE8A19 /* UIColor+SBTColors.m */,
 				4248806718944C90009F2837 /* Model */,
 				421C747E18937535000E3C30 /* Images.xcassets */,
 				421C746718937535000E3C30 /* Supporting Files */,
@@ -485,6 +490,7 @@
 				4248806A189459D2009F2837 /* SBTEncounter.m in Sources */,
 				4258BCF618C40E1900E8232F /* SBTCDCDataSource.m in Sources */,
 				4248806618944C84009F2837 /* SBTBaby.m in Sources */,
+				421C2A7018E3D12100EE8A19 /* UIColor+SBTColors.m in Sources */,
 				421C746D18937535000E3C30 /* main.m in Sources */,
 				42CB9A5118D4F7260097BBE3 /* SBTBabyInfoTVC.m in Sources */,
 				42ED85DA18E0F2B500BF7318 /* SBTGraphViewController.m in Sources */,
