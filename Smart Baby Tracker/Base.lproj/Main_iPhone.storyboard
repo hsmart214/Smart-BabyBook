@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="rS3-R9-Ivy">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -1039,42 +1038,35 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <viewControllerLayoutGuide type="bottom" id="7Fz-w4-LSc"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="xKm-ap-RY3" customClass="SBTGraphView">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="redraw" alwaysBounceVertical="YES" alwaysBounceHorizontal="YES" minimumZoomScale="0.25" translatesAutoresizingMaskIntoConstraints="NO" id="n3r-OA-7nw">
-                                <rect key="frame" x="76" y="72" width="224" height="398"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="75G-oz-L3E">
-                                        <rect key="frame" x="0.0" y="0.0" width="223" height="398"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="75G-oz-L3E">
+                                        <rect key="frame" x="0.0" y="0.0" width="319" height="460"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     </imageView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="75G-oz-L3E" firstAttribute="top" secondItem="n3r-OA-7nw" secondAttribute="top" id="MJO-fk-qOv"/>
-                                    <constraint firstItem="75G-oz-L3E" firstAttribute="centerY" secondItem="n3r-OA-7nw" secondAttribute="centerY" id="Wbz-tO-GAs"/>
-                                    <constraint firstAttribute="trailing" secondItem="75G-oz-L3E" secondAttribute="trailing" id="ZdS-18-SK5"/>
-                                    <constraint firstAttribute="bottom" secondItem="75G-oz-L3E" secondAttribute="bottom" id="iUy-7f-nha"/>
-                                    <constraint firstItem="75G-oz-L3E" firstAttribute="leading" secondItem="n3r-OA-7nw" secondAttribute="leading" id="iyS-Of-fsQ"/>
-                                    <constraint firstItem="75G-oz-L3E" firstAttribute="centerX" secondItem="n3r-OA-7nw" secondAttribute="centerX" id="m9g-Ec-ks1"/>
+                                    <constraint firstAttribute="centerX" secondItem="75G-oz-L3E" secondAttribute="centerX" id="3G2-TC-hOC"/>
+                                    <constraint firstItem="75G-oz-L3E" firstAttribute="top" secondItem="n3r-OA-7nw" secondAttribute="top" id="Erj-Vi-xZ4"/>
+                                    <constraint firstAttribute="bottom" secondItem="75G-oz-L3E" secondAttribute="bottom" id="OP1-bo-rMe"/>
+                                    <constraint firstAttribute="centerY" secondItem="75G-oz-L3E" secondAttribute="centerY" id="XOQ-Xb-Ert"/>
+                                    <constraint firstAttribute="trailing" secondItem="75G-oz-L3E" secondAttribute="trailing" id="d18-XO-h6A"/>
+                                    <constraint firstItem="75G-oz-L3E" firstAttribute="leading" secondItem="n3r-OA-7nw" secondAttribute="leading" id="dnr-8y-x9e"/>
                                 </constraints>
                             </scrollView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hgf-fk-gz0">
-                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <items>
-                                    <barButtonItem title="Item" id="KAh-bE-iHu"/>
-                                </items>
-                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="n3r-OA-7nw" firstAttribute="top" secondItem="U8O-ZE-6vi" secondAttribute="bottom" constant="20" symbolic="YES" id="PNN-W7-eus"/>
-                            <constraint firstAttribute="trailing" secondItem="n3r-OA-7nw" secondAttribute="trailing" constant="20" symbolic="YES" id="aZj-Ed-baP"/>
-                            <constraint firstItem="n3r-OA-7nw" firstAttribute="height" secondItem="xKm-ap-RY3" secondAttribute="height" multiplier="0.7" id="inM-Lt-OU4"/>
-                            <constraint firstItem="n3r-OA-7nw" firstAttribute="width" secondItem="xKm-ap-RY3" secondAttribute="width" multiplier="0.7" id="iqv-kg-kGy"/>
+                            <constraint firstItem="n3r-OA-7nw" firstAttribute="leading" secondItem="xKm-ap-RY3" secondAttribute="leading" id="0Kr-Pc-HdA"/>
+                            <constraint firstItem="n3r-OA-7nw" firstAttribute="top" secondItem="xKm-ap-RY3" secondAttribute="top" id="Arb-b8-3OT"/>
+                            <constraint firstAttribute="bottom" secondItem="n3r-OA-7nw" secondAttribute="bottom" id="J6R-Ch-clT"/>
+                            <constraint firstAttribute="trailing" secondItem="n3r-OA-7nw" secondAttribute="trailing" id="gHW-gp-Gcl"/>
                         </constraints>
                         <connections>
                             <outlet property="imageView" destination="75G-oz-L3E" id="eNz-cW-WJ0"/>
@@ -1083,6 +1075,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                             <outletCollection property="gestureRecognizers" destination="WPM-Hf-jEa" appends="YES" id="am3-Ak-PMT"/>
                         </connections>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" title="Growth Chart" id="AO0-IE-pzc"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2nF-Mw-2xW" userLabel="First Responder" sceneMemberID="firstResponder"/>

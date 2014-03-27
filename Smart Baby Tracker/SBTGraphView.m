@@ -70,10 +70,11 @@
 //    [path stroke];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
+    [self.imageView setFrame:CGRectMake(0.0, 0.0, image.size.width, image.size.height)];
+    
     self.imageView.image = image;
     self.scrollView.contentSize = self.imageView.image.size;
-    [self.imageView setFrame:CGRectMake(0.0, 0.0, image.size.width, image.size.height)];
-    //    [self.scrollView setZoomScale:1.0/GRAPH_RATIO];
+    [self.scrollView setZoomScale:1.0/GRAPH_RATIO];
     UIGraphicsEndImageContext();
     [self setNeedsDisplay];
 }
