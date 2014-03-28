@@ -1065,24 +1065,12 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <connections>
                             <outlet property="imageView" destination="75G-oz-L3E" id="eNz-cW-WJ0"/>
                             <outlet property="scrollView" destination="n3r-OA-7nw" id="JpH-tL-0yS"/>
-                            <outletCollection property="gestureRecognizers" destination="Jok-Wo-Vj4" appends="YES" id="us9-mp-9gg"/>
-                            <outletCollection property="gestureRecognizers" destination="WPM-Hf-jEa" appends="YES" id="am3-Ak-PMT"/>
                         </connections>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" title="Growth Chart" id="AO0-IE-pzc"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2nF-Mw-2xW" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <pinchGestureRecognizer id="Jok-Wo-Vj4">
-                    <connections>
-                        <action selector="pinch:" destination="hNh-is-lQx" id="0pH-H7-gve"/>
-                    </connections>
-                </pinchGestureRecognizer>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="WPM-Hf-jEa">
-                    <connections>
-                        <action selector="pan:" destination="hNh-is-lQx" id="fI7-S4-bD4"/>
-                    </connections>
-                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1443" y="767"/>
         </scene>

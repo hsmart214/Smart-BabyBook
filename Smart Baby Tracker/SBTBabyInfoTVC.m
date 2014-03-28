@@ -84,7 +84,7 @@
         SBTGraphViewController *dest = segue.destinationViewController;
         dest.baby = self.baby;
         dest.growthDataSource = [SBTWHODataSource sharedDataSource];
-        dest.parameter = SBTBMI;
+        dest.parameter = SBTWeight;
     }
 }
 

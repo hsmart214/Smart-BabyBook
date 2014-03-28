@@ -29,27 +29,30 @@
     return YES;
 }
 
-- (IBAction)pinch:(UIPinchGestureRecognizer *)sender {
-    if (sender.state == UIGestureRecognizerStateBegan || sender.state == UIGestureRecognizerStateChanged) {
-        CGFloat ageSpread = currentAgeRange.endAge - currentAgeRange.beginAge;
-        ageSpread /= sender.scale;
-        currentAgeRange.endAge = currentAgeRange.beginAge + ageSpread;
-        [sender setScale:1.0];
-        [self.view setNeedsDisplay];
-    }
-}
-
-- (IBAction)pan:(UIPanGestureRecognizer *)sender {
-    if (sender.state == UIGestureRecognizerStateBegan || sender.state == UIGestureRecognizerStateChanged) {
-        CGPoint trans = [sender translationInView:self.view];
-        //        if (currentAgeRange.beginAge + trans.x >= 0.0 && currentAgeRange.endAge + trans.x <= maxHRange){
-            currentAgeRange.beginAge += trans.x;
-            currentAgeRange.endAge += trans.x;
-        //        }
-        [sender setTranslation:CGPointZero inView:self.view];
-        [self.view setNeedsDisplay];
-    }
-}
+//- (IBAction)pinch:(UIPinchGestureRecognizer *)sender {
+//    if (sender.state == UIGestureRecognizerStateBegan || sender.state == UIGestureRecognizerStateChanged) {
+//        CGFloat ageSpread = currentAgeRange.endAge - currentAgeRange.beginAge;
+//        ageSpread /= sender.scale;
+//        currentAgeRange.endAge = currentAgeRange.beginAge + ageSpread;
+//        [sender setScale:1.0];
+//        [self.view setNeedsDisplay];
+//    }else if (sender.state == UIGestureRecognizerStateEnded){
+//        SBTGraphView *gView = sender.view.superview;
+//        NSLog(@"Pinch resulted in bounds - W:%1.1f, H:%1.1f", gView.imageView.bounds.size.width, gView.imageView.bounds.size.height);
+//    }
+//}
+//
+//- (IBAction)pan:(UIPanGestureRecognizer *)sender {
+//    if (sender.state == UIGestureRecognizerStateBegan || sender.state == UIGestureRecognizerStateChanged) {
+//        CGPoint trans = [sender translationInView:self.view];
+//        //        if (currentAgeRange.beginAge + trans.x >= 0.0 && currentAgeRange.endAge + trans.x <= maxHRange){
+//            currentAgeRange.beginAge += trans.x;
+//            currentAgeRange.endAge += trans.x;
+//        //        }
+//        [sender setTranslation:CGPointZero inView:self.view];
+//        [self.view setNeedsDisplay];
+//    }
+//}
 
 #pragma mark - SBTGraphViewDataSource
 
