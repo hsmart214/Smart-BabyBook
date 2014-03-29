@@ -83,7 +83,7 @@
     if ([segue.identifier isEqualToString:@"showGrowthChart"]){
         SBTGraphViewController *dest = segue.destinationViewController;
         dest.baby = self.baby;
-        dest.growthDataSource = [SBTWHODataSource sharedDataSource];
+        dest.growthDataSource = [SBTCDCDataSource sharedDataSource];
         dest.parameter = SBTWeight;
     }
 }

@@ -1,12 +1,12 @@
 //
-//  SBTGraphView.h
+//  SBTGraphOverlayView.h
 //  Smart Baby Tracker
 //
-//  Created by J. HOWARD SMART on 3/24/14.
+//  Created by J. HOWARD SMART on 3/28/14.
 //  Copyright (c) 2014 J. HOWARD SMART. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 #import "SBTGrowthDataSource.h"
 
 typedef struct {CGFloat beginAge;
@@ -26,13 +26,13 @@ typedef struct {CGFloat beginAge;
 
 @end
 
-@interface SBTGraphView : UIView<UIScrollViewDelegate>
+
+@interface SBTGraphView : UIView
 
 @property (nonatomic, weak) id<SBTGraphViewDataSource> dataSource;
 @property (nonatomic, assign) SBTGrowthParameter measure;
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) UIImageView *imageView;
+@property (weak, nonatomic) UIScrollView *scrollView;
 
--(void)setUpOnce;
 
 @end

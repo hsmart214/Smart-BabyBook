@@ -1034,41 +1034,37 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             <objects>
                 <viewController storyboardIdentifier="Growth Chart" useStoryboardIdentifierAsRestorationIdentifier="YES" id="hNh-is-lQx" customClass="SBTGraphViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="U8O-ZE-6vi"/>
-                        <viewControllerLayoutGuide type="bottom" id="7Fz-w4-LSc"/>
+                        <viewControllerLayoutGuide type="top" id="L5d-m0-pcO"/>
+                        <viewControllerLayoutGuide type="bottom" id="hTN-It-cpD"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="xKm-ap-RY3" customClass="SBTGraphView">
+                    <view key="view" opaque="NO" contentMode="scaleToFill" id="gVN-H2-upp">
                         <rect key="frame" x="0.0" y="64" width="320" height="460"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="redraw" alwaysBounceVertical="YES" alwaysBounceHorizontal="YES" minimumZoomScale="0.25" translatesAutoresizingMaskIntoConstraints="NO" id="n3r-OA-7nw">
+                            <scrollView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" alwaysBounceHorizontal="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" minimumZoomScale="0.25" translatesAutoresizingMaskIntoConstraints="NO" id="p34-Eo-nx6">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="75G-oz-L3E">
-                                        <rect key="frame" x="0.0" y="0.0" width="319" height="460"/>
+                                    <view contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tcg-Rc-pFp" customClass="SBTGraphView">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    </imageView>
+                                    </view>
                                 </subviews>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <gestureRecognizers/>
                         <constraints>
-                            <constraint firstAttribute="centerY" secondItem="n3r-OA-7nw" secondAttribute="centerY" id="0n8-og-Rze"/>
-                            <constraint firstItem="7Fz-w4-LSc" firstAttribute="top" secondItem="n3r-OA-7nw" secondAttribute="bottom" id="JKJ-ql-oZY"/>
-                            <constraint firstAttribute="trailing" secondItem="n3r-OA-7nw" secondAttribute="trailing" id="XjF-nF-sgO"/>
-                            <constraint firstAttribute="centerX" secondItem="n3r-OA-7nw" secondAttribute="centerX" id="bFO-Yc-C7p"/>
-                            <constraint firstItem="n3r-OA-7nw" firstAttribute="top" secondItem="U8O-ZE-6vi" secondAttribute="bottom" id="oCE-eE-hww"/>
-                            <constraint firstItem="n3r-OA-7nw" firstAttribute="leading" secondItem="xKm-ap-RY3" secondAttribute="leading" id="tL2-Ms-gnm"/>
+                            <constraint firstItem="hTN-It-cpD" firstAttribute="top" secondItem="p34-Eo-nx6" secondAttribute="bottom" id="7sW-jw-Zy7"/>
+                            <constraint firstAttribute="trailing" secondItem="p34-Eo-nx6" secondAttribute="trailing" id="WW6-2F-GJL"/>
+                            <constraint firstItem="p34-Eo-nx6" firstAttribute="leading" secondItem="gVN-H2-upp" secondAttribute="leading" id="uvV-xA-nPh"/>
+                            <constraint firstItem="p34-Eo-nx6" firstAttribute="top" secondItem="L5d-m0-pcO" secondAttribute="bottom" id="ykC-FU-zcI"/>
                         </constraints>
-                        <connections>
-                            <outlet property="imageView" destination="75G-oz-L3E" id="eNz-cW-WJ0"/>
-                            <outlet property="scrollView" destination="n3r-OA-7nw" id="JpH-tL-0yS"/>
-                        </connections>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" title="Growth Chart" id="AO0-IE-pzc"/>
+                    <connections>
+                        <outlet property="graphView" destination="tcg-Rc-pFp" id="Fmb-bC-n6D"/>
+                        <outlet property="scrollView" destination="p34-Eo-nx6" id="Hcf-pw-4jB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2nF-Mw-2xW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

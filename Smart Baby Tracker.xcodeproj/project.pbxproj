@@ -66,9 +66,9 @@
 		42CB9A5718D5731C0097BBE3 /* SBTEncounterTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 42CB9A5618D5731C0097BBE3 /* SBTEncounterTableViewCell.m */; };
 		42CB9A5A18D57C4E0097BBE3 /* SBTEncountersTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 42CB9A5918D57C4E0097BBE3 /* SBTEncountersTVC.m */; };
 		42CB9A5D18D589C30097BBE3 /* SBTVaccinesGivenTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 42CB9A5C18D589C30097BBE3 /* SBTVaccinesGivenTVC.m */; };
+		42DCE7A818E5E66A008709FC /* SBTGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42DCE7A718E5E66A008709FC /* SBTGraphView.m */; };
 		42E7F98C18C267AE00C49072 /* SBTWHODataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E7F98B18C267AE00C49072 /* SBTWHODataSource.m */; };
 		42ED85DA18E0F2B500BF7318 /* SBTGraphViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42ED85D918E0F2B500BF7318 /* SBTGraphViewController.m */; };
-		42ED85DD18E0F5FE00BF7318 /* SBTGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42ED85DC18E0F5FE00BF7318 /* SBTGraphView.m */; };
 		42F66E3618BC581D0099137F /* SBTDTaPScheduleTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F66E3518BC581D0099137F /* SBTDTaPScheduleTest.m */; };
 /* End PBXBuildFile section */
 
@@ -168,12 +168,12 @@
 		42CB9A5918D57C4E0097BBE3 /* SBTEncountersTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTEncountersTVC.m; sourceTree = "<group>"; };
 		42CB9A5B18D589C30097BBE3 /* SBTVaccinesGivenTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTVaccinesGivenTVC.h; sourceTree = "<group>"; };
 		42CB9A5C18D589C30097BBE3 /* SBTVaccinesGivenTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTVaccinesGivenTVC.m; sourceTree = "<group>"; };
+		42DCE7A618E5E66A008709FC /* SBTGraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTGraphView.h; sourceTree = "<group>"; };
+		42DCE7A718E5E66A008709FC /* SBTGraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTGraphView.m; sourceTree = "<group>"; };
 		42E7F98A18C267AE00C49072 /* SBTWHODataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTWHODataSource.h; sourceTree = "<group>"; };
 		42E7F98B18C267AE00C49072 /* SBTWHODataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTWHODataSource.m; sourceTree = "<group>"; };
 		42ED85D818E0F2B500BF7318 /* SBTGraphViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTGraphViewController.h; sourceTree = "<group>"; };
 		42ED85D918E0F2B500BF7318 /* SBTGraphViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTGraphViewController.m; sourceTree = "<group>"; };
-		42ED85DB18E0F5FE00BF7318 /* SBTGraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTGraphView.h; sourceTree = "<group>"; };
-		42ED85DC18E0F5FE00BF7318 /* SBTGraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTGraphView.m; sourceTree = "<group>"; };
 		42F66E3518BC581D0099137F /* SBTDTaPScheduleTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTDTaPScheduleTest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -238,8 +238,8 @@
 				421C747218937535000E3C30 /* Main_iPhone.storyboard */,
 				42ED85D818E0F2B500BF7318 /* SBTGraphViewController.h */,
 				42ED85D918E0F2B500BF7318 /* SBTGraphViewController.m */,
-				42ED85DB18E0F5FE00BF7318 /* SBTGraphView.h */,
-				42ED85DC18E0F5FE00BF7318 /* SBTGraphView.m */,
+				42DCE7A618E5E66A008709FC /* SBTGraphView.h */,
+				42DCE7A718E5E66A008709FC /* SBTGraphView.m */,
 				4220B75518E4C2B500557F27 /* SBTGraphPoint.h */,
 				4220B75618E4C2B500557F27 /* SBTGraphPoint.m */,
 				425D58DF18DE9EC000B0AA3C /* SBTBabyEditDelegate.h */,
@@ -508,7 +508,7 @@
 				426FF5D818C15DB000B66F36 /* SBTDataPoint.m in Sources */,
 				4269473818D6597B00D5B06F /* SBTEncounterEditTVC.m in Sources */,
 				4226B8CD189F5F3B00682A6A /* NSDateComponents+Today.m in Sources */,
-				42ED85DD18E0F5FE00BF7318 /* SBTGraphView.m in Sources */,
+				42DCE7A818E5E66A008709FC /* SBTGraphView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

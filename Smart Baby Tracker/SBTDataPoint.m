@@ -44,28 +44,29 @@
 
 -(NSInteger)translatePercentileToIndex:(SBTPercentile)percentile
 {
+    //typedef enum {P01, P1, P3, P5, P10, P15, P25, P50, P75, P85, P90, P95, P97, P99, P999} SBTPercentile;
     if ([percentileData count] == 15) return (NSInteger)percentile;
     if ([percentileData count] == 10){
         switch (percentile) {
             case P3:
             case P5:
             case P10:
-                return (NSInteger)percentile - 3;
-            default:
                 return (NSInteger)percentile - 2;
+            default:
+                return (NSInteger)percentile - 3;
         }
-    }else{
+    }else{ // count == 9
         switch (percentile) {
             case P3:
             case P5:
             case P10:
-                return (NSInteger)percentile - 4;
+                return (NSInteger)percentile - 2;
             case P25:
             case P50:
             case P75:
                 return (NSInteger)percentile - 3;
             default:
-                return (NSInteger)percentile - 2;
+                return (NSInteger)percentile - 4;
         }
     }
 }
