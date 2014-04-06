@@ -24,6 +24,7 @@
 }
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet SBTGraphView *graphView;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *graphSegmentedControl;
 
 @end
 
@@ -99,6 +100,12 @@
         [sender setTranslation:CGPointZero inView:self.view];
         [self.graphView setNeedsDisplay];
     }
+}
+
+#pragma mark - Target/Action
+
+- (IBAction)graphTypeChanged:(UISegmentedControl *)sender {
+    
 }
 
 #pragma mark - SBTGraphViewDataSource

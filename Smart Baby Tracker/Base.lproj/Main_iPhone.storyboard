@@ -1032,22 +1032,37 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <!--Graph View Controller - Growth Chart-->
         <scene sceneID="GA8-TG-7br">
             <objects>
-                <viewController storyboardIdentifier="Growth Chart" useStoryboardIdentifierAsRestorationIdentifier="YES" id="hNh-is-lQx" customClass="SBTGraphViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Growth Chart" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="hNh-is-lQx" customClass="SBTGraphViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="L5d-m0-pcO"/>
                         <viewControllerLayoutGuide type="bottom" id="hTN-It-cpD"/>
                     </layoutGuides>
                     <view key="view" opaque="NO" contentMode="scaleToFill" id="gVN-H2-upp">
-                        <rect key="frame" x="0.0" y="64" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" alwaysBounceHorizontal="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" minimumZoomScale="0.25" translatesAutoresizingMaskIntoConstraints="NO" id="p34-Eo-nx6">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <view contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tcg-Rc-pFp" customClass="SBTGraphView">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <subviews>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="cOH-fW-BRY">
+                                                <rect key="frame" x="20" y="456" width="280" height="29"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <segments>
+                                                    <segment title="Weight"/>
+                                                    <segment title="Height"/>
+                                                    <segment title="BMI"/>
+                                                    <segment title="Head Circ"/>
+                                                </segments>
+                                                <connections>
+                                                    <action selector="graphTypeChanged:" destination="hNh-is-lQx" eventType="valueChanged" id="iVZ-Ej-b8M"/>
+                                                </connections>
+                                            </segmentedControl>
+                                        </subviews>
                                     </view>
                                 </subviews>
                             </scrollView>
@@ -1061,7 +1076,9 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" title="Growth Chart" id="AO0-IE-pzc"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="graphSegmentedControl" destination="cOH-fW-BRY" id="ERl-Oc-DZI"/>
                         <outlet property="graphView" destination="tcg-Rc-pFp" id="Fmb-bC-n6D"/>
                         <outlet property="scrollView" destination="p34-Eo-nx6" id="Hcf-pw-4jB"/>
                     </connections>
