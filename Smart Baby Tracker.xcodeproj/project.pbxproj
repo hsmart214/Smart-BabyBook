@@ -53,6 +53,7 @@
 		4269473B18D66CB700D5B06F /* SBTUnitsConvertor.m in Sources */ = {isa = PBXBuildFile; fileRef = 4269473A18D66CB700D5B06F /* SBTUnitsConvertor.m */; };
 		426FF5D818C15DB000B66F36 /* SBTDataPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 426FF5D718C15DB000B66F36 /* SBTDataPoint.m */; };
 		426FF5DB18C1A56200B66F36 /* SBTGrowthDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 426FF5DA18C1A56200B66F36 /* SBTGrowthDataSource.m */; };
+		4279754B18F1EC5A00F506C7 /* SBTPreferencesTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4279754A18F1EC5A00F506C7 /* SBTPreferencesTVC.m */; };
 		4287698618CD6F2E007862AB /* SBTChildrenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4287698518CD6F2E007862AB /* SBTChildrenViewController.m */; };
 		4287698918CD77AE007862AB /* SBTBabyEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4287698818CD77AE007862AB /* SBTBabyEditViewController.m */; };
 		42901BD818CB9756002EB9E9 /* SBTMMRScheduleTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42901BD718CB9756002EB9E9 /* SBTMMRScheduleTest.m */; };
@@ -146,6 +147,8 @@
 		426FF5D718C15DB000B66F36 /* SBTDataPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTDataPoint.m; sourceTree = "<group>"; };
 		426FF5D918C1A56200B66F36 /* SBTGrowthDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTGrowthDataSource.h; sourceTree = "<group>"; };
 		426FF5DA18C1A56200B66F36 /* SBTGrowthDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTGrowthDataSource.m; sourceTree = "<group>"; };
+		4279754918F1EC5A00F506C7 /* SBTPreferencesTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTPreferencesTVC.h; sourceTree = "<group>"; };
+		4279754A18F1EC5A00F506C7 /* SBTPreferencesTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTPreferencesTVC.m; sourceTree = "<group>"; };
 		4287698418CD6F2E007862AB /* SBTChildrenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTChildrenViewController.h; sourceTree = "<group>"; };
 		4287698518CD6F2E007862AB /* SBTChildrenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTChildrenViewController.m; sourceTree = "<group>"; };
 		4287698718CD77AE007862AB /* SBTBabyEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTBabyEditViewController.h; sourceTree = "<group>"; };
@@ -265,6 +268,8 @@
 				42C9D55B18DFD22F000B4131 /* SBTLongPressLabel.m */,
 				421C2A6E18E3D12100EE8A19 /* UIColor+SBTColors.h */,
 				421C2A6F18E3D12100EE8A19 /* UIColor+SBTColors.m */,
+				4279754918F1EC5A00F506C7 /* SBTPreferencesTVC.h */,
+				4279754A18F1EC5A00F506C7 /* SBTPreferencesTVC.m */,
 				4248806718944C90009F2837 /* Model */,
 				421C747E18937535000E3C30 /* Images.xcassets */,
 				421C746718937535000E3C30 /* Supporting Files */,
@@ -484,6 +489,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				426FF5DB18C1A56200B66F36 /* SBTGrowthDataSource.m in Sources */,
+				4279754B18F1EC5A00F506C7 /* SBTPreferencesTVC.m in Sources */,
 				42E7F98C18C267AE00C49072 /* SBTWHODataSource.m in Sources */,
 				42B601301895E1E6000C15F4 /* SBTVaccineSchedule.m in Sources */,
 				425D58E218DEA5B100B0AA3C /* SBTEncounterInfoTVC.m in Sources */,
