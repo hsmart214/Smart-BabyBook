@@ -10,7 +10,7 @@
 #import "SBTGrowthDataSource.h"
 @class SBTBaby;
 
-@interface SBTGraphViewController : UIViewController<UIScrollViewDelegate>
+@interface SBTGraphViewController : UIViewController
 
 @property (nonatomic, weak) SBTBaby *baby;
 @property (nonatomic, weak) SBTGrowthDataSource *growthDataSource;

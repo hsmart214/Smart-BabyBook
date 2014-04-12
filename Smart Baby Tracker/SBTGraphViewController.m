@@ -7,146 +7,60 @@
 //
 
 #import "SBTGraphViewController.h"
-#import "SBTGraphView.h"
 #import "SBTBaby.h"
 #import "UIColor+SBTColors.h"
 
 #define VERTICAL_RANGE_ADJUSTMENT 1.1f
 #define GRAPH_RATIO 4.0
 
-@interface SBTGraphViewController ()<SBTGraphViewDataSource, UIGestureRecognizerDelegate>
+#define HEIGHT_TAB_POSITION 0
+#define WEIGHT_TAB_POSITION 1
+#define HEAD_CIRC_TAB_POSITION 2
+#define BMI_TAB_POSITION 3
 
-{
-    CGFloat currentHRange, currentVRange, maxHRange, maxVRange;
-    CGFloat measureMin, measureMax;
-    SBTAgeRange currentAgeRange;
-    CGFloat hScale, vScale;
-}
+@interface SBTGraphViewController ()<UIScrollViewDelegate, UITabBarDelegate>
+
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
-@property (weak, nonatomic) IBOutlet SBTGraphView *graphView;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *graphSegmentedControl;
+@property (strong, nonatomic) UIImageView *graphView;
+@property (weak, nonatomic) IBOutlet UITabBar *tabBar;
 
 @end
 
 @implementation SBTGraphViewController
 
-#pragma mark - Gestures
+# pragma mark - moving targets
 
--(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+-(CGFloat)maxVRange
 {
-    if (([gestureRecognizer isKindOfClass:[UIPinchGestureRecognizer class]] && [otherGestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]]) ||
-        ([gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]] && [otherGestureRecognizer isKindOfClass:[UIPinchGestureRecognizer class]])){
-        return YES;
-    }
-    return NO;
+    return [self.growthDataSource dataMeasurementRange97PercentForParameter:self.parameter
+                                                                  forGender:self.baby.gender] * VERTICAL_RANGE_ADJUSTMENT;
 }
 
-- (void)pinch:(UIPinchGestureRecognizer *)sender {
-    // must remember not to confuse measurement values and points.
-    // all operations on the geometry of the view must be in points
-    // but min and max values for age are kept as DAYS
-    // and min and max values of the measure will be in METRIC UNITS
-    // the axes will display MONTHS and DISPLAY UNITS
-    // this will be tricky to keep straight.
+-(CGFloat)maxHRange
+{
+    return [self.growthDataSource dataAgeRange];
+}
+
+-(CGFloat)currentVMeasurePerPoint
+{
+    // this will be the ratio of metric measurement units per point on the screen at the current zoom scale
+    CGFloat ratio = [self maxVRange] / self.graphView.bounds.size.height;
+    return ratio;
+}
+
+-(CGFloat)currentHMeasurePerPoint
+{
+    CGFloat ratio = [self maxHRange] / self.graphView.bounds.size.width;
+    return ratio;
+}
+
+-(void)setAxesForContentOffset:(CGPoint)offset andScale:(CGFloat)scale
+{
     
-    if (sender.state == UIGestureRecognizerStateBegan || sender.state == UIGestureRecognizerStateChanged) {
-        // adjust the age spread based on the pinch
-        CGFloat ageSpread = currentAgeRange.endAge - currentAgeRange.beginAge;
-        CGFloat ageSpreadDifference = ageSpread - ageSpread / sender.scale;
-        
-        // allocate the new spread on either side of the pinch location proportionally
-        CGPoint loc = [sender locationInView:self.scrollView];
-        CGFloat fracX = loc.x / self.scrollView.bounds.size.width;
-        CGFloat diffX = fracX * ageSpreadDifference;
-        currentAgeRange.beginAge += diffX;
-        currentAgeRange.endAge -= (1 - fracX) * ageSpreadDifference;
-        
-        // adjust the measure spread based on the pinch scale
-        CGFloat measureSpread = measureMax - measureMin;
-        CGFloat measureSpreadDifference = measureSpread - measureSpread / sender.scale;
-        
-        // allocate the new spread on either side of the pinch location proportionally
-        CGFloat fracY = loc.y / self.scrollView.bounds.size.height;
-        CGFloat diffY = fracY * measureSpreadDifference;
-        measureMin += diffY;
-        measureMax -= (1 - fracY) *measureSpreadDifference;
-        
-        // adjust the offset by the proportion of the differences toward the upper left
-        // remember this is in points
-        CGPoint offset = self.scrollView.contentOffset;
-        offset.x += diffX * self.scrollView.bounds.size.width / ageSpread;
-        offset.y += diffY * self.scrollView.bounds.size.height / measureSpread;
-        [self.scrollView setContentOffset:offset];
-        
-        [self.scrollView setZoomScale:self.scrollView.zoomScale * sender.scale];
-        [sender setScale:1.0];
-        [self.graphView setNeedsDisplay];
-    }else if (sender.state == UIGestureRecognizerStateEnded){
-        NSLog(@"Pinch resulted in bounds - W:%1.1f, H:%1.1f", self.graphView.bounds.size.width, self.graphView.bounds.size.height);
-    }
-}
-
-- (void)pan:(UIPanGestureRecognizer *)sender {
-    // this method affects the content offset in points, which will be directly taken from the translation
-    // we will need to update the min and max values for the age and the measure, and shift the axes
-    if (sender.state == UIGestureRecognizerStateBegan || sender.state == UIGestureRecognizerStateChanged) {
-        CGPoint trans = [sender translationInView:self.view];
-        //        if (currentAgeRange.beginAge + trans.x >= 0.0 && currentAgeRange.endAge + trans.x <= maxHRange){
-            currentAgeRange.beginAge += trans.x;
-            currentAgeRange.endAge += trans.x;
-        //        }
-        CGPoint p = self.scrollView.contentOffset;
-        [self.scrollView setContentOffset:CGPointMake(p.x - trans.x, p.y - trans.y)];
-        [sender setTranslation:CGPointZero inView:self.view];
-        [self.graphView setNeedsDisplay];
-    }
 }
 
 #pragma mark - Target/Action
 
-- (IBAction)graphTypeChanged:(UISegmentedControl *)sender {
-    
-}
-
-#pragma mark - SBTGraphViewDataSource
-
--(SBTGender)gender
-{
-    return self.baby.gender;
-}
-
--(NSArray *)dataPointsInRange:(SBTAgeRange)ageRange
-{
-    NSMutableArray *points = [NSMutableArray array];
-    NSArray *encounters = [self.baby encountersList];
-    for (SBTEncounter *enc in encounters){
-        CGFloat age = [self.baby ageInDaysAtEncounter:enc].day;
-        if (age <= ageRange.beginAge && age <= ageRange.endAge) {
-            [points addObject:enc];
-        }
-    }
-    return points;
-}
-
--(CGFloat)valueForPercentile:(SBTPercentile)percentile
-                      forAge:(CGFloat)age
-                  forMeasure:(SBTGrowthParameter)parameter
-{
-    return [self.growthDataSource dataForPercentile:percentile
-                                             forAge:age
-                                          parameter:parameter
-                                          andGender:self.baby.gender];
-}
-
--(SBTAgeRange)horizRange
-{
-    return currentAgeRange;
-}
-
--(CGFloat)vertRange
-{
-    return measureMax - measureMin;
-}
 
 #pragma mark - UIScrollView Delegate
 
@@ -155,19 +69,82 @@
     return self.graphView;
 }
 
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    [self setAxesForContentOffset:scrollView.contentOffset andScale:scrollView.contentScaleFactor];
+}
+
+-(void)scrollViewDidZoom:(UIScrollView *)scrollView
+{
+    [self setAxesForContentOffset:scrollView.contentOffset andScale:scrollView.contentScaleFactor];
+}
+
+-(void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(CGFloat)scale
+{
+    NSLog (@"Zoom scale: %1.2f", scale);
+    NSLog (@"V: %1.2f, H: %1.2f", [self currentVMeasurePerPoint], [self currentHMeasurePerPoint]);
+}
+
+#pragma mark - UITabBar Delegate
+
+-(void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
+{
+    NSInteger pos = [tabBar.items indexOfObject:item];
+    switch (pos) {
+        case HEIGHT_TAB_POSITION:
+            self.parameter = SBTStature;
+            [self drawPercentiles];
+            break;
+        case WEIGHT_TAB_POSITION:
+            self.parameter = SBTWeight;
+            [self drawPercentiles];
+            break;
+        case HEAD_CIRC_TAB_POSITION:
+            self.parameter = SBTHeadCircumference;
+            [self drawPercentiles];
+            break;
+        case BMI_TAB_POSITION:
+            self.parameter = SBTBMI;
+            [self drawPercentiles];
+            break;
+        default:
+            break;
+    }
+}
+
+-(void)selectParameter:(SBTGrowthParameter)parameter
+{
+    switch (parameter) {
+        case SBTStature:
+        case SBTLength:
+            [self.tabBar setSelectedItem:self.tabBar.items[HEIGHT_TAB_POSITION]];
+            break;
+        case SBTWeight:
+            [self.tabBar setSelectedItem:self.tabBar.items[WEIGHT_TAB_POSITION]];
+            break;
+        case SBTHeadCircumference:
+            [self.tabBar setSelectedItem:self.tabBar.items[HEAD_CIRC_TAB_POSITION]];
+            break;
+        case SBTBMI:
+            [self.tabBar setSelectedItem:self.tabBar.items[BMI_TAB_POSITION]];
+            break;
+    }
+}
+
 #pragma mark - View Life Cycle
 
 -(void)viewDidLayoutSubviews
 {
-    [(UIImageView *)[self.graphView.subviews firstObject] removeFromSuperview];
-    [self setUpOnce];
+    [self drawPercentiles];
 }
 
--(void)setUpOnce
+-(void)drawPercentiles
 {
-    self.scrollView.delegate = self;
-    vScale = [self vertRange] / (self.scrollView.bounds.size.height * GRAPH_RATIO);
-    hScale = [self horizRange].endAge / (self.scrollView.bounds.size.width * GRAPH_RATIO);
+    for (UIView *view in self.scrollView.subviews){
+        [view removeFromSuperview];
+    }
+    CGFloat vScale = [self maxVRange] / (self.scrollView.bounds.size.height * GRAPH_RATIO);
+    CGFloat hScale = [self maxHRange] / (self.scrollView.bounds.size.width * GRAPH_RATIO);
     
     // create an offscreen image and draw a 4x representation of the growth curve percentiles
     CGSize imageSize = CGSizeMake(self.scrollView.bounds.size.width * GRAPH_RATIO, self.scrollView.bounds.size.height * GRAPH_RATIO);
@@ -189,12 +166,12 @@
         }
         CGFloat x = 0.0;
         CGFloat maxY = self.scrollView.bounds.size.height * GRAPH_RATIO;
-        CGFloat measurement = [self valueForPercentile:p forAge:0.0 forMeasure:self.parameter];
+        CGFloat measurement = [self.growthDataSource dataForPercentile:p forAge:0.0 parameter:self.parameter andGender:self.baby.gender];
         CGFloat y = maxY - measurement / vScale;
         [path moveToPoint:CGPointMake(x, y)];
         while (x < imageSize.width){
             CGFloat age = x * hScale;
-            y = maxY - [self valueForPercentile:p forAge:age forMeasure:self.parameter] / vScale;
+            y = maxY - [self.growthDataSource dataForPercentile:p forAge:age parameter:self.parameter andGender:self.baby.gender] / vScale;
             [path addLineToPoint:CGPointMake(x, y)];
             x += 1.0;
         }
@@ -202,46 +179,23 @@
     }
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    [self.graphView setFrame:CGRectMake(0.0, 0.0, image.size.width, image.size.height)];
-    
-    [self.graphView addSubview:[[UIImageView alloc] initWithImage:image]];
+    self.graphView = [[UIImageView alloc] initWithImage:image];
+    [self.scrollView addSubview:self.graphView];
     self.scrollView.contentSize = image.size;
     [self.scrollView setZoomScale:1.0/GRAPH_RATIO];
     UIGraphicsEndImageContext();
-    [self.graphView setNeedsDisplay];
 }
 
 
 -(void)viewDidLoad
 {
     [super viewDidLoad];
-    currentVRange = [self.growthDataSource dataMeasurementRange97PercentForParameter:self.parameter
-                                                                           forGender:self.baby.gender] * VERTICAL_RANGE_ADJUSTMENT;
-    currentHRange = [self.growthDataSource dataAgeRange];
-    maxHRange = currentHRange;
-    maxVRange = currentVRange;
-    currentAgeRange.beginAge = 0.0;
-    currentAgeRange.endAge = currentHRange;
-    measureMin = 0.0;
-    measureMax = maxVRange;
-    
-    [self.graphView setDataSource:self];
-    [self.graphView setMeasure:self.parameter];
-    
-    for (UIGestureRecognizer *recog in self.scrollView.gestureRecognizers){
-        if ([recog isKindOfClass:[UIPanGestureRecognizer class]]){
-            [self.scrollView removeGestureRecognizer:recog];
-            UIPanGestureRecognizer *pangr = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
-            [pangr setDelegate:self];
-            [self.scrollView addGestureRecognizer:pangr];
-        }else if ([recog isKindOfClass:[UIPinchGestureRecognizer class]]){
-            [self.scrollView removeGestureRecognizer:recog];
-            UIPinchGestureRecognizer *pinchr = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(pinch:)];
-            [pinchr setDelegate:self];
-            [self.scrollView addGestureRecognizer:pinchr];
-        }
-    }
+    [self selectParameter:self.parameter];
+}
 
+-(void)dealloc
+{
+    self.graphView = nil;
 }
 
 @end
