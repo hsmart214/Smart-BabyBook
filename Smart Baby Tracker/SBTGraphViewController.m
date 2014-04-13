@@ -22,6 +22,7 @@
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) UIImageView *graphView;
+@property (weak, nonatomic) IBOutlet UIImageView *overlayView;
 @property (weak, nonatomic) IBOutlet UITabBar *tabBar;
 
 @end
@@ -44,19 +45,37 @@
 -(CGFloat)currentVMeasurePerPoint
 {
     // this will be the ratio of metric measurement units per point on the screen at the current zoom scale
-    CGFloat ratio = [self maxVRange] / self.graphView.bounds.size.height;
+    CGFloat ratio = [self maxVRange] / self.graphView.bounds.size.height * self.scrollView.zoomScale;
     return ratio;
 }
 
 -(CGFloat)currentHMeasurePerPoint
 {
-    CGFloat ratio = [self maxHRange] / self.graphView.bounds.size.width;
+    CGFloat ratio = [self maxHRange] / self.graphView.bounds.size.width * self.scrollView.zoomScale;
     return ratio;
 }
 
--(void)setAxesForContentOffset:(CGPoint)offset andScale:(CGFloat)scale
+-(void)adjustAxesForContentOffset:(CGPoint)offset andScale:(CGFloat)scale
 {
+    // axes will be drawn for display units based on user preferences
+    // draw these into an image context, then set the image as the UIImage of the overlayView
+    UIGraphicsBeginImageContextWithOptions(self.overlayView.bounds.size, NO, 0.0);
     
+    CGFloat yExtent = self.overlayView.bounds.size.height;
+    CGFloat xExtent = self.overlayView.bounds.size.width;
+    
+    UIBezierPath *path = [[UIBezierPath alloc] init];
+    [path setLineWidth:1.0];
+    [path moveToPoint:CGPointMake(0, yExtent - 10)];
+    [path addLineToPoint:CGPointMake(xExtent, yExtent - 10)];
+    [path moveToPoint:CGPointMake(xExtent - 10, 0)];
+    [path addLineToPoint:CGPointMake(xExtent - 10, yExtent)];
+    [[UIColor lightGrayColor] setStroke];
+    [path stroke];
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    self.overlayView.image = image;
+    UIGraphicsEndImageContext();
 }
 
 #pragma mark - Target/Action
@@ -71,12 +90,12 @@
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    [self setAxesForContentOffset:scrollView.contentOffset andScale:scrollView.contentScaleFactor];
+    [self adjustAxesForContentOffset:scrollView.contentOffset andScale:scrollView.contentScaleFactor];
 }
 
 -(void)scrollViewDidZoom:(UIScrollView *)scrollView
 {
-    [self setAxesForContentOffset:scrollView.contentOffset andScale:scrollView.contentScaleFactor];
+    [self adjustAxesForContentOffset:scrollView.contentOffset andScale:scrollView.contentScaleFactor];
 }
 
 -(void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(CGFloat)scale
@@ -154,10 +173,13 @@
     [[UIColor whiteColor] setFill];
     [path fill];
     path = nil;
-    for (NSNumber *n in @[@(P5), @(P10), @(P25), @(P50), @(P75), @(P90), @(P95)]){
+    NSMutableArray *pcts = [NSMutableArray arrayWithArray: @[@(P5), @(P10), @(P25), @(P50), @(P75), @(P90), @(P95)]];
+    if (self.parameter == SBTBMI) [pcts insertObject:@(P85) atIndex:5];
+    for (NSNumber *n in pcts){
         SBTPercentile p = (SBTPercentile)[n integerValue];
         UIBezierPath *path = [[UIBezierPath alloc] init];
         [path setLineWidth:2.0];
+        if ([n integerValue] == (NSInteger)P50 || [n integerValue] == (NSInteger)P85) [path setLineWidth:4.0];
         [path setLineJoinStyle:kCGLineJoinRound];
         if ([self.baby gender] == SBTMale){
             [[UIColor SBTBabyBlue] setStroke];

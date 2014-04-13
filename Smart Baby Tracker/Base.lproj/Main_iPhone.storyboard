@@ -1254,6 +1254,10 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                     <outlet property="delegate" destination="J9F-Wc-rqO" id="HEJ-UD-o2X"/>
                                 </connections>
                             </scrollView>
+                            <view opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IPt-pY-MoW" customClass="UIImageView">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </view>
                             <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hLJ-zh-RRC">
                                 <rect key="frame" x="0.0" y="455" width="320" height="49"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -1276,9 +1280,13 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                             <constraint firstAttribute="trailing" secondItem="2aI-vR-yb7" secondAttribute="trailing" id="4Sc-52-tjw"/>
                             <constraint firstAttribute="centerX" secondItem="hLJ-zh-RRC" secondAttribute="centerX" id="5DG-n2-YBG"/>
                             <constraint firstItem="hLJ-zh-RRC" firstAttribute="top" secondItem="2aI-vR-yb7" secondAttribute="bottom" id="C4l-pE-DXT"/>
+                            <constraint firstItem="IPt-pY-MoW" firstAttribute="leading" secondItem="Xpd-1V-KKz" secondAttribute="leading" id="Ewb-V1-XXA"/>
                             <constraint firstItem="hLJ-zh-RRC" firstAttribute="leading" secondItem="Xpd-1V-KKz" secondAttribute="leading" id="QOP-BE-5yf"/>
                             <constraint firstItem="2aI-vR-yb7" firstAttribute="leading" secondItem="Xpd-1V-KKz" secondAttribute="leading" id="RWP-SV-Ik2"/>
+                            <constraint firstItem="hLJ-zh-RRC" firstAttribute="top" secondItem="IPt-pY-MoW" secondAttribute="bottom" id="Sbs-NG-aDj"/>
+                            <constraint firstAttribute="trailing" secondItem="IPt-pY-MoW" secondAttribute="trailing" id="WLb-om-DuE"/>
                             <constraint firstItem="vZa-2H-KJ9" firstAttribute="top" secondItem="hLJ-zh-RRC" secondAttribute="bottom" id="Wkp-Re-mh2"/>
+                            <constraint firstItem="IPt-pY-MoW" firstAttribute="top" secondItem="Frf-T0-u5d" secondAttribute="bottom" id="m5h-xT-95R"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
@@ -1286,6 +1294,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                     <navigationItem key="navigationItem" title="Growth Chart" id="X4X-Ax-o06"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="overlayView" destination="IPt-pY-MoW" id="2Hj-hf-fLe"/>
                         <outlet property="scrollView" destination="2aI-vR-yb7" id="eM6-G8-ZkW"/>
                         <outlet property="tabBar" destination="hLJ-zh-RRC" id="vGX-kW-fzT"/>
                     </connections>
