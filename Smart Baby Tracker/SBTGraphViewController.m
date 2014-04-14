@@ -24,17 +24,22 @@
 @property (strong, nonatomic) UIImageView *graphView;
 @property (weak, nonatomic) IBOutlet UIImageView *overlayView;
 @property (weak, nonatomic) IBOutlet UITabBar *tabBar;
+@property (readonly) CGFloat maxVRange;
 
 @end
 
 @implementation SBTGraphViewController
+@synthesize maxVRange = _maxVRange;
 
 # pragma mark - moving targets
 
 -(CGFloat)maxVRange
 {
-    return [self.growthDataSource dataMeasurementRange97PercentForParameter:self.parameter
-                                                                  forGender:self.baby.gender] * VERTICAL_RANGE_ADJUSTMENT;
+    if (!_maxVRange){
+        _maxVRange = [self.growthDataSource dataMeasurementRange97PercentForParameter:self.parameter
+                                                                      forGender:self.baby.gender] * VERTICAL_RANGE_ADJUSTMENT;
+    }
+    return _maxVRange;
 }
 
 -(CGFloat)maxHRange
@@ -44,15 +49,25 @@
 
 -(CGFloat)currentVMeasurePerPoint
 {
-    // this will be the ratio of metric measurement units per point on the screen at the current zoom scale
-    CGFloat ratio = [self maxVRange] / self.graphView.bounds.size.height * self.scrollView.zoomScale;
+    CGFloat ratio = [self maxVRange] / self.graphView.bounds.size.height;
     return ratio;
 }
 
 -(CGFloat)currentHMeasurePerPoint
 {
-    CGFloat ratio = [self maxHRange] / self.graphView.bounds.size.width * self.scrollView.zoomScale;
+    CGFloat ratio = [self maxHRange] / self.graphView.bounds.size.width;
     return ratio;
+}
+
+-(CGRect)currentMeasureVisibleExtents
+{
+    // The tricky part is that this is a rect in the screen oriented coordinates - x,y == TOP LEFT!!!
+    // So... the y represents the max measure.  The min is given by (maxVRange - y - size.height)
+    CGRect ptRect = [self.graphView convertRect:self.overlayView.bounds fromView:self.overlayView];
+    CGFloat hRatio = [self currentHMeasurePerPoint];
+    CGFloat vRatio = [self currentVMeasurePerPoint];
+    CGRect mRect = CGRectMake(ptRect.origin.x * hRatio, ptRect.origin.y * vRatio, ptRect.size.width * hRatio, ptRect.size.height * vRatio);
+    return mRect;
 }
 
 -(void)adjustAxesForContentOffset:(CGPoint)offset andScale:(CGFloat)scale
@@ -73,6 +88,12 @@
     [[UIColor lightGrayColor] setStroke];
     [path stroke];
     
+    // get the beginning and end of visible portions of each axis
+    
+    CGRect r = [self currentMeasureVisibleExtents];
+    CGPoint orig = CGPointMake(r.origin.x, self.maxVRange - r.origin.y - r.size.height);
+    CGPoint maxPt = CGPointMake(orig.x + r.size.width, orig.y + r.size.height);
+    
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     self.overlayView.image = image;
     UIGraphicsEndImageContext();
@@ -91,6 +112,9 @@
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     [self adjustAxesForContentOffset:scrollView.contentOffset andScale:scrollView.contentScaleFactor];
+    CGRect r = [self currentMeasureVisibleExtents];
+    CGFloat minMeasure = self.maxVRange - r.origin.y - r.size.height;
+    NSLog(@"Current visible extents: origin -> %1.1f, %1.1f \n range -> %1.1f, %1.1f", r.origin.x, minMeasure, r.size.width, r.size.height);
 }
 
 -(void)scrollViewDidZoom:(UIScrollView *)scrollView
@@ -100,8 +124,7 @@
 
 -(void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(CGFloat)scale
 {
-    NSLog (@"Zoom scale: %1.2f", scale);
-    NSLog (@"V: %1.2f, H: %1.2f", [self currentVMeasurePerPoint], [self currentHMeasurePerPoint]);
+    [self adjustAxesForContentOffset:scrollView.contentOffset andScale:scale];
 }
 
 #pragma mark - UITabBar Delegate
