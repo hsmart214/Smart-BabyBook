@@ -193,8 +193,8 @@
             }
     }
     SBTDataPoint *pt1, *pt2;
-    int pivot = [dp count] / 2;
-    int delta = pivot / 2;
+    NSInteger pivot = [dp count] / 2;
+    NSInteger delta = pivot / 2;
     pt1 = dp[pivot];
     pt2 = pt1;
     while (delta >= 1) {

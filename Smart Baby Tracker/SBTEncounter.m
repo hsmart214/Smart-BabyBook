@@ -189,7 +189,7 @@
     [descr appendString:[NSString stringWithFormat:@"Length: %1.1f cm\n", self.length]];
     [descr appendString:[NSString stringWithFormat:@"Weight: %1.1f kg\n", self.weight]];
     [descr appendString:[NSString stringWithFormat:@"Head circ: %1.1f cm\n", self.headCirc]];
-    [descr appendString:[NSString stringWithFormat:@"Vaccines: %d", [self.vaccines count]]];
+    [descr appendString:[NSString stringWithFormat:@"Vaccines: %lu", (unsigned long)[self.vaccines count]]];
     return descr;
 }
 

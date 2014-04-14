@@ -21,5 +21,10 @@
     return [UIColor colorWithRed:1.0 green:200.0/255.0 blue:230.0/255.0 alpha:1.0];
 }
 
++(instancetype)SBTSuperLightGray
+{
+    return [UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1.0];
+}
+
 
 @end

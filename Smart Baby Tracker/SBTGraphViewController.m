@@ -76,23 +76,50 @@
     // draw these into an image context, then set the image as the UIImage of the overlayView
     UIGraphicsBeginImageContextWithOptions(self.overlayView.bounds.size, NO, 0.0);
     
-    CGFloat yExtent = self.overlayView.bounds.size.height;
-    CGFloat xExtent = self.overlayView.bounds.size.width;
+//    CGFloat yExtent = self.overlayView.bounds.size.height;
+//    CGFloat xExtent = self.overlayView.bounds.size.width;
     
     UIBezierPath *path = [[UIBezierPath alloc] init];
     [path setLineWidth:1.0];
-    [path moveToPoint:CGPointMake(0, yExtent - 10)];
-    [path addLineToPoint:CGPointMake(xExtent, yExtent - 10)];
-    [path moveToPoint:CGPointMake(xExtent - 10, 0)];
-    [path addLineToPoint:CGPointMake(xExtent - 10, yExtent)];
-    [[UIColor lightGrayColor] setStroke];
-    [path stroke];
+//    [path moveToPoint:CGPointMake(0, yExtent - 10)];
+//    [path addLineToPoint:CGPointMake(xExtent, yExtent - 10)];
+//    [path moveToPoint:CGPointMake(xExtent - 10, 0)];
+//    [path addLineToPoint:CGPointMake(xExtent - 10, yExtent)];
+//    [[UIColor lightGrayColor] setStroke];
+//    [path stroke];
     
-    // get the beginning and end of visible portions of each axis
+    // get the beginning and end of visible portions of each axis in METRIC MEASUREMENT UNITS
     
     CGRect r = [self currentMeasureVisibleExtents];
     CGPoint orig = CGPointMake(r.origin.x, self.maxVRange - r.origin.y - r.size.height);
     CGPoint maxPt = CGPointMake(orig.x + r.size.width, orig.y + r.size.height);
+    //TODO: Move the crosshair code into the scroll view image
+    // and only draw labels along the edges here
+    // draw faint crosshair lines every year and every 10 kg
+    [[UIColor SBTSuperLightGray] setStroke];
+    [path setLineWidth:0.5];
+    
+    for (int y = 5; y < maxPt.y; y += 5){
+        if (y > orig.y){
+            CGFloat loc = (y - orig.y) / ([self currentVMeasurePerPoint] / self.scrollView.zoomScale);
+            CGPoint p = CGPointMake(0.0, loc);
+            [path moveToPoint:p];
+            [path addLineToPoint:CGPointMake(self.overlayView.bounds.size.width, p.y)];
+        }
+        [path stroke];
+    }
+    
+    for (int x = 1; x < 20; x++){
+        CGFloat days = x * 365.25;
+        if (days > orig.x && days < maxPt.x){
+            CGFloat loc = (days - orig.x) / ([self currentHMeasurePerPoint] / self.scrollView.zoomScale);
+            CGPoint p = CGPointMake(loc, 0.0);
+            [path moveToPoint:p];
+            [path addLineToPoint:CGPointMake(p.x, self.overlayView.bounds.size.height)];
+        }
+        [path stroke];
+    }
+    
     
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     self.overlayView.image = image;
@@ -112,9 +139,9 @@
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     [self adjustAxesForContentOffset:scrollView.contentOffset andScale:scrollView.contentScaleFactor];
-    CGRect r = [self currentMeasureVisibleExtents];
-    CGFloat minMeasure = self.maxVRange - r.origin.y - r.size.height;
-    NSLog(@"Current visible extents: origin -> %1.1f, %1.1f \n range -> %1.1f, %1.1f", r.origin.x, minMeasure, r.size.width, r.size.height);
+//    CGRect r = [self currentMeasureVisibleExtents];
+//    CGFloat minMeasure = self.maxVRange - r.origin.y - r.size.height;
+//    NSLog(@"Current visible extents: origin -> %1.1f, %1.1f \n range -> %1.1f, %1.1f", r.origin.x, minMeasure, r.size.width, r.size.height);
 }
 
 -(void)scrollViewDidZoom:(UIScrollView *)scrollView

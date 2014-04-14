@@ -12,5 +12,6 @@
 
 +(instancetype)SBTBabyBlue;
 +(instancetype)SBTBabyPink;
++(instancetype)SBTSuperLightGray;
 
 @end
