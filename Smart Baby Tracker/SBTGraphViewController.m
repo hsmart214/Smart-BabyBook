@@ -9,6 +9,7 @@
 #import "SBTGraphViewController.h"
 #import "SBTBaby.h"
 #import "UIColor+SBTColors.h"
+#import "SBTUnitsConvertor.h"
 
 #define VERTICAL_RANGE_ADJUSTMENT 1.1f
 #define GRAPH_RATIO 4.0
@@ -99,26 +100,26 @@
     [[UIColor SBTSuperLightGray] setStroke];
     [path setLineWidth:0.5];
     
-    for (int y = 5; y < maxPt.y; y += 5){
-        if (y > orig.y){
-            CGFloat loc = (y - orig.y) / ([self currentVMeasurePerPoint] / self.scrollView.zoomScale);
-            CGPoint p = CGPointMake(0.0, loc);
-            [path moveToPoint:p];
-            [path addLineToPoint:CGPointMake(self.overlayView.bounds.size.width, p.y)];
-        }
-        [path stroke];
-    }
-    
-    for (int x = 1; x < 20; x++){
-        CGFloat days = x * 365.25;
-        if (days > orig.x && days < maxPt.x){
-            CGFloat loc = (days - orig.x) / ([self currentHMeasurePerPoint] / self.scrollView.zoomScale);
-            CGPoint p = CGPointMake(loc, 0.0);
-            [path moveToPoint:p];
-            [path addLineToPoint:CGPointMake(p.x, self.overlayView.bounds.size.height)];
-        }
-        [path stroke];
-    }
+//    for (int y = 5; y < maxPt.y; y += 5){
+//        if (y > orig.y){
+//            CGFloat loc = (y - orig.y) / ([self currentVMeasurePerPoint] / self.scrollView.zoomScale);
+//            CGPoint p = CGPointMake(0.0, loc);
+//            [path moveToPoint:p];
+//            [path addLineToPoint:CGPointMake(self.overlayView.bounds.size.width, p.y)];
+//        }
+//        [path stroke];
+//    }
+//    
+//    for (int x = 1; x < 20; x++){
+//        CGFloat days = x * 365.25;
+//        if (days > orig.x && days < maxPt.x){
+//            CGFloat loc = (days - orig.x) / ([self currentHMeasurePerPoint] / self.scrollView.zoomScale);
+//            CGPoint p = CGPointMake(loc, 0.0);
+//            [path moveToPoint:p];
+//            [path addLineToPoint:CGPointMake(p.x, self.overlayView.bounds.size.height)];
+//        }
+//        [path stroke];
+//    }
     
     
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
@@ -222,6 +223,37 @@
     UIBezierPath *path = [UIBezierPath bezierPathWithRect:rect];
     [[UIColor whiteColor] setFill];
     [path fill];
+    
+    // draw the background grid
+    
+    [[UIColor SBTSuperLightGray] setStroke];
+    [path setLineWidth:2.0];
+    
+    // every year for child, every 2 mos for infant
+    
+    CGFloat spacing = 2 * 30.43;
+    if ([self maxHRange] > (365.25 * 5.1)) spacing = 365.25;
+    CGFloat age = spacing;
+    while (age < [self maxHRange]) {
+        
+        CGFloat loc = (age / [self maxHRange]) * imageSize.width;
+        CGPoint p = CGPointMake(loc, 0.0);
+        [path moveToPoint:p];
+        [path addLineToPoint:CGPointMake(p.x, imageSize.height)];
+        
+        [path stroke];
+        age += spacing;
+    }
+    
+    // now for each measure there is a different scale of grid line
+    //          Metric          Standard
+    // Wt       5 kg            10 lb
+    // Len      5 cm            2 in
+    // Ht       10 cm           4 in
+    // BMI      None
+    // HC       1 cm            0.5 in
+
+    
     path = nil;
     NSMutableArray *pcts = [NSMutableArray arrayWithArray: @[@(P5), @(P10), @(P25), @(P50), @(P75), @(P90), @(P95)]];
     if (self.parameter == SBTBMI) [pcts insertObject:@(P85) atIndex:5];
