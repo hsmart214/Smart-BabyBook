@@ -91,9 +91,9 @@
     
     // get the beginning and end of visible portions of each axis in METRIC MEASUREMENT UNITS
     
-    CGRect r = [self currentMeasureVisibleExtents];
-    CGPoint orig = CGPointMake(r.origin.x, self.maxVRange - r.origin.y - r.size.height);
-    CGPoint maxPt = CGPointMake(orig.x + r.size.width, orig.y + r.size.height);
+//    CGRect r = [self currentMeasureVisibleExtents];
+//    CGPoint orig = CGPointMake(r.origin.x, self.maxVRange - r.origin.y - r.size.height);
+//    CGPoint maxPt = CGPointMake(orig.x + r.size.width, orig.y + r.size.height);
     //TODO: Move the crosshair code into the scroll view image
     // and only draw labels along the edges here
     // draw faint crosshair lines every year and every 10 kg
@@ -159,27 +159,25 @@
 
 -(void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
 {
+    _maxVRange = 0.0;   // this forces the recalculation of same
     NSInteger pos = [tabBar.items indexOfObject:item];
     switch (pos) {
         case HEIGHT_TAB_POSITION:
             self.parameter = SBTStature;
-            [self drawPercentiles];
             break;
         case WEIGHT_TAB_POSITION:
             self.parameter = SBTWeight;
-            [self drawPercentiles];
             break;
         case HEAD_CIRC_TAB_POSITION:
             self.parameter = SBTHeadCircumference;
-            [self drawPercentiles];
             break;
         case BMI_TAB_POSITION:
             self.parameter = SBTBMI;
-            [self drawPercentiles];
             break;
         default:
             break;
     }
+    [self drawPercentiles];
 }
 
 -(void)selectParameter:(SBTGrowthParameter)parameter
@@ -252,6 +250,48 @@
     // Ht       10 cm           4 in
     // BMI      None
     // HC       1 cm            0.5 in
+    
+    CGFloat stepSize;
+    switch (self.parameter) {
+        case SBTWeight:
+            if ([[SBTUnitsConvertor preferredUnitForKey:MASS_UNIT_KEY] isEqualToString:K_KILOGRAMS]){
+                stepSize = 5.0;
+            }else{
+                stepSize = 10.0 / POUNDS_PER_KILOGRAM;
+            }
+            break;
+        case SBTLength:
+        case SBTStature:
+            if ([[SBTUnitsConvertor preferredUnitForKey:LENGTH_UNIT_KEY] isEqualToString:K_CENTIMETERS]){
+                stepSize = 5.0;
+            }else{
+                stepSize = 2.0 / INCHES_PER_CENTIMETER;
+            }
+            break;
+        case SBTHeadCircumference:
+            if ([[SBTUnitsConvertor preferredUnitForKey:LENGTH_UNIT_KEY] isEqualToString:K_CENTIMETERS]){
+                stepSize = 10.0;
+            }else{
+                stepSize = 4.0 / INCHES_PER_CENTIMETER;
+            }
+            break;
+        case SBTBMI:
+            stepSize = -1.0;
+        default:
+            break;
+    }
+    if (stepSize > 0.0){
+        CGFloat measure = stepSize;
+        while (measure < [self maxVRange]) {
+            CGFloat loc = (measure / [self maxVRange]) * imageSize.height;
+            CGPoint p = CGPointMake(0.0, loc);
+            [path moveToPoint:p];
+            [path addLineToPoint:CGPointMake(imageSize.width, loc)];
+            
+            [path stroke];
+            measure += stepSize;
+        }
+    }
 
     
     path = nil;

@@ -30,6 +30,7 @@ typedef enum {P01, P1, P3, P5, P10, P15, P25, P50, P75, P85, P90, P95, P97, P99,
                  andGender:(SBTGender)gender;
 
 -(double)dataAgeRange;
+-(double)dataFloorForParameter:(SBTGrowthParameter)parameter;
 -(double)dataMeasurementRange97PercentForParameter:(SBTGrowthParameter)parameter forGender:(SBTGender)gender;
 
 +(instancetype)sharedDataSource;

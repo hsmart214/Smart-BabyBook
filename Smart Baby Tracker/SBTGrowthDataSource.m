@@ -70,13 +70,20 @@
     dataFileURL = [cacheURL URLByAppendingPathComponent:fileString];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         BOOL success = [plist writeToURL:dataFileURL atomically:YES];
-        NSLog(@"Wrote data file?: %d", success);
+        NSLog(@"Wrote data file?: %@", success ? @"YES" : @"NO");
     });
     return data;
 }
 
 -(double)dataAgeRange
 {
+    NSAssert(NO, @"Should not be calling the superclass method for SBTGrowthDataSource");
+    return 0.0;
+}
+
+-(double)dataFloorForParameter:(SBTGrowthParameter)parameter
+{
+    NSAssert(NO, @"Should not be calling the superclass method for SBTGrowthDataSource");
     return 0.0;
 }
 
