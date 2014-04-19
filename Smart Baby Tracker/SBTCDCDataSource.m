@@ -154,18 +154,19 @@
                  parameter:(SBTGrowthParameter)parameter
                  andGender:(SBTGender)gender
 {
+    BOOL child = age > self.infantAgeMaximum;
     NSArray *dp;
     switch (gender) {
         case SBTFemale:
             switch (parameter) {
                 case SBTLength:
-                    dp = self.girlLengthData;
+                    dp = child ? self.girlStatureData : self.girlLengthData;
                     break;
                 case SBTStature:
-                    dp = self.girlStatureData;
+                    dp = child ? self.girlStatureData : self.girlLengthData;
                     break;
                 case SBTWeight:
-                    dp = self.girlWeightData;
+                    dp = child ? self.girlWeightData : self.infantGirlWeightData;
                     break;
                 case SBTHeadCircumference:
                     dp = self.girlHCData;
@@ -177,13 +178,13 @@
         case SBTMale:
             switch (parameter) {
                 case SBTLength:
-                    dp = self.boyLengthData;
+                    dp = child ? self.boyStatureData : self.boyLengthData;
                     break;
                 case SBTStature:
-                    dp = self.boyStatureData;
+                    dp = child ? self.boyStatureData : self.boyLengthData;
                     break;
                 case SBTWeight:
-                    dp = self.boyWeightData;
+                    dp = child ? self.boyWeightData : self.infantBoyWeightData;
                     break;
                 case SBTHeadCircumference:
                     dp = self.boyHCData;
@@ -196,7 +197,6 @@
     NSInteger pivot = [dp count] / 2;
     NSInteger delta = pivot / 2;
     pt1 = dp[pivot];
-    pt2 = pt1;
     while (delta >= 1) {
         if ([pt1 ageInDays] < age) {
             pivot += delta;
@@ -222,20 +222,21 @@
     return d + frac * diff;
 }
 
--(double)dataMeasurementRange97PercentForParameter:(SBTGrowthParameter)parameter forGender:(SBTGender)gender
+-(double)dataMeasurementRange97PercentForParameter:(SBTGrowthParameter)parameter
+                                         forGender:(SBTGender)gender
+                                          forChild:(BOOL)child
 {
+    NSInteger infantMaxIndex = rint(self.infantAgeMaximum / DAYS_PER_MONTH) - 1;
     SBTDataPoint *dp;
     switch (gender) {
         case SBTFemale:
             switch (parameter) {
                 case SBTLength:
-                    dp = [self.girlLengthData lastObject];
-                    break;
                 case SBTStature:
-                    dp = [self.girlStatureData lastObject];
+                    dp = child ? [self.girlStatureData lastObject] : self.girlLengthData[infantMaxIndex];
                     break;
                 case SBTWeight:
-                    dp = [self.girlWeightData lastObject];
+                    dp = child ? [self.girlWeightData lastObject] : self.infantGirlWeightData[infantMaxIndex];
                     break;
                 case SBTHeadCircumference:
                     dp = [self.girlHCData lastObject];
@@ -247,13 +248,11 @@
         case SBTMale:
             switch (parameter) {
                 case SBTLength:
-                    dp = [self.boyLengthData lastObject];
-                    break;
                 case SBTStature:
-                    dp = [self.boyStatureData lastObject];
+                    dp = child ? [self.boyStatureData lastObject] : self.boyLengthData[infantMaxIndex];
                     break;
                 case SBTWeight:
-                    dp = [self.boyWeightData lastObject];
+                    dp = child ? [self.boyWeightData lastObject] : self.infantBoyWeightData[infantMaxIndex];
                     break;
                 case SBTHeadCircumference:
                     dp = [self.boyHCData lastObject];

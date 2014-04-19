@@ -83,8 +83,9 @@
     if ([segue.identifier isEqualToString:@"showGrowthChart"]){
         SBTGraphViewController *dest = segue.destinationViewController;
         dest.baby = self.baby;
-        dest.growthDataSource = [SBTCDCDataSource sharedDataSource];
+        dest.growthDataSource = [SBTGrowthDataSource growthDataSourceForAge:[self.baby ageDDAtDate:[NSDate date]].day];
         dest.parameter = SBTWeight;
+        // no need to set childChart to NO here - it is the default value
     }
 }
 

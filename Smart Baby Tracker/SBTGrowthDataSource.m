@@ -8,6 +8,14 @@
 
 #import "SBTGrowthDataSource.h"
 #import "SBTDataPoint.h"
+#import "SBTWHODataSource.h"
+#import "SBTCDCDataSource.h"
+
+@interface SBTGrowthDataSource()
+
+@property (nonatomic) double infantChildCutoff;
+
+@end
 
 @implementation SBTGrowthDataSource
 
@@ -81,6 +89,27 @@
     return 0.0;
 }
 
+-(double)baselineForParameter:(SBTGrowthParameter)parameter childChart:(BOOL)child
+{
+    switch (parameter) {
+        case SBTWeight:
+            return 0.0;
+            break;
+        case SBTStature:
+        case SBTLength:
+            return child ? CHILD_HEIGHT_BASELINE : INFANT_LENGTH_BASELINE;
+            break;
+        case SBTHeadCircumference:
+            return INFANT_HC_BASELINE;
+            break;
+        case SBTBMI:
+            return child ? CHILD_BMI_BASELINE : INFANT_BMI_BASELINE;
+        default:
+            return 0.0;
+            break;
+    }
+}
+
 -(double)dataFloorForParameter:(SBTGrowthParameter)parameter
 {
     NSAssert(NO, @"Should not be calling the superclass method for SBTGrowthDataSource");
@@ -97,6 +126,7 @@
 
 -(double)dataMeasurementRange97PercentForParameter:(SBTGrowthParameter)parameter
                                          forGender:(SBTGender)gender
+                                          forChild:(BOOL)child
 {
     return 0.0;
 }
@@ -108,6 +138,47 @@
 {
     NSAssert(NO, @"Should not be calling the superclass method for SBTGrowthDataSource");
     return 0.0;
+}
+
++(SBTGrowthDataSource *)growthDataSourceForAge:(NSInteger)ageInDays
+{
+    SBTGrowthDataSource *gds;
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if (ageInDays < [SBTGrowthDataSource infantAgeMaximum]){
+        // is considered an infant age
+        if ([defaults integerForKey:SBTGrowthDataSourceInfantDataSourceKey] == WHO_INFANT_CHART){
+            gds = [SBTWHODataSource sharedDataSource];
+        }else{
+            gds = [SBTCDCDataSource sharedDataSource];
+        }
+    }else{
+        // is considered a child age
+        if ([defaults integerForKey:SBTGrowthDataSourceChildDataSourceKey] == WHO_CHILD_CHART){
+            gds = [SBTWHODataSource sharedDataSource];
+        }else{
+            gds = [SBTCDCDataSource sharedDataSource];
+        }
+    }
+    return gds;
+}
+
++(double)infantAgeMaximum
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSInteger max = [defaults doubleForKey:SBTGrowthDataSourceInfantChildCutoffKey];
+    if (max == 0.0) {
+        max = AAP_CUTOFF;
+        [defaults setDouble:max forKey:SBTGrowthDataSourceInfantChildCutoffKey];
+    }
+    return max;
+}
+
+-(double)infantAgeMaximum
+{
+    if (_infantChildCutoff == 0.0) {
+        _infantChildCutoff = [SBTGrowthDataSource infantAgeMaximum];
+    }
+    return _infantChildCutoff;
 }
 
 +(instancetype)sharedDataSource

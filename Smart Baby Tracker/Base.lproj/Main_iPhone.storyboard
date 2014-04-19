@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="rS3-R9-Ivy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="rS3-R9-Ivy">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -1235,7 +1235,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             </objects>
             <point key="canvasLocation" x="2807" y="61"/>
         </scene>
-        <!--Graph View Controller - Growth Chart-->
+        <!--Graph View Controller - Infant Growth Chart-->
         <scene sceneID="iPG-GR-Bpf">
             <objects>
                 <viewController hidesBottomBarWhenPushed="YES" id="J9F-Wc-rqO" customClass="SBTGraphViewController" sceneMemberID="viewController">
@@ -1292,7 +1292,13 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Growth Chart" id="X4X-Ax-o06"/>
+                    <navigationItem key="navigationItem" title="Infant Growth Chart" id="X4X-Ax-o06">
+                        <barButtonItem key="rightBarButtonItem" title="Child>" id="W3c-uD-4mY">
+                            <connections>
+                                <segue destination="dD2-Rg-38v" kind="push" identifier="Child Chart Segue" id="vog-Gq-fNy"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="overlayView" destination="IPt-pY-MoW" id="2Hj-hf-fLe"/>
@@ -1425,6 +1431,74 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CWi-Sj-tAd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="459" y="778"/>
+        </scene>
+        <!--Graph View Controller - Child Growth Chart-->
+        <scene sceneID="z68-BZ-sgc">
+            <objects>
+                <viewController hidesBottomBarWhenPushed="YES" id="dD2-Rg-38v" customClass="SBTGraphViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="LVx-Am-9yP"/>
+                        <viewControllerLayoutGuide type="bottom" id="NhK-gi-3pY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="6sc-zj-QY7">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.25" translatesAutoresizingMaskIntoConstraints="NO" id="IvF-Xq-Tot">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="dD2-Rg-38v" id="sE4-mj-YmF"/>
+                                </connections>
+                            </scrollView>
+                            <view opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b4s-hI-58b" customClass="UIImageView">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="tintColor" red="0.95854242700000003" green="0.95560561129999999" blue="0.95560561129999999" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Lr-jn-EBn">
+                                <rect key="frame" x="0.0" y="455" width="320" height="49"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <items>
+                                    <tabBarItem systemItem="favorites" id="EUM-ab-WGC"/>
+                                    <tabBarItem systemItem="contacts" id="noh-pH-3iC"/>
+                                    <tabBarItem systemItem="history" id="oxk-JV-4CK"/>
+                                </items>
+                                <connections>
+                                    <outlet property="delegate" destination="dD2-Rg-38v" id="GVZ-My-Urb"/>
+                                </connections>
+                            </tabBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="6Lr-jn-EBn" secondAttribute="trailing" id="00f-ya-xNP"/>
+                            <constraint firstItem="6Lr-jn-EBn" firstAttribute="leading" secondItem="6sc-zj-QY7" secondAttribute="leading" id="0hb-n5-Mlx"/>
+                            <constraint firstItem="IvF-Xq-Tot" firstAttribute="top" secondItem="LVx-Am-9yP" secondAttribute="bottom" id="1BJ-io-6V8"/>
+                            <constraint firstItem="b4s-hI-58b" firstAttribute="top" secondItem="LVx-Am-9yP" secondAttribute="bottom" id="HyQ-Zu-4kP"/>
+                            <constraint firstAttribute="trailing" secondItem="IvF-Xq-Tot" secondAttribute="trailing" id="PQR-3q-Nxb"/>
+                            <constraint firstItem="6Lr-jn-EBn" firstAttribute="top" secondItem="IvF-Xq-Tot" secondAttribute="bottom" id="QPP-83-XYa"/>
+                            <constraint firstAttribute="trailing" secondItem="b4s-hI-58b" secondAttribute="trailing" id="RLF-Gl-pLC"/>
+                            <constraint firstItem="b4s-hI-58b" firstAttribute="leading" secondItem="6sc-zj-QY7" secondAttribute="leading" id="Ta0-LA-pc2"/>
+                            <constraint firstItem="6Lr-jn-EBn" firstAttribute="top" secondItem="b4s-hI-58b" secondAttribute="bottom" id="klr-n6-h8H"/>
+                            <constraint firstItem="NhK-gi-3pY" firstAttribute="top" secondItem="6Lr-jn-EBn" secondAttribute="bottom" id="phQ-iw-1NZ"/>
+                            <constraint firstAttribute="centerX" secondItem="6Lr-jn-EBn" secondAttribute="centerX" id="yPm-LL-1kK"/>
+                            <constraint firstItem="IvF-Xq-Tot" firstAttribute="leading" secondItem="6sc-zj-QY7" secondAttribute="leading" id="zMU-80-N6n"/>
+                        </constraints>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Child Growth Chart" id="OHI-k7-xgf"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="overlayView" destination="b4s-hI-58b" id="0Q8-Cz-X6m"/>
+                        <outlet property="scrollView" destination="IvF-Xq-Tot" id="iaF-sV-Dz4"/>
+                        <outlet property="tabBar" destination="6Lr-jn-EBn" id="aEv-Xe-AaN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Eis-bw-VvH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1872" y="778"/>
         </scene>
     </scenes>
     <resources>

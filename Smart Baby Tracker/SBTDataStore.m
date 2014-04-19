@@ -45,7 +45,7 @@
 
 -(instancetype)init
 {
-    if (self == [super init]){
+    if (self = [super init]){
         NSString *path = [self babyArchivePath];
         self.babyDict = [[NSKeyedUnarchiver unarchiveObjectWithFile:path] mutableCopy];
         if (!self.babyDict){

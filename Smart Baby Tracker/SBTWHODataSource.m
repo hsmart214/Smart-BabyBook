@@ -11,31 +11,54 @@
 
 #define WHO_MAX_AGE 1856.0f
 
-#define WHO_BOY_WEIGHT_FILENAME @"whoweightboys"
-#define WHO_GIRL_WEIGHT_FILENAME @"whoweightgirls"
+#define WHO_BOY_INFANT_WEIGHT_FILENAME @"whoweightinfantboys"
+#define WHO_GIRL_INFANT_WEIGHT_FILENAME @"whoweightinfantgirls"
 #define WHO_BOY_LENGTH_FILENAME @"wholengthboys"
 #define WHO_GIRL_LENGTH_FILENAME @"wholengthgirls"
 #define WHO_BOY_HC_FILENAME @"whohcboys"
 #define WHO_GIRL_HC_FILENAME @"whohcgirls"
+#define WHO_BOY_INFANT_BMI_FILENAME @"whobmiinfantboys"
+#define WHO_GIRL_INFANT_BMI_FILENAME @"whobmiinfantgirls"
+
+// these files define standards for 2-20 years
+// stature is a standing measurement
+#define WHO_BOY_WEIGHT_FILENAME @"whoweightboys"
+#define WHO_GIRL_WEIGHT_FILENAME @"whoweightgirls"
+#define WHO_BOY_STATURE_FILENAME @"whostatureboys"
+#define WHO_GIRL_STATURE_FILENAME @"whostaturegirls"
 #define WHO_BOY_BMI_FILENAME @"whobmiboys"
 #define WHO_GIRL_BMI_FILENAME @"whobmigirls"
 
 
 @interface SBTWHODataSource();
 
+@property (nonatomic, strong) NSArray *infantBoyWeightData;
 @property (nonatomic, strong) NSArray *boyWeightData;
 @property (nonatomic, strong) NSArray *boyLengthData;
+@property (nonatomic, strong) NSArray *boyStatureData;
 @property (nonatomic, strong) NSArray *boyHCData;
+@property (nonatomic, strong) NSArray *infantBoyBMIData;
 @property (nonatomic, strong) NSArray *boyBMIData;
 
+@property (nonatomic, strong) NSArray *infantGirlWeightData;
 @property (nonatomic, strong) NSArray *girlWeightData;
 @property (nonatomic, strong) NSArray *girlLengthData;
+@property (nonatomic, strong) NSArray *girlStatureData;
 @property (nonatomic, strong) NSArray *girlHCData;
+@property (nonatomic, strong) NSArray *infantGirlBMIData;
 @property (nonatomic, strong) NSArray *girlBMIData;
 
 @end
 
 @implementation SBTWHODataSource
+
+-(NSArray *)infantBoyWeightData{
+    if (!_infantBoyWeightData){
+        _infantBoyWeightData = [self filledDataArrayFromFile:WHO_BOY_INFANT_WEIGHT_FILENAME];
+    }
+    return _infantBoyWeightData;
+}
+
 
 -(NSArray *)boyWeightData
 {
@@ -51,6 +74,14 @@
         _boyLengthData = [self filledDataArrayFromFile:WHO_BOY_LENGTH_FILENAME];
     }
     return _boyLengthData;
+}
+
+-(NSArray *)boyStatureData
+{
+    if (!_boyStatureData){
+        _boyStatureData = [self filledDataArrayFromFile:WHO_BOY_STATURE_FILENAME];
+    }
+    return _boyStatureData;
 }
 
 -(NSArray *)boyHCData
@@ -69,6 +100,21 @@
     return _boyBMIData;
 }
 
+-(NSArray *)infantBoyBMIData
+{
+    if (!_infantBoyBMIData){
+        _infantBoyBMIData = [self filledDataArrayFromFile:WHO_BOY_INFANT_BMI_FILENAME];
+    }
+    return _infantBoyBMIData;
+}
+
+-(NSArray *)infantGirlWeightData{
+    if (!_infantGirlWeightData){
+        _infantGirlWeightData = [self filledDataArrayFromFile:WHO_GIRL_INFANT_WEIGHT_FILENAME];
+    }
+    return _infantGirlWeightData;
+}
+
 -(NSArray *)girlWeightData
 {
     if (!_girlWeightData){
@@ -83,6 +129,14 @@
         _girlLengthData = [self filledDataArrayFromFile:WHO_GIRL_LENGTH_FILENAME];
     }
     return _girlLengthData;
+}
+
+-(NSArray *)girlStatureData
+{
+    if (!_girlStatureData){
+        _girlStatureData = [self filledDataArrayFromFile:WHO_GIRL_STATURE_FILENAME];
+    }
+    return _girlStatureData;
 }
 
 -(NSArray *)girlHCData
@@ -101,6 +155,15 @@
     return _girlBMIData;
 }
 
+-(NSArray *)infantGirlBMIData
+{
+    if (!_infantGirlBMIData){
+        _infantGirlBMIData = [self filledDataArrayFromFile:WHO_GIRL_INFANT_BMI_FILENAME];
+    }
+    return _infantGirlBMIData;
+}
+
+
 -(double)dataAgeRange
 {
     return WHO_MAX_AGE;
@@ -111,18 +174,19 @@
                  parameter:(SBTGrowthParameter)parameter
                  andGender:(SBTGender)gender
 {
+    BOOL child = age > self.infantAgeMaximum;
     NSArray *dp;
     switch (gender) {
         case SBTFemale:
             switch (parameter) {
                 case SBTLength:
-                    dp = self.girlLengthData;
+                    dp = child ? self.girlStatureData : self.girlLengthData;
                     break;
                 case SBTStature:
-                    dp = self.girlLengthData;
+                    dp = child ? self.girlStatureData : self.girlLengthData;
                     break;
                 case SBTWeight:
-                    dp = self.girlWeightData;
+                    dp = child ? self.girlWeightData : self.infantGirlWeightData;
                     break;
                 case SBTHeadCircumference:
                     dp = self.girlHCData;
@@ -134,13 +198,13 @@
         case SBTMale:
             switch (parameter) {
                 case SBTLength:
-                    dp = self.boyLengthData;
+                    dp = child ? self.boyStatureData : self.boyLengthData;
                     break;
                 case SBTStature:
-                    dp = self.boyLengthData;
+                    dp = child ? self.boyStatureData : self.boyLengthData;
                     break;
                 case SBTWeight:
-                    dp = self.boyWeightData;
+                    dp = child ? self.boyWeightData : self.infantBoyWeightData;
                     break;
                 case SBTHeadCircumference:
                     dp = self.boyHCData;
@@ -153,7 +217,6 @@
     NSInteger pivot = [dp count] / 2;
     NSInteger delta = pivot / 2;
     pt1 = dp[pivot];
-    pt2 = pt1;
     while (delta >= 1) {
         if ([pt1 ageInDays] < age) {
             pivot += delta;
@@ -178,45 +241,47 @@
     diff = [pt2 dataForPercentile:percentile] - d;
     return d + frac * diff;
 }
--(double)dataMeasurementRange97PercentForParameter:(SBTGrowthParameter)parameter forGender:(SBTGender)gender
+-(double)dataMeasurementRange97PercentForParameter:(SBTGrowthParameter)parameter
+                                         forGender:(SBTGender)gender
+                                          forChild:(BOOL)child
 {
+    NSInteger infantMaxIndex = rint([self infantAgeMaximum]) - 1;
     SBTDataPoint *dp;
     switch (gender) {
         case SBTFemale:
             switch (parameter) {
                 case SBTLength:
                 case SBTStature:
-                    dp = [self.girlLengthData lastObject];
+                    dp = child ? [self.girlStatureData lastObject] : self.girlLengthData[infantMaxIndex];
                     break;
                 case SBTWeight:
-                    dp = [self.girlWeightData lastObject];
+                    dp = child ? [self.girlWeightData lastObject] : self.infantGirlWeightData[infantMaxIndex];
                     break;
                 case SBTHeadCircumference:
                     dp = [self.girlHCData lastObject];
                     break;
                 case SBTBMI:
-                    dp = [self.girlBMIData lastObject];
+                    dp = child ? [self.girlBMIData lastObject] : self.infantGirlBMIData[infantMaxIndex];
             }
             break;
         case SBTMale:
             switch (parameter) {
                 case SBTLength:
                 case SBTStature:
-                    dp = [self.boyLengthData lastObject];
+                    dp = child ? [self.boyStatureData lastObject] : self.boyLengthData[infantMaxIndex];
                     break;
                 case SBTWeight:
-                    dp = [self.boyWeightData lastObject];
+                    dp = child ? [self.boyWeightData lastObject] : self.infantBoyWeightData[infantMaxIndex];
                     break;
                 case SBTHeadCircumference:
                     dp = [self.boyHCData lastObject];
                     break;
                 case SBTBMI:
-                    dp = [self.boyBMIData lastObject];
+                    dp = child ? [self.boyBMIData lastObject] : self.infantGirlBMIData[infantMaxIndex];
             }
     }
     NSInteger index97 = [dp translatePercentileToIndex:P97];
     return [dp->percentileData[index97] doubleValue];
-    //    return dp->mean + 3*dp->stdev;
 }
 
 +(instancetype)sharedDataSource

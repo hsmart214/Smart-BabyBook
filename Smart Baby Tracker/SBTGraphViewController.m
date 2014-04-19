@@ -16,8 +16,8 @@
 
 #define HEIGHT_TAB_POSITION 0
 #define WEIGHT_TAB_POSITION 1
-#define HEAD_CIRC_TAB_POSITION 2
-#define BMI_TAB_POSITION 3
+#define HEAD_CIRC_TAB_POSITION 3
+#define BMI_TAB_POSITION 2
 
 @interface SBTGraphViewController ()<UIScrollViewDelegate, UITabBarDelegate>
 
@@ -25,27 +25,41 @@
 @property (strong, nonatomic) UIImageView *graphView;
 @property (weak, nonatomic) IBOutlet UIImageView *overlayView;
 @property (weak, nonatomic) IBOutlet UITabBar *tabBar;
-@property (readonly) CGFloat maxVRange;
+@property (nonatomic) CGFloat maxVRange;
+@property (nonatomic) CGFloat maxHRange;
+@property (nonatomic) CGFloat graphBaseline;
+@property (nonatomic, getter = isChildChart) BOOL childChart;
 
 @end
 
 @implementation SBTGraphViewController
-@synthesize maxVRange = _maxVRange;
 
 # pragma mark - moving targets
 
 -(CGFloat)maxVRange
 {
-    if (!_maxVRange){
+    if (_maxVRange < 0.0){
         _maxVRange = [self.growthDataSource dataMeasurementRange97PercentForParameter:self.parameter
-                                                                      forGender:self.baby.gender] * VERTICAL_RANGE_ADJUSTMENT;
+                                                                            forGender:self.baby.gender
+                                                                             forChild:[self isChildChart]] * VERTICAL_RANGE_ADJUSTMENT;
     }
     return _maxVRange;
 }
 
 -(CGFloat)maxHRange
 {
-    return [self.growthDataSource dataAgeRange];
+    if (_maxHRange < 0.0){
+        _maxHRange = [self isChildChart] ? [self.growthDataSource dataAgeRange] : [SBTGrowthDataSource infantAgeMaximum];
+    }
+    return _maxHRange;
+}
+
+-(CGFloat)graphBaseline
+{
+    if (_graphBaseline < 0.0){
+        _graphBaseline = [self.growthDataSource dataFloorForParameter:self.parameter];
+    }
+    return _graphBaseline;
 }
 
 -(CGFloat)currentVMeasurePerPoint
@@ -76,51 +90,11 @@
     // axes will be drawn for display units based on user preferences
     // draw these into an image context, then set the image as the UIImage of the overlayView
     UIGraphicsBeginImageContextWithOptions(self.overlayView.bounds.size, NO, 0.0);
-    
-//    CGFloat yExtent = self.overlayView.bounds.size.height;
-//    CGFloat xExtent = self.overlayView.bounds.size.width;
-    
+    //TODO: Draw the axes
     UIBezierPath *path = [[UIBezierPath alloc] init];
     [path setLineWidth:1.0];
-//    [path moveToPoint:CGPointMake(0, yExtent - 10)];
-//    [path addLineToPoint:CGPointMake(xExtent, yExtent - 10)];
-//    [path moveToPoint:CGPointMake(xExtent - 10, 0)];
-//    [path addLineToPoint:CGPointMake(xExtent - 10, yExtent)];
-//    [[UIColor lightGrayColor] setStroke];
-//    [path stroke];
-    
-    // get the beginning and end of visible portions of each axis in METRIC MEASUREMENT UNITS
-    
-//    CGRect r = [self currentMeasureVisibleExtents];
-//    CGPoint orig = CGPointMake(r.origin.x, self.maxVRange - r.origin.y - r.size.height);
-//    CGPoint maxPt = CGPointMake(orig.x + r.size.width, orig.y + r.size.height);
-    //TODO: Move the crosshair code into the scroll view image
-    // and only draw labels along the edges here
-    // draw faint crosshair lines every year and every 10 kg
     [[UIColor SBTSuperLightGray] setStroke];
     [path setLineWidth:0.5];
-    
-//    for (int y = 5; y < maxPt.y; y += 5){
-//        if (y > orig.y){
-//            CGFloat loc = (y - orig.y) / ([self currentVMeasurePerPoint] / self.scrollView.zoomScale);
-//            CGPoint p = CGPointMake(0.0, loc);
-//            [path moveToPoint:p];
-//            [path addLineToPoint:CGPointMake(self.overlayView.bounds.size.width, p.y)];
-//        }
-//        [path stroke];
-//    }
-//    
-//    for (int x = 1; x < 20; x++){
-//        CGFloat days = x * 365.25;
-//        if (days > orig.x && days < maxPt.x){
-//            CGFloat loc = (days - orig.x) / ([self currentHMeasurePerPoint] / self.scrollView.zoomScale);
-//            CGPoint p = CGPointMake(loc, 0.0);
-//            [path moveToPoint:p];
-//            [path addLineToPoint:CGPointMake(p.x, self.overlayView.bounds.size.height)];
-//        }
-//        [path stroke];
-//    }
-    
     
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     self.overlayView.image = image;
@@ -140,9 +114,6 @@
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     [self adjustAxesForContentOffset:scrollView.contentOffset andScale:scrollView.contentScaleFactor];
-//    CGRect r = [self currentMeasureVisibleExtents];
-//    CGFloat minMeasure = self.maxVRange - r.origin.y - r.size.height;
-//    NSLog(@"Current visible extents: origin -> %1.1f, %1.1f \n range -> %1.1f, %1.1f", r.origin.x, minMeasure, r.size.width, r.size.height);
 }
 
 -(void)scrollViewDidZoom:(UIScrollView *)scrollView
@@ -159,7 +130,9 @@
 
 -(void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
 {
-    _maxVRange = 0.0;   // this forces the recalculation of same
+    _maxVRange = -1.0;   // this forces the recalculation of same
+    _maxHRange = -1.0;
+    _graphBaseline = -1.0;
     NSInteger pos = [tabBar.items indexOfObject:item];
     switch (pos) {
         case HEIGHT_TAB_POSITION:
@@ -182,6 +155,7 @@
 
 -(void)selectParameter:(SBTGrowthParameter)parameter
 {
+    self.parameter = parameter;
     switch (parameter) {
         case SBTStature:
         case SBTLength:
@@ -208,11 +182,20 @@
 
 -(void)drawPercentiles
 {
+    // if it is a child (not infant) chart, start the graph at the age break point
+    CGFloat xStart = 0.0;
+    if ([self isChildChart]) xStart = [SBTGrowthDataSource infantAgeMaximum];
+    
+    // set the baseline of the chart based on which graph is being displayed
+    // ask the growthDataSource
+    CGFloat yStart = [self.growthDataSource baselineForParameter:self.parameter childChart:[self isChildChart]];
+    
+    
     for (UIView *view in self.scrollView.subviews){
         [view removeFromSuperview];
     }
-    CGFloat vScale = [self maxVRange] / (self.scrollView.bounds.size.height * GRAPH_RATIO);
-    CGFloat hScale = [self maxHRange] / (self.scrollView.bounds.size.width * GRAPH_RATIO);
+    CGFloat vScale = ([self maxVRange] - yStart) / (self.scrollView.bounds.size.height * GRAPH_RATIO);
+    CGFloat hScale = ([self maxHRange] - xStart) / (self.scrollView.bounds.size.width * GRAPH_RATIO);
     
     // create an offscreen image and draw a 4x representation of the growth curve percentiles
     CGSize imageSize = CGSizeMake(self.scrollView.bounds.size.width * GRAPH_RATIO, self.scrollView.bounds.size.height * GRAPH_RATIO);
@@ -231,10 +214,10 @@
     
     CGFloat spacing = 2 * 30.43;
     if ([self maxHRange] > (365.25 * 5.1)) spacing = 365.25;
-    CGFloat age = spacing;
+    CGFloat age = xStart + spacing;
     while (age < [self maxHRange]) {
         
-        CGFloat loc = (age / [self maxHRange]) * imageSize.width;
+        CGFloat loc = (age / ([self maxHRange] - xStart)) * imageSize.width;
         CGPoint p = CGPointMake(loc, 0.0);
         [path moveToPoint:p];
         [path addLineToPoint:CGPointMake(p.x, imageSize.height)];
@@ -281,9 +264,11 @@
             break;
     }
     if (stepSize > 0.0){
-        CGFloat measure = stepSize;
+        CGFloat yBase = rint(yStart) / rint(stepSize) * stepSize;
+        CGFloat measure = stepSize + yBase;
         while (measure < [self maxVRange]) {
-            CGFloat loc = (measure / [self maxVRange]) * imageSize.height;
+            CGFloat loc = (measure / ([self maxVRange] - yStart)) * imageSize.height;
+            loc = imageSize.height - loc;
             CGPoint p = CGPointMake(0.0, loc);
             [path moveToPoint:p];
             [path addLineToPoint:CGPointMake(imageSize.width, loc)];
@@ -330,11 +315,28 @@
     UIGraphicsEndImageContext();
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"Child Chart Segue"]){
+        SBTGraphViewController *gvc = segue.destinationViewController;
+        NSInteger age = [SBTGrowthDataSource infantAgeMaximum] + 1;  // guarantee that we get the older child data set
+        [gvc setGrowthDataSource:[SBTGrowthDataSource growthDataSourceForAge:age]];
+        [gvc setBaby:self.baby];
+        if (self.parameter == SBTHeadCircumference) [self selectParameter:SBTWeight];
+        [gvc setParameter:self.parameter];
+        [gvc setChildChart:YES];
+    }
+}
 
 -(void)viewDidLoad
 {
     [super viewDidLoad];
     [self selectParameter:self.parameter];
+    
+    // this flags these values as needing updates when they are accessed
+    _maxVRange = -1.0;
+    _maxHRange = -1.0;
+    _graphBaseline = -1.0;
 }
 
 -(void)dealloc

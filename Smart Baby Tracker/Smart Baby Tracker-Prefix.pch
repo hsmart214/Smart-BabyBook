@@ -19,7 +19,19 @@
 #define UNIT_PREFS_KEY @"com.mySmartSoftware.smartBabyTracker.unitPrefs"
 
 #define AGE_SWITCH_TO_DECIMAL_POUNDS 365    // maybe this should be a user preference?
-#define AAP_CUTOFF 731.0                    // age AAP recommends switch to CDC growth chart
+#define AAP_CUTOFF 731.0F                   // age AAP recommends switch to CDC growth chart
+#define WHO_INFANT_CHART 0
+#define WHO_CHILD_CHART 0
+#define CDC_INFANT_CHART 1
+#define CDC_CHILD_CHART 1
+
+#define INFANT_WEIGHT_BASELINE 0.0
+#define CHILD_WEIGHT_BASELINE 5.0
+#define INFANT_LENGTH_BASELINE 43.0
+#define CHILD_HEIGHT_BASELINE 80.0
+#define INFANT_HC_BASELINE 32.0
+#define INFANT_BMI_BASELINE 10.0
+#define CHILD_BMI_BASELINE 10.0
 
 #define K_CENTIMETERS @"cm"
 #define K_INCHES @"in"
@@ -29,6 +41,7 @@
 
 #define INCHES_PER_CENTIMETER 0.3937008F
 #define POUNDS_PER_KILOGRAM 2.2046226F
+#define DAYS_PER_MONTH 30.43F
 
 #define THUMBNAIL_DIMENSION 100
 
@@ -64,3 +77,8 @@ static NSString * const DownBoyChart = @"com.mySmartSoftware.downboy";
 static NSString * const DownGirlChart = @"com.mySmartSoftware.downgirl";
 
 static NSString * const TurnerGirlChart = @"com.mySmartSoftware.turnergirl";
+
+static NSString * const SBTGrowthDataSourceInfantChildCutoffKey = @"com.mySmartSoftware.SmartBabyTracker.InfantChildCutoff";
+static NSString * const SBTGrowthDataSourceInfantDataSourceKey = @"com.mySmartSoftware.SmartBabyTracker.InfantDataSource";
+static NSString * const SBTGrowthDataSourceChildDataSourceKey = @"com.mySmartSoftware.SmartBabyTracker.ChildDataSource";
+
