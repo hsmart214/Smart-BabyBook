@@ -212,7 +212,7 @@
     
     // every year for child, every 2 mos for infant
     
-    CGFloat spacing = 2 * 30.43;
+    CGFloat spacing = 2 * DAYS_PER_MONTH;
     if ([self maxHRange] > (365.25 * 5.1)) spacing = 365.25;
     CGFloat age = xStart + spacing;
     while (age < [self maxHRange]) {

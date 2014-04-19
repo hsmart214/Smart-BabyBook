@@ -9,8 +9,6 @@
 #import "SBTWHODataSource.h"
 #import "SBTDataPoint.h"
 
-#define WHO_MAX_AGE 1856.0f
-
 #define WHO_BOY_INFANT_WEIGHT_FILENAME @"whoweightinfantboys"
 #define WHO_GIRL_INFANT_WEIGHT_FILENAME @"whoweightinfantgirls"
 #define WHO_BOY_LENGTH_FILENAME @"wholengthboys"
