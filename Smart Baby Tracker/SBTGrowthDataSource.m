@@ -83,7 +83,7 @@
     return data;
 }
 
--(double)dataAgeRange
+-(double)dataAgeRangeForAge:(double)age
 {
     NSAssert(NO, @"Should not be calling the superclass method for SBTGrowthDataSource");
     return 0.0;

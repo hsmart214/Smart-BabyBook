@@ -162,9 +162,15 @@
 }
 
 
--(double)dataAgeRange
+-(double)dataAgeRangeForAge:(double)age
 {
-    return WHO_MAX_AGE;
+    double range;
+    if (age > [self infantAgeMaximum]){
+        range = WHO_MAX_AGE;
+    }else{
+        range = [self infantAgeMaximum];
+    }
+    return age;
 }
 
 -(double)dataForPercentile:(SBTPercentile)percentile

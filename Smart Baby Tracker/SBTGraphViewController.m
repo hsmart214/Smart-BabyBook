@@ -49,7 +49,7 @@
 -(CGFloat)maxHRange
 {
     if (_maxHRange < 0.0){
-        _maxHRange = [self isChildChart] ? [self.growthDataSource dataAgeRange] : [SBTGrowthDataSource infantAgeMaximum];
+        _maxHRange = [self isChildChart] ? [self.growthDataSource dataAgeRangeForAge:[SBTGrowthDataSource infantAgeMaximum] + 1.0] : [SBTGrowthDataSource infantAgeMaximum];
     }
     return _maxHRange;
 }
@@ -184,7 +184,7 @@
 {
     // if it is a child (not infant) chart, start the graph at the age break point
     CGFloat xStart = 0.0;
-    if ([self isChildChart]) xStart = [SBTGrowthDataSource infantAgeMaximum];
+    if ([self isChildChart]) xStart = [SBTGrowthDataSource infantAgeMaximum] + 1.0;
     
     // set the baseline of the chart based on which graph is being displayed
     // ask the growthDataSource
@@ -194,8 +194,6 @@
     for (UIView *view in self.scrollView.subviews){
         [view removeFromSuperview];
     }
-    CGFloat vScale = ([self maxVRange] - yStart) / (self.scrollView.bounds.size.height * GRAPH_RATIO);
-    CGFloat hScale = ([self maxHRange] - xStart) / (self.scrollView.bounds.size.width * GRAPH_RATIO);
     
     // create an offscreen image and draw a 4x representation of the growth curve percentiles
     CGSize imageSize = CGSizeMake(self.scrollView.bounds.size.width * GRAPH_RATIO, self.scrollView.bounds.size.height * GRAPH_RATIO);
@@ -264,10 +262,11 @@
             break;
     }
     if (stepSize > 0.0){
-        CGFloat yBase = rint(yStart) / rint(stepSize) * stepSize;
+        int wholeSteps = rint(yStart) / rint(stepSize);
+        CGFloat yBase = wholeSteps * stepSize;
         CGFloat measure = stepSize + yBase;
         while (measure < [self maxVRange]) {
-            CGFloat loc = (measure / ([self maxVRange] - yStart)) * imageSize.height;
+            CGFloat loc = ((measure - yStart) / ([self maxVRange] - yStart)) * imageSize.height;
             loc = imageSize.height - loc;
             CGPoint p = CGPointMake(0.0, loc);
             [path moveToPoint:p];
@@ -293,14 +292,15 @@
         }else{
             [[UIColor SBTBabyPink] setStroke];
         }
-        CGFloat x = 0.0;
-        CGFloat maxY = self.scrollView.bounds.size.height * GRAPH_RATIO;
-        CGFloat measurement = [self.growthDataSource dataForPercentile:p forAge:0.0 parameter:self.parameter andGender:self.baby.gender];
-        CGFloat y = maxY - measurement / vScale;
+        CGFloat x = 1.0;
+        CGFloat measurement = [self.growthDataSource dataForPercentile:p forAge:xStart parameter:self.parameter andGender:self.baby.gender];
+        CGFloat y = ((measurement - yStart) / ([self maxVRange] - yStart)) * imageSize.height;
+        y = imageSize.height - y;
         [path moveToPoint:CGPointMake(x, y)];
         while (x < imageSize.width){
-            CGFloat age = x * hScale;
-            y = maxY - [self.growthDataSource dataForPercentile:p forAge:age parameter:self.parameter andGender:self.baby.gender] / vScale;
+            CGFloat age = xStart  + (x / imageSize.width) * ([self maxHRange] - xStart);
+            y = (([self.growthDataSource dataForPercentile:p forAge:age parameter:self.parameter andGender:self.baby.gender] - yStart) / ([self maxVRange] - yStart)) * imageSize.height;
+            y = imageSize.height - y;
             [path addLineToPoint:CGPointMake(x, y)];
             x += 1.0;
         }

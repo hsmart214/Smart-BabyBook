@@ -144,9 +144,15 @@
     return _girlBMIData;
 }
 
--(double)dataAgeRange
+-(double)dataAgeRangeForAge:(double)age
 {
-    return CDC_MAX_AGE;
+    double range;
+    if (age > [self infantAgeMaximum]){
+        range = CDC_MAX_AGE;
+    }else{
+        range = [self infantAgeMaximum];
+    }
+    return age;
 }
 
 -(double)dataForPercentile:(SBTPercentile)percentile
