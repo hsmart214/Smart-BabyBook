@@ -136,7 +136,7 @@
     NSInteger pos = [tabBar.items indexOfObject:item];
     switch (pos) {
         case HEIGHT_TAB_POSITION:
-            self.parameter = SBTStature;
+            self.parameter = [self isChildChart] ? SBTStature : SBTLength;
             break;
         case WEIGHT_TAB_POSITION:
             self.parameter = SBTWeight;
@@ -236,12 +236,19 @@
     switch (self.parameter) {
         case SBTWeight:
             if ([[SBTUnitsConvertor preferredUnitForKey:MASS_UNIT_KEY] isEqualToString:K_KILOGRAMS]){
-                stepSize = 5.0;
+                stepSize = [self isChildChart] ? 5.0 : 2.0;
             }else{
-                stepSize = 10.0 / POUNDS_PER_KILOGRAM;
+                stepSize = [self isChildChart] ? 10.0 : 4.0;
+                stepSize /= POUNDS_PER_KILOGRAM;
             }
             break;
         case SBTLength:
+            if ([[SBTUnitsConvertor preferredUnitForKey:LENGTH_UNIT_KEY] isEqualToString:K_CENTIMETERS]){
+                stepSize = 2.0;
+            }else{
+                stepSize = 1.0 / INCHES_PER_CENTIMETER;
+            }
+            break;
         case SBTStature:
             if ([[SBTUnitsConvertor preferredUnitForKey:LENGTH_UNIT_KEY] isEqualToString:K_CENTIMETERS]){
                 stepSize = 5.0;
@@ -251,9 +258,9 @@
             break;
         case SBTHeadCircumference:
             if ([[SBTUnitsConvertor preferredUnitForKey:LENGTH_UNIT_KEY] isEqualToString:K_CENTIMETERS]){
-                stepSize = 10.0;
+                stepSize = 2.0;
             }else{
-                stepSize = 4.0 / INCHES_PER_CENTIMETER;
+                stepSize = 1.0 / INCHES_PER_CENTIMETER;
             }
             break;
         case SBTBMI:
@@ -262,7 +269,7 @@
             break;
     }
     if (stepSize > 0.0){
-        int wholeSteps = rint(yStart) / rint(stepSize);
+        int wholeSteps = rint(yStart/stepSize);
         CGFloat yBase = wholeSteps * stepSize;
         CGFloat measure = stepSize + yBase;
         while (measure < [self maxVRange]) {
@@ -281,6 +288,7 @@
     path = nil;
     NSMutableArray *pcts = [NSMutableArray arrayWithArray: @[@(P5), @(P10), @(P25), @(P50), @(P75), @(P90), @(P95)]];
     if (self.parameter == SBTBMI) [pcts insertObject:@(P85) atIndex:5];
+    CGFloat measurement;
     for (NSNumber *n in pcts){
         SBTPercentile p = (SBTPercentile)[n integerValue];
         UIBezierPath *path = [[UIBezierPath alloc] init];
@@ -293,13 +301,14 @@
             [[UIColor SBTBabyPink] setStroke];
         }
         CGFloat x = 1.0;
-        CGFloat measurement = [self.growthDataSource dataForPercentile:p forAge:xStart parameter:self.parameter andGender:self.baby.gender];
+        measurement = [self.growthDataSource dataForPercentile:p forAge:xStart parameter:self.parameter andGender:self.baby.gender];
         CGFloat y = ((measurement - yStart) / ([self maxVRange] - yStart)) * imageSize.height;
         y = imageSize.height - y;
         [path moveToPoint:CGPointMake(x, y)];
         while (x < imageSize.width){
-            CGFloat age = xStart  + (x / imageSize.width) * ([self maxHRange] - xStart);
-            y = (([self.growthDataSource dataForPercentile:p forAge:age parameter:self.parameter andGender:self.baby.gender] - yStart) / ([self maxVRange] - yStart)) * imageSize.height;
+            age = xStart  + (x / imageSize.width) * ([self maxHRange] - xStart);
+            measurement = [self.growthDataSource dataForPercentile:p forAge:age parameter:self.parameter andGender:self.baby.gender];
+            y = ((measurement - yStart) / ([self maxVRange] - yStart)) * imageSize.height;
             y = imageSize.height - y;
             [path addLineToPoint:CGPointMake(x, y)];
             x += 1.0;

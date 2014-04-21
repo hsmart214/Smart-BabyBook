@@ -55,7 +55,7 @@
     for (NSString *line in textLines){
         chunks = [line componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
         // WHO columns are 'Age	L	M	S	P01	P1	P3	P5	P10	P15	P25	P50	P75	P85	P90	P95	P97	P99	P999' (15 percentile data items)
-        // CDC columns are 'Age L	M	S	P3	P5	P10	P25	P50	P75 P90	P95	P97' (9 percentile data items)
+        // CDC columns are 'Agemos L	M	S	P3	P5	P10	P25	P50	P75 P90	P95	P97' (9 percentile data items)
         // except CDC BMI which adds P85 (10 percentile data items)
         SBTDataPoint *dp = [[SBTDataPoint alloc] init];
         if (days) {
