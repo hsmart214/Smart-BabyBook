@@ -680,7 +680,7 @@
 				GCC_PREFIX_HEADER = "Smart Baby Tracker/Smart Baby Tracker-Prefix.pch";
 				INFOPLIST_FILE = "Smart Baby Tracker/Smart Baby Tracker-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "C1C0AA1F-16D9-4D2C-86C3-D3C86D2B29FD";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -696,7 +696,7 @@
 				GCC_PREFIX_HEADER = "Smart Baby Tracker/Smart Baby Tracker-Prefix.pch";
 				INFOPLIST_FILE = "Smart Baby Tracker/Smart Baby Tracker-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "C1C0AA1F-16D9-4D2C-86C3-D3C86D2B29FD";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

@@ -152,7 +152,7 @@
     }else{
         range = [self infantAgeMaximum];
     }
-    return age;
+    return range;
 }
 
 -(double)dataForPercentile:(SBTPercentile)percentile
