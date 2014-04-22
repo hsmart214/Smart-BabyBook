@@ -181,6 +181,12 @@
     return _infantChildCutoff;
 }
 
+-(BOOL)hasLimitedWeightData
+{
+    // override if weight data range is limited (only occurs in WHO Data Source right now)
+    return NO;
+}
+
 +(instancetype)sharedDataSource
 {
     NSAssert(NO, @"Should not be calling the superclass method for SBTGrowthDataSource");

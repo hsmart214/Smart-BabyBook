@@ -215,7 +215,7 @@
     CGFloat age = xStart + spacing;
     while (age < [self maxHRange]) {
         
-        CGFloat loc = (age / ([self maxHRange] - xStart)) * imageSize.width;
+        CGFloat loc = ((age - xStart) / ([self maxHRange] - xStart)) * imageSize.width;
         CGPoint p = CGPointMake(loc, 0.0);
         [path moveToPoint:p];
         [path addLineToPoint:CGPointMake(p.x, imageSize.height)];
@@ -305,8 +305,10 @@
         CGFloat y = ((measurement - yStart) / ([self maxVRange] - yStart)) * imageSize.height;
         y = imageSize.height - y;
         [path moveToPoint:CGPointMake(x, y)];
+        BOOL limitedData = self.parameter == SBTWeight && [self isChildChart] && [self.growthDataSource hasLimitedWeightData];
         while (x < imageSize.width){
             age = xStart  + (x / imageSize.width) * ([self maxHRange] - xStart);
+            if (limitedData && self.parameter == SBTWeight && age > WHO_CHILD_WEIGHT_MAX_AGE) break;
             measurement = [self.growthDataSource dataForPercentile:p forAge:age parameter:self.parameter andGender:self.baby.gender];
             y = ((measurement - yStart) / ([self maxVRange] - yStart)) * imageSize.height;
             y = imageSize.height - y;

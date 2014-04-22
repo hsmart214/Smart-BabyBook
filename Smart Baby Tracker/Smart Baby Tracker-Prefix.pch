@@ -20,7 +20,8 @@
 
 #define AGE_SWITCH_TO_DECIMAL_POUNDS 365    // maybe this should be a user preference?
 #define AAP_CUTOFF 731.0F                   // age AAP recommends switch to CDC growth chart
-#define WHO_MAX_AGE 1856.0f                 // max age of infant chart WHO data
+#define WHO_MAX_AGE 6938.0f                 // max age of infant chart WHO data
+#define WHO_CHILD_WEIGHT_MAX_AGE 3651       // current WHO weight data ends at 120 months age
 #define WHO_INFANT_CHART 0
 #define WHO_CHILD_CHART 0
 #define CDC_INFANT_CHART 1

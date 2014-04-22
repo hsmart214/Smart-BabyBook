@@ -1238,7 +1238,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <!--Graph View Controller - Infant Growth Chart-->
         <scene sceneID="iPG-GR-Bpf">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="J9F-Wc-rqO" customClass="SBTGraphViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="infantGrowthChart" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="J9F-Wc-rqO" customClass="SBTGraphViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Frf-T0-u5d"/>
                         <viewControllerLayoutGuide type="bottom" id="vZa-2H-KJ9"/>
@@ -1435,7 +1435,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <!--Graph View Controller - Child Growth Chart-->
         <scene sceneID="z68-BZ-sgc">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="dD2-Rg-38v" customClass="SBTGraphViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="childGrowthChart" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="dD2-Rg-38v" customClass="SBTGraphViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="LVx-Am-9yP"/>
                         <viewControllerLayoutGuide type="bottom" id="NhK-gi-3pY"/>
@@ -1513,7 +1513,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="9tz-Wu-nxJ"/>
+        <segue reference="MgW-jl-WfQ"/>
         <segue reference="sJR-R6-pNF"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -7,6 +7,8 @@
 //
 
 #import "SBTWHODataSource.h"
+#import "SBTCDCDataSource.h"    // this bit of impropriety is a hack so that I can solve the problem
+                                // with the lack of complete WHO weight data for children
 #import "SBTDataPoint.h"
 
 #define WHO_BOY_INFANT_WEIGHT_FILENAME @"whoweightinfantboys"
@@ -49,6 +51,11 @@
 @end
 
 @implementation SBTWHODataSource
+
+-(BOOL)hasLimitedWeightData
+{
+    return YES;
+}
 
 -(NSArray *)infantBoyWeightData{
     if (!_infantBoyWeightData){
@@ -170,7 +177,7 @@
     }else{
         range = [self infantAgeMaximum];
     }
-    return age;
+    return range;
 }
 
 -(double)dataForPercentile:(SBTPercentile)percentile
@@ -249,6 +256,10 @@
                                          forGender:(SBTGender)gender
                                           forChild:(BOOL)child
 {
+    if (child && parameter == SBTWeight)
+    {
+        return [[SBTCDCDataSource sharedDataSource] dataMeasurementRange97PercentForParameter:parameter forGender:gender forChild:child];
+    }
     NSInteger infantMaxIndex = rint([self infantAgeMaximum]) - 1;
     SBTDataPoint *dp;
     switch (gender) {
