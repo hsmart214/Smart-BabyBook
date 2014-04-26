@@ -9,6 +9,7 @@
 #import "SBTEncounter.h"
 #import "SBTVaccine.h"
 #import "NSDateComponents+Today.h"
+#import "SBTBaby.h"
 
 @interface SBTEncounter ()
 
@@ -54,6 +55,24 @@
 {
     _headCirc = headCirc;
     self.dateModified = [NSDate date];
+}
+
+-(CGFloat)dataForParameter:(SBTGrowthParameter)param
+{
+    switch (param) {
+        case SBTBMI:
+            return self.BMI;
+        case SBTWeight:
+            return self.weight;
+        case SBTHeadCircumference:
+            return self.headCirc;
+        case SBTLength:
+        case SBTStature:    // for starters I will not distinguish between height and length, but I can change this later
+            return self.length + self.height;
+        default:
+            return 0.0;  // should not reach this line
+            break;
+    }
 }
 
 -(NSArray *)vaccinesGiven
@@ -108,6 +127,11 @@
     NSCalendarUnit unit = NSCalendarUnitDay;
     NSDateComponents *days = [cal components:unit fromDate:date toDate:self.universalDate options:0];
     return [days day];
+}
+
+-(NSInteger)ageInDays
+{
+    return [self daysSinceDate:self.baby.DOB];
 }
 
 -(NSComparisonResult)compare:(SBTEncounter *)encounter

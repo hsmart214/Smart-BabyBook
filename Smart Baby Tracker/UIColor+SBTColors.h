@@ -13,5 +13,7 @@
 +(instancetype)SBTBabyBlue;
 +(instancetype)SBTBabyPink;
 +(instancetype)SBTSuperLightGray;
++(instancetype)SBTBoyLineColor;
++(instancetype)SBTGirlLineColor;
 
 @end

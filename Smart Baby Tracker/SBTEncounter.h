@@ -35,7 +35,10 @@
 
 -(NSInteger)daysSinceEncounter:(SBTEncounter *)encounter;
 -(NSInteger)daysSinceDate:(NSDate *)date;
+-(NSInteger)ageInDays;
 -(NSComparisonResult)compare:(SBTEncounter *)encounter;
+
+-(CGFloat)dataForParameter:(SBTGrowthParameter)param;
 
 // an array of SBTVaccine * objects
 -(NSArray *)vaccinesGiven;

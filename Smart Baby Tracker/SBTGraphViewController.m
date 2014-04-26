@@ -10,6 +10,7 @@
 #import "SBTBaby.h"
 #import "UIColor+SBTColors.h"
 #import "SBTUnitsConvertor.h"
+#import "SBTEncounter.h"
 
 #define VERTICAL_RANGE_ADJUSTMENT 1.1f
 #define GRAPH_RATIO 4.0
@@ -18,6 +19,8 @@
 #define WEIGHT_TAB_POSITION 1
 #define HEAD_CIRC_TAB_POSITION 3
 #define BMI_TAB_POSITION 2
+
+#define GROWTH_LINE_WIDTH 4.0f
 
 @interface SBTGraphViewController ()<UIScrollViewDelegate, UITabBarDelegate>
 
@@ -323,7 +326,50 @@
     [self.scrollView addSubview:self.graphView];
     self.scrollView.contentSize = image.size;
     [self.scrollView setZoomScale:1.0/GRAPH_RATIO];
+} // drawPercentiles
+
+-(void)drawDataForParameter:(SBTGrowthParameter)param
+{
+    NSArray *encounters = [self.baby encountersList];
+    double first = [self isChildChart] ? [self.growthDataSource dataFloorForParameter:param] : 0.0;
+    double last = [self isChildChart] ? [self.growthDataSource dataAgeRangeForAge:[self.growthDataSource infantAgeMaximum] + 1.0] : [self.growthDataSource infantAgeMaximum];
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"%K BETWEEN %@", @"ageInDays", @[@(first), @(last)]];
+    NSArray *encountersInRange = [encounters filteredArrayUsingPredicate:pred];
+    UIGraphicsBeginImageContextWithOptions(self.overlayView.bounds.size, NO, 0.0);
+    UIBezierPath *path = [UIBezierPath bezierPathWithRect:self.overlayView.bounds];
+    [path addClip];
+    [path setLineWidth:GROWTH_LINE_WIDTH];
+    [path setLineJoinStyle:kCGLineJoinRound];
+    if ([self.baby gender] == SBTMale){
+        [[UIColor SBTBoyLineColor] setStroke];
+    }else{
+        [[UIColor SBTGirlLineColor] setStroke];
+    }
+    CGFloat x = [(SBTEncounter *)[encountersInRange firstObject] ageInDays];
+    CGFloat y = [(SBTEncounter *)[encountersInRange firstObject] dataForParameter:param];
+    // if it is a child (not infant) chart, start the graph at the age break point
+    CGFloat xStart = [self isChildChart] ? [SBTGrowthDataSource infantAgeMaximum] + 1.0 : 0.0;
+    // set the baseline of the chart based on which graph is being displayed
+    // ask the growthDataSource
+    CGFloat yStart = [self.growthDataSource baselineForParameter:param childChart:[self isChildChart]];
+    // x and y are now in measurement units
+    CGFloat locx = ((x - xStart) / ([self maxHRange] - xStart)) * self.overlayView.bounds.size.width;
+    CGFloat locy = ((y - yStart) / ([self maxVRange] - yStart)) * self.overlayView.bounds.size.height;
+    locy = self.overlayView.bounds.size.height - locy;
+    [path moveToPoint:CGPointMake(locx, locy)];
+    for (SBTEncounter *enc in encountersInRange){
+        x = [enc ageInDays];
+        y = [enc dataForParameter:param];
+        if (y < 0.001) continue;
+        locx = ((x - xStart) / ([self maxHRange] - xStart)) * self.overlayView.bounds.size.width;
+        locy = ((y - yStart) / ([self maxVRange] - yStart)) * self.overlayView.bounds.size.height;
+        locy = self.overlayView.bounds.size.height - locy;
+        [path addLineToPoint:CGPointMake(locx, locy)];
+    }
+    [path stroke];
+    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
+    [self.overlayView setImage:img];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

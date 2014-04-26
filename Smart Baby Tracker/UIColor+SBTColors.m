@@ -26,5 +26,15 @@
     return [UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1.0];
 }
 
++(instancetype)SBTBoyLineColor
+{
+    return [UIColor blueColor];
+}
+
++(instancetype)SBTGirlLineColor
+{
+    return [UIColor redColor];
+}
+
 
 @end
