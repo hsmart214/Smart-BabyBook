@@ -341,6 +341,7 @@
     UIGraphicsBeginImageContextWithOptions(self.overlayView.bounds.size, NO, 0.0);
     UIBezierPath *path = [UIBezierPath bezierPathWithRect:self.overlayView.bounds];
     [path addClip];
+    [path removeAllPoints];
     [path setLineWidth:GROWTH_LINE_WIDTH];
     [path setLineJoinStyle:kCGLineJoinRound];
     if ([self.baby gender] == SBTMale){
