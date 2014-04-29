@@ -117,16 +117,19 @@
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     [self adjustAxesForContentOffset:scrollView.contentOffset andScale:scrollView.contentScaleFactor];
+    [self drawDataForParameter:self.parameter];
 }
 
 -(void)scrollViewDidZoom:(UIScrollView *)scrollView
 {
     [self adjustAxesForContentOffset:scrollView.contentOffset andScale:scrollView.contentScaleFactor];
+    [self drawDataForParameter:self.parameter];
 }
 
 -(void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(CGFloat)scale
 {
     [self adjustAxesForContentOffset:scrollView.contentOffset andScale:scale];
+    [self drawDataForParameter:self.parameter];
 }
 
 #pragma mark - UITabBar Delegate
