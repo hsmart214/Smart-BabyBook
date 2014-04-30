@@ -14,7 +14,7 @@
 @interface SBTEncounter ()
 
 @property (nonatomic, strong) NSMutableSet *vaccines;
-@property (nonatomic, strong) NSDate *dateModified;
+@property (nonatomic, copy) NSDate *dateModified;
 
 @end
 
@@ -39,6 +39,12 @@
 {
     _height = height;
     _length = 0.0F;
+    self.dateModified = [NSDate date];
+}
+
+-(void)setWeight:(double)weight
+{
+    _weight = weight;
     self.dateModified = [NSDate date];
 }
 
@@ -175,8 +181,8 @@
     if (self = [self initWithDate:date]){
         self->_weight = [aDecoder decodeDoubleForKey:@"weight"];
         self->_height = [aDecoder decodeDoubleForKey:@"height"];
-        self.length = [aDecoder decodeDoubleForKey:@"length"];
-        self.headCirc = [aDecoder decodeDoubleForKey:@"headCirc"];
+        self->_length = [aDecoder decodeDoubleForKey:@"length"];
+        self->_headCirc = [aDecoder decodeDoubleForKey:@"headCirc"];
         NSData *vaccineData = [aDecoder decodeObjectOfClass:[NSMutableSet class] forKey:@"vaccines"];
         self.vaccines = [NSKeyedUnarchiver unarchiveObjectWithData:vaccineData];
         self.dateModified = [aDecoder decodeObjectOfClass:[NSDate class] forKey:@"dateModified"];
@@ -194,9 +200,10 @@
     newEnc.baby = self.baby;
     newEnc->_weight = self.weight;
     newEnc->_height = self.height;
-    newEnc.length = self.length;
-    newEnc.headCirc = self.headCirc;
+    newEnc->_length = self.length;
+    newEnc->_headCirc = self.headCirc;
     newEnc.vaccines = [self.vaccines copy];
+    newEnc.dateModified = self.dateModified;
     return newEnc;
 }
 

@@ -49,6 +49,10 @@
         NSString *path = [self babyArchivePath];
         self.babyDict = [[NSKeyedUnarchiver unarchiveObjectWithFile:path] mutableCopy];
         if (!self.babyDict){
+            NSURL *url = [[NSBundle mainBundle] URLForResource:@"babies" withExtension:@"data"];
+            self.babyDict = [[NSKeyedUnarchiver unarchiveObjectWithFile:[url path]] mutableCopy];
+        }
+        if (!self.babyDict){
             self.babyDict = [NSMutableDictionary dictionary];
         }
     }

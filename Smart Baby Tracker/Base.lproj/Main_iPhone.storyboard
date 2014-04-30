@@ -734,7 +734,13 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                             <outlet property="delegate" destination="oRm-6A-Jx5" id="q6a-Gy-GES"/>
                         </connections>
                     </tableView>
-                    <toolbarItems/>
+                    <toolbarItems>
+                        <barButtonItem title="Archive" id="UX1-Hj-mvB">
+                            <connections>
+                                <action selector="archiveThisBaby:" destination="oRm-6A-Jx5" id="biU-bW-znf"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="Name of Child" id="q0h-pY-4uA">
                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="pgG-kA-koh">
                             <connections>
@@ -1513,7 +1519,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="MgW-jl-WfQ"/>
+        <segue reference="9tz-Wu-nxJ"/>
         <segue reference="sJR-R6-pNF"/>
     </inferredMetricsTieBreakers>
 </document>

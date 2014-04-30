@@ -76,6 +76,7 @@
 		42E7F98C18C267AE00C49072 /* SBTWHODataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E7F98B18C267AE00C49072 /* SBTWHODataSource.m */; };
 		42ED85DA18E0F2B500BF7318 /* SBTGraphViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42ED85D918E0F2B500BF7318 /* SBTGraphViewController.m */; };
 		42F66E3618BC581D0099137F /* SBTDTaPScheduleTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F66E3518BC581D0099137F /* SBTDTaPScheduleTest.m */; };
+		89C374761910AFFB009F9EB4 /* babies.data in Resources */ = {isa = PBXBuildFile; fileRef = 89C374751910AFFB009F9EB4 /* babies.data */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -187,6 +188,7 @@
 		42ED85D818E0F2B500BF7318 /* SBTGraphViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTGraphViewController.h; sourceTree = "<group>"; };
 		42ED85D918E0F2B500BF7318 /* SBTGraphViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTGraphViewController.m; sourceTree = "<group>"; };
 		42F66E3518BC581D0099137F /* SBTDTaPScheduleTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTDTaPScheduleTest.m; sourceTree = "<group>"; };
+		89C374751910AFFB009F9EB4 /* babies.data */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = babies.data; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -292,6 +294,7 @@
 				421C746F18937535000E3C30 /* SBTAppDelegate.h */,
 				421C747018937535000E3C30 /* SBTAppDelegate.m */,
 				429700CD18AED9AA0013A91B /* ACIP Schedule.plist */,
+				89C374751910AFFB009F9EB4 /* babies.data */,
 				421C746818937535000E3C30 /* Smart Baby Tracker-Info.plist */,
 				421C746918937535000E3C30 /* InfoPlist.strings */,
 				421C746C18937535000E3C30 /* main.m */,
@@ -486,6 +489,7 @@
 				426436A918C4459800414CA1 /* cdchcboys.txt in Resources */,
 				426436A818C4459800414CA1 /* cdcbmigirls.txt in Resources */,
 				426436B418C4459800414CA1 /* whobmiinfantgirls.txt in Resources */,
+				89C374761910AFFB009F9EB4 /* babies.data in Resources */,
 				426436B618C4459800414CA1 /* whohcgirls.txt in Resources */,
 				426436AB18C4459800414CA1 /* cdclengthboys.txt in Resources */,
 				426436AE18C4459800414CA1 /* cdcstaturegirls.txt in Resources */,
