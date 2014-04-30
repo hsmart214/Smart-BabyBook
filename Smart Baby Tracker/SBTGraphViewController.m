@@ -334,7 +334,7 @@
 -(void)drawDataForParameter:(SBTGrowthParameter)param
 {
     NSArray *encounters = [self.baby encountersList];
-    double first = [self isChildChart] ? [self.growthDataSource dataFloorForParameter:param] : 0.0;
+    double first = [self isChildChart] ? self.growthDataSource.infantAgeMaximum + 1.0 : 0.0;
     double last = [self isChildChart] ? [self.growthDataSource dataAgeRangeForAge:[self.growthDataSource infantAgeMaximum] + 1.0] : [self.growthDataSource infantAgeMaximum];
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"%K BETWEEN %@", @"ageInDays", @[@(first), @(last)]];
     NSArray *encountersInRange = [encounters filteredArrayUsingPredicate:pred];
@@ -357,18 +357,22 @@
     // ask the growthDataSource
     CGFloat yStart = [self.growthDataSource baselineForParameter:param childChart:[self isChildChart]];
     // x and y are now in measurement units
-    CGFloat locx = ((x - xStart) / ([self maxHRange] - xStart)) * self.overlayView.bounds.size.width;
-    CGFloat locy = ((y - yStart) / ([self maxVRange] - yStart)) * self.overlayView.bounds.size.height;
-    locy = self.overlayView.bounds.size.height - locy;
-    [path moveToPoint:CGPointMake(locx, locy)];
+    CGFloat locx = ((x - xStart) / ([self maxHRange] - xStart)) * self.graphView.bounds.size.width;
+    CGFloat locy = ((y - yStart) / ([self maxVRange] - yStart)) * self.graphView.bounds.size.height;
+    locy = self.graphView.bounds.size.height - locy;
+    // now that we have the ersatz location of the point in the graphView's coordinate system
+    // we need to draw it in the overlayView's coordinate system
+    CGPoint point = [self.overlayView convertPoint:CGPointMake(locx, locy) fromView:self.graphView];
+    [path moveToPoint:point];
     for (SBTEncounter *enc in encountersInRange){
         x = [enc ageInDays];
         y = [enc dataForParameter:param];
         if (y < 0.001) continue;
-        locx = ((x - xStart) / ([self maxHRange] - xStart)) * self.overlayView.bounds.size.width;
-        locy = ((y - yStart) / ([self maxVRange] - yStart)) * self.overlayView.bounds.size.height;
-        locy = self.overlayView.bounds.size.height - locy;
-        [path addLineToPoint:CGPointMake(locx, locy)];
+        locx = ((x - xStart) / ([self maxHRange] - xStart)) * self.graphView.bounds.size.width;
+        locy = ((y - yStart) / ([self maxVRange] - yStart)) * self.graphView.bounds.size.height;
+        locy = self.graphView.bounds.size.height - locy;
+        point = [self.overlayView convertPoint:CGPointMake(locx, locy) fromView:self.graphView];
+        [path addLineToPoint:point];
     }
     [path stroke];
     UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
