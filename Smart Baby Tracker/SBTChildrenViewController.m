@@ -63,7 +63,11 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
+        [tableView beginUpdates];
+        [[SBTDataStore sharedStore] removeBaby:self.children[indexPath.row]];
+        self.children = [[SBTDataStore sharedStore] storedBabies];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [tableView endUpdates];
     }   
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view

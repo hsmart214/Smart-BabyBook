@@ -35,6 +35,8 @@
     [self updateDisplay];
 }
 
+#pragma mark - view life cycle
+
 -(void)updateDisplay
 {
     [self setTitle:self.baby.name];

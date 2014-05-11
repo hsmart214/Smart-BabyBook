@@ -27,6 +27,18 @@
     });
 }
 
+-(BOOL)removeBaby:(SBTBaby *)baby
+{
+    BOOL found = self.babyDict[baby.name] != nil;
+    if (found) {
+        [self.babyDict removeObjectsForKeys:@[baby.name]];
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            [self saveChanges];
+        });
+    }
+    return found;
+}
+
 -(NSArray *)storedBabies
 {
     NSArray *babies = [[self.babyDict allValues] sortedArrayUsingSelector:@selector(name)];

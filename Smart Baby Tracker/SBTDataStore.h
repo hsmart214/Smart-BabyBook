@@ -14,6 +14,7 @@
 
 // this method will ADD the baby if the name is new, and REPLACE the baby if the name exists
 -(void)storeBaby:(SBTBaby *)baby;
+-(BOOL)removeBaby:(SBTBaby *)baby;  // returns a boolean YES if the baby was in the list and removed, otherwise NO
 -(NSArray *)storedBabies;
 
 +(instancetype)sharedStore;
