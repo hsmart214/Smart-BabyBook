@@ -48,6 +48,7 @@
 // will return an EMPTY ARRAY (not nil) if never received the component
 // to simplify, the ages are given in DAYS as NSDateComponents * objects (not NSTimeIntervals or NSIntegers)
 -(NSArray *)daysGivenVaccineComponent:(SBTComponent)component;
+-(NSArray *)encountersWithGivenVaccineComponent:(SBTComponent)component;
 -(NSArray *)daysGivenLiveVaccineComponent;
 -(BOOL)dayIsDuringLiveBlackout:(NSDateComponents *)dayOfLife;
 -(NSArray *)encountersList;

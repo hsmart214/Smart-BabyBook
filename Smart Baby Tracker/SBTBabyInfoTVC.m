@@ -12,6 +12,7 @@
 #import "SBTGraphViewController.h"
 #import "SBTWHODataSource.h"
 #import "SBTCDCDataSource.h"
+#import "SBTVaccineGridViewController.h"
 
 @interface SBTBabyInfoTVC ()<SBTBabyEditDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *birthDateLable;
@@ -86,6 +87,10 @@
         dest.growthDataSource = [SBTGrowthDataSource growthDataSourceForAge:[self.baby ageDDAtDate:[NSDate date]].day];
         dest.parameter = SBTWeight;
         // no need to set childChart to NO here - it is the default value
+    }
+    if ([segue.identifier isEqualToString:@"Vaccine Grid Segue"]){
+        SBTVaccineGridViewController *dest = segue.destinationViewController;
+        dest.baby = self.baby;
     }
 }
 

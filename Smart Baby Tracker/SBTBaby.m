@@ -130,6 +130,21 @@
     return days;
 }
 
+-(NSArray *)encountersWithGivenVaccineComponent:(SBTComponent)component
+{
+    NSMutableArray *encounters = [NSMutableArray array];
+    
+    for (SBTEncounter *enc in self.encounters){
+        for (SBTVaccine *vacc in enc.vaccinesGiven){
+            if ([vacc includesEquivalentComponent:component]){
+                [encounters addObject:enc];
+            }
+        }
+    }
+    return encounters;
+
+}
+
 -(NSArray *)daysGivenLiveVaccineComponent
 {
     NSMutableArray *liveDays = [NSMutableArray array];

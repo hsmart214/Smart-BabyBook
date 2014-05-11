@@ -157,7 +157,7 @@
     static NSDictionary *genericVaccines = nil;
     if (!genericVaccines){
         genericVaccines = @{
-            @"DTaP":[[SBTVaccine alloc] initWithName:@"DTaP" displayNames:@[@"DTaP"] andComponents:@[@(SBTComponentFDA_Approved),@(SBTComponentDTaP)]],
+            @"DTaP":[[SBTVaccine alloc] initWithName:@"DTaP" displayNames:@[@"DTaP"] andComponents:@[@(SBTComponentDTaP)]],
             @"MMR":[[SBTVaccine alloc] initWithName:@"MMR" displayNames:@[@"MMR"] andComponents:@[@(SBTComponentMMR)]],
             @"Hep B":[[SBTVaccine alloc] initWithName:@"Hep B" displayNames:@[@"Hep B"] andComponents:@[@(SBTComponentHepB)]],
             @"Hep A":[[SBTVaccine alloc] initWithName:@"Hep A" displayNames:@[@"Hep A"] andComponents:@[@(SBTComponentHepA)]],
@@ -169,7 +169,6 @@
             @"PPV23":[[SBTVaccine alloc] initWithName:@"PPV23" displayNames:@[@"PPV23"] andComponents:@[@(SBTComponentPPV23)]],
             @"Tdap":[[SBTVaccine alloc] initWithName:@"Tdap" displayNames:@[@"Tdap"] andComponents:@[@(SBTComponentTdap)]],
             @"IPV":[[SBTVaccine alloc] initWithName:@"IPV" displayNames:@[@"IPV"] andComponents:@[@(SBTComponentIPV)]],
-            @"PCV13":[[SBTVaccine alloc] initWithName:@"PCV13" displayNames:@[@"PCV13"] andComponents:@[@(SBTComponentPCV13)]],
             @"VZV":[[SBTVaccine alloc] initWithName:@"VZV" displayNames:@[@"VZV"] andComponents:@[@(SBTComponentVZV)]],
             @"HPV":[[SBTVaccine alloc] initWithName:@"HPV" displayNames:@[@"HPV"] andComponents:@[@(SBTComponentHPV4)]],
             @"MCV4":[[SBTVaccine alloc] initWithName:@"MCV4" displayNames:@[@"MCV4"] andComponents:@[@(SBTComponentMCV4)]],
