@@ -206,6 +206,9 @@
     newBaby.dueDate = self.dueDate;
     newBaby.gender = self.gender;
     newBaby.encounters = [self.encounters mutableCopy];
+    for (SBTEncounter *enc in newBaby.encounters){
+        enc.baby = newBaby;
+    }
     return newBaby;
 }
 
@@ -219,6 +222,9 @@
     newBaby.dueDate = self.dueDate;
     newBaby.gender = self.gender;
     newBaby.encounters = [self.encounters mutableCopy];
+    for (SBTEncounter *enc in newBaby.encounters){
+        enc.baby = newBaby;
+    }
     return newBaby;
 }
 
