@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SBTVaccineSchedule.h"
 
 @interface SBTVaccineGridHeader : UICollectionReusableView
 
 @property (nonatomic, strong) NSString *componentName;
+@property (nonatomic) SBTVaccinationStatus status;
 
 @end

@@ -19,10 +19,13 @@
 @property (nonatomic, strong) NSDateFormatter *dateFormatter;
 // this is an array of dictionaries - each has two entries - the name of the component, and an array of encounters where the component was given
 @property (nonatomic, strong) NSArray *vaccines;
+@property (nonatomic, strong, readonly) NSDictionary *componentsByName;
 
 @end
 
 @implementation SBTVaccineGridViewController
+
+@synthesize componentsByName = _componentsByName;
 
 -(NSArray *)vaccines
 {
@@ -48,6 +51,20 @@
         _vaccines = vaccines;
     }
     return _vaccines;
+}
+
+-(NSDictionary *)componentsByName
+{
+    if (!_componentsByName){
+        NSArray *names = [[self class] displayNamesForGrid];
+        NSArray *comps = [[self class] componentsForGrid];
+        NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+        for (int i = 0; i < [names count]; i++){
+            dict[names[i]] = [comps[i] firstObject];
+        }
+        _componentsByName = dict;
+    }
+    return _componentsByName;
 }
 
 -(NSDateFormatter *)dateFormatter
@@ -87,7 +104,10 @@
 {
     SBTVaccineGridHeader *header = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"vaccineHeader" forIndexPath:indexPath];
     NSDictionary *vaccineRow = self.vaccines[indexPath.section];
-    header.componentName = vaccineRow[COMPONENT_KEY];
+    NSString *compName = vaccineRow[COMPONENT_KEY];
+    header.componentName = compName;
+    SBTComponent c = (SBTComponent)[self.componentsByName[compName] integerValue];
+    header.status = [[SBTVaccineSchedule sharedSchedule] vaccinationStatusForVaccineComponent:c forBaby:self.baby];
     return header;
 }
 
