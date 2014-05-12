@@ -116,7 +116,7 @@
         allVaccs = @{
                      @"Adacel":[[SBTVaccine alloc] initWithName:@"Adacel" displayNames:@[@"Tdap"] manufacturer:Sanofi andComponents:@[@(SBTComponentFDA_Approved), @(SBTComponentTdap)]],
                      @"Boostrix":[[SBTVaccine alloc] initWithName:@"Boostrix" displayNames:@[@"Tdap"] manufacturer:Glaxo andComponents:@[@(SBTComponentFDA_Approved), @(SBTComponentTdap)]],
-                     @"Daptacel":[[SBTVaccine alloc] initWithName:@"Daptacel" displayNames:@[@"DTaP"] manufacturer:Sanofi andComponents:@[@(SBTComponentFDA_Approved), @(SBTComponentTdap)]],
+                     @"Daptacel":[[SBTVaccine alloc] initWithName:@"Daptacel" displayNames:@[@"DTaP"] manufacturer:Sanofi andComponents:@[@(SBTComponentFDA_Approved), @(SBTComponentDTaP)]],
                      @"Tripedia":[[SBTVaccine alloc] initWithName:@"Tripedia" displayNames:@[@"DTaP"] manufacturer:Sanofi andComponents:@[@(SBTComponentFDA_Approved), @(SBTComponentDTaP)]],
                      @"Infanrix":[[SBTVaccine alloc] initWithName:@"Infanrix" displayNames:@[@"DTaP"] manufacturer:Glaxo andComponents:@[@(SBTComponentFDA_Approved), @(SBTComponentDTaP)]],
                      @"Kinrix":[[SBTVaccine alloc] initWithName:@"Kinrix" displayNames:@[@"DTaP", @"IPV"] manufacturer:Glaxo andComponents:@[@(SBTComponentFDA_Approved), @(SBTComponentDTaP), @(SBTComponentIPV)]],
@@ -147,6 +147,7 @@
                      @"Rotateq":[[SBTVaccine alloc] initWithName:@"Rotateq" displayNames:@[@"Rota"] manufacturer:Merck andComponents:@[@(SBTComponentFDA_Approved), @(SBTComponentRota)]],
                      @"Decavac":[[SBTVaccine alloc] initWithName:@"Decavac" displayNames:@[@"Td"] manufacturer:Sanofi andComponents:@[@(SBTComponentFDA_Approved), @(SBTComponentTd)]],
                      @"Tenivac":[[SBTVaccine alloc] initWithName:@"Tenivac" displayNames:@[@"Td"] manufacturer:Sanofi andComponents:@[@(SBTComponentFDA_Approved), @(SBTComponentTd)]],
+                     @"Varivax":[[SBTVaccine alloc] initWithName:@"Varivax" displayNames:@[@"VZV"] manufacturer:Merck andComponents:@[@(SBTComponentFDA_Approved), @(SBTComponentVZV)]],
                      };
     }
     return allVaccs;

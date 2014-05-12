@@ -89,8 +89,8 @@
     if (![self.encounters containsObject:encounter]){
         [self.baby addEncounter:encounter];
         self.encounters = [self.baby encountersList];
-        [self.delegate babyEditor:self didSaveBaby:self.baby];
     }
+    [self.delegate babyEditor:self didSaveBaby:self.baby];
     [self.tableView reloadData];
 }
 
