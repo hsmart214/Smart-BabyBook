@@ -19,6 +19,16 @@
 //TODO: add logic for different but equivalent components
 -(BOOL)includesEquivalentComponent:(SBTComponent)component
 {
+    NSArray *equivs = [[self class] componentsEquivalentToComponent:component];
+    BOOL present = NO;
+    for (NSNumber *n in equivs){
+        if ([self.components containsObject:n]) present = YES;
+    }
+    return present;
+}
+
+-(BOOL)includesExactComponent:(SBTComponent)component
+{
     return [self.components containsObject:@(component)];
 }
 
@@ -176,6 +186,35 @@
                             };
     }
     return genericVaccines;
+}
+
++(NSArray *)componentsEquivalentToComponent:(SBTComponent)component
+{
+    switch (component) {
+        case SBTComponentDTaP:
+        case SBTComponentDTP:
+        case SBTComponentDTwP:
+            return @[@(SBTComponentDTwP), @(SBTComponentDTP), @(SBTComponentDTaP)];
+        case SBTComponentHiB:
+        case SBTComponentPRP_T:
+        case SBTComponentPRP_OMP:
+            return @[@(SBTComponentHiB), @(SBTComponentPRP_T), @(SBTComponentPRP_OMP)];
+        case SBTComponentIPV:
+        case SBTComponentOPV:
+            return @[@(SBTComponentIPV), @(SBTComponentOPV)];
+        case SBTComponentHPV2:
+        case SBTComponentHPV4:
+            return @[@(SBTComponentHPV2), @(SBTComponentHPV4)];
+        case SBTComponentPCV7:
+        case SBTComponentPCV13:
+            return @[@(SBTComponentPCV7), @(SBTComponentPCV13)];
+        case SBTComponentFlu:
+        case SBTComponentLAIV:
+            return @[@(SBTComponentFlu), @(SBTComponentLAIV)];
+        default:
+            return @[@(component)];
+            break;
+    }
 }
 
 -(NSString *)description

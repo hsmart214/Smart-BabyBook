@@ -136,7 +136,7 @@
     
     for (SBTEncounter *enc in self.encounters){
         for (SBTVaccine *vacc in enc.vaccinesGiven){
-            if ([vacc includesEquivalentComponent:component]){
+            if ([vacc includesExactComponent:component]){
                 [encounters addObject:enc];
             }
         }

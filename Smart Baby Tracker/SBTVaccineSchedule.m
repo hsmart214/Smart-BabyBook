@@ -48,6 +48,8 @@
 {
     switch (vaccineComponent) {
         case SBTComponentDTaP:
+        case SBTComponentDTP:
+        case SBTComponentDTwP:
             return @"DTaP";
         case SBTComponentMMR:
             return @"MMR";
@@ -56,6 +58,24 @@
         case SBTComponentPCV13:
         case SBTComponentPCV7:
             return @"PCV";
+        case SBTComponentVZV:
+            return @"VZV";
+        case SBTComponentHiB:
+        case SBTComponentPRP_OMP:
+        case SBTComponentPRP_T:
+            return @"HiB";
+        case SBTComponentHepA:
+            return @"Hep A";
+        case SBTComponentHPV2:
+        case SBTComponentHPV4:
+            return @"HPV";
+        case SBTComponentRota:
+            return @"Rota";
+        case SBTComponentIPV:
+        case SBTComponentOPV:
+            return @"IPV";
+        case SBTComponentMCV4:
+            return @"MPV4";
         default:
             break;
     }

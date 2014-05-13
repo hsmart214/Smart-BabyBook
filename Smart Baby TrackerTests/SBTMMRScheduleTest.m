@@ -18,6 +18,7 @@
 
 @property (nonatomic, strong) SBTBaby *baby1yr;
 @property (nonatomic, strong) SBTBaby *baby2yr;
+@property (nonatomic, strong) SBTBaby *baby4yr;
 @property (nonatomic, strong) SBTVaccineSchedule *sched;
 
 @end
@@ -35,6 +36,9 @@
     self.baby1yr = [[SBTBaby alloc] initWithName:@"Baby" andDOB:birthday];
     birthday = [[NSCalendar currentCalendar] dateByAddingComponents:xMonths toDate:birthday options:0];
     self.baby2yr = [[SBTBaby alloc] initWithName:@"Toddler" andDOB:birthday];
+    xMonths.day = 2 * xMonths.day - 5;
+    birthday = [[NSCalendar currentCalendar] dateByAddingComponents:xMonths toDate:birthday options:0];
+    self.baby4yr = [[SBTBaby alloc] initWithName:@"PreSchooler" andDOB:birthday];
 }
 
 - (void)tearDown
@@ -50,7 +54,7 @@
     [enc replaceVaccines:[NSSet setWithArray:@[mmr]]];
     [self.baby1yr addEncounter:enc];
     SBTVaccinationStatus status = [self.sched vaccinationStatusForVaccineComponent:SBTComponentMMR forBaby:self.baby1yr];
-    XCTAssertTrue(status == SBTVaccinationUTD , @"Incorrect calculation of DTaP status with five regular doses.");
+    XCTAssertTrue(status == SBTVaccinationUTD , @"Incorrect calculation of MMR status with one valid doses.");
 }
 
 -(void)testMMRTwoDosesOnTime
@@ -67,7 +71,27 @@
     [enc replaceVaccines:[NSSet setWithArray:@[mmr]]];
     [self.baby2yr addEncounter:enc];
     SBTVaccinationStatus status = [self.sched vaccinationStatusForVaccineComponent:SBTComponentMMR forBaby:self.baby2yr];
-    XCTAssertTrue(status == SBTVaccinationUTD , @"Incorrect calculation of DTaP status with five regular doses.");
+    XCTAssertTrue(status == SBTVaccinationUTD , @"Incorrect calculation of MMR status with two valid doses.");
+}
+
+-(void)testMMRSecondDoseIsDueAtAgeFourYears
+{
+    SBTVaccine *mmr = [[SBTVaccine alloc] initWithName:@"MMR-II" displayNames:@[@"MMR"] manufacturer:Wyeth andComponents:@[@(SBTComponentMMR)]];
+    SBTEncounter *enc = [[SBTEncounter alloc] initWithDate:[NSDate date]];
+    [enc replaceVaccines:[NSSet setWithArray:@[mmr]]];
+    [self.baby4yr addEncounter:enc];
+    SBTVaccinationStatus status = [self.sched vaccinationStatusForVaccineComponent:SBTComponentMMR forBaby:self.baby4yr];
+    XCTAssertTrue(status == SBTVaccinationDue , @"Incorrect calculation of MMR status with one valid doses.");
+}
+
+-(void)testVZVSecondDoseIsDueAtAgeFourYears
+{
+    SBTVaccine *vzv = [[SBTVaccine alloc] initWithName:@"Varivax" displayNames:@[@"VZV"] manufacturer:Wyeth andComponents:@[@(SBTComponentVZV)]];
+    SBTEncounter *enc = [[SBTEncounter alloc] initWithDate:[NSDate date]];
+    [enc replaceVaccines:[NSSet setWithArray:@[vzv]]];
+    [self.baby4yr addEncounter:enc];
+    SBTVaccinationStatus status = [self.sched vaccinationStatusForVaccineComponent:SBTComponentVZV forBaby:self.baby4yr];
+    XCTAssertTrue(status == SBTVaccinationDue , @"Incorrect calculation of VZV status with one valid doses.");
 }
 
 @end

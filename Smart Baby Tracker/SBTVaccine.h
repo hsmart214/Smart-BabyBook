@@ -22,6 +22,7 @@
 @property (nonatomic, copy) NSDate *expirationDate;
 
 -(BOOL)includesEquivalentComponent:(SBTComponent)component;
+-(BOOL)includesExactComponent:(SBTComponent)component;
 
 -(instancetype)init;
 -(instancetype)initWithName:(NSString *)name displayNames:(NSArray *)displayNames andComponents:(NSArray *)comps;    // Designated initializer
@@ -34,5 +35,6 @@
 +(NSDictionary *)vaccinesByTradeName;
 +(NSDictionary *)vaccinesByGenericName;
 +(NSSet *)liveVaccineComponents;
++(NSArray *)componentsEquivalentToComponent:(SBTComponent)component;
 
 @end
