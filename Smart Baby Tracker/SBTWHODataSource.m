@@ -329,7 +329,7 @@
         case SBTFemale:
             switch (parameter) {
                 case SBTWeight:
-                    data = self.girlWeightData;
+                    data = days <= [self infantAgeMaximum] ? self.infantGirlWeightData : self.girlWeightData;
                     break;
                 case SBTLength:
                     data = self.girlLengthData;
@@ -341,7 +341,7 @@
                     data = self.girlBMIData;
                     break;
                 case SBTStature:
-                    data = self.girlLengthData;
+                    data = self.girlStatureData;
                     break;
                 default:
                     break;
@@ -350,7 +350,7 @@
         case SBTMale:
             switch (parameter) {
                 case SBTWeight:
-                    data = self.boyWeightData;
+                    data = days <= [self infantAgeMaximum] ? self.infantBoyWeightData : self.boyWeightData;
                     break;
                 case SBTLength:
                     data = self.boyLengthData;
@@ -362,7 +362,7 @@
                     data = self.boyBMIData;
                     break;
                 case SBTStature:
-                    data = self.boyLengthData;
+                    data = self.boyStatureData;
                     break;
                 default:
                     break;
