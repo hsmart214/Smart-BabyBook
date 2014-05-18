@@ -138,7 +138,8 @@
 {
     [super viewDidLoad];
     if (!self.splitViewController){
-        UIImageView *bgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Green"]];
+        UIImageView *bgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:SBTiPadDetailBackgroundImage]];
+        [bgView setContentMode:UIViewContentModeScaleToFill];
         [self.view insertSubview:bgView atIndex:0];
     }
     [self.collectionView reloadData];

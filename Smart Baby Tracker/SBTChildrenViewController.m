@@ -25,37 +25,51 @@
     [self.tableView reloadData];
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    self.children = [[SBTDataStore sharedStore] storedBabies];
-}
-
-
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
-    return [self.children count];
+    return section == 0 ? 1 : [self.children count];
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0){
+        return 160.0;
+    }else{
+        return UITableViewAutomaticDimension;
+    }
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return section == 1 ? NSLocalizedString(@"Children", @"Children - for the list of kids' names") : nil;
+}
+
+-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return indexPath.section == 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Child Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    SBTBaby *baby = self.children[indexPath.row];
-    cell.textLabel.text = baby.name;
-    cell.detailTextLabel.text = [baby ageDescriptionAtDate:[NSDate date]];
-    
+    UITableViewCell *cell;
+    if (indexPath.section == 0){
+        cell =[tableView dequeueReusableCellWithIdentifier:@"Main Info Cell" forIndexPath:indexPath];
+    }else{
+        static NSString *CellIdentifier = @"Child Cell";
+        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+        
+        SBTBaby *baby = self.children[indexPath.row];
+        cell.textLabel.text = baby.name;
+        cell.detailTextLabel.text = [baby ageDescriptionAtDate:[NSDate date]];
+    }
     return cell;
 }
 
@@ -72,11 +86,6 @@
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
-}
-
-
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
 }
 
 #pragma mark - Navigation
@@ -99,7 +108,21 @@
         [dest setBaby:baby];
         dest.delegate = self;
     }
-    
 }
+
+#pragma mark - View Life Cycyle
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    if (self.splitViewController){
+        self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:SBTiPhoneBackgroundImage]];
+    }else{
+        self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:SBTiPadMasterBackgroundImage]];
+    }
+    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.children = [[SBTDataStore sharedStore] storedBabies];
+}
+
 
 @end

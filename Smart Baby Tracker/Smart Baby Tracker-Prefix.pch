@@ -55,6 +55,10 @@ typedef enum {SBTComponentFDA_Approved, SBTComponentHiB, SBTComponentPRP_OMP, SB
 
 typedef enum {SBTStature, SBTLength, SBTWeight, SBTHeadCircumference, SBTBMI} SBTGrowthParameter;
 
+static NSString * const SBTiPhoneBackgroundImage = @"Green";
+static NSString * const SBTiPadMasterBackgroundImage = @"GreenMaster";
+static NSString * const SBTiPadDetailBackgroundImage = @"GreenDetail";
+
 static NSString * const Sanofi = @"Sanofi Pasteur";
 static NSString * const Glaxo = @"GlaxoSmithKline";
 static NSString * const Merck = @"Merck";
