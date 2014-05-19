@@ -78,13 +78,25 @@
     }
 }
 
--(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
+    return 44.0;
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    NSString *headerText;
     if (section == 0){
-        return NSLocalizedString(@"Measurements", @"Header for growth measurements in table view");
+        headerText = NSLocalizedString(@"Measurements", @"Header for growth measurements in table view");
     }else{
-        return NSLocalizedString(@"Vaccines Given", @"Header for vaccines in encounter table view");
+        headerText = NSLocalizedString(@"Vaccines Given", @"Header for vaccines in encounter table view");
     }
+    UILabel *headerLabel = [[UILabel alloc] init];
+    [headerLabel setTextColor:[UIColor whiteColor]];
+    [headerLabel setTextAlignment:NSTextAlignmentCenter];
+    [headerLabel setText:headerText];
+    [headerLabel setFont:[UIFont boldSystemFontOfSize:17.0]];
+    return headerLabel;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -132,6 +144,18 @@
         SBTEncounterEditTVC *editor = nav.viewControllers[0];
         editor.encounter = self.encounter;
         editor.delegate = self;
+    }
+}
+
+#pragma mark - View Life Cycle
+
+-(void)viewDidLoad
+{
+    [super viewDidLoad];
+    if (self.splitViewController){
+        self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:SBTiPadDetailBackgroundImage]];
+    }else{
+        self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:SBTiPhoneBackgroundImage]];
     }
 }
 

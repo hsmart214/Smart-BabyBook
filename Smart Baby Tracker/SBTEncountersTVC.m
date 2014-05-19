@@ -123,6 +123,11 @@
 {
     NSAssert(self.baby != nil, @"No baby in encounters TVC");
     [super viewDidLoad];
+    if (self.splitViewController){
+        self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:SBTiPadDetailBackgroundImage]];
+    }else{
+        self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:SBTiPhoneBackgroundImage]];
+    }
     self.dateFormatter = [[NSDateFormatter alloc] init];
     [self.dateFormatter setCalendar:[NSCalendar currentCalendar]];
     [self.dateFormatter setDateStyle:NSDateFormatterMediumStyle];

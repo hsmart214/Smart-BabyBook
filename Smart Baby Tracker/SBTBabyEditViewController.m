@@ -237,7 +237,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    if (self.splitViewController){
+        self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:SBTiPadDetailBackgroundImage]];
+    }else{
+        self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:SBTiPhoneBackgroundImage]];
+    }
     self.nameField.delegate = self;
     df = [[NSDateFormatter alloc] init];
     df.calendar = [NSCalendar currentCalendar];

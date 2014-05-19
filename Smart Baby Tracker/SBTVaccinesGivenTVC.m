@@ -91,6 +91,16 @@
 
 #pragma mark - Navigation, View Life Cycle
 
+-(void)viewDidLoad
+{
+    [super viewDidLoad];
+    if (self.splitViewController){
+        self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:SBTiPadDetailBackgroundImage]];
+    }else{
+        self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:SBTiPhoneBackgroundImage]];
+    }
+}
+
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];

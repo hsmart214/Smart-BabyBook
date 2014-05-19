@@ -110,7 +110,7 @@ Individual circumstances may make modifications of these recommendations advisab
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
-                    <navigationItem key="navigationItem" title="Children" id="tQt-TN-PWz">
+                    <navigationItem key="navigationItem" title="Baby Tracker" id="tQt-TN-PWz">
                         <barButtonItem key="leftBarButtonItem" systemItem="add" id="nu2-Iw-G5z">
                             <connections>
                                 <segue destination="QPu-UE-jni" kind="modal" identifier="addBabySegue" id="MgW-jl-WfQ"/>
@@ -169,7 +169,7 @@ Individual circumstances may make modifications of these recommendations advisab
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Child Growth Standards" footerTitle="WHO up to 5 yrs only, CDC for older children" id="6zY-6O-n8q">
+                            <tableViewSection headerTitle="Child Growth Standards" footerTitle="" id="6zY-6O-n8q">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="checkmark" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="oS6-od-VKu" style="IBUITableViewCellStyleDefault" id="0dD-GK-VSK">
                                         <rect key="frame" x="0.0" y="255" width="320" height="44"/>
@@ -210,7 +210,7 @@ Individual circumstances may make modifications of these recommendations advisab
                             <tableViewSection headerTitle="Infant/Child Age Break" id="hid-Js-nff">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="checkmark" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="AEx-iD-3x0" style="IBUITableViewCellStyleDefault" id="MqQ-95-cqC">
-                                        <rect key="frame" x="0.0" y="418" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="391" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MqQ-95-cqC" id="nh0-IB-Aux">
                                             <rect key="frame" x="0.0" y="0.0" width="281" height="43"/>
@@ -227,7 +227,7 @@ Individual circumstances may make modifications of these recommendations advisab
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="X6s-dp-MYh" style="IBUITableViewCellStyleDefault" id="ArB-oo-28i">
-                                        <rect key="frame" x="0.0" y="462" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="435" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ArB-oo-28i" id="lU8-0n-Ckm">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -244,7 +244,7 @@ Individual circumstances may make modifications of these recommendations advisab
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="TpC-32-fuz" style="IBUITableViewCellStyleDefault" id="E4F-uH-9Xc">
-                                        <rect key="frame" x="0.0" y="506" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="479" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="E4F-uH-9Xc" id="Thk-qf-1ea">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -265,7 +265,7 @@ Individual circumstances may make modifications of these recommendations advisab
                             <tableViewSection headerTitle="Measurements" id="uEf-sU-r9V">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="checkmark" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="YAn-3p-bGP" style="IBUITableViewCellStyleDefault" id="sco-fK-6Wg">
-                                        <rect key="frame" x="0.0" y="598" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="571" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sco-fK-6Wg" id="d4J-TD-qhb">
                                             <rect key="frame" x="0.0" y="0.0" width="281" height="43"/>
@@ -282,7 +282,7 @@ Individual circumstances may make modifications of these recommendations advisab
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="1aA-Yf-HzO" style="IBUITableViewCellStyleDefault" id="Ee0-RO-QaI">
-                                        <rect key="frame" x="0.0" y="642" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="615" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ee0-RO-QaI" id="rFF-Y6-Peo">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>

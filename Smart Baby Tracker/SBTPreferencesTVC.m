@@ -34,6 +34,38 @@
 
 @implementation SBTPreferencesTVC
 
+-(NSString *)textForHeaderInSection:(NSInteger)section
+{
+    switch (section) {
+        case 0:
+            return NSLocalizedString(@"INFANT GROWTH STANDARDS", @"Infant Growth Standards");
+        case 1:
+            return NSLocalizedString(@"CHILD GROWTH STANDARDS", @"Child Growth Standards");
+        case 2:
+            return NSLocalizedString(@"INFANT/CHILD AGE CUTOFF", @"Infant/Child age cutoff");
+        case 3:
+            return NSLocalizedString(@"MEASUREMENT UNITS", @"Measurement Units");
+            
+        default:
+            return nil;
+    }
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 44;
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UILabel *label = [[UILabel alloc] init];
+    [label setTextAlignment:NSTextAlignmentCenter];
+    [label setFont:[UIFont boldSystemFontOfSize:17.0]];
+    [label setTextColor:[UIColor whiteColor]];
+    label.text = [self textForHeaderInSection:section];
+    return label;
+}
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -156,6 +188,15 @@
 
 - (IBAction)pressedDone:(id)sender {
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)viewDidLoad
+{
+    if (self.splitViewController){
+        self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:SBTiPadMasterBackgroundImage]];
+    }else{
+        self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:SBTiPhoneBackgroundImage]];
+    }
 }
 
 @end

@@ -47,9 +47,20 @@
     }
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return section == 1 ? NSLocalizedString(@"Children", @"Children - for the list of kids' names") : nil;
+    return (section == 0) ? 0.0 : 44.0;
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    if (section == 0) return nil;
+    UILabel *headerLabel = [[UILabel alloc] init];
+    [headerLabel setTextColor:[UIColor whiteColor]];
+    [headerLabel setTextAlignment:NSTextAlignmentCenter];
+    [headerLabel setText:NSLocalizedString(@"Children", @"Children - for the list of kids' names")];
+    [headerLabel setFont:[UIFont boldSystemFontOfSize:17.0]];
+    return headerLabel;
 }
 
 -(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath

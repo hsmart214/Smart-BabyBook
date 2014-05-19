@@ -58,6 +58,11 @@
 -(void)viewDidLoad
 {
     NSAssert(self.baby != nil, @"No baby in Baby Info TVC");
+    if (self.splitViewController){
+        self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:SBTiPadDetailBackgroundImage]];
+    }else{
+        self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:SBTiPhoneBackgroundImage]];
+    }
     [self updateDisplay];
 }
 
