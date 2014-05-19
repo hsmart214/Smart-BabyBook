@@ -10,6 +10,8 @@
 #import "SBTEncounter.h"
 #import "SBTBaby.h"
 
+#define VACCINE_CELL_CORNER_RADIUS 6.0
+
 @interface SBTVaccineCell()
 
 @property (weak, nonatomic) IBOutlet UILabel *label;
@@ -24,22 +26,10 @@
     self.label.text = [encounter.baby ageDescriptionAtDate:encounter.universalDate];
 }
 
-- (id)initWithFrame:(CGRect)frame
+-(void)awakeFromNib
 {
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
+    [self.contentView.layer setCornerRadius:VACCINE_CELL_CORNER_RADIUS];
+    [self.contentView.layer setMasksToBounds:YES];
 }
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
 
 @end

@@ -585,23 +585,34 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                     <rect key="frame" x="0.0" y="0.0" width="80" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NBI-Su-WZd">
+                                        <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NBI-Su-WZd">
                                             <rect key="frame" x="0.0" y="0.0" width="80" height="50"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Age" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3eO-cq-kVD">
-                                                    <rect key="frame" x="8" y="14" width="72" height="21"/>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Age" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3eO-cq-kVD">
+                                                    <rect key="frame" x="8" y="14" width="21" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="3eO-cq-kVD" secondAttribute="bottom" constant="15" id="Nbq-NU-SC6"/>
+                                                <constraint firstItem="3eO-cq-kVD" firstAttribute="leading" secondItem="NBI-Su-WZd" secondAttribute="leading" constant="8" id="Ssn-6r-aYK"/>
+                                                <constraint firstItem="3eO-cq-kVD" firstAttribute="top" secondItem="NBI-Su-WZd" secondAttribute="top" constant="14" id="wIh-ON-BfG"/>
+                                            </constraints>
                                         </view>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="NBI-Su-WZd" secondAttribute="trailing" id="1KP-qR-hpT"/>
+                                    <constraint firstAttribute="bottom" secondItem="NBI-Su-WZd" secondAttribute="bottom" id="RUv-OB-Ion"/>
+                                    <constraint firstItem="NBI-Su-WZd" firstAttribute="top" secondItem="rva-0N-OdA" secondAttribute="top" id="mYY-XM-9W5"/>
+                                    <constraint firstItem="NBI-Su-WZd" firstAttribute="leading" secondItem="rva-0N-OdA" secondAttribute="leading" id="vdn-u9-Jmi"/>
+                                </constraints>
                                 <connections>
                                     <outlet property="label" destination="3eO-cq-kVD" id="WfF-I9-eEJ"/>
                                 </connections>
@@ -611,26 +622,42 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                             <rect key="frame" x="0.0" y="64" width="320" height="36"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <subviews>
-                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Iv-bR-15D">
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Iv-bR-15D">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="36"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Header" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XJz-Rl-HNg">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Header" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XJz-Rl-HNg">
                                             <rect key="frame" x="20" y="7" width="140" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="140" id="j81-kV-c6T"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Status" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kWq-S1-8A2">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kWq-S1-8A2">
                                             <rect key="frame" x="168" y="7" width="140" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstItem="XJz-Rl-HNg" firstAttribute="top" secondItem="9Iv-bR-15D" secondAttribute="top" constant="7" id="6e9-ab-k0j"/>
+                                        <constraint firstItem="kWq-S1-8A2" firstAttribute="leading" secondItem="XJz-Rl-HNg" secondAttribute="trailing" constant="8" symbolic="YES" id="6ex-Kw-3c7"/>
+                                        <constraint firstAttribute="trailing" secondItem="kWq-S1-8A2" secondAttribute="trailing" constant="12" id="DqG-If-2e0"/>
+                                        <constraint firstItem="XJz-Rl-HNg" firstAttribute="leading" secondItem="9Iv-bR-15D" secondAttribute="leading" constant="20" symbolic="YES" id="R84-ly-ycJ"/>
+                                        <constraint firstItem="XJz-Rl-HNg" firstAttribute="baseline" secondItem="kWq-S1-8A2" secondAttribute="baseline" id="fYU-Kt-l1c"/>
+                                    </constraints>
                                 </view>
                             </subviews>
+                            <constraints>
+                                <constraint firstItem="9Iv-bR-15D" firstAttribute="top" secondItem="Bao-pA-XPm" secondAttribute="top" id="484-oa-S9p"/>
+                                <constraint firstAttribute="trailing" secondItem="9Iv-bR-15D" secondAttribute="trailing" id="IFV-KF-u8e"/>
+                                <constraint firstItem="9Iv-bR-15D" firstAttribute="leading" secondItem="Bao-pA-XPm" secondAttribute="leading" id="XPo-BE-g3I"/>
+                                <constraint firstAttribute="bottom" secondItem="9Iv-bR-15D" secondAttribute="bottom" id="gov-8p-GTk"/>
+                            </constraints>
                             <connections>
                                 <outlet property="label" destination="XJz-Rl-HNg" id="c1P-dC-D2H"/>
                                 <outlet property="statusLabel" destination="kWq-S1-8A2" id="ba5-Nf-Dyh"/>
