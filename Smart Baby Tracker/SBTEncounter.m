@@ -50,11 +50,11 @@
 
 -(double)BMI
 {
-    double ht = self.height + self.weight;
+    double ht = self.height + self.length;
     if (ht <= 0.1){
         return 0.0;
     }
-    return self.weight / ht*ht;
+    return self.weight / (ht*ht);
 }
 
 -(void)setHeadCirc:(double)headCirc

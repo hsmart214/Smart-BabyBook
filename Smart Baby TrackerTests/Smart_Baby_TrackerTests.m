@@ -81,7 +81,10 @@
 
 -(void)testEncounter
 {
-    
+    SBTEncounter *enc = [[SBTEncounter alloc] initWithDate:[NSDate date]];
+    enc.weight = 20.0 * 1.21;
+    enc.height = 1.1;
+    XCTAssertEqualWithAccuracy(enc.BMI, 20.0, 0.0001, @"SBTEncounter failed to calculate BMI correctly.");
 }
 
 @end
