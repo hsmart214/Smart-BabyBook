@@ -1380,10 +1380,10 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <items>
-                                    <tabBarItem systemItem="favorites" id="OJs-gJ-g7h"/>
-                                    <tabBarItem systemItem="contacts" id="MBJ-4B-9KL"/>
-                                    <tabBarItem systemItem="history" id="B3a-fM-erF"/>
-                                    <tabBarItem systemItem="mostViewed" id="9g1-wN-CnC"/>
+                                    <tabBarItem title="Length" image="heightTab" id="OJs-gJ-g7h"/>
+                                    <tabBarItem title="Weight" image="weightTab" id="MBJ-4B-9KL"/>
+                                    <tabBarItem title="BMI" image="BMITab" id="B3a-fM-erF"/>
+                                    <tabBarItem title="Head" image="headCirc" id="9g1-wN-CnC"/>
                                 </items>
                                 <connections>
                                     <outlet property="delegate" destination="J9F-Wc-rqO" id="au9-E2-Pr2"/>
@@ -1577,9 +1577,9 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <items>
-                                    <tabBarItem systemItem="favorites" id="EUM-ab-WGC"/>
-                                    <tabBarItem systemItem="contacts" id="noh-pH-3iC"/>
-                                    <tabBarItem systemItem="history" id="oxk-JV-4CK"/>
+                                    <tabBarItem title="Height" image="heightTab" id="EUM-ab-WGC"/>
+                                    <tabBarItem title="Weight" image="weightTab" id="noh-pH-3iC"/>
+                                    <tabBarItem title="BMI" image="BMITab" id="oxk-JV-4CK"/>
                                 </items>
                                 <connections>
                                     <outlet property="delegate" destination="dD2-Rg-38v" id="GVZ-My-Urb"/>
@@ -1618,9 +1618,13 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         </scene>
     </scenes>
     <resources>
+        <image name="BMITab" width="30" height="30"/>
         <image name="head" width="86" height="98"/>
+        <image name="headCirc" width="30" height="30"/>
         <image name="height" width="86" height="86"/>
+        <image name="heightTab" width="30" height="30"/>
         <image name="iTunesArtwork" width="1024" height="1024"/>
+        <image name="weightTab" width="30" height="30"/>
         <image name="wieght" width="86" height="48"/>
     </resources>
     <color key="tintColor" red="0.0" green="0.33588047450000003" blue="0.085452782850000006" alpha="1" colorSpace="calibratedRGB"/>
