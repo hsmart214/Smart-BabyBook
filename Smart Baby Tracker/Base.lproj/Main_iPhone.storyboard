@@ -315,6 +315,17 @@ Individual circumstances may make modifications of these recommendations advisab
                         </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Smart Baby Tracker Preferences" id="e5N-Xv-8Ih"/>
+                    <connections>
+                        <outlet property="cdcChildCell" destination="0dD-GK-VSK" id="OKc-20-Luj"/>
+                        <outlet property="cdcInfantCell" destination="uCM-Ie-mvE" id="Gyh-Ns-xos"/>
+                        <outlet property="fiveYearCell" destination="E4F-uH-9Xc" id="cWz-rt-mZR"/>
+                        <outlet property="metricUnitsCell" destination="Ee0-RO-QaI" id="qX1-jW-dE5"/>
+                        <outlet property="standardUnitsCell" destination="sco-fK-6Wg" id="exL-C5-onL"/>
+                        <outlet property="threeYearCell" destination="ArB-oo-28i" id="v9m-Vq-GeN"/>
+                        <outlet property="twoYearCell" destination="MqQ-95-cqC" id="qcT-9S-IoY"/>
+                        <outlet property="whoChildCell" destination="kUc-zC-CQq" id="bsn-N1-8P2"/>
+                        <outlet property="whoInfantCell" destination="MXn-Qn-xRc" id="p8Z-gw-3af"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qwL-aP-Ig7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

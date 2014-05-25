@@ -11,6 +11,7 @@
 #import "UIColor+SBTColors.h"
 #import "SBTUnitsConvertor.h"
 #import "SBTEncounter.h"
+#import "SBTWHODataSource.h"
 
 #define VERTICAL_RANGE_ADJUSTMENT 1.1f
 #define GRAPH_RATIO 4.0
@@ -188,6 +189,11 @@
 
 -(void)drawPercentiles
 {
+    // if it is an infant BMI chart, force the data source to WHO data, then set it back at the end
+    SBTGrowthDataSource *oldDataSource = self.growthDataSource;
+    if (![self isChildChart] && self.parameter == SBTBMI){
+        self.growthDataSource = [SBTWHODataSource sharedDataSource];
+    }
     // if it is a child (not infant) chart, start the graph at the age break point
     CGFloat xStart = 0.0;
     if ([self isChildChart]) xStart = [SBTGrowthDataSource infantAgeMaximum] + 1.0;
@@ -329,6 +335,9 @@
     [self.scrollView addSubview:self.graphView];
     self.scrollView.contentSize = image.size;
     [self.scrollView setZoomScale:1.0/GRAPH_RATIO];
+    
+    // if we had set the growth data source to WHO before, set it back now
+    self.growthDataSource = oldDataSource;
 } // drawPercentiles
 
 -(void)drawDataForParameter:(SBTGrowthParameter)param

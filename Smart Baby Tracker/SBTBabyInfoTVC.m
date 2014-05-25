@@ -50,9 +50,17 @@
     [df setTimeStyle:NSDateFormatterShortStyle];
     NSString *timeString = [df stringFromDate:self.baby.DOB];
     self.birthTimeLabel.text = timeString;
+    // put the number of encounters into the encounters cell label
     NSInteger num = [[self.baby encountersList] count];
     NSString *suffix = NSLocalizedString(@"encounters", @"encounters");
     self.numberOfEncountersLabel.text = [NSString stringWithFormat:@"%ld %@", (long)num, suffix];
+    // put the data source (CDC/WHO) into the growth chart cell label
+    suffix = NSLocalizedString(@"Data", @"Growth Data");
+    SBTGrowthDataSource *infantSource = [SBTGrowthDataSource growthDataSourceForAge:1];
+    SBTGrowthDataSource *childSource = [SBTGrowthDataSource growthDataSourceForAge:6 * 365];
+    NSString *source1 = [infantSource isKindOfClass:[SBTWHODataSource class]] ? @"WHO" : @"CDC";
+    NSString *source2 = [childSource isKindOfClass:[SBTWHODataSource class]] ? @"WHO" : @"CDC";
+    self.growthChartDescriptionLabel.text = [NSString stringWithFormat:@"%@/%@ %@", source1, source2, suffix];
 }
 
 -(void)viewDidLoad

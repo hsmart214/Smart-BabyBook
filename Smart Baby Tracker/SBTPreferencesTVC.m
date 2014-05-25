@@ -29,6 +29,18 @@
 
 
 @interface SBTPreferencesTVC ()
+@property (weak, nonatomic) IBOutlet UITableViewCell *cdcInfantCell;
+@property (weak, nonatomic) IBOutlet UITableViewCell *whoInfantCell;
+
+@property (weak, nonatomic) IBOutlet UITableViewCell *cdcChildCell;
+@property (weak, nonatomic) IBOutlet UITableViewCell *whoChildCell;
+
+@property (weak, nonatomic) IBOutlet UITableViewCell *twoYearCell;
+@property (weak, nonatomic) IBOutlet UITableViewCell *threeYearCell;
+@property (weak, nonatomic) IBOutlet UITableViewCell *fiveYearCell;
+
+@property (weak, nonatomic) IBOutlet UITableViewCell *standardUnitsCell;
+@property (weak, nonatomic) IBOutlet UITableViewCell *metricUnitsCell;
 
 @end
 
@@ -188,6 +200,55 @@
 
 - (IBAction)pressedDone:(id)sender {
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    // grab the defaults and set the display appropriately
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    // the infant data source
+    NSNumber *infantSource = [defaults objectForKey:SBTGrowthDataSourceInfantDataSourceKey];
+    if ([infantSource intValue] == CDC_INFANT_CHART){
+        [self.cdcInfantCell setAccessoryType:UITableViewCellAccessoryCheckmark];
+        [self.whoInfantCell setAccessoryType:UITableViewCellAccessoryNone];
+    }else{ // must be WHO
+        [self.whoInfantCell setAccessoryType:UITableViewCellAccessoryCheckmark];
+        [self.cdcInfantCell setAccessoryType:UITableViewCellAccessoryNone];
+    }
+    // the child data source    
+    NSNumber *childSource = [defaults objectForKey:SBTGrowthDataSourceChildDataSourceKey];
+    if ([childSource intValue] == CDC_CHILD_CHART){
+        [self.cdcChildCell setAccessoryType:UITableViewCellAccessoryCheckmark];
+        [self.whoChildCell setAccessoryType:UITableViewCellAccessoryNone];
+    }else{ // must be WHO
+        [self.whoChildCell setAccessoryType:UITableViewCellAccessoryCheckmark];
+        [self.cdcChildCell setAccessoryType:UITableViewCellAccessoryNone];
+    }
+    // the infant/child cutoff age
+    double cutoff = [defaults doubleForKey:SBTGrowthDataSourceInfantChildCutoffKey];
+    if (fabs(cutoff - TWO_YEARS) < 0.1){
+        [self.twoYearCell setAccessoryType:UITableViewCellAccessoryCheckmark];
+        [self.threeYearCell setAccessoryType:UITableViewCellAccessoryNone];
+        [self.fiveYearCell setAccessoryType:UITableViewCellAccessoryNone];
+    }else if (fabs(cutoff - THREE_YEARS) < 0.1){
+        [self.twoYearCell setAccessoryType:UITableViewCellAccessoryNone];
+        [self.threeYearCell setAccessoryType:UITableViewCellAccessoryCheckmark];
+        [self.fiveYearCell setAccessoryType:UITableViewCellAccessoryNone];
+    }else{ // must be FIVE YEARS
+        [self.twoYearCell setAccessoryType:UITableViewCellAccessoryNone];
+        [self.threeYearCell setAccessoryType:UITableViewCellAccessoryNone];
+        [self.fiveYearCell setAccessoryType:UITableViewCellAccessoryCheckmark];
+    }
+    // the measurement units
+    NSString *unitPrefs = [defaults objectForKey:UNIT_PREFS_KEY];
+    if ([unitPrefs isEqualToString:SBTUnitPreferenceStandard]){
+        [self.standardUnitsCell setAccessoryType:UITableViewCellAccessoryCheckmark];
+        [self.metricUnitsCell setAccessoryType:UITableViewCellAccessoryNone];
+    }else{
+        [self.standardUnitsCell setAccessoryType:UITableViewCellAccessoryNone];
+        [self.metricUnitsCell setAccessoryType:UITableViewCellAccessoryCheckmark];
+    }
 }
 
 -(void)viewDidLoad

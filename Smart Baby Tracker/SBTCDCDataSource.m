@@ -28,6 +28,10 @@
 #define CDC_GIRL_STATURE_FILENAME @"cdcstaturegirls"
 #define CDC_BOY_BMI_FILENAME @"cdcbmiboys"
 #define CDC_GIRL_BMI_FILENAME @"cdcbmigirls"
+// there is no CDC data for infant BMI so we use WHO data for this
+// no, this turned out to be awkward because of the difference in how the data is sliced
+#define WHO_BOY_INFANT_BMI_FILENAME @"whobmiinfantboys"
+#define WHO_GIRL_INFANT_BMI_FILENAME @"whobmiinfantgirls"
 
 
 @interface SBTCDCDataSource();
@@ -38,6 +42,7 @@
 @property (nonatomic, strong) NSArray *boyStatureData;
 @property (nonatomic, strong) NSArray *boyHCData;
 @property (nonatomic, strong) NSArray *boyBMIData;
+@property (nonatomic, strong) NSArray *infantBoyBMIData;
 
 @property (nonatomic, strong) NSArray *infantGirlWeightData;
 @property (nonatomic, strong) NSArray *girlWeightData;
@@ -45,16 +50,26 @@
 @property (nonatomic, strong) NSArray *girlStatureData;
 @property (nonatomic, strong) NSArray *girlHCData;
 @property (nonatomic, strong) NSArray *girlBMIData;
+@property (nonatomic, strong) NSArray *infantGirlBMIData;
 
 @end
 
 @implementation SBTCDCDataSource
 
--(NSArray *)infantBoyWeightData{
+-(NSArray *)infantBoyWeightData
+{
     if (!_infantBoyWeightData){
         _infantBoyWeightData = [self filledDataArrayFromFile:CDC_BOY_INFANT_WEIGHT_FILENAME];
     }
     return _infantBoyWeightData;
+}
+
+-(NSArray *)infantBoyBMIData
+{
+    if (!_infantBoyBMIData){
+        _infantBoyBMIData = [self filledDataArrayFromFile:WHO_BOY_INFANT_BMI_FILENAME];
+    }
+    return _infantBoyBMIData;
 }
 
 -(NSArray *)boyWeightData
@@ -102,6 +117,14 @@
         _infantGirlWeightData = [self filledDataArrayFromFile:CDC_GIRL_INFANT_WEIGHT_FILENAME];
     }
     return _infantGirlWeightData;
+}
+
+-(NSArray *)infantGirlBMIData
+{
+    if (!_infantGirlBMIData){
+        _infantGirlBMIData = [self filledDataArrayFromFile:WHO_GIRL_INFANT_BMI_FILENAME];
+    }
+    return _infantGirlBMIData;
 }
 
 -(NSArray *)girlWeightData
