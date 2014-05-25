@@ -50,7 +50,7 @@
 
 -(double)BMI
 {
-    double ht = self.height + self.length;
+    double ht = (self.height + self.length) / 100.0;    // since we keep stature in cm, and we need meters for BMI
     if (ht <= 0.1){
         return 0.0;
     }

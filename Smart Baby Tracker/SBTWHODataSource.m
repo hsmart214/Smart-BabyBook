@@ -203,7 +203,7 @@
                     dp = self.girlHCData;
                     break;
                 case SBTBMI:
-                    dp = self.girlBMIData;
+                    dp = child ? self.girlBMIData : self.infantGirlBMIData;
             }
             break;
         case SBTMale:
@@ -221,7 +221,7 @@
                     dp = self.boyHCData;
                     break;
                 case SBTBMI:
-                    dp = self.boyBMIData;
+                    dp = child ? self.boyBMIData : self.infantBoyBMIData;
             }
     }
     SBTDataPoint *pt1, *pt2;
