@@ -24,6 +24,12 @@
 
 +(NSString *)displayStringForKey:(NSString *)dimKey;
 
-+(NSDictionary *)defaultUnitPrefs;
++(NSDictionary *)standardUnitPrefs;
+
++(BOOL)unitPreferencesSynchronizedMetric;
++(BOOL)unitPreferencesSynchronizedStandard;
+
++(void)chooseAllMetricUnits;
++(void)chooseAllStandardUnits;
 
 @end

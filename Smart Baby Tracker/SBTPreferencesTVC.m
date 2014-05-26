@@ -7,6 +7,7 @@
 //
 
 #import "SBTPreferencesTVC.h"
+#import "SBTUnitsConvertor.h"
 
 #define INFANT_STANDARD_SECTION 0
 #define CHILD_STANDARD_SECTION 1
@@ -177,11 +178,11 @@
             if (indexPath.row == US_STANDARD_ROW){
                 otherPath = [NSIndexPath indexPathForRow:METRIC_STANDARD_ROW
                                                inSection:MEASURMENT_STANDARD_SECTION];
-                [defaults setObject:SBTUnitPreferenceStandard forKey:UNIT_PREFS_KEY];
-            }else{
+                [SBTUnitsConvertor chooseAllStandardUnits];
+            }else{ // must be METRIC
                 otherPath = [NSIndexPath indexPathForRow:US_STANDARD_ROW
                                                inSection:MEASURMENT_STANDARD_SECTION];
-                [defaults setObject:SBTUnitPreferenceMetric forKey:UNIT_PREFS_KEY];
+                [SBTUnitsConvertor chooseAllMetricUnits];
             }
             UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
             [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
@@ -240,15 +241,12 @@
         [self.threeYearCell setAccessoryType:UITableViewCellAccessoryNone];
         [self.fiveYearCell setAccessoryType:UITableViewCellAccessoryCheckmark];
     }
-    // the measurement units
-    NSString *unitPrefs = [defaults objectForKey:UNIT_PREFS_KEY];
-    if ([unitPrefs isEqualToString:SBTUnitPreferenceStandard]){
-        [self.standardUnitsCell setAccessoryType:UITableViewCellAccessoryCheckmark];
-        [self.metricUnitsCell setAccessoryType:UITableViewCellAccessoryNone];
-    }else{
-        [self.standardUnitsCell setAccessoryType:UITableViewCellAccessoryNone];
-        [self.metricUnitsCell setAccessoryType:UITableViewCellAccessoryCheckmark];
-    }
+    // the measurement units - set both unchecked since they may be out of sync
+    //TODO: fix this with some logic to see if they are actually sync'd - maybe a class method on SBTUnitsConvertor?
+    [self.standardUnitsCell setAccessoryType:UITableViewCellAccessoryNone];
+    [self.metricUnitsCell setAccessoryType:UITableViewCellAccessoryNone];
+    if ([SBTUnitsConvertor unitPreferencesSynchronizedMetric]) [self.metricUnitsCell setAccessoryType:UITableViewCellAccessoryCheckmark];
+    if ([SBTUnitsConvertor unitPreferencesSynchronizedStandard]) [self.standardUnitsCell setAccessoryType:UITableViewCellAccessoryCheckmark];
 }
 
 -(void)viewDidLoad

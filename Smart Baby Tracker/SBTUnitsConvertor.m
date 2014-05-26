@@ -98,12 +98,57 @@
     return displayStrings[preferredUnit];
 }
 
-+(NSDictionary *)defaultUnitPrefs
++(NSDictionary *)standardUnitPrefs
 {
     return @{MASS_UNIT_KEY: K_POUNDS,
              HC_UNIT_KEY: K_INCHES,
              LENGTH_UNIT_KEY: K_INCHES,
              };
+}
+
++(NSDictionary *)metricUnitPrefs
+{
+    return @{MASS_UNIT_KEY: K_KILOGRAMS,
+             HC_UNIT_KEY: K_CENTIMETERS,
+             LENGTH_UNIT_KEY: K_CENTIMETERS,
+             };
+}
+
++(BOOL)unitPreferencesSynchronizedMetric
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSDictionary *unitPrefs = [defaults objectForKey:UNIT_PREFS_KEY];
+    NSDictionary *metricPrefs = [[self class] metricUnitPrefs];
+    BOOL result = YES;
+    for (NSString *key in [unitPrefs allKeys]){
+        result = result && [unitPrefs[key] isEqualToString:metricPrefs[key]];
+    }
+    return result;
+}
+
++(BOOL)unitPreferencesSynchronizedStandard
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSDictionary *unitPrefs = [defaults objectForKey:UNIT_PREFS_KEY];
+    NSDictionary *defaultPrefs = [[self class] standardUnitPrefs];
+    BOOL result = YES;
+    for (NSString *key in [unitPrefs allKeys]){
+        result = result && [unitPrefs[key] isEqualToString:defaultPrefs[key]];
+    }
+    return result;
+}
+
++(void)chooseAllMetricUnits
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:[[self class] metricUnitPrefs] forKey:UNIT_PREFS_KEY];
+}
+
++(void)chooseAllStandardUnits
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:[[self class] standardUnitPrefs] forKey:UNIT_PREFS_KEY];
+
 }
 
 @end

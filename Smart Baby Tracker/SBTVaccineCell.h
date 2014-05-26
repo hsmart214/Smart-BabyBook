@@ -12,5 +12,6 @@
 @interface SBTVaccineCell : UICollectionViewCell
 
 @property (nonatomic, weak) SBTEncounter *encounter;
+@property (weak, nonatomic) IBOutlet UIImageView *statusImageView;
 
 @end

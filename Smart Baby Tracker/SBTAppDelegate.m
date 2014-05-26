@@ -32,7 +32,7 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSDictionary *unitPrefs = [defaults dictionaryForKey:UNIT_PREFS_KEY];
     if (!unitPrefs){ // first run
-        [defaults setObject:[SBTUnitsConvertor defaultUnitPrefs] forKey:UNIT_PREFS_KEY];
+        [defaults setObject:[SBTUnitsConvertor standardUnitPrefs] forKey:UNIT_PREFS_KEY];
         [defaults registerDefaults:[defaults dictionaryRepresentation]];
     }
     return YES;

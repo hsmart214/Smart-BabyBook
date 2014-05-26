@@ -16,5 +16,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *heightIcon;
 @property (weak, nonatomic) IBOutlet UIImageView *weightIcon;
 @property (weak, nonatomic) IBOutlet UIImageView *headIcon;
+@property (weak, nonatomic) IBOutlet UIImageView *vaccineIcon;
 
 @end

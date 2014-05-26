@@ -53,6 +53,11 @@
         [cell.headIcon setAlpha:0.0];
     }
     cell.ageAtEncounterLabel.text = [self.baby ageDescriptionAtDate:enc.dateComps.date];
+    if ([[enc vaccinesGiven] count]){
+        [cell.vaccineIcon setAlpha:1.0];
+    }else{
+        [cell.vaccineIcon setAlpha:0.0];
+    }
     return cell;
 }
 
