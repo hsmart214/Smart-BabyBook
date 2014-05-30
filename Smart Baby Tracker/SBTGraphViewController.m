@@ -23,6 +23,11 @@
 
 #define GROWTH_LINE_WIDTH 4.0f
 
+
+// to this we add in order - CDC/WHO infant/child boy/girl height/weight/headCirc/BMI portrait/landscape
+// example "com.mySmartSoftware.graphCache.CDC.infant.boy.weight.landscape"
+static NSString * const SBTGraphCacheFilePrefix = @"com.mySmartSoftware.graphCache";
+
 @interface SBTGraphViewController ()<UIScrollViewDelegate, UITabBarDelegate>
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -39,6 +44,38 @@
 @implementation SBTGraphViewController
 
 # pragma mark - moving targets
+
+-(NSURL *)URLForPercentileGraph
+{
+    BOOL landscape = (self.view.frame.size.width > self.view.frame.size.height);
+    BOOL child = [self isChildChart];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSURL *cacheURL = [[[NSFileManager defaultManager] URLsForDirectory:NSCachesDirectory inDomains:NSUserDomainMask] lastObject];
+    NSString *age = child ? @"child" : @"infant";
+    NSString *orientation = landscape ? @"landscape" : @"portrait";
+    NSString *parameter = nil;
+    switch (self.parameter) {
+        case SBTBMI:
+            parameter = @"BMI";
+            break;
+        case SBTHeadCircumference:
+            parameter = @"headCirc";
+            break;
+        case SBTLength:
+        case SBTStature:
+            parameter = @"stature";
+            break;
+        case SBTWeight:
+            parameter = @"weight";
+        default:
+            break;
+    }
+    NSNumber *preferredGrowthDataSource = child? [defaults objectForKey:SBTGrowthDataSourceChildDataSourceKey] : [defaults objectForKey:SBTGrowthDataSourceInfantDataSourceKey];
+    NSString *source = preferredGrowthDataSource == WHO_INFANT_CHART ? @"WHO" : @"CDC";
+    NSString *gender = self.baby.gender == SBTMale ? @"boy" :@"girl";
+    NSString *filename = [NSString stringWithFormat:@"%@.%@.%@.%@.%@.%@.png", SBTGraphCacheFilePrefix, source, age, gender, parameter, orientation];
+    return [cacheURL URLByAppendingPathComponent:filename];
+}
 
 -(CGFloat)maxVRange
 {
@@ -189,149 +226,165 @@
 
 -(void)drawPercentiles
 {
-    // if it is an infant BMI chart, force the data source to WHO data, then set it back at the end
+    UIImage *image;
     SBTGrowthDataSource *oldDataSource = self.growthDataSource;
-    if (![self isChildChart] && self.parameter == SBTBMI){
-        self.growthDataSource = [SBTWHODataSource sharedDataSource];
+    // if the specific chart already exists, grab it from the cache directory, otherwise draw from scratch
+    
+    NSURL *url = [self URLForPercentileGraph];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:[url path]]){
+        NSData *imageData = [NSData dataWithContentsOfURL:url];
+        image = [UIImage imageWithData:imageData scale:[UIScreen mainScreen].scale];
+        
+        NSLog(@"Read image from %@", [url path]);
+    }else{
+        NSLog(@"Drawing image de novo.");
+        // if it is an infant BMI chart, force the data source to WHO data, then set it back at the end
+        if (![self isChildChart] && self.parameter == SBTBMI){
+            self.growthDataSource = [SBTWHODataSource sharedDataSource];
+        }
+        // if it is a child (not infant) chart, start the graph at the age break point
+        CGFloat xStart = 0.0;
+        if ([self isChildChart]) xStart = [SBTGrowthDataSource infantAgeMaximum] + 1.0;
+        
+        // set the baseline of the chart based on which graph is being displayed
+        // ask the growthDataSource
+        CGFloat yStart = [self.growthDataSource baselineForParameter:self.parameter childChart:[self isChildChart]];
+        
+        // create an offscreen image and draw a 4x representation of the growth curve percentiles
+        CGSize imageSize = CGSizeMake(self.scrollView.bounds.size.width * GRAPH_RATIO, self.scrollView.bounds.size.height * GRAPH_RATIO);
+        UIGraphicsBeginImageContextWithOptions(imageSize, YES, 0.0);
+        CGRect rect = CGRectMake(0.0, 0.0, imageSize.width, imageSize.height);
+        UIBezierPath *path = [UIBezierPath bezierPathWithRect:rect];
+        [[UIColor whiteColor] setFill];
+        [path fill];
+        
+        // draw the background grid
+        
+        [[UIColor SBTSuperLightGray] setStroke];
+        [path setLineWidth:2.0];
+        
+        // every year for child, every 2 mos for infant
+        
+        CGFloat spacing = 2 * DAYS_PER_MONTH;
+        if ([self maxHRange] > (365.25 * 5.1)) spacing = 365.25;
+        CGFloat age = xStart + spacing;
+        while (age < [self maxHRange]) {
+            
+            CGFloat loc = ((age - xStart) / ([self maxHRange] - xStart)) * imageSize.width;
+            CGPoint p = CGPointMake(loc, 0.0);
+            [path moveToPoint:p];
+            [path addLineToPoint:CGPointMake(p.x, imageSize.height)];
+            
+            [path stroke];
+            age += spacing;
+        }
+        
+        // now for each measure there is a different scale of grid line
+        //          Metric          Standard
+        // Wt       5 kg            10 lb
+        // Len      5 cm            2 in
+        // Ht       10 cm           4 in
+        // BMI      None
+        // HC       1 cm            0.5 in
+        
+        CGFloat stepSize;
+        switch (self.parameter) {
+            case SBTWeight:
+                if ([[SBTUnitsConvertor preferredUnitForKey:MASS_UNIT_KEY] isEqualToString:K_KILOGRAMS]){
+                    stepSize = [self isChildChart] ? 5.0 : 2.0;
+                }else{
+                    stepSize = [self isChildChart] ? 10.0 : 4.0;
+                    stepSize /= POUNDS_PER_KILOGRAM;
+                }
+                break;
+            case SBTLength:
+                if ([[SBTUnitsConvertor preferredUnitForKey:LENGTH_UNIT_KEY] isEqualToString:K_CENTIMETERS]){
+                    stepSize = 2.0;
+                }else{
+                    stepSize = 1.0 / INCHES_PER_CENTIMETER;
+                }
+                break;
+            case SBTStature:
+                if ([[SBTUnitsConvertor preferredUnitForKey:LENGTH_UNIT_KEY] isEqualToString:K_CENTIMETERS]){
+                    stepSize = 5.0;
+                }else{
+                    stepSize = 2.0 / INCHES_PER_CENTIMETER;
+                }
+                break;
+            case SBTHeadCircumference:
+                if ([[SBTUnitsConvertor preferredUnitForKey:LENGTH_UNIT_KEY] isEqualToString:K_CENTIMETERS]){
+                    stepSize = 2.0;
+                }else{
+                    stepSize = 1.0 / INCHES_PER_CENTIMETER;
+                }
+                break;
+            case SBTBMI:
+                stepSize = -1.0;
+            default:
+                break;
+        }
+        if (stepSize > 0.0){
+            int wholeSteps = rint(yStart/stepSize);
+            CGFloat yBase = wholeSteps * stepSize;
+            CGFloat measure = stepSize + yBase;
+            while (measure < [self maxVRange]) {
+                CGFloat loc = ((measure - yStart) / ([self maxVRange] - yStart)) * imageSize.height;
+                loc = imageSize.height - loc;
+                CGPoint p = CGPointMake(0.0, loc);
+                [path moveToPoint:p];
+                [path addLineToPoint:CGPointMake(imageSize.width, loc)];
+                
+                [path stroke];
+                measure += stepSize;
+            }
+        }
+        
+        
+        path = nil;
+        NSMutableArray *pcts = [NSMutableArray arrayWithArray: @[@(P5), @(P10), @(P25), @(P50), @(P75), @(P90), @(P95)]];
+        if (self.parameter == SBTBMI) [pcts insertObject:@(P85) atIndex:5];
+        CGFloat measurement;
+        for (NSNumber *n in pcts){
+            SBTPercentile p = (SBTPercentile)[n integerValue];
+            UIBezierPath *path = [[UIBezierPath alloc] init];
+            [path setLineWidth:2.0];
+            if ([n integerValue] == (NSInteger)P50 || [n integerValue] == (NSInteger)P85) [path setLineWidth:4.0];
+            [path setLineJoinStyle:kCGLineJoinRound];
+            if ([self.baby gender] == SBTMale){
+                [[UIColor SBTBabyBlue] setStroke];
+            }else{
+                [[UIColor SBTBabyPink] setStroke];
+            }
+            CGFloat x = 1.0;
+            measurement = [self.growthDataSource dataForPercentile:p forAge:xStart parameter:self.parameter andGender:self.baby.gender];
+            CGFloat y = ((measurement - yStart) / ([self maxVRange] - yStart)) * imageSize.height;
+            y = imageSize.height - y;
+            [path moveToPoint:CGPointMake(x, y)];
+            BOOL limitedData = self.parameter == SBTWeight && [self isChildChart] && [self.growthDataSource hasLimitedWeightData];
+            while (x < imageSize.width){
+                age = xStart  + (x / imageSize.width) * ([self maxHRange] - xStart);
+                if (limitedData && self.parameter == SBTWeight && age > WHO_CHILD_WEIGHT_MAX_AGE) break;
+                measurement = [self.growthDataSource dataForPercentile:p forAge:age parameter:self.parameter andGender:self.baby.gender];
+                y = ((measurement - yStart) / ([self maxVRange] - yStart)) * imageSize.height;
+                y = imageSize.height - y;
+                [path addLineToPoint:CGPointMake(x, y)];
+                x += 1.0;
+            }
+            [path stroke];
+        }
+        image = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            NSData *imageData = UIImagePNGRepresentation(image);
+            [imageData writeToFile:[url path] atomically:YES];
+        });
+        // done with drawing from scratch
     }
-    // if it is a child (not infant) chart, start the graph at the age break point
-    CGFloat xStart = 0.0;
-    if ([self isChildChart]) xStart = [SBTGrowthDataSource infantAgeMaximum] + 1.0;
     
-    // set the baseline of the chart based on which graph is being displayed
-    // ask the growthDataSource
-    CGFloat yStart = [self.growthDataSource baselineForParameter:self.parameter childChart:[self isChildChart]];
-    
-    
+    self.graphView = [[UIImageView alloc] initWithImage:image];
     for (UIView *view in self.scrollView.subviews){
         [view removeFromSuperview];
     }
-    
-    // create an offscreen image and draw a 4x representation of the growth curve percentiles
-    CGSize imageSize = CGSizeMake(self.scrollView.bounds.size.width * GRAPH_RATIO, self.scrollView.bounds.size.height * GRAPH_RATIO);
-    UIGraphicsBeginImageContextWithOptions(imageSize, YES, 0.0);
-    CGRect rect = CGRectMake(0.0, 0.0, imageSize.width, imageSize.height);
-    UIBezierPath *path = [UIBezierPath bezierPathWithRect:rect];
-    [[UIColor whiteColor] setFill];
-    [path fill];
-    
-    // draw the background grid
-    
-    [[UIColor SBTSuperLightGray] setStroke];
-    [path setLineWidth:2.0];
-    
-    // every year for child, every 2 mos for infant
-    
-    CGFloat spacing = 2 * DAYS_PER_MONTH;
-    if ([self maxHRange] > (365.25 * 5.1)) spacing = 365.25;
-    CGFloat age = xStart + spacing;
-    while (age < [self maxHRange]) {
-        
-        CGFloat loc = ((age - xStart) / ([self maxHRange] - xStart)) * imageSize.width;
-        CGPoint p = CGPointMake(loc, 0.0);
-        [path moveToPoint:p];
-        [path addLineToPoint:CGPointMake(p.x, imageSize.height)];
-        
-        [path stroke];
-        age += spacing;
-    }
-    
-    // now for each measure there is a different scale of grid line
-    //          Metric          Standard
-    // Wt       5 kg            10 lb
-    // Len      5 cm            2 in
-    // Ht       10 cm           4 in
-    // BMI      None
-    // HC       1 cm            0.5 in
-    
-    CGFloat stepSize;
-    switch (self.parameter) {
-        case SBTWeight:
-            if ([[SBTUnitsConvertor preferredUnitForKey:MASS_UNIT_KEY] isEqualToString:K_KILOGRAMS]){
-                stepSize = [self isChildChart] ? 5.0 : 2.0;
-            }else{
-                stepSize = [self isChildChart] ? 10.0 : 4.0;
-                stepSize /= POUNDS_PER_KILOGRAM;
-            }
-            break;
-        case SBTLength:
-            if ([[SBTUnitsConvertor preferredUnitForKey:LENGTH_UNIT_KEY] isEqualToString:K_CENTIMETERS]){
-                stepSize = 2.0;
-            }else{
-                stepSize = 1.0 / INCHES_PER_CENTIMETER;
-            }
-            break;
-        case SBTStature:
-            if ([[SBTUnitsConvertor preferredUnitForKey:LENGTH_UNIT_KEY] isEqualToString:K_CENTIMETERS]){
-                stepSize = 5.0;
-            }else{
-                stepSize = 2.0 / INCHES_PER_CENTIMETER;
-            }
-            break;
-        case SBTHeadCircumference:
-            if ([[SBTUnitsConvertor preferredUnitForKey:LENGTH_UNIT_KEY] isEqualToString:K_CENTIMETERS]){
-                stepSize = 2.0;
-            }else{
-                stepSize = 1.0 / INCHES_PER_CENTIMETER;
-            }
-            break;
-        case SBTBMI:
-            stepSize = -1.0;
-        default:
-            break;
-    }
-    if (stepSize > 0.0){
-        int wholeSteps = rint(yStart/stepSize);
-        CGFloat yBase = wholeSteps * stepSize;
-        CGFloat measure = stepSize + yBase;
-        while (measure < [self maxVRange]) {
-            CGFloat loc = ((measure - yStart) / ([self maxVRange] - yStart)) * imageSize.height;
-            loc = imageSize.height - loc;
-            CGPoint p = CGPointMake(0.0, loc);
-            [path moveToPoint:p];
-            [path addLineToPoint:CGPointMake(imageSize.width, loc)];
-            
-            [path stroke];
-            measure += stepSize;
-        }
-    }
-
-    
-    path = nil;
-    NSMutableArray *pcts = [NSMutableArray arrayWithArray: @[@(P5), @(P10), @(P25), @(P50), @(P75), @(P90), @(P95)]];
-    if (self.parameter == SBTBMI) [pcts insertObject:@(P85) atIndex:5];
-    CGFloat measurement;
-    for (NSNumber *n in pcts){
-        SBTPercentile p = (SBTPercentile)[n integerValue];
-        UIBezierPath *path = [[UIBezierPath alloc] init];
-        [path setLineWidth:2.0];
-        if ([n integerValue] == (NSInteger)P50 || [n integerValue] == (NSInteger)P85) [path setLineWidth:4.0];
-        [path setLineJoinStyle:kCGLineJoinRound];
-        if ([self.baby gender] == SBTMale){
-            [[UIColor SBTBabyBlue] setStroke];
-        }else{
-            [[UIColor SBTBabyPink] setStroke];
-        }
-        CGFloat x = 1.0;
-        measurement = [self.growthDataSource dataForPercentile:p forAge:xStart parameter:self.parameter andGender:self.baby.gender];
-        CGFloat y = ((measurement - yStart) / ([self maxVRange] - yStart)) * imageSize.height;
-        y = imageSize.height - y;
-        [path moveToPoint:CGPointMake(x, y)];
-        BOOL limitedData = self.parameter == SBTWeight && [self isChildChart] && [self.growthDataSource hasLimitedWeightData];
-        while (x < imageSize.width){
-            age = xStart  + (x / imageSize.width) * ([self maxHRange] - xStart);
-            if (limitedData && self.parameter == SBTWeight && age > WHO_CHILD_WEIGHT_MAX_AGE) break;
-            measurement = [self.growthDataSource dataForPercentile:p forAge:age parameter:self.parameter andGender:self.baby.gender];
-            y = ((measurement - yStart) / ([self maxVRange] - yStart)) * imageSize.height;
-            y = imageSize.height - y;
-            [path addLineToPoint:CGPointMake(x, y)];
-            x += 1.0;
-        }
-        [path stroke];
-    }
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    self.graphView = [[UIImageView alloc] initWithImage:image];
     [self.scrollView addSubview:self.graphView];
     self.scrollView.contentSize = image.size;
     [self.scrollView setZoomScale:1.0/GRAPH_RATIO];
