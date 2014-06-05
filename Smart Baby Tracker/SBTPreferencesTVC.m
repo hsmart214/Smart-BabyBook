@@ -21,10 +21,6 @@
 #define THREE_YEAR_ROW 1
 #define FIVE_YEAR_ROW 2
 
-#define TWO_YEARS 730.5
-#define THREE_YEARS 1095.75
-#define FIVE_YEARS 1826.25
-
 #define US_STANDARD_ROW 0
 #define METRIC_STANDARD_ROW 1
 

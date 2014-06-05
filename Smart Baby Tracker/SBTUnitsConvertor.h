@@ -26,6 +26,10 @@
 
 +(NSDictionary *)standardUnitPrefs;
 
++(SBTImperialWeight)imperialWeightForMass:(double)mass;
+
++(BOOL)displayPounds;
+
 +(BOOL)unitPreferencesSynchronizedMetric;
 +(BOOL)unitPreferencesSynchronizedStandard;
 

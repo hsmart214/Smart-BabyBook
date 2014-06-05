@@ -24,8 +24,8 @@
 #define GROWTH_LINE_WIDTH 4.0f
 
 
-// to this we add in order - CDC/WHO infant/child boy/girl height/weight/headCirc/BMI portrait/landscape
-// example "com.mySmartSoftware.graphCache.CDC.infant.boy.weight.landscape"
+// to this we add in order - CDC/WHO infant/child 2yr/3yr/5yr boy/girl height/weight/headCirc/BMI portrait/landscape
+// example "com.mySmartSoftware.graphCache.CDC.infant.2yr.boy.weight.landscape"
 static NSString * const SBTGraphCacheFilePrefix = @"com.mySmartSoftware.graphCache";
 
 @interface SBTGraphViewController ()<UIScrollViewDelegate, UITabBarDelegate>
@@ -52,6 +52,13 @@ static NSString * const SBTGraphCacheFilePrefix = @"com.mySmartSoftware.graphCac
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSURL *cacheURL = [[[NSFileManager defaultManager] URLsForDirectory:NSCachesDirectory inDomains:NSUserDomainMask] lastObject];
     NSString *age = child ? @"child" : @"infant";
+    double ageCutoff = [defaults doubleForKey:SBTGrowthDataSourceInfantChildCutoffKey];
+    NSString *ageBreak = @"2yr";
+    if ((ageCutoff + 1) > FIVE_YEARS){
+        ageBreak = @"5yr";
+    }else if ((ageCutoff + 1) > THREE_YEARS){
+        ageBreak = @"3yr";
+    }
     NSString *orientation = landscape ? @"landscape" : @"portrait";
     NSString *parameter = nil;
     switch (self.parameter) {
@@ -73,16 +80,18 @@ static NSString * const SBTGraphCacheFilePrefix = @"com.mySmartSoftware.graphCac
     NSNumber *preferredGrowthDataSource = child? [defaults objectForKey:SBTGrowthDataSourceChildDataSourceKey] : [defaults objectForKey:SBTGrowthDataSourceInfantDataSourceKey];
     NSString *source = preferredGrowthDataSource == WHO_INFANT_CHART ? @"WHO" : @"CDC";
     NSString *gender = self.baby.gender == SBTMale ? @"boy" :@"girl";
-    NSString *filename = [NSString stringWithFormat:@"%@.%@.%@.%@.%@.%@.png", SBTGraphCacheFilePrefix, source, age, gender, parameter, orientation];
+    NSString *filename = [NSString stringWithFormat:@"%@.%@.%@.%@.%@.%@.%@.png", SBTGraphCacheFilePrefix, source, age, ageBreak, gender, parameter, orientation];
     return [cacheURL URLByAppendingPathComponent:filename];
 }
 
 -(CGFloat)maxVRange
 {
     if (_maxVRange < 0.0){
-        _maxVRange = [self.growthDataSource dataMeasurementRange97PercentForParameter:self.parameter
-                                                                            forGender:self.baby.gender
-                                                                             forChild:[self isChildChart]] * VERTICAL_RANGE_ADJUSTMENT;
+        SBTGrowthDataSource *source = self.growthDataSource;
+        if (self.parameter == SBTBMI && ![self isChildChart]) source = [SBTWHODataSource sharedDataSource];
+        _maxVRange = [source dataMeasurementRange97PercentForParameter:self.parameter
+                                                             forGender:self.baby.gender
+                                                              forChild:[self isChildChart]] * VERTICAL_RANGE_ADJUSTMENT;
     }
     return _maxVRange;
 }

@@ -20,6 +20,14 @@
 
 @implementation SBTEncounter
 
+-(NSDate *)universalDate
+{
+    if (!_universalDate){
+        _universalDate = _dateModified;
+    }
+    return _universalDate;
+}
+
 -(NSDateComponents *)dateComps
 {
     NSCalendarUnit unit = NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear;

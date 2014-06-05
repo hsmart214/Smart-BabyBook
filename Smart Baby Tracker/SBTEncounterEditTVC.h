@@ -24,5 +24,7 @@
 @property (nonatomic, strong) SBTEncounter *encounter;
 @property (nonatomic, weak) SBTBaby *baby;
 @property (nonatomic, weak) id<SBTEncounterEditTVCDelegate> delegate;
+@property (weak, nonatomic) IBOutlet UILabel *dateDescriptionLabel;
+@property (weak, nonatomic) IBOutlet UIButton *heightMethodButton;
 
 @end

@@ -87,6 +87,23 @@
     return dimension;
 }
 
++(SBTImperialWeight)imperialWeightForMass:(double)mass
+{
+    SBTImperialWeight result;
+    result.mass = mass;
+    double realPounds = mass * POUNDS_PER_KILOGRAM;
+    result.pounds = (int)realPounds;
+    result.ounces = realPounds - result.pounds;
+    return result;
+}
+
++(BOOL)displayPounds
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSDictionary *unitPrefs = [defaults objectForKey:UNIT_PREFS_KEY];
+    return [unitPrefs[MASS_UNIT_KEY] isEqualToString:K_POUNDS];
+}
+
 + (NSString *)displayStringForKey:(NSString *)dimKey{
     NSDictionary *displayStrings = @{
                                      K_CENTIMETERS: @"cm",

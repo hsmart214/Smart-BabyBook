@@ -27,6 +27,10 @@
 #define CDC_INFANT_CHART 1
 #define CDC_CHILD_CHART 1
 
+#define TWO_YEARS 730.5
+#define THREE_YEARS 1095.75
+#define FIVE_YEARS 1826.25
+
 #define INFANT_WEIGHT_BASELINE 0.0
 #define CHILD_WEIGHT_BASELINE 5.0
 #define INFANT_LENGTH_BASELINE 43.0
@@ -54,6 +58,12 @@ typedef enum {Intramuscular, Subcutaneous, Intradermal, Oral, Nasal} SBTVaccineR
 typedef enum {SBTComponentFDA_Approved, SBTComponentHiB, SBTComponentPRP_OMP, SBTComponentPRP_T, SBTComponentDTP, SBTComponentDT, SBTComponentTd  , SBTComponentTdap, SBTComponentTet, SBTComponentDTaP, SBTComponentDTwP, SBTComponentIPV, SBTComponentOPV, SBTComponentRota, SBTComponentPCV7, SBTComponentPCV13, SBTComponentPPV23, SBTComponentHepB, SBTComponentHepA, SBTComponentMeasles, SBTComponentMMR, SBTComponentMumps, SBTComponentRubella , SBTComponentVZV , SBTComponentMCV4, SBTComponentMPV4, SBTComponentMenB, SBTComponentMenC, SBTComponentMenCY, SBTComponentHPV2, SBTComponentHPV4, SBTComponentFlu, SBTComponentLAIV, SBTComponentTyphLive, SBTComponentTyphInact, SBTComponentJapEnc, SBTComponentDiph, SBTComponentAcelPert, SBTComponentPert } SBTComponent;
 
 typedef enum {SBTStature, SBTLength, SBTWeight, SBTHeadCircumference, SBTBMI} SBTGrowthParameter;
+
+typedef struct SBTImperialWeight {
+    double mass;
+    NSInteger pounds;
+    double ounces;
+                } SBTImperialWeight;
 
 static NSString * const SBTiPhoneBackgroundImage = @"Green";
 static NSString * const SBTiPadMasterBackgroundImage = @"GreenMaster";

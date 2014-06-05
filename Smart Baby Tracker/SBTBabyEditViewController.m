@@ -7,18 +7,26 @@
 //
 
 #import "SBTBabyEditViewController.h"
+#import "SBTEncounterEditTVC.h"
+#import "SBTEncounter.h"
+#import "SBTUnitsConvertor.h"
+#import "SBTBaby.h"
 
-#define DOB_ROW 1
-#define BIRTH_TIME_ROW 3
+#define BIRTH_TIME_ROW 5
 #define DATE_PICKER_HEIGHT 219.0F
 
-@interface SBTBabyEditViewController ()<UITextFieldDelegate, UIPopoverControllerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface SBTBabyEditViewController ()<UITextFieldDelegate, UIPopoverControllerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDataSource, UITableViewDelegate, SBTEncounterEditTVCDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *babyPic;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *cameraButton;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *genderControl;
 @property (weak, nonatomic) IBOutlet UILabel *dobLabel;
 @property (weak, nonatomic) IBOutlet UILabel *birthTimeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *birthWeightLabel;
+@property (weak, nonatomic) IBOutlet UILabel *birthLengthLabel;
+@property (weak, nonatomic) IBOutlet UILabel *headCircLabel;
 @property (nonatomic, strong) UIPopoverController *popCon;
+
+@property (strong, nonatomic) SBTBaby *oldBaby;
 @end
 
 @implementation SBTBabyEditViewController
@@ -31,6 +39,7 @@
     NSDate *tempDOB;
     NSDate *tempBirthTime;
     NSDateFormatter *df;
+    NSNumberFormatter *nf;
 }
 
 // wait until the last minute to create the new baby and send it back to the delegate.
@@ -84,7 +93,7 @@
 
 -(BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == DOB_ROW || indexPath.row == BIRTH_TIME_ROW){
+    if (indexPath.row == BIRTH_TIME_ROW){
         return YES;
     }else{
         return NO;
@@ -93,9 +102,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == DOB_ROW + 1){
-        return editingDOB ? DATE_PICKER_HEIGHT : 0.0;
-    }else if (indexPath.row == BIRTH_TIME_ROW + 1){
+    if (indexPath.row == BIRTH_TIME_ROW + 1){
         return editingBirthTime ? DATE_PICKER_HEIGHT : 0.0;
     }else{
         return [super tableView:tableView heightForRowAtIndexPath:indexPath];
@@ -105,18 +112,6 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (indexPath.row == DOB_ROW){
-        editingDOB = !editingDOB;
-        editingBirthTime = NO;
-        [self.birthTimePicker setHidden:YES];
-        [self.dobPicker setHidden:!editingDOB];
-        if (!editingDOB){
-            df.timeStyle = NSDateFormatterNoStyle;
-            df.dateStyle = NSDateFormatterMediumStyle;
-            self.dobLabel.text = [df stringFromDate:self.dobPicker.date];
-            tempDOB = self.dobPicker.date;
-        }
-    }
     if (indexPath.row == BIRTH_TIME_ROW) {
         editingBirthTime = !editingBirthTime;
         editingDOB = NO;
@@ -131,6 +126,11 @@
     }
     [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
     [tableView reloadData];
+}
+
+-(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
+{
+    [self performSegueWithIdentifier:@"birthEncounterSegue" sender:[tableView cellForRowAtIndexPath:indexPath]];
 }
 
 #pragma mark - UIPopoverController Delegate
@@ -207,6 +207,55 @@
     return YES;
 }
 
+#pragma mark - SBTEncounterEditTVCDelegate
+
+-(void)SBTEncounterEditTVC:(SBTEncounterEditTVC *)editTVC updatedEncounter:(SBTEncounter *)encounter
+{
+    df.timeStyle = NSDateFormatterNoStyle;
+    df.dateStyle = NSDateFormatterShortStyle;
+    self.dobLabel.text = [df stringFromDate:encounter.universalDate];
+    tempDOB = encounter.universalDate;
+    NSString *units = [SBTUnitsConvertor displayStringForKey:MASS_UNIT_KEY];
+    NSString *buildString;
+    if ([SBTUnitsConvertor displayPounds]){
+        SBTImperialWeight wt = [SBTUnitsConvertor imperialWeightForMass:encounter.weight];
+        buildString = [NSString stringWithFormat:@"%ld %@ %1.1f oz", wt.pounds, units, wt.ounces];
+    }else{
+        buildString = [NSString stringWithFormat:@"%1.2f %@", encounter.weight, units];
+    }
+    self.birthWeightLabel.text = buildString;
+    
+    units = [SBTUnitsConvertor displayStringForKey:LENGTH_UNIT_KEY];
+    double len = [SBTUnitsConvertor displayUnitsOf:encounter.length forKey:LENGTH_UNIT_KEY];
+    buildString = [NSString stringWithFormat:@"%1.1f %@", len, units];
+    self.birthLengthLabel.text = buildString;
+    
+    units = [SBTUnitsConvertor displayStringForKey:HC_UNIT_KEY];
+    double hc = [SBTUnitsConvertor displayUnitsOf:encounter.headCirc forKey:HC_UNIT_KEY];
+    buildString = [NSString stringWithFormat:@"%1.1f %@", hc, units];
+    self.headCircLabel.text = buildString;
+
+}
+
+#pragma mark - Navigation
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"birthEncounterSegue"]){
+        UINavigationController *nav = segue.destinationViewController;
+        SBTEncounterEditTVC *dest = [nav.viewControllers firstObject];
+        dest.delegate = self;
+        dest.baby = self.baby;
+        if ([self.baby.encountersList count]) {
+            dest.encounter = self.baby.encountersList[0];
+        }
+        dest.dateDescriptionLabel.text = NSLocalizedString(@"Birth Date:", @"Label for birth date entry field");
+        [dest setTitle:@"Birth Encounter"];
+    }
+}
+
+#pragma mark - View Controller Life Cycle
+
 -(void)updateDisplay
 {
     if (self.baby){
@@ -245,14 +294,18 @@
     self.nameField.delegate = self;
     df = [[NSDateFormatter alloc] init];
     df.calendar = [NSCalendar currentCalendar];
-    [self.dobPicker setHidden:YES];
+    nf = [[NSNumberFormatter alloc] init];
+    [nf setLocale:[NSLocale currentLocale]];
     [self.birthTimePicker setHidden:YES];
     [self updateDisplay];
+    self.oldBaby = self.baby;
 }
 
 -(void)dealloc
 {
     df = nil;
+    nf = nil;
+    self.oldBaby = nil;
 }
 
 @end

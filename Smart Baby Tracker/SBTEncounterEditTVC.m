@@ -26,7 +26,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *heightUnitLabel;
 @property (weak, nonatomic) IBOutlet UITextField *headCircField;
 @property (weak, nonatomic) IBOutlet UILabel *headCircUnitLabel;
-@property (weak, nonatomic) IBOutlet UIButton *heightMethodButton;
 
 @end
 
