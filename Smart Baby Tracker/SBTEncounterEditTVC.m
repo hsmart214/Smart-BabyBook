@@ -224,13 +224,13 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
-    originalEncounter = [self.encounter copy];
     df = [[NSDateFormatter alloc] init];
     df.calendar = [NSCalendar currentCalendar];
     if (!self.encounter){
         _encounter = [[SBTEncounter alloc] initWithDate:[NSDate date]];
         _encounter.baby = self.baby;
     }
+    originalEncounter = [self.encounter copy];
     NSAssert(self.encounter.baby != nil, @"No valid baby passed to encounter editor.");
     self.weightUnitLabel.text = [SBTUnitsConvertor displayStringForKey:MASS_UNIT_KEY];
     self.heightUnitLabel.text = [SBTUnitsConvertor displayStringForKey:LENGTH_UNIT_KEY];
@@ -239,14 +239,13 @@
     [self updateDisplay];
 }
 
--(void)viewDidLayoutSubviews
+-(void)viewWillAppear:(BOOL)animated
 {
-    [super viewDidLayoutSubviews];
-    if (!self.encounter){
-        
-    }
+    [super viewWillAppear:animated];
     if ([self.baby ageDDAtDate:self.encounter.universalDate].day < AGE_SWITCH_TO_STANDING_HEIGHT){
-        
+        [self.heightMethodButton setTitle:NSLocalizedString(@"Recumbent", @"Recumbent") forState:UIControlStateNormal];
+    }else{
+        [self.heightMethodButton setTitle:NSLocalizedString(@"Standing", @"Standing") forState:UIControlStateNormal];
     }
 }
 
