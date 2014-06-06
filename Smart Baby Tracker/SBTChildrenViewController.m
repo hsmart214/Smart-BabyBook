@@ -101,12 +101,14 @@
 
 #pragma mark - Navigation
 
-// In a story board-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"addBabySegue"]){
+        // I have run into problems downstream if no valid baby instance is sent to the new baby creation machine.
+        SBTBaby *baby = [[SBTBaby alloc] init];
         UINavigationController *nav = segue.destinationViewController;
         SBTBabyEditViewController *bevc = nav.viewControllers[0];
+        bevc.baby = baby;
         [bevc setDelegate:self];
         __weak SBTChildrenViewController *myWeakSelf = self;
         [bevc setDismissBlock:^{

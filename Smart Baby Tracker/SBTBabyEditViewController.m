@@ -160,19 +160,18 @@
         editingBirthTime = !editingBirthTime;
         editingDueDate = NO;
         [self.dueDatePicker setHidden:YES];
-        if (self.birthEncounter){
-            [self.birthTimePicker setDate:self.birthEncounter.universalDate];
-        }else{
-            [self.birthTimePicker setDate:[NSDate date]];
-        }
-        if (!editingBirthTime){
+        if (!editingBirthTime){ // STOP editing, and store the birth time
             [self.birthTimePicker setHidden:YES];
             df.timeStyle = NSDateFormatterShortStyle;
             df.dateStyle = NSDateFormatterNoStyle;
             self.birthTimeLabel.text = [df stringFromDate:self.birthTimePicker.date];
             tempBirthTime = self.birthTimePicker.date;
-        }else{
-            [self.birthTimePicker setDate:self.birthEncounter.universalDate];
+        }else{ // YES editing birth time now
+            if (self.birthEncounter){
+                [self.birthTimePicker setDate:self.birthEncounter.universalDate];
+            }else{
+                [self.birthTimePicker setDate:tempBirthTime ? tempBirthTime : [NSDate date]];
+            }
             [self.birthTimePicker setHidden:NO];
         }
     }else if(indexPath.row == DUE_DATE_ROW) {
@@ -347,6 +346,24 @@
             [self.dueDatePicker setDate:self.baby.DOB];
         }
         [self.genderControl setSelectedSegmentIndex:self.baby.gender];
+        if (self.birthEncounter){  // this was set in viewWillAppear
+            double len = [SBTUnitsConvertor displayUnitsOf:self.birthEncounter.length + self.birthEncounter.height forKey:LENGTH_UNIT_KEY];
+            NSString *units = [SBTUnitsConvertor displayStringForKey:LENGTH_UNIT_KEY];
+            self.birthLengthLabel.text = [NSString stringWithFormat:@"%1.1f %@", len, units];
+            
+            SBTImperialWeight impWt = [SBTUnitsConvertor imperialWeightForMass:self.birthEncounter.weight];
+            NSString *displayString;
+            if ([SBTUnitsConvertor displayPounds]){
+                displayString = [NSString stringWithFormat:@"%ld lbs %1.1f oz", impWt.pounds, impWt.ounces];
+            }else{
+                displayString = [NSString stringWithFormat:@"%1.2f %@", impWt.mass, [SBTUnitsConvertor displayStringForKey:MASS_UNIT_KEY]];
+            }
+            self.birthWeightLabel.text = displayString;
+            
+            double hc = [SBTUnitsConvertor displayUnitsOf:self.birthEncounter.headCirc forKey:HC_UNIT_KEY];
+            units = [SBTUnitsConvertor displayStringForKey:HC_UNIT_KEY];
+            self.headCircLabel.text = [NSString stringWithFormat:@"%1.1f %@", hc, units];
+        }
     }else{
         tempDOB = [NSDate date];
         tempBirthTime = tempDOB;
@@ -383,6 +400,9 @@
     [nf setLocale:[NSLocale currentLocale]];
     editingBirthTime = NO;
     editingDueDate = NO;
+//    if (!self.baby){
+//        self.baby = [[SBTBaby alloc] init];
+//    }
     if ([self.baby.encountersList count]){
         self.birthEncounter = [self.baby.encountersList firstObject];
     }

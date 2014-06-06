@@ -35,6 +35,8 @@
     [self updateDisplay];
 }
 
+
+
 #pragma mark - UITableViewDelegate
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -115,14 +117,5 @@
         dest.baby = self.baby;
     }
 }
-
-// this method is a debugging aid - it saves the current SBTBaby in a file called testbaby.plist
-// so it can be read in easily repeatedly for testing/debugging
-
-
-- (IBAction)archiveThisBaby:(id)sender {
-    
-}
-
 
 @end

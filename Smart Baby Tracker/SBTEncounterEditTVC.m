@@ -12,6 +12,8 @@
 #import "SBTVaccinesGivenTVC.h"
 #import "SBTBaby.h"
 
+#define VACCINE_ROW 5
+
 // we are either editing an existing encounter or creating a new one
 // so if we are not handed one, we create a new one first, then modify it as we go along
 
@@ -151,7 +153,7 @@
 
 -(BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return (indexPath.row == 5);
+    return (indexPath.row == VACCINE_ROW);
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -298,5 +300,7 @@
         dest.delegate = self;
     }
 }
+
+#undef VACCINE_ROW
 
 @end
