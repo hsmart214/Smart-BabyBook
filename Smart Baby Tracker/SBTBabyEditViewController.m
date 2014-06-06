@@ -341,7 +341,8 @@
         self.babyPic.image = self.baby.thumbnail;
         [self.birthTimePicker setDate:self.baby.DOB];
         if (self.baby.dueDate){
-            [self.dueDatePicker setDate:[self.baby.dueDate.calendar dateFromComponents:self.baby.dueDate]];
+            NSCalendar *cal = self.baby.dueDate.calendar ? self.baby.dueDate.calendar : [NSCalendar currentCalendar];
+            [self.dueDatePicker setDate:[cal dateFromComponents:self.baby.dueDate]];
         }else{
             [self.dueDatePicker setDate:self.baby.DOB];
         }
@@ -387,13 +388,13 @@
     }
 }
 
--(void)viewDidLayoutSubviews
+-(void)viewWillAppear:(BOOL)animated
 {
-    [super viewDidLayoutSubviews];
-    self.nameField.delegate = self;
-    [self updateDisplay];
+    [super viewWillAppear:animated];
     [self.dueDatePicker setHidden:YES];
     [self.birthTimePicker setHidden:YES];
+    self.nameField.delegate = self;
+    [self updateDisplay];
 }
 
 -(void)dealloc
