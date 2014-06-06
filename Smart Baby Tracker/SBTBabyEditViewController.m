@@ -15,6 +15,7 @@
 
 #define BIRTH_TIME_ROW 2
 #define BIRTH_DATA_ROW 1
+#define DUE_DATE_ROW 4
 #define DATE_PICKER_HEIGHT 219.0F
 
 @interface SBTBabyEditViewController ()<UITextFieldDelegate, UIPopoverControllerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, SBTEncounterEditTVCDelegate>
@@ -26,7 +27,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *birthWeightLabel;
 @property (weak, nonatomic) IBOutlet UILabel *birthLengthLabel;
 @property (weak, nonatomic) IBOutlet UILabel *headCircLabel;
-@property (weak, nonatomic) IBOutlet UITableViewCell *dueDateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *dueDateLabel;
 @property (weak, nonatomic) IBOutlet UIDatePicker *dueDatePicker;
 @property (nonatomic, strong) UIPopoverController *popCon;
 
@@ -38,7 +39,7 @@
     UIImage *image;
     
     BOOL editingBirthTime;
-    
+    BOOL editingDueDate;
     NSDate *tempDOB;
     NSDate *tempBirthTime;
     NSDateComponents *dobComponentsMMDDYYYY;
@@ -94,6 +95,8 @@
         }else{
             newBaby.gender = (SBTGender)self.genderControl.selectedSegmentIndex;
             newBaby.thumbnail = image;
+            // unitFlags is still MMDDYYYY
+            newBaby.dueDate = [[NSCalendar currentCalendar] components:unitFlags fromDate:self.dueDatePicker.date];
             [self.delegate babyEditor:self didSaveBaby:newBaby];
             [self dismissViewControllerAnimated:YES completion:nil];
         }
@@ -132,7 +135,7 @@
 
 -(BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == BIRTH_TIME_ROW || indexPath.row == BIRTH_DATA_ROW){
+    if (indexPath.row == BIRTH_TIME_ROW || indexPath.row == DUE_DATE_ROW || indexPath.row == BIRTH_DATA_ROW){
         return YES;
     }else{
         return NO;
@@ -143,6 +146,8 @@
 {
     if (indexPath.row == BIRTH_TIME_ROW + 1){
         return editingBirthTime ? DATE_PICKER_HEIGHT : 0.0;
+    }else if(indexPath.row == DUE_DATE_ROW + 1){
+        return editingDueDate ? DATE_PICKER_HEIGHT : 0.0;
     }else{
         return [super tableView:tableView heightForRowAtIndexPath:indexPath];
     }
@@ -153,15 +158,37 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.row == BIRTH_TIME_ROW) {
         editingBirthTime = !editingBirthTime;
-        [self.birthTimePicker setDate:self.birthEncounter.universalDate];
-        [self.birthTimePicker setHidden:!editingBirthTime];
+        editingDueDate = NO;
+        [self.dueDatePicker setHidden:YES];
+        if (self.birthEncounter){
+            [self.birthTimePicker setDate:self.birthEncounter.universalDate];
+        }else{
+            [self.birthTimePicker setDate:[NSDate date]];
+        }
         if (!editingBirthTime){
+            [self.birthTimePicker setHidden:YES];
             df.timeStyle = NSDateFormatterShortStyle;
             df.dateStyle = NSDateFormatterNoStyle;
             self.birthTimeLabel.text = [df stringFromDate:self.birthTimePicker.date];
             tempBirthTime = self.birthTimePicker.date;
         }else{
             [self.birthTimePicker setDate:self.birthEncounter.universalDate];
+            [self.birthTimePicker setHidden:NO];
+        }
+    }else if(indexPath.row == DUE_DATE_ROW) {
+        editingDueDate = !editingDueDate;
+        editingBirthTime = NO;
+        [self.birthTimePicker setHidden:YES];
+        if (!editingDueDate){
+            [self.dueDatePicker setHidden:YES];
+            df.timeStyle = NSDateFormatterNoStyle;
+            df.dateStyle = NSDateFormatterMediumStyle;
+            self.dueDateLabel.text = [df stringFromDate:self.dueDatePicker.date];
+            NSCalendarUnit unitFlags = NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitYear;
+            self.baby.dueDate = [[NSCalendar currentCalendar] components:unitFlags fromDate:self.dueDatePicker.date];
+            self.baby.dueDate.calendar = [NSCalendar currentCalendar];
+        }else{
+            [self.dueDatePicker setHidden:NO];
         }
     }
     [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
@@ -299,7 +326,6 @@
         }
         dest.dateDescriptionLabel.text = NSLocalizedString(@"Birth Date:", @"Label for birth date entry field");
         [dest setTitle:@"Birth Encounter"];
-        // Tell it I want supine length
     }
 }
 
@@ -314,8 +340,11 @@
         self.nameField.text = self.baby.name;
         self.babyPic.image = self.baby.thumbnail;
         [self.birthTimePicker setDate:self.baby.DOB];
-        NSCalendarUnit unitFlags = NSCalendarUnitHour | NSCalendarUnitMinute;
-        NSDateComponents *comps = [[NSCalendar currentCalendar] components:unitFlags fromDate:self.birthTimePicker.date];
+        if (self.baby.dueDate){
+            [self.dueDatePicker setDate:[self.baby.dueDate.calendar dateFromComponents:self.baby.dueDate]];
+        }else{
+            [self.dueDatePicker setDate:self.baby.DOB];
+        }
         [self.genderControl setSelectedSegmentIndex:self.baby.gender];
     }else{
         tempDOB = [NSDate date];
@@ -328,6 +357,12 @@
     df.timeStyle = NSDateFormatterNoStyle;
     df.dateStyle = NSDateFormatterMediumStyle;
     self.dobLabel.text = [df stringFromDate:tempDOB];
+    
+    if (self.baby.dueDate){
+        self.dueDateLabel.text = [df stringFromDate:self.dueDatePicker.date];
+    }else{
+        self.dueDateLabel.text = [df stringFromDate:self.baby.DOB];
+    }
 
     if (image) self.babyPic.image = image;
     
@@ -346,14 +381,19 @@
     nf = [[NSNumberFormatter alloc] init];
     [nf setLocale:[NSLocale currentLocale]];
     editingBirthTime = NO;
-    [self updateDisplay];
+    editingDueDate = NO;
+    if ([self.baby.encountersList count]){
+        self.birthEncounter = [self.baby.encountersList firstObject];
+    }
 }
 
 -(void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
     self.nameField.delegate = self;
-    [self.birthTimePicker setDate:[NSDate dateWithTimeIntervalSinceReferenceDate:0]];
+    [self updateDisplay];
+    [self.dueDatePicker setHidden:YES];
+    [self.birthTimePicker setHidden:YES];
 }
 
 -(void)dealloc
