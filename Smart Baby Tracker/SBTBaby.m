@@ -12,6 +12,7 @@
 #import "NSDateComponents+Today.h"
 
 #define PREMATURE_DAYS_EARLY 21
+#define PREMATURE_TWIN_DAYS_EARLY 28
 #define LIVE_VACCINE_BLACKOUT 28
 
 @interface SBTBaby ()
@@ -177,14 +178,36 @@
 
 -(void)addEncounter:(SBTEncounter *)encounter
 {
+    if (!encounter) return;
     encounter.baby = self;
     [self.encounters addObject:encounter];
     [_encounters sortUsingSelector:@selector(compare:)];
     self.dateModified = [NSDate date];
 }
 
+-(BOOL)replaceBirthEncounterWithEncounter:(SBTEncounter *)encounter
+{
+    // the boolean result indicates success.  This method will fail if you try to
+    // put in a birth encounter with a date that is later than an existing non-birth encounter
+    if ([self.encounters count] < 2){
+        _encounters = [@[encounter] mutableCopy];
+    }else{
+        SBTEncounter *second = self.encounters[1];
+        if ([encounter.universalDate compare:second.universalDate] == NSOrderedDescending){
+            return NO;
+        }else{
+            [self removeEncounter:[self.encountersList firstObject]];
+            [self addEncounter:encounter];
+            NSAssert([[self encountersList] firstObject] == encounter, @"Failed to add birth encounter in the first position.");
+        }
+    }
+    self.dateModified = [NSDate date];
+    return YES;
+}
+
 -(BOOL)removeEncounter:(SBTEncounter *)encounter
 {
+    if (!encounter) return NO;
     BOOL present = [self.encounters containsObject:encounter];
     if (present) {
         [self.encounters removeObject:encounter];

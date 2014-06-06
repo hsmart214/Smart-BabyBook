@@ -19,6 +19,7 @@
 #define UNIT_PREFS_KEY @"com.mySmartSoftware.smartBabyTracker.unitPrefs"
 
 #define AGE_SWITCH_TO_DECIMAL_POUNDS 365    // maybe this should be a user preference?
+#define AGE_SWITCH_TO_STANDING_HEIGHT 730.0 // usually start standing height after the second birthday
 #define AAP_CUTOFF 731.0F                   // age AAP recommends switch to CDC growth chart
 #define WHO_MAX_AGE 6938.0f                 // max age of infant chart WHO data
 #define WHO_CHILD_WEIGHT_MAX_AGE 3651       // current WHO weight data ends at 120 months age

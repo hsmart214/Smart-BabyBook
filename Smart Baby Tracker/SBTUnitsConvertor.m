@@ -93,7 +93,7 @@
     result.mass = mass;
     double realPounds = mass * POUNDS_PER_KILOGRAM;
     result.pounds = (int)realPounds;
-    result.ounces = realPounds - result.pounds;
+    result.ounces = (realPounds - result.pounds) * 16;
     return result;
 }
 

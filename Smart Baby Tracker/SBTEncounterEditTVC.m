@@ -26,6 +26,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *heightUnitLabel;
 @property (weak, nonatomic) IBOutlet UITextField *headCircField;
 @property (weak, nonatomic) IBOutlet UILabel *headCircUnitLabel;
+@property (weak, nonatomic) IBOutlet UIButton *heightMethodButton;
 
 @end
 
@@ -182,25 +183,22 @@
     self.weightUnitLabel.text = [SBTUnitsConvertor displayStringForKey:MASS_UNIT_KEY];
     self.heightUnitLabel.text = [SBTUnitsConvertor displayStringForKey:LENGTH_UNIT_KEY];
     self.headCircUnitLabel.text = [SBTUnitsConvertor displayStringForKey:HC_UNIT_KEY];
-    if ([[SBTUnitsConvertor preferredUnitForKey:MASS_UNIT_KEY] isEqualToString:K_POUNDS]){
-        double decimalPounds = [SBTUnitsConvertor displayUnitsOf:self.encounter.weight forKey:MASS_UNIT_KEY];
+    if ([SBTUnitsConvertor displayPounds]){
         if ([self.encounter.baby ageInDaysAtEncounter:self.encounter].day < AGE_SWITCH_TO_DECIMAL_POUNDS){
             [self.weightField1 setHidden:NO];
             [self.poundsLabel setHidden:NO];
             self.weightUnitLabel.text = K_OUNCES;
-            double pounds = floor(decimalPounds);
-            double fractionalPound = decimalPounds - pounds;
-            double ounces = fractionalPound * 16.0;
-            self.weightField1.text = [NSString stringWithFormat:@"%1.0f", pounds];
-            self.weightField2.text = [NSString stringWithFormat:@"%1.1f", ounces];
-        }else{
+            SBTImperialWeight wt = [SBTUnitsConvertor imperialWeightForMass:self.encounter.weight];
+            self.weightField1.text = [NSString stringWithFormat:@"%ld", wt.pounds];
+            self.weightField2.text = [NSString stringWithFormat:@"%1.1f", wt.ounces];
+        }else{// display decimal pounds only
             [self.weightField1 setHidden:YES];
             self.weightField1.text = @"";
             [self.poundsLabel setHidden:YES];
             self.weightUnitLabel.text = K_POUNDS;
-            self.weightField2.text = [NSString stringWithFormat:@"%1.2f", decimalPounds];
+            self.weightField2.text = [NSString stringWithFormat:@"%1.2f", [SBTUnitsConvertor displayUnitsOf:self.encounter.weight forKey:MASS_UNIT_KEY]];
         }
-    }else{
+    }else{ // display kilograms
         [self.weightField1 setHidden:YES];
         self.weightField1.text = @"";
         [self.poundsLabel setHidden:YES];
@@ -223,6 +221,7 @@
 
 -(void)viewDidLoad
 {
+    [super viewDidLoad];
     originalEncounter = [self.encounter copy];
     df = [[NSDateFormatter alloc] init];
     df.calendar = [NSCalendar currentCalendar];
@@ -236,6 +235,17 @@
     self.headCircUnitLabel.text = [SBTUnitsConvertor displayStringForKey:HC_UNIT_KEY];
     self.datePicker.date = self.encounter.universalDate;
     [self updateDisplay];
+}
+
+-(void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    if (!self.encounter){
+        
+    }
+    if ([self.baby ageDDAtDate:self.encounter.universalDate].day < AGE_SWITCH_TO_STANDING_HEIGHT){
+        
+    }
 }
 
 #pragma mark - SBTVaccinesGivenTVCDelegate

@@ -11,7 +11,7 @@
 #import "SBTEncounter.h"
 #import "SBTVaccine.h"
 #import "SBTUnitsConvertor.h"
-@class SBTBaby;
+#import "SBTBaby.h"
 
 
 @interface SBTEncounterInfoTVC ()<SBTEncounterEditTVCDelegate>
@@ -108,15 +108,24 @@
     if (indexPath.section == 0){
         switch (indexPath.row) {
             case 0:
-                cell.textLabel.text = @"Height/Length";
+                cell.textLabel.text = self.encounter.height != 0.0 ? NSLocalizedString(@"Height", @"Height"): NSLocalizedString(@"Length", @"Length");
                 cell.detailTextLabel.text = [NSString stringWithFormat:@"%1.1f %@", stature, [SBTUnitsConvertor displayStringForKey:LENGTH_UNIT_KEY]];
                 if (stature == 0.0) cell.detailTextLabel.text = @"";
                 break;
             case 1:
-                //TODO: fix the display for pounds and ounces!!!!
+            {
                 cell.textLabel.text = @"Weight";
-                cell.detailTextLabel.text = [NSString stringWithFormat:@"%1.1f %@", wt, [SBTUnitsConvertor displayStringForKey:MASS_UNIT_KEY]];
-                if (wt == 0.0) cell.detailTextLabel.text = @"";
+                NSString *wtString;
+                if (wt == 0.0){
+                    wtString = @"";
+                }else if ([SBTUnitsConvertor displayPounds] && [self.encounter.baby ageDDAtDate:self.encounter.universalDate].day < AGE_SWITCH_TO_DECIMAL_POUNDS){
+                    SBTImperialWeight impWt = [SBTUnitsConvertor imperialWeightForMass:self.encounter.weight];
+                    wtString = [NSString stringWithFormat:@"%ld lbs %1.1f oz", impWt.pounds, impWt.ounces];
+                }else{
+                    wtString = [NSString stringWithFormat:@"%1.1f %@", wt, [SBTUnitsConvertor displayStringForKey:MASS_UNIT_KEY]];
+                }
+                cell.detailTextLabel.text = wtString;
+            }
                 break;
             case 2:
                 cell.textLabel.text = @"Head Circumference";

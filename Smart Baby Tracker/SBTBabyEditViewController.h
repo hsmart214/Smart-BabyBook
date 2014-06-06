@@ -15,7 +15,6 @@
 
 @property (weak, nonatomic) id<SBTBabyEditDelegate> delegate;
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
-@property (weak, nonatomic) IBOutlet UIDatePicker *dobPicker;
 @property (weak, nonatomic) IBOutlet UIDatePicker *birthTimePicker;
 
 @property (nonatomic, strong) SBTBaby *baby;

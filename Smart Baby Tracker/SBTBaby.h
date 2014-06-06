@@ -15,7 +15,6 @@
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSDateComponents *DOBComponents;
 @property (nonatomic, readonly) NSDate *DOB;
-//@property (nonatomic, strong) NSString *imageKey;
 @property (nonatomic, strong) UIImage *thumbnail;
 
 @property (nonatomic, copy) NSDateComponents *dueDate;    // this is optional.  If no due date, assume full term baby.
@@ -41,6 +40,7 @@
 
 -(void)addEncounter:(SBTEncounter *)encounter;
 -(BOOL)removeEncounter:(SBTEncounter *)encounter;   // returns NO if encounter not present in the Baby's set of encounters
+-(BOOL)replaceBirthEncounterWithEncounter:(SBTEncounter *)encounter; // returns a success boolean.  Cannot put birth date after existing encounters
 -(NSDateComponents *)ageInYearsAndDaysAtEncounter:(SBTEncounter *)encounter;
 -(NSDateComponents *)ageInMonthsAndDaysAtEncounter:(SBTEncounter *)encounter;
 -(NSDateComponents *)ageInDaysAtEncounter:(SBTEncounter *)encounter;

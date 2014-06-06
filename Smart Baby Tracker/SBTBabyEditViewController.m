@@ -11,11 +11,13 @@
 #import "SBTEncounter.h"
 #import "SBTUnitsConvertor.h"
 #import "SBTBaby.h"
+#import "NSDateComponents+Today.h"
 
-#define BIRTH_TIME_ROW 5
+#define BIRTH_TIME_ROW 2
+#define BIRTH_DATA_ROW 1
 #define DATE_PICKER_HEIGHT 219.0F
 
-@interface SBTBabyEditViewController ()<UITextFieldDelegate, UIPopoverControllerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDataSource, UITableViewDelegate, SBTEncounterEditTVCDelegate>
+@interface SBTBabyEditViewController ()<UITextFieldDelegate, UIPopoverControllerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, SBTEncounterEditTVCDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *babyPic;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *cameraButton;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *genderControl;
@@ -24,40 +26,77 @@
 @property (weak, nonatomic) IBOutlet UILabel *birthWeightLabel;
 @property (weak, nonatomic) IBOutlet UILabel *birthLengthLabel;
 @property (weak, nonatomic) IBOutlet UILabel *headCircLabel;
+@property (weak, nonatomic) IBOutlet UITableViewCell *dueDateLabel;
+@property (weak, nonatomic) IBOutlet UIDatePicker *dueDatePicker;
 @property (nonatomic, strong) UIPopoverController *popCon;
 
-@property (strong, nonatomic) SBTBaby *oldBaby;
+@property (strong, nonatomic) SBTEncounter *birthEncounter;
 @end
 
 @implementation SBTBabyEditViewController
 {
     UIImage *image;
     
-    BOOL editingDOB;
     BOOL editingBirthTime;
     
     NSDate *tempDOB;
     NSDate *tempBirthTime;
+    NSDateComponents *dobComponentsMMDDYYYY;
+    NSDateComponents *birthTimeHHMM;
     NSDateFormatter *df;
     NSNumberFormatter *nf;
 }
 
 // wait until the last minute to create the new baby and send it back to the delegate.
+// this is complicated with the combination of the birth encounter and the birth time picker.  They have to coordinate.
+// First of all, EVERY BABY has to have a birth encounter. It can be edited but NEVER DELETED. It will be encounter[0].
+// Once a baby is created, you can change the DOB (who is really going to get their own baby's DOB wrong?),
+// BUT you cannot change it to a date that occurs after another existing encounter.  This is just wrong.
+
+// when entering this edit view controller, if there is an existing baby, then the birthTimePicker can be set to the baby's DOB,
+// which will correctly set the time.  Otherwise it will be set to [NSDate date].
+// when saving the baby, we extract only the hours + minutes from the timePicker, and add it to the DOBComponents.
+// then we set it back on the birth encounter, and on the baby itself, and notify the delegate that we changed the baby.
 
 - (IBAction)pressedDone:(id)sender {
+    // add the birth time to the DOB from the birth encounter
+    
+    // by stripping out only the hours and minutes from the timePicker, I do not care what day it is set to.
+    NSCalendarUnit unitFlags = NSCalendarUnitHour | NSCalendarUnitMinute;
+    birthTimeHHMM = [[NSCalendar currentCalendar] components:unitFlags fromDate:self.birthTimePicker.date];
+    
+    // now I take only the day of the birthday, ignoring any previous birth time, setting the new birth time on it.
+    unitFlags = NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitYear;
+    dobComponentsMMDDYYYY = [[NSCalendar currentCalendar] components:unitFlags fromDate:self.birthEncounter.universalDate];
+    NSDate *newDOB = [[NSCalendar currentCalendar] dateFromComponents:dobComponentsMMDDYYYY];
+    NSDate *newUniversalDOB = [[NSCalendar currentCalendar] dateByAddingComponents:birthTimeHHMM toDate:newDOB options:0];
+    
+    // now that I have added the hours and minutes to the birth encounter day, I will set the full date back on the encounter
+    self.birthEncounter.universalDate = newUniversalDOB;
+    
     SBTBaby *newBaby;
     if ([self.nameField.text isEqualToString:@""]){
         [self pressedCancel:self];
     }else{
-        if (self.baby){
-            newBaby = [self.baby copyWithNewName:self.nameField.text andDOB:self.dobPicker.date];
+        if (self.baby){ // this means I am editing an existing SBTBaby *
+            newBaby = [self.baby copyWithNewName:self.nameField.text andDOB:self.birthEncounter.universalDate];
         }else{
-            newBaby = [[SBTBaby alloc] initWithName:self.nameField.text andDOB:self.dobPicker.date];
+            newBaby = [[SBTBaby alloc] initWithName:self.nameField.text andDOB:self.birthEncounter.universalDate];
         }
-        newBaby.gender = (SBTGender)self.genderControl.selectedSegmentIndex;
-        newBaby.thumbnail = image;
-        [self.delegate babyEditor:self didSaveBaby:newBaby];
-        [self dismissViewControllerAnimated:YES completion:nil];
+        BOOL success = [newBaby replaceBirthEncounterWithEncounter:self.birthEncounter];
+        if (!success){
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Change failed"
+                                                                message:@"Attempting to put birth date after existing encounters."
+                                                               delegate:self
+                                                      cancelButtonTitle:@"OK"
+                                                      otherButtonTitles: nil];
+            [alertView show];
+        }else{
+            newBaby.gender = (SBTGender)self.genderControl.selectedSegmentIndex;
+            newBaby.thumbnail = image;
+            [self.delegate babyEditor:self didSaveBaby:newBaby];
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }
     }
 }
 
@@ -93,7 +132,7 @@
 
 -(BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == BIRTH_TIME_ROW){
+    if (indexPath.row == BIRTH_TIME_ROW || indexPath.row == BIRTH_DATA_ROW){
         return YES;
     }else{
         return NO;
@@ -114,14 +153,15 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.row == BIRTH_TIME_ROW) {
         editingBirthTime = !editingBirthTime;
-        editingDOB = NO;
-        [self.dobPicker setHidden:YES];
+        [self.birthTimePicker setDate:self.birthEncounter.universalDate];
         [self.birthTimePicker setHidden:!editingBirthTime];
         if (!editingBirthTime){
             df.timeStyle = NSDateFormatterShortStyle;
             df.dateStyle = NSDateFormatterNoStyle;
             self.birthTimeLabel.text = [df stringFromDate:self.birthTimePicker.date];
             tempBirthTime = self.birthTimePicker.date;
+        }else{
+            [self.birthTimePicker setDate:self.birthEncounter.universalDate];
         }
     }
     [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
@@ -207,6 +247,13 @@
     return YES;
 }
 
+#pragma mark - UIAlertViewDelegate
+
+-(void)alertViewCancel:(UIAlertView *)alertView
+{
+    // do nothing so far
+}
+
 #pragma mark - SBTEncounterEditTVCDelegate
 
 -(void)SBTEncounterEditTVC:(SBTEncounterEditTVC *)editTVC updatedEncounter:(SBTEncounter *)encounter
@@ -235,6 +282,7 @@
     buildString = [NSString stringWithFormat:@"%1.1f %@", hc, units];
     self.headCircLabel.text = buildString;
 
+    self.birthEncounter = [encounter copy];
 }
 
 #pragma mark - Navigation
@@ -251,6 +299,7 @@
         }
         dest.dateDescriptionLabel.text = NSLocalizedString(@"Birth Date:", @"Label for birth date entry field");
         [dest setTitle:@"Birth Encounter"];
+        // Tell it I want supine length
     }
 }
 
@@ -264,8 +313,9 @@
         self.title = self.baby.name;
         self.nameField.text = self.baby.name;
         self.babyPic.image = self.baby.thumbnail;
-        [self.dobPicker setDate:self.baby.DOB];
         [self.birthTimePicker setDate:self.baby.DOB];
+        NSCalendarUnit unitFlags = NSCalendarUnitHour | NSCalendarUnitMinute;
+        NSDateComponents *comps = [[NSCalendar currentCalendar] components:unitFlags fromDate:self.birthTimePicker.date];
         [self.genderControl setSelectedSegmentIndex:self.baby.gender];
     }else{
         tempDOB = [NSDate date];
@@ -291,21 +341,26 @@
     }else{
         self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:SBTiPhoneBackgroundImage]];
     }
-    self.nameField.delegate = self;
     df = [[NSDateFormatter alloc] init];
     df.calendar = [NSCalendar currentCalendar];
     nf = [[NSNumberFormatter alloc] init];
     [nf setLocale:[NSLocale currentLocale]];
-    [self.birthTimePicker setHidden:YES];
+    editingBirthTime = NO;
     [self updateDisplay];
-    self.oldBaby = self.baby;
+}
+
+-(void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    self.nameField.delegate = self;
+    [self.birthTimePicker setDate:[NSDate dateWithTimeIntervalSinceReferenceDate:0]];
 }
 
 -(void)dealloc
 {
     df = nil;
     nf = nil;
-    self.oldBaby = nil;
+    self.birthEncounter = nil;
 }
 
 @end
