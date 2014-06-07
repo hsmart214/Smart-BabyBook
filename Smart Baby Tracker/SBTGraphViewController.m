@@ -25,7 +25,7 @@
 
 
 // to this we add in order - CDC/WHO infant/child 2yr/3yr/5yr boy/girl height/weight/headCirc/BMI portrait/landscape
-// example "com.mySmartSoftware.graphCache.CDC.infant.2yr.boy.weight.landscape"
+// example "com.mySmartSoftware.graphCache.CDC.infant.2yr.boy.weight.landscape.png"
 static NSString * const SBTGraphCacheFilePrefix = @"com.mySmartSoftware.graphCache";
 
 @interface SBTGraphViewController ()<UIScrollViewDelegate, UITabBarDelegate>

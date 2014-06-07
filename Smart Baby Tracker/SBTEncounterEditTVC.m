@@ -191,7 +191,7 @@
             [self.poundsLabel setHidden:NO];
             self.weightUnitLabel.text = K_OUNCES;
             SBTImperialWeight wt = [SBTUnitsConvertor imperialWeightForMass:self.encounter.weight];
-            self.weightField1.text = [NSString stringWithFormat:@"%ld", wt.pounds];
+            self.weightField1.text = [NSString stringWithFormat:@"%ld", (long)wt.pounds];
             self.weightField2.text = [NSString stringWithFormat:@"%1.1f", wt.ounces];
         }else{// display decimal pounds only
             [self.weightField1 setHidden:YES];

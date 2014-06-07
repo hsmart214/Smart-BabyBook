@@ -108,7 +108,7 @@
     return SBTVaccineDoseValid;
 }
 
-// TODO: handle alternate schedules (like DTap - only need 4 if fourth dose > 4 yrs)
+// TODO: handle alternate schedules (like DTaP - only need 4 if fourth dose > 4 yrs)
 -(SBTVaccinationStatus)vaccinationStatusForVaccineComponent:(SBTComponent)component
                                                     forBaby:(SBTBaby *)baby
 {    

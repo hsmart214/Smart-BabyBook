@@ -26,7 +26,6 @@
     
     NSURL *cacheURL = [[[NSFileManager defaultManager] URLsForDirectory:NSCachesDirectory inDomains:NSUserDomainMask] lastObject];
     NSURL *dataFileURL = [cacheURL URLByAppendingPathComponent:fileString];
-    //TODO: time this to make sure it is faster when cached
     if ([[NSFileManager defaultManager]fileExistsAtPath:[dataFileURL path]]){
         NSArray *cachedData = [[NSArray alloc] initWithContentsOfURL:dataFileURL];
         

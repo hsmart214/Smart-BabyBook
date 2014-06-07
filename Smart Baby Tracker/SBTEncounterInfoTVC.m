@@ -120,7 +120,7 @@
                     wtString = @"";
                 }else if ([SBTUnitsConvertor displayPounds] && [self.encounter.baby ageDDAtDate:self.encounter.universalDate].day < AGE_SWITCH_TO_DECIMAL_POUNDS){
                     SBTImperialWeight impWt = [SBTUnitsConvertor imperialWeightForMass:self.encounter.weight];
-                    wtString = [NSString stringWithFormat:@"%ld lbs %1.1f oz", impWt.pounds, impWt.ounces];
+                    wtString = [NSString stringWithFormat:@"%ld lbs %1.1f oz", (long)impWt.pounds, impWt.ounces];
                 }else{
                     wtString = [NSString stringWithFormat:@"%1.1f %@", wt, [SBTUnitsConvertor displayStringForKey:MASS_UNIT_KEY]];
                 }

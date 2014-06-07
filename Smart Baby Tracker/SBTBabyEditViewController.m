@@ -292,7 +292,7 @@
     NSString *buildString;
     if ([SBTUnitsConvertor displayPounds]){
         SBTImperialWeight wt = [SBTUnitsConvertor imperialWeightForMass:encounter.weight];
-        buildString = [NSString stringWithFormat:@"%ld %@ %1.1f oz", wt.pounds, units, wt.ounces];
+        buildString = [NSString stringWithFormat:@"%ld %@ %1.1f oz", (long)wt.pounds, units, wt.ounces];
     }else{
         buildString = [NSString stringWithFormat:@"%1.2f %@", encounter.weight, units];
     }
@@ -354,7 +354,7 @@
             SBTImperialWeight impWt = [SBTUnitsConvertor imperialWeightForMass:self.birthEncounter.weight];
             NSString *displayString;
             if ([SBTUnitsConvertor displayPounds]){
-                displayString = [NSString stringWithFormat:@"%ld lbs %1.1f oz", impWt.pounds, impWt.ounces];
+                displayString = [NSString stringWithFormat:@"%ld lbs %1.1f oz", (long)impWt.pounds, impWt.ounces];
             }else{
                 displayString = [NSString stringWithFormat:@"%1.2f %@", impWt.mass, [SBTUnitsConvertor displayStringForKey:MASS_UNIT_KEY]];
             }

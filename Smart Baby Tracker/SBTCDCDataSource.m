@@ -319,7 +319,6 @@
                        parameter:(SBTGrowthParameter)parameter
                        andGender:(SBTGender)gender
 {
-    //TODO: gracefully recover if someone asks for a CDC data value > 20 years age
     if (days > CDC_MAX_AGE) return 0.0;
     NSArray *data = nil;
     switch (gender) {
@@ -379,7 +378,7 @@
     // now find the data point in the array closest to the age requested. CDC data is given at half=months.
     // interpolation to the exact day must be done.  Linear interpolation should be close enough.
     
-    // first find  the two dataPoints bracketing the exact age in days.
+    // first find the two dataPoints bracketing the exact age in days.
     
     SBTDataPoint *firstDataPoint, *secondDataPoint, *dataPoint;
     firstDataPoint = [data firstObject];
