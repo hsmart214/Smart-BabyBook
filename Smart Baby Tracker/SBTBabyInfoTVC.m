@@ -35,8 +35,6 @@
     [self updateDisplay];
 }
 
-
-
 #pragma mark - UITableViewDelegate
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -91,6 +89,16 @@
     [self updateDisplay];
 }
 
+#pragma mark - Navigation
+
+-(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
+{
+    // this will prevent an error if we try to plot the growth and there is only one point to graph
+    if ([identifier isEqualToString:@"showGrowthChart"]){
+        return [self.baby.encountersList count] > 1;
+    }
+    return YES;
+}
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {

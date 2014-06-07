@@ -228,11 +228,6 @@ static NSString * const SBTGraphCacheFilePrefix = @"com.mySmartSoftware.graphCac
 
 #pragma mark - View Life Cycle
 
--(void)viewDidLayoutSubviews
-{
-    [self drawPercentiles];
-}
-
 -(void)drawPercentiles
 {
     UIImage *image;
@@ -464,15 +459,20 @@ static NSString * const SBTGraphCacheFilePrefix = @"com.mySmartSoftware.graphCac
     }
 }
 
--(void)viewDidLoad
+-(void)viewDidLayoutSubviews
 {
-    [super viewDidLoad];
-    [self selectParameter:self.parameter];
-    
+    [super viewDidLayoutSubviews];
     // this flags these values as needing updates when they are accessed
     _maxVRange = -1.0;
     _maxHRange = -1.0;
     _graphBaseline = -1.0;
+    [self drawPercentiles];
+}
+
+-(void)viewDidLoad
+{
+    [super viewDidLoad];
+    [self selectParameter:self.parameter];
 }
 
 -(void)dealloc
