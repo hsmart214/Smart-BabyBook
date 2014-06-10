@@ -76,10 +76,30 @@
             return @"IPV";
         case SBTComponentMCV4:
             return @"MPV4";
+        case SBTComponentTdap:
+            return @"Tdap";
         default:
             break;
     }
     return nil;
+}
+
++(NSArray *)recommendedVaccines
+{
+    return  @[
+              @(SBTComponentDTaP),
+              @(SBTComponentMMR),
+              @(SBTComponentHepB),
+              @(SBTComponentPCV13),
+              @(SBTComponentVZV),
+              @(SBTComponentHiB),
+              @(SBTComponentHepA),
+              @(SBTComponentHPV4),
+              @(SBTComponentRota),
+              @(SBTComponentIPV),
+              @(SBTComponentMCV4),
+              @(SBTComponentTdap),
+              ];
 }
 
 -(SBTVaccineDoseStatus)statusOfVaccineComponent:(SBTComponent)component

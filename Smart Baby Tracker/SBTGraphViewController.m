@@ -14,7 +14,7 @@
 #import "SBTWHODataSource.h"
 
 #define VERTICAL_RANGE_ADJUSTMENT 1.1f
-#define GRAPH_RATIO 4.0
+#define GRAPH_RATIO 2.0
 
 #define HEIGHT_TAB_POSITION 0
 #define WEIGHT_TAB_POSITION 1
@@ -144,7 +144,6 @@ static NSString * const SBTGraphCacheFilePrefix = @"com.mySmartSoftware.graphCac
     UIBezierPath *path = [[UIBezierPath alloc] init];
     [path setLineWidth:1.0];
     [[UIColor SBTSuperLightGray] setStroke];
-    [path setLineWidth:0.5];
     
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     self.overlayView.image = image;
@@ -462,6 +461,7 @@ static NSString * const SBTGraphCacheFilePrefix = @"com.mySmartSoftware.graphCac
 -(void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
+    [self.scrollView setMinimumZoomScale:1/GRAPH_RATIO];
     // this flags these values as needing updates when they are accessed
     _maxVRange = -1.0;
     _maxHRange = -1.0;

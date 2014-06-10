@@ -28,5 +28,6 @@ typedef enum {SBTVaccineDoseNoData, SBTVaccineDoseValid, SBTVaccineDoseTooEarly,
                                         forDose:(NSInteger)doseOrd
                                         forBaby:(SBTBaby *)baby;
 +(SBTVaccineSchedule *)sharedSchedule;
++(NSArray *)recommendedVaccines;
 
 @end
