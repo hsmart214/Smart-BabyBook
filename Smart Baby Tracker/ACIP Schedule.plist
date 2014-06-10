@@ -3,8 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>Hep B</key>
-	<dict>
-		<key>Customary</key>
+	<array>
 		<array>
 			<dict>
 				<key>doseMinimumAge</key>
@@ -49,10 +48,59 @@
 				<integer>548</integer>
 			</dict>
 		</array>
-	</dict>
+	</array>
 	<key>DTaP</key>
-	<dict>
-		<key>Customary</key>
+	<array>
+		<array>
+			<dict>
+				<key>doseMinimumAge</key>
+				<integer>42</integer>
+				<key>doseMinimumInterval</key>
+				<integer>28</integer>
+				<key>doseRecommendedAge</key>
+				<integer>60</integer>
+				<key>doseRecommendedInterval</key>
+				<integer>60</integer>
+				<key>doseAgeFlagLate</key>
+				<integer>90</integer>
+			</dict>
+			<dict>
+				<key>doseMinimumAge</key>
+				<integer>70</integer>
+				<key>doseMinimumInterval</key>
+				<integer>28</integer>
+				<key>doseRecommendedAge</key>
+				<integer>120</integer>
+				<key>doseRecommendedInterval</key>
+				<integer>60</integer>
+				<key>doseAgeFlagLate</key>
+				<integer>150</integer>
+			</dict>
+			<dict>
+				<key>doseMinimumAge</key>
+				<integer>98</integer>
+				<key>doseMinimumInterval</key>
+				<integer>180</integer>
+				<key>doseRecommendedAge</key>
+				<integer>180</integer>
+				<key>doseRecommendedInterval</key>
+				<integer>180</integer>
+				<key>doseAgeFlagLate</key>
+				<integer>210</integer>
+			</dict>
+			<dict>
+				<key>doseMinimumAge</key>
+				<real>1461</real>
+				<key>doseMinimumInterval</key>
+				<integer>0</integer>
+				<key>doseRecommendedAge</key>
+				<real>1461</real>
+				<key>doseRecommendedAgeUpperLimit</key>
+				<real>2192</real>
+				<key>doseAgeFlagLate</key>
+				<real>2193</real>
+			</dict>
+		</array>
 		<array>
 			<dict>
 				<key>doseMinimumAge</key>
@@ -119,61 +167,9 @@
 				<integer>2192</integer>
 			</dict>
 		</array>
-		<key>FourDose</key>
-		<array>
-			<dict>
-				<key>doseMinimumAge</key>
-				<integer>42</integer>
-				<key>doseMinimumInterval</key>
-				<integer>28</integer>
-				<key>doseRecommendedAge</key>
-				<integer>60</integer>
-				<key>doseRecommendedInterval</key>
-				<integer>60</integer>
-				<key>doseAgeFlagLate</key>
-				<integer>90</integer>
-			</dict>
-			<dict>
-				<key>doseMinimumAge</key>
-				<integer>70</integer>
-				<key>doseMinimumInterval</key>
-				<integer>28</integer>
-				<key>doseRecommendedAge</key>
-				<integer>120</integer>
-				<key>doseRecommendedInterval</key>
-				<integer>60</integer>
-				<key>doseAgeFlagLate</key>
-				<integer>150</integer>
-			</dict>
-			<dict>
-				<key>doseMinimumAge</key>
-				<integer>98</integer>
-				<key>doseMinimumInterval</key>
-				<integer>180</integer>
-				<key>doseRecommendedAge</key>
-				<integer>180</integer>
-				<key>doseRecommendedInterval</key>
-				<integer>180</integer>
-				<key>doseAgeFlagLate</key>
-				<integer>210</integer>
-			</dict>
-			<dict>
-				<key>doseMinimumAge</key>
-				<real>1461</real>
-				<key>doseMinimumInterval</key>
-				<integer>0</integer>
-				<key>doseRecommendedAge</key>
-				<real>1461</real>
-				<key>doseRecommendedAgeUpperLimit</key>
-				<real>2192</real>
-				<key>doseAgeFlagLate</key>
-				<real>2193</real>
-			</dict>
-		</array>
-	</dict>
+	</array>
 	<key>HiB</key>
-	<dict>
-		<key>Single Dose</key>
+	<array>
 		<array>
 			<dict>
 				<key>doseMinimumAge</key>
@@ -190,7 +186,6 @@
 				<integer>485</integer>
 			</dict>
 		</array>
-		<key>Two Dose</key>
 		<array>
 			<dict>
 				<key>doseMinimumAge</key>
@@ -219,7 +214,6 @@
 				<integer>456</integer>
 			</dict>
 		</array>
-		<key>Three Dose</key>
 		<array>
 			<dict>
 				<key>doseMinimumAge</key>
@@ -260,7 +254,6 @@
 				<integer>485</integer>
 			</dict>
 		</array>
-		<key>Customary</key>
 		<array>
 			<dict>
 				<key>doseMinimumAge</key>
@@ -313,10 +306,9 @@
 				<integer>485</integer>
 			</dict>
 		</array>
-	</dict>
+	</array>
 	<key>PCV</key>
-	<dict>
-		<key>Single Dose</key>
+	<array>
 		<array>
 			<dict>
 				<key>doseMinimumAge</key>
@@ -333,7 +325,6 @@
 				<integer>731</integer>
 			</dict>
 		</array>
-		<key>Two dose</key>
 		<array>
 			<dict>
 				<key>doseMinimumAge</key>
@@ -362,7 +353,6 @@
 				<integer>455</integer>
 			</dict>
 		</array>
-		<key>Three Dose</key>
 		<array>
 			<dict>
 				<key>doseMinimumAge</key>
@@ -403,7 +393,6 @@
 				<integer>455</integer>
 			</dict>
 		</array>
-		<key>Customary</key>
 		<array>
 			<dict>
 				<key>doseMinimumAge</key>
@@ -456,10 +445,49 @@
 				<integer>485</integer>
 			</dict>
 		</array>
-	</dict>
+	</array>
 	<key>IPV</key>
-	<dict>
-		<key>Customary</key>
+	<array>
+		<array>
+			<dict>
+				<key>doseMinimumAge</key>
+				<integer>42</integer>
+				<key>doseMinimumInterval</key>
+				<integer>28</integer>
+				<key>doseRecommendedAge</key>
+				<integer>60</integer>
+				<key>doseRecommendedInterval</key>
+				<integer>60</integer>
+				<key>doseAgeFlagLate</key>
+				<integer>90</integer>
+			</dict>
+			<dict>
+				<key>doseMinimumAge</key>
+				<integer>70</integer>
+				<key>doseMinimumInterval</key>
+				<integer>28</integer>
+				<key>doseRecommendedAge</key>
+				<integer>120</integer>
+				<key>doseRecommendedInterval</key>
+				<integer>60</integer>
+				<key>doseAgeFlagLate</key>
+				<integer>150</integer>
+			</dict>
+			<dict>
+				<key>doseMinimumAge</key>
+				<integer>1461</integer>
+				<key>doseMinimumInterval</key>
+				<integer>0</integer>
+				<key>doseRecommendedAge</key>
+				<integer>1461</integer>
+				<key>doseRecommendedAgeUpperLimit</key>
+				<integer>2192</integer>
+				<key>doseRecommendedInterval</key>
+				<integer>0</integer>
+				<key>doseAgeFlagLate</key>
+				<integer>2193</integer>
+			</dict>
+		</array>
 		<array>
 			<dict>
 				<key>doseMinimumAge</key>
@@ -514,51 +542,9 @@
 				<integer>2193</integer>
 			</dict>
 		</array>
-		<key>Three Dose</key>
-		<array>
-			<dict>
-				<key>doseMinimumAge</key>
-				<integer>42</integer>
-				<key>doseMinimumInterval</key>
-				<integer>28</integer>
-				<key>doseRecommendedAge</key>
-				<integer>60</integer>
-				<key>doseRecommendedInterval</key>
-				<integer>60</integer>
-				<key>doseAgeFlagLate</key>
-				<integer>90</integer>
-			</dict>
-			<dict>
-				<key>doseMinimumAge</key>
-				<integer>70</integer>
-				<key>doseMinimumInterval</key>
-				<integer>28</integer>
-				<key>doseRecommendedAge</key>
-				<integer>120</integer>
-				<key>doseRecommendedInterval</key>
-				<integer>60</integer>
-				<key>doseAgeFlagLate</key>
-				<integer>150</integer>
-			</dict>
-			<dict>
-				<key>doseMinimumAge</key>
-				<integer>1461</integer>
-				<key>doseMinimumInterval</key>
-				<integer>0</integer>
-				<key>doseRecommendedAge</key>
-				<integer>1461</integer>
-				<key>doseRecommendedAgeUpperLimit</key>
-				<integer>2192</integer>
-				<key>doseRecommendedInterval</key>
-				<integer>0</integer>
-				<key>doseAgeFlagLate</key>
-				<integer>2193</integer>
-			</dict>
-		</array>
-	</dict>
+	</array>
 	<key>Rota</key>
-	<dict>
-		<key>Customary</key>
+	<array>
 		<array>
 			<dict>
 				<key>doseMinimumAge</key>
@@ -603,10 +589,9 @@
 				<integer>210</integer>
 			</dict>
 		</array>
-	</dict>
+	</array>
 	<key>Hep A</key>
-	<dict>
-		<key>Customary</key>
+	<array>
 		<array>
 			<dict>
 				<key>doseMinimumAge</key>
@@ -637,10 +622,9 @@
 				<integer>1277</integer>
 			</dict>
 		</array>
-	</dict>
+	</array>
 	<key>MMR</key>
-	<dict>
-		<key>Customary</key>
+	<array>
 		<array>
 			<dict>
 				<key>doseMinimumAge</key>
@@ -671,41 +655,9 @@
 				<integer>2193</integer>
 			</dict>
 		</array>
-	</dict>
+	</array>
 	<key>VZV</key>
-	<dict>
-		<key>Customary</key>
-		<array>
-			<dict>
-				<key>doseMinimumAge</key>
-				<integer>365</integer>
-				<key>doseMinimumInterval</key>
-				<integer>84</integer>
-				<key>doseRecommendedAge</key>
-				<integer>365</integer>
-				<key>doseRecommendedAgeUpperLimit</key>
-				<integer>455</integer>
-				<key>doseRecommendedInterval</key>
-				<integer>1096</integer>
-				<key>doseAgeFlagLate</key>
-				<integer>485</integer>
-			</dict>
-			<dict>
-				<key>doseMinimumAge</key>
-				<integer>449</integer>
-				<key>doseMinimumInterval</key>
-				<integer>0</integer>
-				<key>doseRecommendedAge</key>
-				<real>1461</real>
-				<key>doseRecommendedAgeUpperLimit</key>
-				<real>2192</real>
-				<key>doseRecommendedInterval</key>
-				<integer>0</integer>
-				<key>doseAgeFlagLate</key>
-				<integer>2193</integer>
-			</dict>
-		</array>
-		<key>Adolescent</key>
+	<array>
 		<array>
 			<dict>
 				<key>doseMinimumAge</key>
@@ -736,10 +688,39 @@
 				<integer>4779</integer>
 			</dict>
 		</array>
-	</dict>
+		<array>
+			<dict>
+				<key>doseMinimumAge</key>
+				<integer>365</integer>
+				<key>doseMinimumInterval</key>
+				<integer>84</integer>
+				<key>doseRecommendedAge</key>
+				<integer>365</integer>
+				<key>doseRecommendedAgeUpperLimit</key>
+				<integer>455</integer>
+				<key>doseRecommendedInterval</key>
+				<integer>1096</integer>
+				<key>doseAgeFlagLate</key>
+				<integer>485</integer>
+			</dict>
+			<dict>
+				<key>doseMinimumAge</key>
+				<integer>449</integer>
+				<key>doseMinimumInterval</key>
+				<integer>0</integer>
+				<key>doseRecommendedAge</key>
+				<real>1461</real>
+				<key>doseRecommendedAgeUpperLimit</key>
+				<real>2192</real>
+				<key>doseRecommendedInterval</key>
+				<integer>0</integer>
+				<key>doseAgeFlagLate</key>
+				<integer>2193</integer>
+			</dict>
+		</array>
+	</array>
 	<key>Tdap</key>
-	<dict>
-		<key>Customary</key>
+	<array>
 		<array>
 			<dict>
 				<key>doseMinimumAge</key>
@@ -770,10 +751,9 @@
 				<integer>8401</integer>
 			</dict>
 		</array>
-	</dict>
+	</array>
 	<key>MCV</key>
-	<dict>
-		<key>Customary</key>
+	<array>
 		<array>
 			<dict>
 				<key>doseMinimumAge</key>
@@ -804,10 +784,9 @@
 				<integer>6209</integer>
 			</dict>
 		</array>
-	</dict>
+	</array>
 	<key>HPV</key>
-	<dict>
-		<key>Customary</key>
+	<array>
 		<array>
 			<dict>
 				<key>doseMinimumAge</key>
@@ -852,6 +831,6 @@
 				<integer>4749</integer>
 			</dict>
 		</array>
-	</dict>
+	</array>
 </dict>
 </plist>
