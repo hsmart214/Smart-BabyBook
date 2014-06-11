@@ -120,7 +120,7 @@
     NSArray *datesGiven = [baby daysGivenVaccineComponent:component];
     NSDateComponents *dayGiven = datesGiven[doseNum];
     
-    if ([baby dayIsDuringLiveBlackout:dayGiven]) return SBTVaccineDoseTooSoonAfterLiveVaccine;
+    if ([baby dayIsDuringLiveBlackout:dayGiven]) return SBTVaccineDoseInvalidTooSoonAfterLiveVaccine;
     
     NSAssert(doseOrd < [datesGiven count], @"Invalid dose number %ld given to status check routine.", (long)doseOrd);
     //    NSString *key = [SBTVaccineSchedule keyForVaccineComponent:component];
@@ -133,30 +133,48 @@
         NSInteger minInterval = [recommendedDoses[doseOrd - 1][MIN_INTERVAL_KEY] integerValue];
         earliestAllowed = MAX(earliestAllowed, prevDoseDay.day + minInterval);
     }
-    if (dayGiven.day < earliestAllowed) return SBTVaccineDoseTooEarly;
-    if (dayGiven.day > [recommendedDoses[doseOrd][AGE_LATE_KEY] integerValue]) return SBTVaccineDoseLate;
-    return SBTVaccineDoseValid;
+    if (dayGiven.day < earliestAllowed){
+        return SBTVaccineDoseInvalidTooEarly;
+        
+    }else if (dayGiven.day > [recommendedDoses[doseOrd][AGE_LATE_KEY] integerValue]){
+        return SBTVaccineDoseValidLate;
+        
+    }else{
+        return SBTVaccineDoseValid;
+    }
 }
 
-// TODO: handle alternate schedules (like DTaP - only need 4 if fourth dose > 4 yrs)
--(SBTVaccinationStatus)vaccinationStatusForVaccineComponent:(SBTComponent)component
+-(NSDictionary *)vaccinationStatusForVaccineComponent:(SBTComponent)component
                                                     forBaby:(SBTBaby *)baby
 {
-    NSMutableArray *alternateStatuses = [NSMutableArray new];
+    NSMutableArray *alternateStatusDictionaries = [NSMutableArray new];
+    /* 
+     A status dictionary will have the following keys:
+     SBTVaccineSeriesRulesUsedKey   NSArray * pointing to the recommendedDoses in use at the time
+     SBTVaccineSeriesStatusKey      SBTVaccinationStatus of the overall recommendedDoses in question
+     SBTVaccineDoseStatusKey        NSArray * of SBTVaccineDoseStatus, one for each dose in the recommendedDoses
+     */
     NSMutableArray *doseStatuses = [NSMutableArray new];
     NSArray *datesGiven = [baby daysGivenVaccineComponent:component];
     NSString *key = [SBTVaccineSchedule keyForVaccineComponent:component];
     NSArray *validSeries = rules[key];
     for (int seriesIndex = 0; seriesIndex < [validSeries count]; seriesIndex++){
+        NSMutableDictionary *seriesStatusDict = [NSMutableDictionary new];
         NSInteger doseOrdinal = 0;
         NSArray *recommendedDoses = validSeries[seriesIndex];
+        if ([[recommendedDoses firstObject][MIN_AGE_KEY] integerValue] > [baby ageDDAtDate:[NSDate date]].day){
+            seriesStatusDict[SBTVaccineSeriesRulesUsedKey] = recommendedDoses;
+            seriesStatusDict[SBTVaccineSeriesStatusKey] = @(SBTVaccinationNotYetDue);
+            [alternateStatusDictionaries addObject:seriesStatusDict];
+            continue;
+        }
         for (int i = 0; i < [datesGiven count]; i++){
             SBTVaccineDoseStatus status = [self statusOfVaccineComponent:component
                                                       forGivenDoseNumber:i
                                                                  forDose:doseOrdinal
                                                                  forBaby:baby
                                                          usingDoseSeries:recommendedDoses];
-            if (status == SBTVaccineDoseValid || status == SBTVaccineDoseLate){
+            if (status == SBTVaccineDoseValid || status == SBTVaccineDoseValidLate){
                 doseOrdinal++;
             }
             [doseStatuses addObject:@(status)];
@@ -167,7 +185,11 @@
         NSInteger recommended = 0;
         while (recommended < [recommendedDoses count] && [recommendedDoses[recommended][REC_AGE_KEY] integerValue] <= age) recommended++;
         // if we are missing any, are we in a lockout, or too soon status right now?
-        NSInteger validDoses = [[doseStatuses filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"(SELF == %@) OR (SELF == %@)", @(SBTVaccineDoseValid), @(SBTVaccineDoseLate)]] count];
+        NSInteger validDoses = [[doseStatuses filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"(SELF == %@) OR (SELF == %@)", @(SBTVaccineDoseValid), @(SBTVaccineDoseValidLate)]] count];
+        
+        // fix up a result dictionary for this set of rules
+        seriesStatusDict[SBTVaccineSeriesRulesUsedKey] = recommendedDoses;
+        seriesStatusDict[SBTVaccineDoseStatusKey] = doseStatuses;
         SBTVaccinationStatus seriesStatus;
         if (validDoses >= recommended){
             seriesStatus = SBTVaccinationUTD;
@@ -178,10 +200,21 @@
                 seriesStatus = SBTVaccinationDue;
             }
         }
-        [alternateStatuses addObject:@(seriesStatus)];
+        seriesStatusDict[SBTVaccineSeriesStatusKey] = @(seriesStatus);
+        [alternateStatusDictionaries addObject:seriesStatusDict];
     }
-    // now we have an array of one or more series statuses, we need to return the MOST OPTIMISTIC one.
     
+    // now we have an array of one or more series statuses, we need to return the MOST OPTIMISTIC one.
+    SBTVaccinationStatus bestStatus = SBTVaccinationNoData;
+    int bestIndex = -1;
+    for (int ruleIndex = 0; ruleIndex < [validSeries count]; ruleIndex++){
+        SBTVaccinationStatus thisStatus = (SBTVaccinationStatus)[alternateStatusDictionaries[ruleIndex][SBTVaccineSeriesStatusKey] integerValue];
+        if (thisStatus >= bestStatus){
+            bestStatus = thisStatus;
+            bestIndex = ruleIndex;
+        }
+    }
+    return alternateStatusDictionaries[bestIndex];
 }
 
 @end

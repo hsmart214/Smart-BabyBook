@@ -101,5 +101,10 @@ static NSString * const SBTGrowthDataSourceInfantChildCutoffKey = @"com.mySmartS
 static NSString * const SBTGrowthDataSourceInfantDataSourceKey = @"com.mySmartSoftware.SmartBabyTracker.InfantDataSource";
 static NSString * const SBTGrowthDataSourceChildDataSourceKey = @"com.mySmartSoftware.SmartBabyTracker.ChildDataSource";
 
+static NSString * const SBTVaccineSeriesRulesUsedKey = @"com.mySmartSoftware.SmartBabyTracker.vaccineSeriesRulesUsed";
+static NSString * const SBTVaccineSeriesStatusKey = @"com.mySmartSoftware.SmartBabyTracker.vaccineSeriesStatus";
+static NSString * const SBTVaccineDoseStatusKey = @"com.mySmartSoftware.SmartBabyTracker.vaccineDoseStatus";
+
 static NSString * const SBTUnitPreferenceMetric = @"com.mySmartSoftware.SmartBabyTracker.MetricUnits";
 static NSString * const SBTUnitPreferenceStandard = @"com.mySmartSoftware.SmartBabyTracker.StandardUnits";
+

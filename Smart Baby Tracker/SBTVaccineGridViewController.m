@@ -107,7 +107,8 @@
     NSString *compName = vaccineRow[COMPONENT_KEY];
     header.componentName = compName;
     SBTComponent c = (SBTComponent)[self.componentsByName[compName] integerValue];
-    header.status = [[SBTVaccineSchedule sharedSchedule] vaccinationStatusForVaccineComponent:c forBaby:self.baby];
+    NSDictionary *statusDict = [[SBTVaccineSchedule sharedSchedule] vaccinationStatusForVaccineComponent:c forBaby:self.baby];
+    header.status = (SBTVaccinationStatus)[statusDict[SBTVaccineSeriesStatusKey] integerValue];
     return header;
 }
 
