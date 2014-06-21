@@ -70,7 +70,7 @@
 - (void)testDTaPStatus2doses
 {
     SBTVaccineSchedule *sched = [SBTVaccineSchedule sharedSchedule];
-    SBTVaccinationStatus status = [sched vaccinationStatusForVaccineComponent:SBTComponentDTaP forBaby:self.baby];
+    SBTVaccinationStatus status = (SBTVaccinationStatus)[[sched vaccinationStatusForVaccineComponent:SBTComponentDTaP forBaby:self.baby][SBTVaccineSeriesStatusKey] integerValue];
     XCTAssertTrue(status == SBTVaccinationDue , @"Incorrect calculation of DTaP status with two doses.");
 }
 
@@ -116,9 +116,9 @@
     [self.sevenYearOld addEncounter:enc2];
     
     SBTVaccineSchedule *sched = [SBTVaccineSchedule sharedSchedule];
-    SBTVaccinationStatus status = [sched vaccinationStatusForVaccineComponent:SBTComponentDTaP forBaby:self.sevenYearOld];
+    SBTVaccinationStatus status = (SBTVaccinationStatus)[[sched vaccinationStatusForVaccineComponent:SBTComponentDTaP forBaby:self.sevenYearOld][SBTVaccineSeriesStatusKey] integerValue];
     XCTAssertTrue(status == SBTVaccinationUTD , @"Incorrect calculation of DTaP status with five regular doses.");
-    status = [sched vaccinationStatusForVaccineComponent:SBTComponentHiB forBaby:self.sevenYearOld];
+    status = (SBTVaccinationStatus)[[sched vaccinationStatusForVaccineComponent:SBTComponentHiB forBaby:self.sevenYearOld][SBTVaccineSeriesStatusKey] integerValue];
     XCTAssertTrue(status == SBTVaccinationUTD , @"Incorrect calculation of HiB status with four valid doses.");
 }
 
@@ -164,7 +164,7 @@
     [self.sevenYearOld addEncounter:enc2];
     
     SBTVaccineSchedule *sched = [SBTVaccineSchedule sharedSchedule];
-    SBTVaccinationStatus status = [sched vaccinationStatusForVaccineComponent:SBTComponentDTaP forBaby:self.sevenYearOld];
+    SBTVaccinationStatus status = (SBTVaccinationStatus)[[sched vaccinationStatusForVaccineComponent:SBTComponentDTaP forBaby:self.sevenYearOld][SBTVaccineSeriesStatusKey] integerValue];
     XCTAssertTrue(status == SBTVaccinationDue , @"Incorrect calculation of DTaP status with five regular doses.");
 }
 
@@ -216,7 +216,7 @@
     [self.sevenYearOld addEncounter:enc2];
     
     SBTVaccineSchedule *sched = [SBTVaccineSchedule sharedSchedule];
-    SBTVaccinationStatus status = [sched vaccinationStatusForVaccineComponent:SBTComponentDTaP forBaby:self.sevenYearOld];
+    SBTVaccinationStatus status = (SBTVaccinationStatus)[[sched vaccinationStatusForVaccineComponent:SBTComponentDTaP forBaby:self.sevenYearOld][SBTVaccineSeriesStatusKey] integerValue];
     XCTAssertTrue(status == SBTVaccinationUTD , @"Incorrect calculation of DTaP status with five regular doses.");
 }
 

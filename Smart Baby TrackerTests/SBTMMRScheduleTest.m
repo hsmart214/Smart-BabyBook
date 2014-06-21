@@ -53,7 +53,7 @@
     SBTEncounter *enc = [[SBTEncounter alloc] initWithDate:[NSDate date]];
     [enc replaceVaccines:[NSSet setWithArray:@[mmr]]];
     [self.baby1yr addEncounter:enc];
-    SBTVaccinationStatus status = [self.sched vaccinationStatusForVaccineComponent:SBTComponentMMR forBaby:self.baby1yr];
+    SBTVaccinationStatus status = (SBTVaccinationStatus)[[self.sched vaccinationStatusForVaccineComponent:SBTComponentMMR forBaby:self.baby1yr][SBTVaccineSeriesStatusKey] integerValue];
     XCTAssertTrue(status == SBTVaccinationUTD , @"Incorrect calculation of MMR status with one valid doses.");
 }
 
@@ -70,7 +70,7 @@
     enc = [[SBTEncounter alloc] initWithDate:prevEncounterDate];
     [enc replaceVaccines:[NSSet setWithArray:@[mmr]]];
     [self.baby2yr addEncounter:enc];
-    SBTVaccinationStatus status = [self.sched vaccinationStatusForVaccineComponent:SBTComponentMMR forBaby:self.baby2yr];
+    SBTVaccinationStatus status = (SBTVaccinationStatus)[[self.sched vaccinationStatusForVaccineComponent:SBTComponentMMR forBaby:self.baby2yr][SBTVaccineSeriesStatusKey] integerValue];
     XCTAssertTrue(status == SBTVaccinationUTD , @"Incorrect calculation of MMR status with two valid doses.");
 }
 
@@ -80,7 +80,7 @@
     SBTEncounter *enc = [[SBTEncounter alloc] initWithDate:[NSDate date]];
     [enc replaceVaccines:[NSSet setWithArray:@[mmr]]];
     [self.baby4yr addEncounter:enc];
-    SBTVaccinationStatus status = [self.sched vaccinationStatusForVaccineComponent:SBTComponentMMR forBaby:self.baby4yr];
+    SBTVaccinationStatus status = (SBTVaccinationStatus)[[self.sched vaccinationStatusForVaccineComponent:SBTComponentMMR forBaby:self.baby4yr][SBTVaccineSeriesStatusKey] integerValue];
     XCTAssertTrue(status == SBTVaccinationDue , @"Incorrect calculation of MMR status with one valid doses.");
 }
 
@@ -90,7 +90,7 @@
     SBTEncounter *enc = [[SBTEncounter alloc] initWithDate:[NSDate date]];
     [enc replaceVaccines:[NSSet setWithArray:@[vzv]]];
     [self.baby4yr addEncounter:enc];
-    SBTVaccinationStatus status = [self.sched vaccinationStatusForVaccineComponent:SBTComponentVZV forBaby:self.baby4yr];
+    SBTVaccinationStatus status = (SBTVaccinationStatus)[[self.sched vaccinationStatusForVaccineComponent:SBTComponentVZV forBaby:self.baby4yr][SBTVaccineSeriesStatusKey] integerValue];
     XCTAssertTrue(status == SBTVaccinationDue , @"Incorrect calculation of VZV status with one valid doses.");
 }
 

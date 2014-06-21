@@ -152,7 +152,7 @@
      A status dictionary will have the following keys:
      SBTVaccineSeriesRulesUsedKey   NSArray * pointing to the recommendedDoses in use at the time
      SBTVaccineSeriesStatusKey      SBTVaccinationStatus of the overall recommendedDoses in question
-     SBTVaccineDoseStatusKey        NSArray * of SBTVaccineDoseStatus, one for each dose in the recommendedDoses
+     SBTVaccineSeriesDoseStatusKey        NSArray * of SBTVaccineDoseStatus, one for each dose in the recommendedDoses
      */
     NSMutableArray *doseStatuses = [NSMutableArray new];
     NSArray *datesGiven = [baby daysGivenVaccineComponent:component];
@@ -189,7 +189,7 @@
         
         // fix up a result dictionary for this set of rules
         seriesStatusDict[SBTVaccineSeriesRulesUsedKey] = recommendedDoses;
-        seriesStatusDict[SBTVaccineDoseStatusKey] = doseStatuses;
+        seriesStatusDict[SBTVaccineSeriesDoseStatusKey] = doseStatuses;
         SBTVaccinationStatus seriesStatus;
         if (validDoses >= recommended){
             seriesStatus = SBTVaccinationUTD;

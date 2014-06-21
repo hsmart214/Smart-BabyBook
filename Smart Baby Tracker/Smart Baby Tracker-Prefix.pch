@@ -3,17 +3,9 @@
 //
 //  The contents of this file are implicitly included at the beginning of every source file.
 //
-
+@import UIKit;
+@import Foundation;
 #import <Availability.h>
-
-#ifndef __IPHONE_5_0
-#warning "This project uses features only available in iOS SDK 5.0 and later."
-#endif
-
-#ifdef __OBJC__
-    #import <UIKit/UIKit.h>
-    #import <Foundation/Foundation.h>
-#endif
 
 #define USER_DEFAULTS_KEY @"com.mySmartSoftware.smartBabyTrackerDefaults"
 #define UNIT_PREFS_KEY @"com.mySmartSoftware.smartBabyTracker.unitPrefs"
@@ -56,7 +48,9 @@ typedef enum {SBTMale, SBTFemale} SBTGender;
 
 typedef enum {Intramuscular, Subcutaneous, Intradermal, Oral, Nasal} SBTVaccineRoute;
 
-typedef enum {SBTComponentFDA_Approved, SBTComponentHiB, SBTComponentPRP_OMP, SBTComponentPRP_T, SBTComponentDTP, SBTComponentDT, SBTComponentTd  , SBTComponentTdap, SBTComponentTet, SBTComponentDTaP, SBTComponentDTwP, SBTComponentIPV, SBTComponentOPV, SBTComponentRota, SBTComponentPCV7, SBTComponentPCV13, SBTComponentPPV23, SBTComponentHepB, SBTComponentHepA, SBTComponentMeasles, SBTComponentMMR, SBTComponentMumps, SBTComponentRubella , SBTComponentVZV , SBTComponentMCV4, SBTComponentMPV4, SBTComponentMenB, SBTComponentMenC, SBTComponentMenCY, SBTComponentHPV2, SBTComponentHPV4, SBTComponentFlu, SBTComponentLAIV, SBTComponentTyphLive, SBTComponentTyphInact, SBTComponentJapEnc, SBTComponentDiph, SBTComponentAcelPert, SBTComponentPert } SBTComponent;
+typedef NS_ENUM(NSUInteger, SBTComponent) {
+    SBTComponentFDA_Approved, SBTComponentHiB, SBTComponentPRP_OMP, SBTComponentPRP_T, SBTComponentDTP, SBTComponentDT, SBTComponentTd  , SBTComponentTdap, SBTComponentTet, SBTComponentDTaP, SBTComponentDTwP, SBTComponentIPV, SBTComponentOPV, SBTComponentRota, SBTComponentPCV7, SBTComponentPCV13, SBTComponentPPV23, SBTComponentHepB, SBTComponentHepA, SBTComponentMeasles, SBTComponentMMR, SBTComponentMumps, SBTComponentRubella , SBTComponentVZV , SBTComponentMCV4, SBTComponentMPV4, SBTComponentMenB, SBTComponentMenC, SBTComponentMenCY, SBTComponentHPV2, SBTComponentHPV4, SBTComponentFlu, SBTComponentLAIV, SBTComponentTyphLive, SBTComponentTyphInact, SBTComponentJapEnc, SBTComponentDiph, SBTComponentAcelPert, SBTComponentPert,
+};
 
 typedef enum {SBTStature, SBTLength, SBTWeight, SBTHeadCircumference, SBTBMI} SBTGrowthParameter;
 
@@ -103,7 +97,7 @@ static NSString * const SBTGrowthDataSourceChildDataSourceKey = @"com.mySmartSof
 
 static NSString * const SBTVaccineSeriesRulesUsedKey = @"com.mySmartSoftware.SmartBabyTracker.vaccineSeriesRulesUsed";
 static NSString * const SBTVaccineSeriesStatusKey = @"com.mySmartSoftware.SmartBabyTracker.vaccineSeriesStatus";
-static NSString * const SBTVaccineDoseStatusKey = @"com.mySmartSoftware.SmartBabyTracker.vaccineDoseStatus";
+static NSString * const SBTVaccineSeriesDoseStatusKey = @"com.mySmartSoftware.SmartBabyTracker.vaccineDoseStatus";
 
 static NSString * const SBTUnitPreferenceMetric = @"com.mySmartSoftware.SmartBabyTracker.MetricUnits";
 static NSString * const SBTUnitPreferenceStandard = @"com.mySmartSoftware.SmartBabyTracker.StandardUnits";

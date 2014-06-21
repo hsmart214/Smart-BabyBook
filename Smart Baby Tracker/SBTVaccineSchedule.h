@@ -15,9 +15,13 @@
 @class SBTBaby;
 @class SBTVaccine;
 
-typedef enum {SBTVaccinationNoData, SBTVaccinationNotYetDue, SBTVaccinationOverdue, SBTVaccinationDue, SBTVaccinationDueLockedOut, SBTVaccinationUTD, } SBTVaccinationStatus;
-typedef enum {SBTVaccineDoseNoData, SBTVaccineDoseInvalidTooEarly, SBTVaccineDoseInvalidTooSoonAfterLiveVaccine, SBTVaccineDoseValidLate, SBTVaccineDoseValid, } SBTVaccineDoseStatus;
+typedef NS_ENUM(NSUInteger, SBTVaccinationStatus) {
+    SBTVaccinationNoData, SBTVaccinationNotYetDue, SBTVaccinationOverdue, SBTVaccinationDue, SBTVaccinationDueLockedOut, SBTVaccinationUTD,
+};
 
+typedef NS_ENUM(NSUInteger, SBTVaccineDoseStatus) {
+    SBTVaccineDoseNoData, SBTVaccineDoseInvalidTooEarly, SBTVaccineDoseInvalidTooSoonAfterLiveVaccine, SBTVaccineDoseValidLate, SBTVaccineDoseValid,
+};
 
 @interface SBTVaccineSchedule : NSObject
 
@@ -25,7 +29,7 @@ typedef enum {SBTVaccineDoseNoData, SBTVaccineDoseInvalidTooEarly, SBTVaccineDos
  A status dictionary will have the following keys:
  SBTVaccineSeriesRulesUsedKey   NSArray * pointing to the recommendedDoses in use at the time
  SBTVaccineSeriesStatusKey      SBTVaccinationStatus of the overall recommendedDoses in question
- SBTVaccineDoseStatusKey        NSArray * of SBTVaccineDoseStatus, one for each dose in the recommendedDoses
+ SBTVaccineSeriesDoseStatusKey  NSArray * of SBTVaccineDoseStatus, one for each dose in the recommendedDoses
  */
 
 -(NSDictionary *)vaccinationStatusForVaccineComponent:(SBTComponent)component
