@@ -188,8 +188,8 @@
         NSInteger validDoses = [[doseStatuses filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"(SELF == %@) OR (SELF == %@)", @(SBTVaccineDoseValid), @(SBTVaccineDoseValidLate)]] count];
         
         // fix up a result dictionary for this set of rules
-        seriesStatusDict[SBTVaccineSeriesRulesUsedKey] = recommendedDoses;
-        seriesStatusDict[SBTVaccineSeriesDoseStatusKey] = doseStatuses;
+        seriesStatusDict[SBTVaccineSeriesRulesUsedKey] = [recommendedDoses copy];
+        seriesStatusDict[SBTVaccineSeriesDoseStatusKey] = [doseStatuses copy];
         SBTVaccinationStatus seriesStatus;
         if (validDoses >= recommended){
             seriesStatus = SBTVaccinationUTD;
@@ -202,6 +202,7 @@
         }
         seriesStatusDict[SBTVaccineSeriesStatusKey] = @(seriesStatus);
         [alternateStatusDictionaries addObject:seriesStatusDict];
+        [doseStatuses removeAllObjects];
     }
     
     // now we have an array of one or more series statuses, we need to return the MOST OPTIMISTIC one.
