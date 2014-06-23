@@ -13,6 +13,4 @@
 
 @property (nonatomic, strong) SBTBaby *baby;
 
-+(NSArray *)componentsForGrid;
-
 @end

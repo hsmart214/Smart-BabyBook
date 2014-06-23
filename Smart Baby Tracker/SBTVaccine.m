@@ -16,7 +16,6 @@
 
 @implementation SBTVaccine
 
-//TODO: add logic for different but equivalent components
 -(BOOL)includesEquivalentComponent:(SBTComponent)component
 {
     NSArray *equivs = [[self class] componentsEquivalentToComponent:component];

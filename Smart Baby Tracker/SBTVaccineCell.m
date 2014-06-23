@@ -23,7 +23,13 @@
 
 -(void)setEncounter:(SBTEncounter *)encounter
 {
-    self.label.text = [encounter.baby ageDescriptionAtDate:encounter.universalDate];
+    if (encounter){
+        self.label.text = [encounter.baby ageDescriptionAtDate:encounter.universalDate];
+        self.statusImageView.image = [UIImage imageNamed:@"greenCheck"];
+    }else{
+        self.label.text = NSLocalizedString(@"Due now", @"Due now");
+        self.statusImageView.image = [UIImage imageNamed:@"vaccine"];
+    }
 }
 
 -(void)awakeFromNib

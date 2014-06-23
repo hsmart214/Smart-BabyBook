@@ -84,7 +84,7 @@
         case SBTComponentOPV:
             return @"IPV";
         case SBTComponentMCV4:
-            return @"MPV4";
+            return @"MCV";
         case SBTComponentTdap:
             return @"Tdap";
         default:
