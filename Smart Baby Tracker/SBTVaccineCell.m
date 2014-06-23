@@ -23,12 +23,31 @@
 
 -(void)setEncounter:(SBTEncounter *)encounter
 {
+    _encounter = encounter;
     if (encounter){
         self.label.text = [encounter.baby ageDescriptionAtDate:encounter.universalDate];
-        self.statusImageView.image = [UIImage imageNamed:@"greenCheck"];
     }else{
         self.label.text = NSLocalizedString(@"Due now", @"Due now");
         self.statusImageView.image = [UIImage imageNamed:@"vaccine"];
+    }
+}
+
+-(void)setStatus:(SBTVaccineDoseStatus)status
+{
+    _status = status;
+    switch (status) {
+        case SBTVaccineDoseInvalidTooEarly:
+        case SBTVaccineDoseInvalidTooSoonAfterLiveVaccine:
+            self.statusImageView.image = [UIImage imageNamed:@"redX"];
+            break;
+        case SBTVaccineDoseValid:
+            self.statusImageView.image = [UIImage imageNamed:@"greenCheck"];
+            break;
+        case SBTVaccineDoseValidLate:
+            self.statusImageView.image = [UIImage imageNamed:@"yellowCheck"];
+            break;
+        default:
+            break;
     }
 }
 

@@ -46,6 +46,13 @@ NSString * const SBTVaccineEncountersKey = @"com.mySmartSoftware.SmartBabyTracke
             NSMutableDictionary *compDict = [[NSMutableDictionary alloc] init];
             compDict[SBTVaccineSeriesStatusKey] = @(status);
             compDict[SBTVaccineComponentKey] = @(component);
+            // the following is an NSArray of dose statuses, in order of doses given
+            NSArray *doseStatuses = [[SBTVaccineSchedule sharedSchedule] vaccinationStatusForVaccineComponent:component forBaby:self.baby][SBTVaccineSeriesDoseStatusKey];
+            if (doseStatuses){
+                compDict[SBTVaccineSeriesDoseStatusKey] = doseStatuses;
+            }else{
+                compDict[SBTVaccineSeriesDoseStatusKey] = [NSArray array];
+            }
             NSMutableSet *componentEncounters = [[NSMutableSet alloc] init];
             for (NSNumber *n in self.componentsForGrid[i]){
                 SBTComponent c = (SBTComponent)[n integerValue];
@@ -218,8 +225,10 @@ NSString * const SBTVaccineEncountersKey = @"com.mySmartSoftware.SmartBabyTracke
     if (indexPath.row == [encounters count]){
         // if we went out of bounds this means there is a due dose we need to show (it has no encounter)
         cell.encounter = nil;
+        cell.status = SBTVaccineDoseNoData;
     }else{
         cell.encounter = encounters[indexPath.row];
+        cell.status = (SBTVaccineDoseStatus)[self.gridModel[indexPath.section][SBTVaccineSeriesDoseStatusKey][indexPath.row] integerValue];
     }
     return cell;
 }

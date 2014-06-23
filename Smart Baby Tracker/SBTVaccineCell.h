@@ -6,12 +6,15 @@
 //  Copyright (c) 2014 J. HOWARD SMART. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
+#import "SBTVaccineSchedule.h"
+
 @class SBTEncounter;
 
 @interface SBTVaccineCell : UICollectionViewCell
 
 @property (nonatomic, weak) SBTEncounter *encounter;
+@property (nonatomic) SBTVaccineDoseStatus status;
 @property (weak, nonatomic) IBOutlet UIImageView *statusImageView;
 
 @end
