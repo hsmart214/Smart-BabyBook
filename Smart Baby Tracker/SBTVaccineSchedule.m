@@ -120,7 +120,7 @@
     NSArray *datesGiven = [baby daysGivenVaccineComponent:component];
     NSDateComponents *dayGiven = datesGiven[doseNum];
     
-    if ([baby dayIsDuringLiveBlackout:dayGiven]) return SBTVaccineDoseInvalidTooSoonAfterLiveVaccine;
+    if ([[SBTVaccine liveVaccineComponents] containsObject:@(component)] && [baby dayIsDuringLiveBlackout:dayGiven]) return SBTVaccineDoseInvalidTooSoonAfterLiveVaccine;
     
     NSAssert(doseOrd < [datesGiven count], @"Invalid dose number %ld given to status check routine.", (long)doseOrd);
     //    NSString *key = [SBTVaccineSchedule keyForVaccineComponent:component];
@@ -194,7 +194,7 @@
         if (validDoses >= recommended){
             seriesStatus = SBTVaccinationUTD;
         }else{ // has not had the recommended number of doses
-            if ([baby dayIsDuringLiveBlackout:[baby ageDDAtDate:[NSDate date]]]){
+            if ([[SBTVaccine liveVaccineComponents] containsObject:@(component)] && [baby dayIsDuringLiveBlackout:[baby ageDDAtDate:[NSDate date]]]){
                 seriesStatus = SBTVaccinationDueLockedOut;
             }else{
                 seriesStatus = SBTVaccinationDue;

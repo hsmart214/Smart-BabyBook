@@ -106,14 +106,14 @@
     return YES;
 }
 
-// These vaccines will cause a 28 day lockout period for vaccines not given on the same day
+// These vaccines will cause a mutual 28 day lockout period if not given on the same day
+// Live oral vaccines do NOT cause this lockout period
 +(NSSet *)liveVaccineComponents
 {
     static NSSet *liveVaccines = nil;
     if (!liveVaccines){
         liveVaccines =[NSSet setWithObjects:@(SBTComponentLAIV), @(SBTComponentMeasles), @(SBTComponentMMR),
-                       @(SBTComponentMumps), @(SBTComponentRota), @(SBTComponentRubella), @(SBTComponentTyphLive),
-                       @(SBTComponentVZV), nil];
+                       @(SBTComponentMumps), @(SBTComponentRubella), @(SBTComponentVZV), nil];
     }
     return liveVaccines;
 }

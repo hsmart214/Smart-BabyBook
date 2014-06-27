@@ -67,7 +67,8 @@
     XCTAssertTrue(status == SBTVaccinationUTD , @"Incorrect calculation of Hep B status with two valid doses, not due yet.");
 }
 
-- (void)testHepBRegular3Dose_OneTooCloseToLive
+- (void)testHepBRegular3Dose_OneCloseToLive
+// tests whether it correctly ignores the live vaccine 20 days prior to dose 3
 {
     SBTVaccine *hepB = [SBTVaccine vaccinesByTradeName][@"Engerix-B"];
     SBTVaccine *mmr = [SBTVaccine vaccinesByTradeName][@"MMR-II"];
@@ -99,7 +100,7 @@
     [enc replaceVaccines:[NSSet setWithArray:@[hepB]]];
     [self.toddler addEncounter:enc];
     SBTVaccinationStatus status = (SBTVaccinationStatus)[[self.sched vaccinationStatusForVaccineComponent:SBTComponentHepB forBaby:self.toddler][SBTVaccineSeriesStatusKey] integerValue];
-    XCTAssertTrue(status == SBTVaccinationDue , @"Incorrect calculation of Hep B status with two valid doses, not due yet.");
+    XCTAssertTrue(status == SBTVaccinationUTD , @"Incorrect calculation of Hep B status with two valid doses, not due yet.");
 }
 
 - (void)testHepB4DosesLikeUCSD
