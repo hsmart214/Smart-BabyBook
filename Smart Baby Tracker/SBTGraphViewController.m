@@ -140,6 +140,12 @@ static NSString * const SBTGraphCacheFilePrefix = @"com.mySmartSoftware.graphCac
     // axes will be drawn for display units based on user preferences
     // draw these into an image context, then set the image as the UIImage of the overlayView
     UIGraphicsBeginImageContextWithOptions(self.overlayView.bounds.size, NO, 0.0);
+    // figure out what the base axes would be without the scale and offset
+    
+    // figure how what the current actual vertical and horizontal scales are (per point)
+    
+    // figure out the lower left x,y coordinate that is visible
+    
     //TODO: Draw the axes
     UIBezierPath *path = [[UIBezierPath alloc] init];
     [path setLineWidth:1.0];
