@@ -39,9 +39,30 @@ static NSString * const SBTGraphCacheFilePrefix = @"com.mySmartSoftware.graphCac
 @property (nonatomic) CGFloat graphBaseline;
 @property (nonatomic, getter = isChildChart) BOOL childChart;
 
+@property (nonatomic, strong) NSMutableDictionary *measurementAxisLabels;
+@property (nonatomic, strong) NSMutableDictionary *ageAxisLabels;
+
 @end
 
 @implementation SBTGraphViewController
+
+#pragma mark - lazy instantiation
+
+-(NSMutableDictionary *)measurementAxisLabels
+{
+    if (!_measurementAxisLabels){
+        _measurementAxisLabels = [NSMutableDictionary dictionary];
+    }
+    return _measurementAxisLabels;
+}
+
+-(NSMutableDictionary *)ageAxisLabels
+{
+    if (!_ageAxisLabels){
+        _ageAxisLabels = [NSMutableDictionary dictionary];
+    }
+    return _ageAxisLabels;
+}
 
 # pragma mark - moving targets
 
@@ -140,16 +161,15 @@ static NSString * const SBTGraphCacheFilePrefix = @"com.mySmartSoftware.graphCac
     // axes will be drawn for display units based on user preferences
     // draw these into an image context, then set the image as the UIImage of the overlayView
     UIGraphicsBeginImageContextWithOptions(self.overlayView.bounds.size, NO, 0.0);
-    // figure out what the base axes would be without the scale and offset
     
-    // figure how what the current actual vertical and horizontal scales are (per point)
-    
-    // figure out the lower left x,y coordinate that is visible
-    
-    //TODO: Draw the axes
     UIBezierPath *path = [[UIBezierPath alloc] init];
     [path setLineWidth:1.0];
     [[UIColor SBTSuperLightGray] setStroke];
+    // use the [self currentMeasureVisibleExtents] to decide where to put labels
+    // TODO: Draw the axes
+    // add the ticks and labels for the data (y axis) remember the y axis is inverted
+    // add the ticks and labels for the age (x axis)
+    // add the percentile marks to the ends of the percentile lines (left edge)
     
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     self.overlayView.image = image;
@@ -484,6 +504,8 @@ static NSString * const SBTGraphCacheFilePrefix = @"com.mySmartSoftware.graphCac
 -(void)dealloc
 {
     self.graphView = nil;
+    self.measurementAxisLabels = nil;
+    self.ageAxisLabels = nil;
 }
 
 @end

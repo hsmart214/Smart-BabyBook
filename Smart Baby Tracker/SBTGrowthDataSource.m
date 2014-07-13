@@ -130,6 +130,22 @@
     return 0.0;
 }
 
+-(NSArray *)measurementsAtPercentiles:(NSArray *)percentiles
+                               forAge:(double)age
+                         forParameter:(SBTGrowthParameter)parameter
+                            forGender:(SBTGender)gender
+                             forChild:(BOOL)child
+{
+    NSMutableArray *collector = [NSMutableArray array];
+    for (NSNumber *n in percentiles){
+        SBTPercentile p = (SBTPercentile)[n doubleValue];
+        // depends on calling the overridden method in the subclass you are in
+        double measure = [self dataForPercentile:p forAge:age parameter:parameter andGender:gender];
+        [collector addObject:@(measure)];
+    }
+    return [collector copy];
+}
+
 -(double)percentileOfMeasurement:(double)measurement
                           forAge:(NSInteger)days
                        parameter:(SBTGrowthParameter)parameter

@@ -28,10 +28,19 @@ typedef enum {P01, P1, P3, P5, P10, P15, P25, P50, P75, P85, P90, P95, P97, P99,
 
 -(double)dataAgeRangeForAge:(double)age;
 -(double)dataFloorForParameter:(SBTGrowthParameter)parameter;
+-(double)baselineForParameter:(SBTGrowthParameter)parameter childChart:(BOOL)child;
 -(double)dataMeasurementRange97PercentForParameter:(SBTGrowthParameter)parameter
                                          forGender:(SBTGender)gender
-                                          forChild:(BOOL)child; // is this a child (YES) or infant (NO)
--(double)baselineForParameter:(SBTGrowthParameter)parameter childChart:(BOOL)child;
+                                          forChild:(BOOL)child; // is this a child (YES) or infant (NO)\
+
+/* this takes an array of SBTPercentile and returns an array of the measurement values (metric) for those percentiles            *
+ * at the age specified - to be used for the display of the percentile cues on the graph                                         *
+ * this allows the caller to decide which percentiles to ask for - just use the passed array to remember which ones you get back */
+-(NSArray *)measurementsAtPercentiles:(NSArray *)percentiles
+                               forAge:(double)age
+                         forParameter:(SBTGrowthParameter)parameter
+                            forGender:(SBTGender)gender
+                             forChild:(BOOL)child;
 
 +(instancetype)sharedDataSource;
 
