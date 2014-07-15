@@ -128,27 +128,29 @@ static NSString * const SBTGraphCacheFilePrefix = @"com.mySmartSoftware.graphCac
 -(CGFloat)graphBaseline
 {
     if (_graphBaseline < 0.0){
-        _graphBaseline = [self.growthDataSource dataFloorForParameter:self.parameter];
+        _graphBaseline = [self.growthDataSource baselineForParameter:self.parameter childChart:[self isChildChart]];
     }
     return _graphBaseline;
 }
 
 -(CGFloat)currentVMeasurePerPoint
 {
-    CGFloat ratio = [self maxVRange] / self.graphView.bounds.size.height;
+    CGFloat ratio = ([self maxVRange] -[self graphBaseline]) / self.graphView.bounds.size.height;
     return ratio;
 }
 
 -(CGFloat)currentHMeasurePerPoint
 {
-    CGFloat ratio = [self maxHRange] / self.graphView.bounds.size.width;
+    double range = [self isChildChart] ? [self maxHRange] - [SBTGrowthDataSource infantAgeMaximum] : [self maxHRange];
+    CGFloat ratio = range / self.graphView.bounds.size.width;
     return ratio;
 }
 
 -(CGRect)currentMeasureVisibleExtents
 {
     // The tricky part is that this is a rect in the screen oriented coordinates - x,y == TOP LEFT!!!
-    // So... the y represents the max measure.  The min is given by (maxVRange - y - size.height)
+    // So... the y represents the max measure.  The min is given by (maxVRange - y - origin.y)
+    // ptRect is in points, mRect is in metric measurement units for y, days for x
     CGRect ptRect = [self.graphView convertRect:self.overlayView.bounds fromView:self.overlayView];
     CGFloat hRatio = [self currentHMeasurePerPoint];
     CGFloat vRatio = [self currentVMeasurePerPoint];
@@ -165,14 +167,43 @@ static NSString * const SBTGraphCacheFilePrefix = @"com.mySmartSoftware.graphCac
     UIBezierPath *path = [[UIBezierPath alloc] init];
     [path setLineWidth:1.0];
     [[UIColor SBTSuperLightGray] setStroke];
+    UIFont *font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
+    NSDictionary *attrs = @{NSFontAttributeName: font};
+    
     // use the [self currentMeasureVisibleExtents] to decide where to put labels
+    //
+    CGRect visibleMeasures = [self currentMeasureVisibleExtents];
+    double maxAgeShown = visibleMeasures.origin.x + visibleMeasures.size.width;
+    double maxMeasureShown = [self maxVRange] - visibleMeasures.origin.y;
+    double minMeasureShown = maxMeasureShown - visibleMeasures.size.height;
+    
+    NSArray *percentiles = @[@(P5),@(P10),@(P25),@(P50),@(P75),@(P90),@(P95),];
+    NSArray *pctStrings = @[@"5",@"10",@"25",@"50",@"75",@"90",@"95",];
+    NSArray *pctMeasures = [self.growthDataSource measurementsAtPercentiles:percentiles
+                                                                     forAge:maxAgeShown
+                                                               forParameter:self.parameter
+                                                                  forGender:self.baby.gender];
+    
+    for (int i = 0; i < [percentiles count]; i++){
+        double measure = [pctMeasures[i] doubleValue];
+        if (measure > minMeasureShown && measure < maxMeasureShown){
+            NSAttributedString *label = [[NSAttributedString alloc] initWithString:pctStrings[i] attributes:attrs];
+            CGSize box = label.size;
+            // how far down the side of the image are we?
+            double fraction = 1 - ((measure - minMeasureShown) / (maxMeasureShown - minMeasureShown));
+            CGFloat yIntercept = self.overlayView.bounds.size.height * fraction;
+            CGPoint boxOrigin = CGPointMake(self.overlayView.bounds.size.width - box.width, yIntercept - box.height);
+            [label drawAtPoint:boxOrigin];
+        }
+    }
+    
     // TODO: Draw the axes
     // add the ticks and labels for the data (y axis) remember the y axis is inverted
     // add the ticks and labels for the age (x axis)
     // add the percentile marks to the ends of the percentile lines (left edge)
     
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    self.overlayView.image = image;
+    [(UIImageView *)[self.overlayView.subviews firstObject] setImage: image];
     UIGraphicsEndImageContext();
 }
 
@@ -498,6 +529,7 @@ static NSString * const SBTGraphCacheFilePrefix = @"com.mySmartSoftware.graphCac
 -(void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.overlayView addSubview:[[UIImageView alloc] initWithFrame:self.overlayView.bounds]];
     [self selectParameter:self.parameter];
 }
 

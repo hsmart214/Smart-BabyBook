@@ -134,7 +134,6 @@
                                forAge:(double)age
                          forParameter:(SBTGrowthParameter)parameter
                             forGender:(SBTGender)gender
-                             forChild:(BOOL)child
 {
     NSMutableArray *collector = [NSMutableArray array];
     for (NSNumber *n in percentiles){
