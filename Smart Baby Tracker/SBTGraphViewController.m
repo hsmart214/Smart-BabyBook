@@ -171,7 +171,6 @@ static NSString * const SBTGraphCacheFilePrefix = @"com.mySmartSoftware.graphCac
     NSDictionary *attrs = @{NSFontAttributeName: font};
     
     // use the [self currentMeasureVisibleExtents] to decide where to put labels
-    //
     CGRect visibleMeasures = [self currentMeasureVisibleExtents];
     double maxAgeShown = visibleMeasures.origin.x + visibleMeasures.size.width;
     double maxMeasureShown = [self maxVRange] - visibleMeasures.origin.y;
@@ -183,7 +182,6 @@ static NSString * const SBTGraphCacheFilePrefix = @"com.mySmartSoftware.graphCac
                                                                      forAge:maxAgeShown
                                                                forParameter:self.parameter
                                                                   forGender:self.baby.gender];
-    
     for (int i = 0; i < [percentiles count]; i++){
         double measure = [pctMeasures[i] doubleValue];
         if (measure > minMeasureShown && measure < maxMeasureShown){
@@ -200,10 +198,10 @@ static NSString * const SBTGraphCacheFilePrefix = @"com.mySmartSoftware.graphCac
     // TODO: Draw the axes
     // add the ticks and labels for the data (y axis) remember the y axis is inverted
     // add the ticks and labels for the age (x axis)
-    // add the percentile marks to the ends of the percentile lines (left edge)
     
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     [(UIImageView *)[self.overlayView.subviews firstObject] setImage: image];
+    // TODO: Add constraints so the image view sticks to the bounds of the overlay view
     UIGraphicsEndImageContext();
 }
 
