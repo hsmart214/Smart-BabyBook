@@ -190,7 +190,7 @@
         // fix up a result dictionary for this set of rules
         seriesStatusDict[SBTVaccineSeriesRulesUsedKey] = [recommendedDoses copy];
         seriesStatusDict[SBTVaccineSeriesDoseStatusKey] = [doseStatuses copy];
-        SBTVaccinationStatus seriesStatus;
+        SBTVaccineSeriesStatus seriesStatus;
         if (validDoses >= recommended){
             seriesStatus = SBTVaccinationUTD;
         }else{ // has not had the recommended number of doses
@@ -206,10 +206,10 @@
     }
     
     // now we have an array of one or more series statuses, we need to return the MOST OPTIMISTIC one.
-    SBTVaccinationStatus bestStatus = SBTVaccinationNoData;
+    SBTVaccineSeriesStatus bestStatus = SBTVaccinationNoData;
     int bestIndex = -1;
     for (int ruleIndex = 0; ruleIndex < [validSeries count]; ruleIndex++){
-        SBTVaccinationStatus thisStatus = (SBTVaccinationStatus)[alternateStatusDictionaries[ruleIndex][SBTVaccineSeriesStatusKey] integerValue];
+        SBTVaccineSeriesStatus thisStatus = (SBTVaccineSeriesStatus)[alternateStatusDictionaries[ruleIndex][SBTVaccineSeriesStatusKey] integerValue];
         if (thisStatus >= bestStatus){
             bestStatus = thisStatus;
             bestIndex = ruleIndex;

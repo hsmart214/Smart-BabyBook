@@ -15,7 +15,7 @@
 @class SBTBaby;
 @class SBTVaccine;
 
-typedef NS_ENUM(NSUInteger, SBTVaccinationStatus) {
+typedef NS_ENUM(NSUInteger, SBTVaccineSeriesStatus) {
     SBTVaccinationNoData, SBTVaccinationNotYetDue, SBTVaccinationOverdue, SBTVaccinationDue, SBTVaccinationDueLockedOut, SBTVaccinationUTD,
 };
 
@@ -28,7 +28,7 @@ typedef NS_ENUM(NSUInteger, SBTVaccineDoseStatus) {
 /*
  A status dictionary will have the following keys:
  SBTVaccineSeriesRulesUsedKey   NSArray * pointing to the recommendedDoses in use at the time
- SBTVaccineSeriesStatusKey      SBTVaccinationStatus of the overall recommendedDoses in question
+ SBTVaccineSeriesStatusKey      SBTVaccineSeriesStatus of the overall recommendedDoses in question
  SBTVaccineSeriesDoseStatusKey  NSArray * of SBTVaccineDoseStatus, one for each dose in the recommendedDoses
  */
 

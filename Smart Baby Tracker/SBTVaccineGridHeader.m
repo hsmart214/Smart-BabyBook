@@ -22,7 +22,7 @@
     self.label.text = componentName;
 }
 
--(void)setStatus:(SBTVaccinationStatus)status
+-(void)setStatus:(SBTVaccineSeriesStatus)status
 {
     switch (status) {
         case SBTVaccinationDue:

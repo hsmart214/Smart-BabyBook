@@ -30,6 +30,7 @@
 
 // this DOB should have its calendar property set to the local calendar used to create it.
 // if the DOB has a time as well, its timeZone property should also be set.
+// Designated initializer
 -(instancetype)initWithName:(NSString *)name andDOB:(NSDate *)dob;
 -(instancetype)initWithCoder:(NSCoder *)aDecoder;
 -(void)encodeWithCoder:(NSCoder *)aCoder;

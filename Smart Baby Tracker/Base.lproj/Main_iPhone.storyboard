@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="rS3-R9-Ivy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="rS3-R9-Ivy">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -25,7 +25,7 @@
             </objects>
             <point key="canvasLocation" x="-1" y="64"/>
         </scene>
-        <!--Children View Controller - Master-->
+        <!--Master-->
         <scene sceneID="VgW-fR-Quf">
             <objects>
                 <tableViewController storyboardIdentifier="initialTVC" title="Master" useStoryboardIdentifierAsRestorationIdentifier="YES" id="pGg-6v-bdr" customClass="SBTChildrenViewController" sceneMemberID="viewController">
@@ -120,7 +120,7 @@ Individual circumstances may make modifications of these recommendations advisab
             </objects>
             <point key="canvasLocation" x="459" y="64"/>
         </scene>
-        <!--PreferencesTVC - Preferences-->
+        <!--Preferences-->
         <scene sceneID="M0c-WY-P0K">
             <objects>
                 <tableViewController storyboardIdentifier="Preferences" title="Preferences" useStoryboardIdentifierAsRestorationIdentifier="YES" id="T35-7K-AR6" customClass="SBTPreferencesTVC" sceneMemberID="viewController">
@@ -329,7 +329,7 @@ Individual circumstances may make modifications of these recommendations advisab
             </objects>
             <point key="canvasLocation" x="985" y="778"/>
         </scene>
-        <!--Baby Edit View Controller - New Child-->
+        <!--New Child-->
         <scene sceneID="TMM-32-Zmr">
             <objects>
                 <tableViewController storyboardIdentifier="Baby Edit TVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="tBu-7W-ayX" customClass="SBTBabyEditViewController" sceneMemberID="viewController">
@@ -582,7 +582,7 @@ Individual circumstances may make modifications of these recommendations advisab
             </objects>
             <point key="canvasLocation" x="1443" y="-651"/>
         </scene>
-        <!--Vaccine Grid View Controller - Vaccines-->
+        <!--Vaccines-->
         <scene sceneID="l6Z-HY-ak9">
             <objects>
                 <collectionViewController storyboardIdentifier="Vaccine Flow Layout Table" autoresizesArchivedViewToFullSize="NO" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Rwu-dD-0YX" customClass="SBTVaccineGridViewController" sceneMemberID="viewController">
@@ -692,7 +692,7 @@ Individual circumstances may make modifications of these recommendations advisab
             </objects>
             <point key="canvasLocation" x="1956" y="-651"/>
         </scene>
-        <!--Baby InfoTVC - Name of Child-->
+        <!--Name of Child-->
         <scene sceneID="Tnj-2X-fvn">
             <objects>
                 <tableViewController storyboardIdentifier="Baby Info TVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="oRm-6A-Jx5" customClass="SBTBabyInfoTVC" sceneMemberID="viewController">
@@ -882,7 +882,7 @@ Individual circumstances may make modifications of these recommendations advisab
             </objects>
             <point key="canvasLocation" x="968" y="64"/>
         </scene>
-        <!--EncountersTVC - Encounters-->
+        <!--Encounters-->
         <scene sceneID="viG-fC-cq3">
             <objects>
                 <tableViewController storyboardIdentifier="Encounters TVC" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="n8x-l9-vtr" customClass="SBTEncountersTVC" sceneMemberID="viewController">
@@ -950,7 +950,7 @@ Individual circumstances may make modifications of these recommendations advisab
             </objects>
             <point key="canvasLocation" x="1443" y="64"/>
         </scene>
-        <!--Encounter EditTVC - New Encounter-->
+        <!--New Encounter-->
         <scene sceneID="R4T-O6-EVz">
             <objects>
                 <tableViewController storyboardIdentifier="Encounter Edit TVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="XxK-6Y-BCS" customClass="SBTEncounterEditTVC" sceneMemberID="viewController">
@@ -1266,7 +1266,7 @@ Individual circumstances may make modifications of these recommendations advisab
             </objects>
             <point key="canvasLocation" x="2387" y="61"/>
         </scene>
-        <!--Vaccines GivenTVC - Vaccines Given-->
+        <!--Vaccines Given-->
         <scene sceneID="FOA-bK-e9P">
             <objects>
                 <tableViewController storyboardIdentifier="Vaccines Given TVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="sla-9M-TXi" customClass="SBTVaccinesGivenTVC" sceneMemberID="viewController">
@@ -1315,7 +1315,7 @@ Individual circumstances may make modifications of these recommendations advisab
             </objects>
             <point key="canvasLocation" x="2807" y="61"/>
         </scene>
-        <!--Graph View Controller - Infant Growth Chart-->
+        <!--Infant Growth Chart-->
         <scene sceneID="iPG-GR-Bpf">
             <objects>
                 <viewController storyboardIdentifier="infantGrowthChart" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="J9F-Wc-rqO" customClass="SBTGraphViewController" sceneMemberID="viewController">
@@ -1370,7 +1370,7 @@ Individual circumstances may make modifications of these recommendations advisab
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Infant Growth Chart" id="X4X-Ax-o06">
-                        <barButtonItem key="rightBarButtonItem" title="Child>" id="W3c-uD-4mY">
+                        <barButtonItem key="rightBarButtonItem" title="Child&gt;" id="W3c-uD-4mY">
                             <connections>
                                 <segue destination="dD2-Rg-38v" kind="push" identifier="Child Chart Segue" id="vog-Gq-fNy"/>
                             </connections>
@@ -1387,7 +1387,7 @@ Individual circumstances may make modifications of these recommendations advisab
             </objects>
             <point key="canvasLocation" x="1443" y="778"/>
         </scene>
-        <!--Encounter InfoTVC - Encounter <date>-->
+        <!--Encounter <date>-->
         <scene sceneID="43z-xS-hnh">
             <objects>
                 <tableViewController storyboardIdentifier="EncounterInfoTVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Huh-1m-xed" customClass="SBTEncounterInfoTVC" sceneMemberID="viewController">
@@ -1428,7 +1428,7 @@ Individual circumstances may make modifications of these recommendations advisab
                         </connections>
                     </tableView>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Encounter &lt;date>" id="0aF-zz-lMe">
+                    <navigationItem key="navigationItem" title="Encounter &lt;date&gt;" id="0aF-zz-lMe">
                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="qJ0-V3-ca7">
                             <connections>
                                 <segue destination="mVF-uk-oHu" kind="modal" identifier="editThisEncounter" id="D8m-oN-Lqy"/>
@@ -1509,7 +1509,7 @@ Individual circumstances may make modifications of these recommendations advisab
             </objects>
             <point key="canvasLocation" x="459" y="778"/>
         </scene>
-        <!--Graph View Controller - Child Growth Chart-->
+        <!--Child Growth Chart-->
         <scene sceneID="z68-BZ-sgc">
             <objects>
                 <viewController storyboardIdentifier="childGrowthChart" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="dD2-Rg-38v" customClass="SBTGraphViewController" sceneMemberID="viewController">
@@ -1584,7 +1584,6 @@ Individual circumstances may make modifications of these recommendations advisab
         <image name="vaccine" width="30" height="30"/>
         <image name="weightTab" width="30" height="30"/>
     </resources>
-    <color key="tintColor" red="0.0" green="0.33588047450000003" blue="0.085452782850000006" alpha="1" colorSpace="calibratedRGB"/>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
@@ -1594,4 +1593,5 @@ Individual circumstances may make modifications of these recommendations advisab
         <segue reference="MgW-jl-WfQ"/>
         <segue reference="sJR-R6-pNF"/>
     </inferredMetricsTieBreakers>
+    <color key="tintColor" red="0.0" green="0.33588047450000003" blue="0.085452782850000006" alpha="1" colorSpace="calibratedRGB"/>
 </document>

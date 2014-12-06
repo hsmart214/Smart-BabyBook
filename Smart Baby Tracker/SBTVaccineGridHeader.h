@@ -12,6 +12,6 @@
 @interface SBTVaccineGridHeader : UICollectionReusableView
 
 @property (nonatomic, strong) NSString *componentName;
-@property (nonatomic) SBTVaccinationStatus status;
+@property (nonatomic) SBTVaccineSeriesStatus status;
 
 @end

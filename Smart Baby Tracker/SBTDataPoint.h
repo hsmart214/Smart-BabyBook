@@ -11,7 +11,7 @@
 
 #define AVG_MONTH 30.4375f //average days in a Gregorian month
 
-// only an object to hold data to be accessed by pointer, eg,  dataPoint->ageDays;
+// an object to hold data to be accessed by pointer, eg,  dataPoint->ageDays;
 // data points will be able to be stored in NSArrays
 
 @interface SBTDataPoint : NSObject <NSSecureCoding>

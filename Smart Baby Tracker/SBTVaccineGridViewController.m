@@ -42,7 +42,7 @@ NSString * const SBTVaccineEncountersKey = @"com.mySmartSoftware.SmartBabyTracke
         NSMutableArray *buildModel = [[NSMutableArray alloc] init];
         for (NSInteger i = 0; i < [self.componentsForGrid count]; i++){
             SBTComponent component = (SBTComponent)[self.componentsForGrid[i][0] integerValue];
-            SBTVaccinationStatus status = [self statusForComponent:component];
+            SBTVaccineSeriesStatus status = [self statusForComponent:component];
             NSMutableDictionary *compDict = [[NSMutableDictionary alloc] init];
             compDict[SBTVaccineSeriesStatusKey] = @(status);
             compDict[SBTVaccineComponentKey] = @(component);
@@ -156,17 +156,17 @@ NSString * const SBTVaccineEncountersKey = @"com.mySmartSoftware.SmartBabyTracke
     return _dateFormatter;
 }
 
--(SBTVaccinationStatus)statusForComponentNumber:(NSNumber *)componentObject
+-(SBTVaccineSeriesStatus)statusForComponentNumber:(NSNumber *)componentObject
 {
     SBTComponent c = (SBTComponent)[componentObject integerValue];
     SBTVaccineSchedule *sched = [SBTVaccineSchedule sharedSchedule];
     NSDictionary *dict = [sched vaccinationStatusForVaccineComponent:c
                                                              forBaby:self.baby];
     NSNumber *n = dict[SBTVaccineSeriesStatusKey];
-    return (SBTVaccinationStatus)[n integerValue];
+    return (SBTVaccineSeriesStatus)[n integerValue];
 }
 
--(SBTVaccinationStatus)statusForComponent:(SBTComponent)component
+-(SBTVaccineSeriesStatus)statusForComponent:(SBTComponent)component
 {
     return [self statusForComponentNumber:@(component)];
 }
@@ -198,7 +198,7 @@ NSString * const SBTVaccineEncountersKey = @"com.mySmartSoftware.SmartBabyTracke
 //    NSDictionary *vaccineRow = self.vaccinesGiven[section];
 //    return [vaccineRow[ENCOUNTERS_KEY] count];
     NSInteger items = [self.gridModel[section][SBTVaccineEncountersKey] count];
-    SBTVaccinationStatus status = (SBTVaccinationStatus)[self.gridModel[section][SBTVaccineSeriesStatusKey] integerValue];
+    SBTVaccineSeriesStatus status = (SBTVaccineSeriesStatus)[self.gridModel[section][SBTVaccineSeriesStatusKey] integerValue];
     if (status == SBTVaccinationDue || status == SBTVaccinationOverdue) items++;
     return items;
 }

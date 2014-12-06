@@ -95,7 +95,7 @@
 
 /* Begin PBXFileReference section */
 		421C2A6E18E3D12100EE8A19 /* UIColor+SBTColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+SBTColors.h"; sourceTree = "<group>"; };
-		421C2A6F18E3D12100EE8A19 /* UIColor+SBTColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+SBTColors.m"; path = "../Smart Baby Tracker/UIColor+SBTColors.m"; sourceTree = "<group>"; };
+		421C2A6F18E3D12100EE8A19 /* UIColor+SBTColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+SBTColors.m"; sourceTree = "<group>"; };
 		421C745D18937535000E3C30 /* Smart Baby Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Smart Baby Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		421C746018937535000E3C30 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		421C746218937535000E3C30 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -293,6 +293,7 @@
 				42C9D55A18DFD22F000B4131 /* SBTLongPressLabel.h */,
 				42C9D55B18DFD22F000B4131 /* SBTLongPressLabel.m */,
 				421C2A6E18E3D12100EE8A19 /* UIColor+SBTColors.h */,
+				421C2A6F18E3D12100EE8A19 /* UIColor+SBTColors.m */,
 				4279754918F1EC5A00F506C7 /* SBTPreferencesTVC.h */,
 				4279754A18F1EC5A00F506C7 /* SBTPreferencesTVC.m */,
 				4248806718944C90009F2837 /* Model */,
@@ -321,7 +322,6 @@
 		421C748B18937536000E3C30 /* Smart Baby TrackerTests */ = {
 			isa = PBXGroup;
 			children = (
-				421C2A6F18E3D12100EE8A19 /* UIColor+SBTColors.m */,
 				42C309811921DF1B00542C6A /* SBTMiscVaccineScheduleTests.m */,
 				42901BD918CBD0B6002EB9E9 /* SBTHepBScheduleTest.m */,
 				421C749118937536000E3C30 /* Smart_Baby_TrackerTests.m */,
