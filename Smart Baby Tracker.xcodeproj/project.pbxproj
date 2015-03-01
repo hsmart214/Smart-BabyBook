@@ -61,6 +61,12 @@
 		426FF5D818C15DB000B66F36 /* SBTDataPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 426FF5D718C15DB000B66F36 /* SBTDataPoint.m */; };
 		426FF5DB18C1A56200B66F36 /* SBTGrowthDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 426FF5DA18C1A56200B66F36 /* SBTGrowthDataSource.m */; };
 		4279754B18F1EC5A00F506C7 /* SBTPreferencesTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4279754A18F1EC5A00F506C7 /* SBTPreferencesTVC.m */; };
+		4281384B1AA2BE3F00770A26 /* SBTScannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4281384A1AA2BE3F00770A26 /* SBTScannerViewController.m */; };
+		4281384E1AA2BF3300770A26 /* SBTAddScannedVaccinesTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4281384D1AA2BF3300770A26 /* SBTAddScannedVaccinesTVC.m */; };
+		428138511AA2C8D600770A26 /* SBTScannedVaccineDetailsTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 428138501AA2C8D600770A26 /* SBTScannedVaccineDetailsTVC.m */; };
+		428138541AA2D2CD00770A26 /* SBTBarcodeDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428138531AA2D2CD00770A26 /* SBTBarcodeDecoder.swift */; };
+		428138571AA2D86A00770A26 /* BCRVaccineCodeLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 428138561AA2D86A00770A26 /* BCRVaccineCodeLoader.m */; };
+		4281385D1AA2E1BF00770A26 /* NDC_Unit_Use.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4281385C1AA2E1BF00770A26 /* NDC_Unit_Use.txt */; };
 		4287698618CD6F2E007862AB /* SBTChildrenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4287698518CD6F2E007862AB /* SBTChildrenViewController.m */; };
 		4287698918CD77AE007862AB /* SBTBabyEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4287698818CD77AE007862AB /* SBTBabyEditViewController.m */; };
 		42901BD818CB9756002EB9E9 /* SBTMMRScheduleTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42901BD718CB9756002EB9E9 /* SBTMMRScheduleTest.m */; };
@@ -75,6 +81,7 @@
 		42CB9A5718D5731C0097BBE3 /* SBTEncounterTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 42CB9A5618D5731C0097BBE3 /* SBTEncounterTableViewCell.m */; };
 		42CB9A5A18D57C4E0097BBE3 /* SBTEncountersTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 42CB9A5918D57C4E0097BBE3 /* SBTEncountersTVC.m */; };
 		42CB9A5D18D589C30097BBE3 /* SBTVaccinesGivenTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 42CB9A5C18D589C30097BBE3 /* SBTVaccinesGivenTVC.m */; };
+		42D481791A3376410058C7AE /* Univ_Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42D481781A3376410058C7AE /* Univ_Storyboard.storyboard */; };
 		42E7F98C18C267AE00C49072 /* SBTWHODataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E7F98B18C267AE00C49072 /* SBTWHODataSource.m */; };
 		42ED85DA18E0F2B500BF7318 /* SBTGraphViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42ED85D918E0F2B500BF7318 /* SBTGraphViewController.m */; };
 		42F66E3618BC581D0099137F /* SBTDTaPScheduleTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F66E3518BC581D0099137F /* SBTDTaPScheduleTest.m */; };
@@ -166,6 +173,17 @@
 		426FF5DA18C1A56200B66F36 /* SBTGrowthDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTGrowthDataSource.m; sourceTree = "<group>"; };
 		4279754918F1EC5A00F506C7 /* SBTPreferencesTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTPreferencesTVC.h; sourceTree = "<group>"; };
 		4279754A18F1EC5A00F506C7 /* SBTPreferencesTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTPreferencesTVC.m; sourceTree = "<group>"; };
+		428138491AA2BE3F00770A26 /* SBTScannerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTScannerViewController.h; sourceTree = "<group>"; };
+		4281384A1AA2BE3F00770A26 /* SBTScannerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTScannerViewController.m; sourceTree = "<group>"; };
+		4281384C1AA2BF3300770A26 /* SBTAddScannedVaccinesTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTAddScannedVaccinesTVC.h; sourceTree = "<group>"; };
+		4281384D1AA2BF3300770A26 /* SBTAddScannedVaccinesTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTAddScannedVaccinesTVC.m; sourceTree = "<group>"; };
+		4281384F1AA2C8D600770A26 /* SBTScannedVaccineDetailsTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTScannedVaccineDetailsTVC.h; sourceTree = "<group>"; };
+		428138501AA2C8D600770A26 /* SBTScannedVaccineDetailsTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTScannedVaccineDetailsTVC.m; sourceTree = "<group>"; };
+		428138521AA2D2CD00770A26 /* Smart Baby Tracker-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Smart Baby Tracker-Bridging-Header.h"; sourceTree = "<group>"; };
+		428138531AA2D2CD00770A26 /* SBTBarcodeDecoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SBTBarcodeDecoder.swift; sourceTree = "<group>"; };
+		428138551AA2D86A00770A26 /* BCRVaccineCodeLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCRVaccineCodeLoader.h; sourceTree = "<group>"; };
+		428138561AA2D86A00770A26 /* BCRVaccineCodeLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCRVaccineCodeLoader.m; sourceTree = "<group>"; };
+		4281385C1AA2E1BF00770A26 /* NDC_Unit_Use.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NDC_Unit_Use.txt; sourceTree = "<group>"; };
 		4287698418CD6F2E007862AB /* SBTChildrenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTChildrenViewController.h; sourceTree = "<group>"; };
 		4287698518CD6F2E007862AB /* SBTChildrenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTChildrenViewController.m; sourceTree = "<group>"; };
 		4287698718CD77AE007862AB /* SBTBabyEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTBabyEditViewController.h; sourceTree = "<group>"; };
@@ -189,6 +207,7 @@
 		42CB9A5918D57C4E0097BBE3 /* SBTEncountersTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTEncountersTVC.m; sourceTree = "<group>"; };
 		42CB9A5B18D589C30097BBE3 /* SBTVaccinesGivenTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTVaccinesGivenTVC.h; sourceTree = "<group>"; };
 		42CB9A5C18D589C30097BBE3 /* SBTVaccinesGivenTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTVaccinesGivenTVC.m; sourceTree = "<group>"; };
+		42D481781A3376410058C7AE /* Univ_Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Univ_Storyboard.storyboard; sourceTree = "<group>"; };
 		42E7F98A18C267AE00C49072 /* SBTWHODataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTWHODataSource.h; sourceTree = "<group>"; };
 		42E7F98B18C267AE00C49072 /* SBTWHODataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTWHODataSource.m; sourceTree = "<group>"; };
 		42ED85D818E0F2B500BF7318 /* SBTGraphViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTGraphViewController.h; sourceTree = "<group>"; };
@@ -261,6 +280,13 @@
 			children = (
 				421C747518937535000E3C30 /* Main_iPad.storyboard */,
 				421C747218937535000E3C30 /* Main_iPhone.storyboard */,
+				42D481781A3376410058C7AE /* Univ_Storyboard.storyboard */,
+				428138491AA2BE3F00770A26 /* SBTScannerViewController.h */,
+				4281384A1AA2BE3F00770A26 /* SBTScannerViewController.m */,
+				4281384C1AA2BF3300770A26 /* SBTAddScannedVaccinesTVC.h */,
+				4281384D1AA2BF3300770A26 /* SBTAddScannedVaccinesTVC.m */,
+				4281384F1AA2C8D600770A26 /* SBTScannedVaccineDetailsTVC.h */,
+				428138501AA2C8D600770A26 /* SBTScannedVaccineDetailsTVC.m */,
 				42ED85D818E0F2B500BF7318 /* SBTGraphViewController.h */,
 				42ED85D918E0F2B500BF7318 /* SBTGraphViewController.m */,
 				4220B75518E4C2B500557F27 /* SBTGraphPoint.h */,
@@ -299,6 +325,7 @@
 				4248806718944C90009F2837 /* Model */,
 				421C747E18937535000E3C30 /* Images.xcassets */,
 				421C746718937535000E3C30 /* Supporting Files */,
+				428138521AA2D2CD00770A26 /* Smart Baby Tracker-Bridging-Header.h */,
 			);
 			path = "Smart Baby Tracker";
 			sourceTree = "<group>";
@@ -345,6 +372,7 @@
 		4248806718944C90009F2837 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				428138531AA2D2CD00770A26 /* SBTBarcodeDecoder.swift */,
 				4269473918D66CB700D5B06F /* SBTUnitsConvertor.h */,
 				4269473A18D66CB700D5B06F /* SBTUnitsConvertor.m */,
 				4248806418944C84009F2837 /* SBTBaby.h */,
@@ -353,6 +381,8 @@
 				42488069189459D2009F2837 /* SBTEncounter.m */,
 				4248806B18945CE2009F2837 /* SBTVaccine.h */,
 				4248806C18945CE2009F2837 /* SBTVaccine.m */,
+				428138551AA2D86A00770A26 /* BCRVaccineCodeLoader.h */,
+				428138561AA2D86A00770A26 /* BCRVaccineCodeLoader.m */,
 				42B6012E1895E1E6000C15F4 /* SBTVaccineSchedule.h */,
 				42B6012F1895E1E6000C15F4 /* SBTVaccineSchedule.m */,
 				426FF5D618C15DB000B66F36 /* SBTDataPoint.h */,
@@ -372,6 +402,7 @@
 		42C7540D18C2BBEE0050F38A /* Data files */ = {
 			isa = PBXGroup;
 			children = (
+				4281385C1AA2E1BF00770A26 /* NDC_Unit_Use.txt */,
 				4264369318C4459800414CA1 /* cdcbmiboys.txt */,
 				4264369418C4459800414CA1 /* cdcbmigirls.txt */,
 				4264369518C4459800414CA1 /* cdchcboys.txt */,
@@ -505,12 +536,14 @@
 				426436B518C4459800414CA1 /* whohcboys.txt in Resources */,
 				426436B718C4459800414CA1 /* wholengthboys.txt in Resources */,
 				426436A918C4459800414CA1 /* cdchcboys.txt in Resources */,
+				42D481791A3376410058C7AE /* Univ_Storyboard.storyboard in Resources */,
 				426436A818C4459800414CA1 /* cdcbmigirls.txt in Resources */,
 				426436B418C4459800414CA1 /* whobmiinfantgirls.txt in Resources */,
 				423E593E1920890500E2E9AC /* babies.data in Resources */,
 				426436B618C4459800414CA1 /* whohcgirls.txt in Resources */,
 				426436AB18C4459800414CA1 /* cdclengthboys.txt in Resources */,
 				426436AE18C4459800414CA1 /* cdcstaturegirls.txt in Resources */,
+				4281385D1AA2E1BF00770A26 /* NDC_Unit_Use.txt in Resources */,
 				426AC51519024D8700EF694C /* whobmigirls.txt in Resources */,
 				426436A718C4459800414CA1 /* cdcbmiboys.txt in Resources */,
 				426AC51719024D8700EF694C /* whostatureboys.txt in Resources */,
@@ -538,9 +571,12 @@
 				42B601301895E1E6000C15F4 /* SBTVaccineSchedule.m in Sources */,
 				425D58E218DEA5B100B0AA3C /* SBTEncounterInfoTVC.m in Sources */,
 				4269473B18D66CB700D5B06F /* SBTUnitsConvertor.m in Sources */,
+				428138541AA2D2CD00770A26 /* SBTBarcodeDecoder.swift in Sources */,
 				4220B75718E4C2B500557F27 /* SBTGraphPoint.m in Sources */,
 				4287698618CD6F2E007862AB /* SBTChildrenViewController.m in Sources */,
+				428138571AA2D86A00770A26 /* BCRVaccineCodeLoader.m in Sources */,
 				42CB9A5D18D589C30097BBE3 /* SBTVaccinesGivenTVC.m in Sources */,
+				428138511AA2C8D600770A26 /* SBTScannedVaccineDetailsTVC.m in Sources */,
 				8958B49A191F3875007C032B /* SBTVaccineCell.m in Sources */,
 				42CB9A5718D5731C0097BBE3 /* SBTEncounterTableViewCell.m in Sources */,
 				421C747118937535000E3C30 /* SBTAppDelegate.m in Sources */,
@@ -555,8 +591,10 @@
 				42CB9A5A18D57C4E0097BBE3 /* SBTEncountersTVC.m in Sources */,
 				4248806D18945CE2009F2837 /* SBTVaccine.m in Sources */,
 				8958B49D191F452D007C032B /* SBTVaccineGridHeader.m in Sources */,
+				4281384E1AA2BF3300770A26 /* SBTAddScannedVaccinesTVC.m in Sources */,
 				4287698918CD77AE007862AB /* SBTBabyEditViewController.m in Sources */,
 				42BFE7D518D7F1DA00B0E2F4 /* SBTDataStore.m in Sources */,
+				4281384B1AA2BE3F00770A26 /* SBTScannerViewController.m in Sources */,
 				42C9D55C18DFD22F000B4131 /* SBTLongPressLabel.m in Sources */,
 				426FF5D818C15DB000B66F36 /* SBTDataPoint.m in Sources */,
 				4269473818D6597B00D5B06F /* SBTEncounterEditTVC.m in Sources */,
@@ -700,13 +738,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Smart Baby Tracker/Smart Baby Tracker-Prefix.pch";
 				INFOPLIST_FILE = "Smart Baby Tracker/Smart Baby Tracker-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Smart Baby Tracker/Smart Baby Tracker-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -716,13 +758,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Smart Baby Tracker/Smart Baby Tracker-Prefix.pch";
 				INFOPLIST_FILE = "Smart Baby Tracker/Smart Baby Tracker-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Smart Baby Tracker/Smart Baby Tracker-Bridging-Header.h";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

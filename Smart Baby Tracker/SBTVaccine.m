@@ -31,6 +31,14 @@
     return [self.components containsObject:@(component)];
 }
 
+-(NSString *)componentString{
+    if ([self.displayNames count] == 1){
+        return [self.displayNames lastObject];
+    }else{
+        return [self.displayNames componentsJoinedByString:@", "];
+    }
+}
+
 -(instancetype)init{
     NSLog(@"Problem: Wrong initializer used for SBTVaccine instance");
     return [self initWithName:nil displayNames:nil andComponents:nil];
@@ -66,6 +74,7 @@
     [aCoder encodeObject:self.name forKey:@"name"];
     [aCoder encodeObject:self.displayNames forKey:@"displayName"];
     [aCoder encodeObject:self.manufacturer forKey:@"manufacturer"];
+    [aCoder encodeObject:self.ndc forKey:@"ndc"];
     [aCoder encodeObject:self.lotNumber forKey:@"lotNumber"];
     [aCoder encodeObject:self.expirationDate forKey:@"expDate"];
     [aCoder encodeObject:self.components forKey:@"components"];
@@ -78,6 +87,7 @@
         self.name = [aDecoder decodeObjectOfClass:[NSString class] forKey:@"name"];
         self.displayNames = [aDecoder decodeObjectOfClass:[NSArray class] forKey:@"displayName"];
         self.manufacturer = [aDecoder decodeObjectOfClass:[NSString class] forKey:@"manufacturer"];
+        self.ndc = [aDecoder decodeObjectOfClass:[NSString class] forKey:@"ndc"];
         self.lotNumber = [aDecoder decodeObjectOfClass:[NSString class] forKey:@"lotNumber"];
         self.expirationDate = [aDecoder decodeObjectOfClass:[NSDate class] forKey:@"expDate"];
         self.components = [aDecoder decodeObjectOfClass:[NSSet class] forKey:@"components"];
@@ -94,6 +104,7 @@
 {
     SBTVaccine *newVacc = [[SBTVaccine alloc] initWithName:self.name displayNames:self.displayNames andComponents:[self.components allObjects]];
     newVacc.manufacturer = self.manufacturer;
+    newVacc.ndc = self.ndc;
     newVacc.lotNumber = self.lotNumber;
     newVacc.expirationDate = self.expirationDate;
     newVacc.route = self.route;

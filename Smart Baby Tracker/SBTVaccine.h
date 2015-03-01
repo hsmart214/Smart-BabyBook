@@ -7,6 +7,7 @@
 //
 
 @import Foundation;
+#import "Smart Baby Tracker-Prefix.pch"
 
 @interface SBTVaccine : NSObject <NSSecureCoding, NSCopying>
 
@@ -18,8 +19,11 @@
 // Optional
 @property (nonatomic) SBTVaccineRoute route;
 @property (nonatomic, copy) NSString *manufacturer;
+@property (nonatomic, copy) NSString *ndc;
 @property (nonatomic, copy) NSString *lotNumber;
 @property (nonatomic, copy) NSDate *expirationDate;
+
+-(NSString *)componentString;
 
 -(BOOL)includesEquivalentComponent:(SBTComponent)component;
 -(BOOL)includesExactComponent:(SBTComponent)component;
