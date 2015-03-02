@@ -70,6 +70,8 @@ static NSString * const Merck = @"Merck";
 static NSString * const Wyeth = @"Wyeth";
 static NSString * const Novartis = @"Novartis";
 static NSString * const MedImmune = @"MedImmune";
+static NSString * const Pfizer = @"Pfizer";
+static NSString * const Rebel = @"Rebel";
 
 static NSString * const WHOBoyChart24mos = @"com.mySmartSoftware.whoboy24mos";
 static NSString * const WHOBoyChart5yrs = @"com.mySmartSoftware.whoboy5yrs";

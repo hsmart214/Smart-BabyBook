@@ -247,6 +247,7 @@
 
 -(void)viewDidLoad
 {
+    [super viewDidLoad];
     if (self.splitViewController){
         self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:SBTiPadMasterBackgroundImage]];
     }else{

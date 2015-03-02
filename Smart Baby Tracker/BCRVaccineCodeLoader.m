@@ -25,7 +25,6 @@
         NSURL *vaccineFileURL = [cacheURL URLByAppendingPathComponent:VACCINE_DICT_FILENAME];
         if ([[NSFileManager defaultManager]fileExistsAtPath:[vaccineFileURL path]]){
             NSDictionary *allVaccines = [[NSDictionary alloc] initWithContentsOfURL:vaccineFileURL];
-            sVaccines = [allVaccines mutableCopy];
             return allVaccines;
         }
         

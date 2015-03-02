@@ -7,6 +7,8 @@
 //
 
 #import "SBTVaccine.h"
+#import "BCRVaccineCodeLoader.h"
+
 
 @interface SBTVaccine ()
 
@@ -15,6 +17,8 @@
 @end
 
 @implementation SBTVaccine
+
+static NSString *const SBTVaccineNameKey = @"SBTVaccineName";
 
 -(BOOL)includesEquivalentComponent:(SBTComponent)component
 {
@@ -32,11 +36,7 @@
 }
 
 -(NSString *)componentString{
-    if ([self.displayNames count] == 1){
-        return [self.displayNames lastObject];
-    }else{
-        return [self.displayNames componentsJoinedByString:@", "];
-    }
+    return [self.displayNames componentsJoinedByString:@", "];
 }
 
 -(instancetype)init{
@@ -69,6 +69,115 @@
     return self;
 }
 
+-(instancetype)initWithBarcode:(NSString *)barcode{
+    // get the NDC, lot# and expiration date out of the barcode
+    // the barcode has a non-printing character x\1d at the beginning
+    barcode = [barcode substringFromIndex:1];
+    NSLog(@"%@", barcode);
+    NSString *ndc = [self ndcFromBarcode:barcode];
+    NSDate *expDate = [self expDateFromBarcode:barcode];
+    NSString *lotNumber = [self lotNumberFromBarcode:barcode];
+    NSLog(@"%@ %@ %@", ndc, expDate.description, lotNumber);
+    // get the vaccine name from the NDC number
+    NSDictionary *cdcVaccines = [BCRVaccineCodeLoader vaccines];
+    NSDictionary *thisVaccineInfo = cdcVaccines[ndc];
+    NSString *thisVaccineTradeName = thisVaccineInfo[SBTVaccineNameKey];
+    // create an SBTVaccine from the vaccine name dictionary
+    self = [SBTVaccine vaccinesByTradeName][thisVaccineTradeName];
+    // fix up the new SBTVaccine before returning it
+    self.expirationDate = expDate;
+    self.lotNumber = lotNumber;
+    self.barcodeScanned = YES;
+    self.ndc = ndc;
+    return self;
+}
+
+-(NSString *)ndcFromBarcode:(NSString *)code{
+    NSString *prefix = [code substringWithRange:NSMakeRange(0, 2)];
+    if ([prefix isEqualToString:@"01"]){
+        // this is the GTIN, always starts "01003..."
+        NSString *wholeNDC = [code substringWithRange:NSMakeRange(5, 11)];
+        NSString *first = [wholeNDC substringWithRange:NSMakeRange(0, 5)];
+        NSString *second = [wholeNDC substringWithRange:NSMakeRange(5, 3)];
+        NSString *third = [wholeNDC substringWithRange:NSMakeRange(8, 2)];
+        // note that we pad the middle portion with a 0 digit.  The database has NDC11, but the barcode has 10 digits only
+        return [NSString stringWithFormat:@"%@-0%@-%@", first, second, third];
+    }else if ([prefix isEqualToString:@"17"]){
+        // this is the expiration date, "17YYMMDD"
+        // skip over the exp date and recur
+        return [self ndcFromBarcode:[code substringFromIndex:8]];
+    }else{
+        // we are in trouble because the lot number should not be first
+        // since we have no way of knowing how long it is
+        return nil;
+    }
+}
+
+-(NSDate *)expDateFromBarcode:(NSString *)code{
+    NSString *prefix = [code substringWithRange:NSMakeRange(0, 2)];
+    if ([prefix isEqualToString:@"01"]){ // this is the most common arrangement
+        // this is the GTIN, always starts "01003..."
+        // skip over GTIN - should be 14 digits, but some are 15, perhaps erroneously
+        // the 15 digit ones alway end in "10", so they go "1017"
+        // the 14 digit ones are always followed by "17", so they go "x17"
+        // so if the 15th digit is "0" it is a 15 digit GTIN
+        // if it is "1" then that is the start of the exp date
+        NSString *decider = [code substringWithRange:NSMakeRange(15, 1)];
+        if ([decider isEqualToString:@"1"]){
+            // this is the "1" in the "17" marker for the exp date
+            return [self expDateFromBarcode:[code substringFromIndex:15]];
+        }else if ([decider isEqualToString:@"0"]){
+            // this is a padding digit
+            return [self expDateFromBarcode:[code substringFromIndex:16]];
+        }else{
+            // we are in trouble because it does not make sense for this digit to be anything other than "0" or "1"
+            return nil;
+        }
+    }else if ([prefix isEqualToString:@"17"]){
+        // this is the expiration date, "17YYMMDD"
+        NSString *year = [code substringWithRange:NSMakeRange(2, 2)];
+        NSString *month = [code substringWithRange:NSMakeRange(4, 2)];
+        NSString *day = [code substringWithRange:NSMakeRange(6, 2)];
+        NSDateFormatter *df = [[NSDateFormatter alloc] init];
+        df.calendar = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
+        [df setLocale:[NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"]];
+        [df setDateFormat:@"yyyy-MM-dd"];
+        NSString *ds = [NSString stringWithFormat:@"20%@/%@/%@", year, month, day];
+        NSDate *exp = [df dateFromString:ds];
+        return exp;
+    }else{
+        // we are in trouble because the lot number should not be first
+        // since we have no way of knowing how long it is
+        return nil;
+    }
+
+}
+
+-(NSString *)lotNumberFromBarcode:(NSString *)code{
+    NSString *prefix = [code substringWithRange:NSMakeRange(0, 2)];
+    if ([prefix isEqualToString:@"01"]){
+        NSString *decider = [code substringWithRange:NSMakeRange(15, 1)];
+        if ([decider isEqualToString:@"1"]){
+            // this is the "1" in the "17" marker for the exp date
+            return [self lotNumberFromBarcode:[code substringFromIndex:15]];
+        }else if ([decider isEqualToString:@"0"]){
+            // this is a padding digit
+            return [self lotNumberFromBarcode:[code substringFromIndex:16]];
+        }else{
+            // we are in trouble because it does not make sense for this digit to be anything other than "0" or "1"
+            return nil;
+        }
+    }else if ([prefix isEqualToString:@"17"]){
+        // this is the expiration date, "17YYMMDD"
+        return [self lotNumberFromBarcode:[code substringFromIndex:8]];
+    }else if ([prefix isEqualToString:@"10"]){
+        return [code substringFromIndex:2];
+    }else{
+        // we have encountered an unknown prefix
+        return nil;
+    }
+}
+
 -(void)encodeWithCoder:(NSCoder *)aCoder
 {
     [aCoder encodeObject:self.name forKey:@"name"];
@@ -79,6 +188,7 @@
     [aCoder encodeObject:self.expirationDate forKey:@"expDate"];
     [aCoder encodeObject:self.components forKey:@"components"];
     [aCoder encodeInteger:self.route forKey:@"route"];
+    [aCoder encodeBool:self.barcodeScanned forKey:@"scanned"];
 }
 
 -(instancetype)initWithCoder:(NSCoder *)aDecoder
@@ -92,6 +202,7 @@
         self.expirationDate = [aDecoder decodeObjectOfClass:[NSDate class] forKey:@"expDate"];
         self.components = [aDecoder decodeObjectOfClass:[NSSet class] forKey:@"components"];
         self.route = (SBTVaccineRoute)[aDecoder decodeIntegerForKey:@"route"];
+        self.barcodeScanned = [aDecoder decodeBoolForKey:@"scanned"];
     }
     return self;
 }
@@ -108,7 +219,7 @@
     newVacc.lotNumber = self.lotNumber;
     newVacc.expirationDate = self.expirationDate;
     newVacc.route = self.route;
-    
+    newVacc.barcodeScanned = self.barcodeScanned;
     return newVacc;
 }
 
@@ -158,6 +269,8 @@
                      @"Cervarix":[[SBTVaccine alloc] initWithName:@"Cervarix" displayNames:@[@"HPV"] manufacturer:Glaxo andComponents:@[@(SBTComponentFDA_Approved), @(SBTComponentHPV2)]],
                      @"Menveo":[[SBTVaccine alloc] initWithName:@"Menveo" displayNames:@[@"MCV4"] manufacturer:Novartis andComponents:@[@(SBTComponentFDA_Approved), @(SBTComponentMCV4)]],
                      @"Menactra":[[SBTVaccine alloc] initWithName:@"Menactra" displayNames:@[@"MCV4"] manufacturer:Sanofi andComponents:@[@(SBTComponentFDA_Approved), @(SBTComponentMCV4)]],
+                     @"Trumenba":[[SBTVaccine alloc] initWithName:@"Trumenba" displayNames:@[@"MenB"] manufacturer:Pfizer andComponents:@[@(SBTComponentMenB), @(SBTComponentFDA_Approved)]],
+                     @"Bexsero":[[SBTVaccine alloc] initWithName:@"Bexsero" displayNames:@[@"MenB"] manufacturer:Novartis andComponents:@[@(SBTComponentMenB), @(SBTComponentFDA_Approved)]],
                      @"Menomune":[[SBTVaccine alloc] initWithName:@"Menomune" displayNames:@[@"MPV"] manufacturer:Sanofi andComponents:@[@(SBTComponentFDA_Approved), @(SBTComponentMPV4)]],
                      @"Pneumovax":[[SBTVaccine alloc] initWithName:@"Pneumovax" displayNames:@[@"PPV23"] manufacturer:Merck andComponents:@[@(SBTComponentFDA_Approved), @(SBTComponentPPV23)]],
                      @"Prevnar7":[[SBTVaccine alloc] initWithName:@"Prevnar7" displayNames:@[@"PCV7"] manufacturer:Wyeth andComponents:@[@(SBTComponentFDA_Approved), @(SBTComponentPCV7)]],
@@ -168,6 +281,8 @@
                      @"Decavac":[[SBTVaccine alloc] initWithName:@"Decavac" displayNames:@[@"Td"] manufacturer:Sanofi andComponents:@[@(SBTComponentFDA_Approved), @(SBTComponentTd)]],
                      @"Tenivac":[[SBTVaccine alloc] initWithName:@"Tenivac" displayNames:@[@"Td"] manufacturer:Sanofi andComponents:@[@(SBTComponentFDA_Approved), @(SBTComponentTd)]],
                      @"Varivax":[[SBTVaccine alloc] initWithName:@"Varivax" displayNames:@[@"VZV"] manufacturer:Merck andComponents:@[@(SBTComponentFDA_Approved), @(SBTComponentVZV)]],
+                     @"Tetanus MSD":[[SBTVaccine alloc] initWithName:@"Tetanus" displayNames:@[@"Td"] manufacturer:Merck andComponents:@[@(SBTComponentFDA_Approved), @(SBTComponentTd)]],
+                     @"Tetanus":[[SBTVaccine alloc] initWithName:@"Tetanus" displayNames:@[@"Td"] manufacturer:Rebel andComponents:@[@(SBTComponentFDA_Approved), @(SBTComponentTd)]],
                      };
     }
     return allVaccs;

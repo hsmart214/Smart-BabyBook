@@ -1202,7 +1202,7 @@ Individual circumstances may make modifications of these recommendations advisab
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="sla-9M-TXi" kind="push" identifier="Vaccinations segue" id="m4K-v8-Xkv"/>
+                                            <segue destination="Vtn-dD-bdh" kind="push" identifier="Edit Vaccine List" id="s9M-mD-t0s"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -1266,7 +1266,7 @@ Individual circumstances may make modifications of these recommendations advisab
             </objects>
             <point key="canvasLocation" x="2387" y="61"/>
         </scene>
-        <!--Vaccines Given-->
+        <!--Add Vaccines-->
         <scene sceneID="FOA-bK-e9P">
             <objects>
                 <tableViewController storyboardIdentifier="Vaccines Given TVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="sla-9M-TXi" customClass="SBTVaccinesGivenTVC" sceneMemberID="viewController">
@@ -1275,7 +1275,7 @@ Individual circumstances may make modifications of these recommendations advisab
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Vaccine Cell" textLabel="FLS-oq-6jN" detailTextLabel="RNL-tk-o7K" style="IBUITableViewCellStyleSubtitle" id="ZRp-Pp-mM3">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Vaccine Cell" textLabel="FLS-oq-6jN" detailTextLabel="RNL-tk-o7K" style="IBUITableViewCellStyleSubtitle" id="ZRp-Pp-mM3">
                                 <rect key="frame" x="0.0" y="86" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZRp-Pp-mM3" id="vxI-Bc-xpG">
@@ -1298,9 +1298,6 @@ Individual circumstances may make modifications of these recommendations advisab
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="gjW-fD-iom" kind="push" id="jdb-vk-KVL"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <sections/>
@@ -1310,21 +1307,25 @@ Individual circumstances may make modifications of these recommendations advisab
                         </connections>
                     </tableView>
                     <toolbarItems>
-                        <barButtonItem title="Barcode Scan ➡︎" id="vHv-lh-6sN"/>
-                        <barButtonItem systemItem="camera" id="ZOw-EF-CYk">
+                        <barButtonItem systemItem="cancel" id="eet-sC-IKg">
                             <connections>
-                                <segue destination="Vtn-dD-bdh" kind="push" id="wa8-rB-aPA"/>
+                                <action selector="discardChanges:" destination="sla-9M-TXi" id="3Rq-dD-QFe"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="V1r-sQ-735"/>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="fIQ-Zt-pod"/>
+                        <barButtonItem systemItem="save" id="UeA-ME-yb4">
+                            <connections>
+                                <action selector="saveChanges:" destination="sla-9M-TXi" id="Hgy-aL-KH8"/>
+                            </connections>
+                        </barButtonItem>
                     </toolbarItems>
-                    <navigationItem key="navigationItem" title="Vaccines Given" id="O8s-fd-g7k"/>
+                    <navigationItem key="navigationItem" title="Add Vaccines" id="O8s-fd-g7k"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fsp-c6-IKy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2807" y="61"/>
+            <point key="canvasLocation" x="3652" y="61"/>
         </scene>
-        <!--Add Vaccines-->
+        <!--Edit Vaccines-->
         <scene sceneID="B8Y-Au-Ivy">
             <objects>
                 <tableViewController id="Vtn-dD-bdh" customClass="SBTAddScannedVaccinesTVC" sceneMemberID="viewController">
@@ -1352,6 +1353,9 @@ Individual circumstances may make modifications of these recommendations advisab
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="gjW-fD-iom" kind="push" identifier="Show Vaccine Details" id="XmV-5C-Hze"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -1378,11 +1382,17 @@ Individual circumstances may make modifications of these recommendations advisab
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
-                    <navigationItem key="navigationItem" title="Add Vaccines" id="YWy-Zb-Obx"/>
+                    <navigationItem key="navigationItem" title="Edit Vaccines" id="YWy-Zb-Obx">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="EW2-pe-IrW">
+                            <connections>
+                                <segue destination="wZ7-gx-9Tk" kind="modal" identifier="Full List Segue" id="mMf-Id-5sz"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SXh-tH-Zri" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3232" y="58"/>
+            <point key="canvasLocation" x="2815" y="61"/>
         </scene>
         <!--Barcode Details-->
         <scene sceneID="MJ7-B1-yTv">
@@ -1514,7 +1524,7 @@ Individual circumstances may make modifications of these recommendations advisab
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oZd-Se-PaP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3232" y="778"/>
+            <point key="canvasLocation" x="2815" y="778"/>
         </scene>
         <!--Scan Barcode-->
         <scene sceneID="RCX-k4-uAY">
@@ -1533,7 +1543,7 @@ Individual circumstances may make modifications of these recommendations advisab
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IgR-P5-tLz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3638" y="59"/>
+            <point key="canvasLocation" x="3226" y="778"/>
         </scene>
         <!--Infant Growth Chart-->
         <scene sceneID="iPG-GR-Bpf">
@@ -1793,6 +1803,28 @@ Individual circumstances may make modifications of these recommendations advisab
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Eis-bw-VvH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1872" y="778"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="buJ-pi-8x1">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="wZ7-gx-9Tk" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="jTk-P8-bZT">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="9l0-Dv-54S">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.0" green="0.33588047450000003" blue="0.085452782850000006" alpha="1" colorSpace="calibratedRGB"/>
+                    </toolbar>
+                    <connections>
+                        <segue destination="sla-9M-TXi" kind="relationship" relationship="rootViewController" id="iAl-AI-Zmz"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yEn-nq-J3n" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3226" y="61"/>
         </scene>
     </scenes>
     <resources>

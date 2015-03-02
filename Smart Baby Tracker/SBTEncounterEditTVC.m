@@ -10,6 +10,7 @@
 #import "SBTEncounter.h"
 #import "SBTUnitsConvertor.h"
 #import "SBTVaccinesGivenTVC.h"
+#import "SBTAddScannedVaccinesTVC.h"
 #import "SBTBaby.h"
 
 #define VACCINE_ROW 5
@@ -293,11 +294,11 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"Vaccinations segue"]){
-        SBTVaccinesGivenTVC *dest = segue.destinationViewController;
-        dest.vaccinesGiven = [NSMutableSet setWithArray:[self.encounter vaccinesGiven]];
-        dest.delegate = self;
+    if ([segue.identifier isEqual:@"Edit Vaccine List"]){
+        SBTAddScannedVaccinesTVC *dest = segue.destinationViewController;
+        dest.currentVaccines = [NSSet setWithArray:self.encounter.vaccinesGiven];
     }
+
 }
 
 #undef VACCINE_ROW

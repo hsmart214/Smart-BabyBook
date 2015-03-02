@@ -8,14 +8,40 @@
 
 #import "SBTVaccinesGivenTVC.h"
 #import "SBTVaccine.h"
+#import "SBTScannedVaccineDetailsTVC.h"
+
+// Note that only the NAMES of the given vaccines are used to determine what was administered
+// Make sure there are NO DUPLICATE NAMES in the vaccine dictionaries!
+
 
 @interface SBTVaccinesGivenTVC ()
+
+@property (nonatomic, strong) NSArray *sortedTradeNames;
+@property (nonatomic, strong) NSArray *sortedGenericNames;
 
 @end
 
 @implementation SBTVaccinesGivenTVC
 {
     NSMutableSet *selected; // we will load this with the names of the selected vaccines
+}
+
+-(NSArray *)sortedTradeNames{
+    if (!_sortedTradeNames){
+        _sortedTradeNames = [[[SBTVaccine vaccinesByTradeName] allKeys] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2){
+            return [obj1 localizedCaseInsensitiveCompare:obj2];
+        }];
+    }
+    return _sortedTradeNames;
+}
+
+-(NSArray *)sortedGenericNames{
+    if (!_sortedGenericNames){
+        _sortedGenericNames = [[[SBTVaccine vaccinesByGenericName] allKeys] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2){
+            return [obj1 localizedCaseInsensitiveCompare:obj2];
+        }];
+    }
+    return _sortedGenericNames;
 }
 
 #pragma mark - UITableViewDelegate
@@ -63,15 +89,9 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Vaccine Cell" forIndexPath:indexPath];
     SBTVaccine *vacc;
     if (indexPath.section == 0){  // trade name section
-        NSArray *array = [[[SBTVaccine vaccinesByTradeName] allKeys] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2){
-            return [obj1 localizedCaseInsensitiveCompare:obj2];
-        }];
-        vacc = [SBTVaccine vaccinesByTradeName][array[indexPath.row]];
+        vacc = [SBTVaccine vaccinesByTradeName][self.sortedTradeNames[indexPath.row]];
     }else{  // generic name section
-        NSArray *array = [[[SBTVaccine vaccinesByGenericName] allKeys] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2){
-            return [obj1 localizedCaseInsensitiveCompare:obj2];
-        }];
-        vacc = [SBTVaccine vaccinesByGenericName][array[indexPath.row]];
+        vacc = [SBTVaccine vaccinesByGenericName][self.sortedGenericNames[indexPath.row]];
     }
     cell.textLabel.text = vacc.name;
     NSString *str = [vacc.displayNames firstObject];
@@ -91,6 +111,15 @@
 
 #pragma mark - Navigation, View Life Cycle
 
+- (IBAction)discardChanges:(id)sender {
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)saveChanges:(id)sender {
+    
+}
+
+
 -(void)viewDidLoad
 {
     [super viewDidLoad];
@@ -109,7 +138,7 @@
         [selected addObject:vac.name];
     }
 }
-
+// TODO: fix the way the vaccines are returned.  Make sure I do not throw away objects with scanned data
 -(void)viewWillDisappear:(BOOL)animated
 {
     NSMutableSet *newVaccineSet = [NSMutableSet set];
@@ -119,12 +148,15 @@
     for (NSString *vacName in selected){
         if ([genericNames containsObject:vacName]){
             [newVaccineSet addObject:genericVaccines[vacName]];
-        }else{
+        }else{ // must be a trade name - mutually exclusive sets of names
             [newVaccineSet addObject:brandNameVaccines[vacName]];
         }
     }
     [self.delegate vaccinesGivenTVC:self updatedVaccines:newVaccineSet];
     [super viewWillDisappear:animated];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
 }
 
 @end

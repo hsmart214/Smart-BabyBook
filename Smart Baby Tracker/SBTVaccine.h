@@ -7,7 +7,9 @@
 //
 
 @import Foundation;
-#import "Smart Baby Tracker-Prefix.pch"
+
+// Other parts of this application depend on the fact that there are NO DUPLICATE VACCINE NAMES in the dictionaries
+// Specifically, no common names between the generic and trade name dictionaries.
 
 @interface SBTVaccine : NSObject <NSSecureCoding, NSCopying>
 
@@ -17,6 +19,7 @@
 @property (nonatomic, copy) NSArray *displayNames;
 @property (nonatomic) BOOL liveVaccine;
 // Optional
+@property (assign) BOOL barcodeScanned;
 @property (nonatomic) SBTVaccineRoute route;
 @property (nonatomic, copy) NSString *manufacturer;
 @property (nonatomic, copy) NSString *ndc;
@@ -32,6 +35,7 @@
 // Designated initializer
 -(instancetype)initWithName:(NSString *)name displayNames:(NSArray *)displayNames andComponents:(NSArray *)comps;
 -(instancetype)initWithName:(NSString *)name displayNames:(NSArray *)displayNames manufacturer:(NSString *)man andComponents:(NSArray *)comps;
+-(instancetype)initWithBarcode:(NSString *)barcode;
 -(instancetype)initWithCoder:(NSCoder *)aDecoder;
 -(void)encodeWithCoder:(NSCoder *)aCoder;
 

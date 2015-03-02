@@ -6,8 +6,9 @@
 //  Copyright (c) 2014 J. HOWARD SMART. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 #import "SBTGrowthDataSource.h"
+
 @class SBTBaby;
 
 @interface SBTGraphViewController : UIViewController

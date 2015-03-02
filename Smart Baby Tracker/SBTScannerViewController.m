@@ -55,7 +55,6 @@
 {
     if ([self.captureSession isRunning]){
         __weak SBTScannerViewController *myWeakSelf = self;
-        NSLog(@"Identified %ld readable objects", (unsigned long)[metadataObjects count]);
         for(AVMetadataObject *metadataObject in metadataObjects)
         {
             AVMetadataMachineReadableCodeObject *readableObject = (AVMetadataMachineReadableCodeObject *)metadataObject;

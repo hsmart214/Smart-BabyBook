@@ -31,8 +31,14 @@
     self.componentsLabel.text = self.vaccine.componentString;
 }
 
-- (void)viewDidLoad {
+-(void)viewDidLoad
+{
     [super viewDidLoad];
+    if (self.splitViewController){
+        self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:SBTiPadDetailBackgroundImage]];
+    }else{
+        self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:SBTiPhoneBackgroundImage]];
+    }
     [self updateUI];
 }
 
