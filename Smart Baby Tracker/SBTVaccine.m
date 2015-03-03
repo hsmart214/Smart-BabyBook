@@ -72,7 +72,8 @@ static NSString *const SBTVaccineNameKey = @"SBTVaccineName";
 -(instancetype)initWithBarcode:(NSString *)barcode{
     // get the NDC, lot# and expiration date out of the barcode
     // the barcode has a non-printing character x\1d at the beginning
-    barcode = [barcode substringFromIndex:1];
+    NSLog(@"%@", barcode);
+    if ([barcode characterAtIndex:0] < 32) barcode = [barcode substringFromIndex:1];
     NSLog(@"%@", barcode);
     NSString *ndc = [self ndcFromBarcode:barcode];
     NSDate *expDate = [self expDateFromBarcode:barcode];
@@ -93,6 +94,11 @@ static NSString *const SBTVaccineNameKey = @"SBTVaccineName";
 }
 
 -(NSString *)ndcFromBarcode:(NSString *)code{
+    return [[self class] ndcFromBarcode:code];
+}
+
++(NSString *)ndcFromBarcode:(NSString *)code{
+    if ([code characterAtIndex:0] < 32) code = [code substringFromIndex:1];
     NSString *prefix = [code substringWithRange:NSMakeRange(0, 2)];
     if ([prefix isEqualToString:@"01"]){
         // this is the GTIN, always starts "01003..."
@@ -122,13 +128,13 @@ static NSString *const SBTVaccineNameKey = @"SBTVaccineName";
         // the 14 digit ones are always followed by "17", so they go "x17"
         // so if the 15th digit is "0" it is a 15 digit GTIN
         // if it is "1" then that is the start of the exp date
-        NSString *decider = [code substringWithRange:NSMakeRange(15, 1)];
+        NSString *decider = [code substringWithRange:NSMakeRange(16, 1)];
         if ([decider isEqualToString:@"1"]){
             // this is the "1" in the "17" marker for the exp date
-            return [self expDateFromBarcode:[code substringFromIndex:15]];
+            return [self expDateFromBarcode:[code substringFromIndex:16]];
         }else if ([decider isEqualToString:@"0"]){
             // this is a padding digit
-            return [self expDateFromBarcode:[code substringFromIndex:16]];
+            return [self expDateFromBarcode:[code substringFromIndex:17]];
         }else{
             // we are in trouble because it does not make sense for this digit to be anything other than "0" or "1"
             return nil;
@@ -156,13 +162,13 @@ static NSString *const SBTVaccineNameKey = @"SBTVaccineName";
 -(NSString *)lotNumberFromBarcode:(NSString *)code{
     NSString *prefix = [code substringWithRange:NSMakeRange(0, 2)];
     if ([prefix isEqualToString:@"01"]){
-        NSString *decider = [code substringWithRange:NSMakeRange(15, 1)];
+        NSString *decider = [code substringWithRange:NSMakeRange(16, 1)];
         if ([decider isEqualToString:@"1"]){
             // this is the "1" in the "17" marker for the exp date
-            return [self lotNumberFromBarcode:[code substringFromIndex:15]];
+            return [self lotNumberFromBarcode:[code substringFromIndex:16]];
         }else if ([decider isEqualToString:@"0"]){
             // this is a padding digit
-            return [self lotNumberFromBarcode:[code substringFromIndex:16]];
+            return [self lotNumberFromBarcode:[code substringFromIndex:17]];
         }else{
             // we are in trouble because it does not make sense for this digit to be anything other than "0" or "1"
             return nil;

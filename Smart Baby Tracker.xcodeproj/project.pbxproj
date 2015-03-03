@@ -65,11 +65,11 @@
 		4281384E1AA2BF3300770A26 /* SBTAddScannedVaccinesTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4281384D1AA2BF3300770A26 /* SBTAddScannedVaccinesTVC.m */; };
 		428138511AA2C8D600770A26 /* SBTScannedVaccineDetailsTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 428138501AA2C8D600770A26 /* SBTScannedVaccineDetailsTVC.m */; };
 		428138571AA2D86A00770A26 /* BCRVaccineCodeLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 428138561AA2D86A00770A26 /* BCRVaccineCodeLoader.m */; };
-		428138611AA4104100770A26 /* NDC_Unit_Use.txt in Resources */ = {isa = PBXBuildFile; fileRef = 428138601AA4104100770A26 /* NDC_Unit_Use.txt */; };
 		4287698618CD6F2E007862AB /* SBTChildrenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4287698518CD6F2E007862AB /* SBTChildrenViewController.m */; };
 		4287698918CD77AE007862AB /* SBTBabyEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4287698818CD77AE007862AB /* SBTBabyEditViewController.m */; };
 		42901BD818CB9756002EB9E9 /* SBTMMRScheduleTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42901BD718CB9756002EB9E9 /* SBTMMRScheduleTest.m */; };
 		42901BDA18CBD0B6002EB9E9 /* SBTHepBScheduleTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42901BD918CBD0B6002EB9E9 /* SBTHepBScheduleTest.m */; };
+		4291CD351AA58419009452AD /* VaccineNDCs.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4291CD341AA58419009452AD /* VaccineNDCs.txt */; };
 		429700CE18AED9AA0013A91B /* ACIP Schedule.plist in Resources */ = {isa = PBXBuildFile; fileRef = 429700CD18AED9AA0013A91B /* ACIP Schedule.plist */; };
 		42B601301895E1E6000C15F4 /* SBTVaccineSchedule.m in Sources */ = {isa = PBXBuildFile; fileRef = 42B6012F1895E1E6000C15F4 /* SBTVaccineSchedule.m */; };
 		42BFE7D518D7F1DA00B0E2F4 /* SBTDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 42BFE7D418D7F1DA00B0E2F4 /* SBTDataStore.m */; };
@@ -180,13 +180,13 @@
 		428138501AA2C8D600770A26 /* SBTScannedVaccineDetailsTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTScannedVaccineDetailsTVC.m; sourceTree = "<group>"; };
 		428138551AA2D86A00770A26 /* BCRVaccineCodeLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCRVaccineCodeLoader.h; sourceTree = "<group>"; };
 		428138561AA2D86A00770A26 /* BCRVaccineCodeLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCRVaccineCodeLoader.m; sourceTree = "<group>"; };
-		428138601AA4104100770A26 /* NDC_Unit_Use.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NDC_Unit_Use.txt; sourceTree = "<group>"; };
 		4287698418CD6F2E007862AB /* SBTChildrenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTChildrenViewController.h; sourceTree = "<group>"; };
 		4287698518CD6F2E007862AB /* SBTChildrenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTChildrenViewController.m; sourceTree = "<group>"; };
 		4287698718CD77AE007862AB /* SBTBabyEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTBabyEditViewController.h; sourceTree = "<group>"; };
 		4287698818CD77AE007862AB /* SBTBabyEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTBabyEditViewController.m; sourceTree = "<group>"; };
 		42901BD718CB9756002EB9E9 /* SBTMMRScheduleTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTMMRScheduleTest.m; sourceTree = "<group>"; };
 		42901BD918CBD0B6002EB9E9 /* SBTHepBScheduleTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTHepBScheduleTest.m; sourceTree = "<group>"; };
+		4291CD341AA58419009452AD /* VaccineNDCs.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = VaccineNDCs.txt; sourceTree = "<group>"; };
 		429700CD18AED9AA0013A91B /* ACIP Schedule.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ACIP Schedule.plist"; sourceTree = "<group>"; };
 		42B6012E1895E1E6000C15F4 /* SBTVaccineSchedule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTVaccineSchedule.h; sourceTree = "<group>"; };
 		42B6012F1895E1E6000C15F4 /* SBTVaccineSchedule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTVaccineSchedule.m; sourceTree = "<group>"; };
@@ -397,7 +397,7 @@
 		42C7540D18C2BBEE0050F38A /* Data files */ = {
 			isa = PBXGroup;
 			children = (
-				428138601AA4104100770A26 /* NDC_Unit_Use.txt */,
+				4291CD341AA58419009452AD /* VaccineNDCs.txt */,
 				4264369318C4459800414CA1 /* cdcbmiboys.txt */,
 				4264369418C4459800414CA1 /* cdcbmigirls.txt */,
 				4264369518C4459800414CA1 /* cdchcboys.txt */,
@@ -516,6 +516,7 @@
 				421C747F18937535000E3C30 /* Images.xcassets in Resources */,
 				429700CE18AED9AA0013A91B /* ACIP Schedule.plist in Resources */,
 				426436B118C4459800414CA1 /* cdcweightinfantboys.txt in Resources */,
+				4291CD351AA58419009452AD /* VaccineNDCs.txt in Resources */,
 				426436AF18C4459800414CA1 /* cdcweightboys.txt in Resources */,
 				421C747418937535000E3C30 /* Main_iPhone.storyboard in Resources */,
 				426436AC18C4459800414CA1 /* cdclengthgirls.txt in Resources */,
@@ -538,7 +539,6 @@
 				426436B618C4459800414CA1 /* whohcgirls.txt in Resources */,
 				426436AB18C4459800414CA1 /* cdclengthboys.txt in Resources */,
 				426436AE18C4459800414CA1 /* cdcstaturegirls.txt in Resources */,
-				428138611AA4104100770A26 /* NDC_Unit_Use.txt in Resources */,
 				426AC51519024D8700EF694C /* whobmigirls.txt in Resources */,
 				426436A718C4459800414CA1 /* cdcbmiboys.txt in Resources */,
 				426AC51719024D8700EF694C /* whostatureboys.txt in Resources */,

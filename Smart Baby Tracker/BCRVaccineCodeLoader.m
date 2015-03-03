@@ -7,7 +7,7 @@
 //
 
 #import "BCRVaccineCodeLoader.h"
-#define VACCINE_CODE_FILENAME @"NDC_Unit_Use.txt"
+#define VACCINE_CODE_FILENAME @"VaccineNDCs.txt"
 #define VACCINE_DICT_FILENAME @"come.mysmartsoftware.BabyBook.vaccineNDCDictionary.plist"
 
 @implementation BCRVaccineCodeLoader
@@ -38,7 +38,7 @@
         NSMutableArray *textLines = [NSMutableArray arrayWithArray:[vaccineData componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"\n\r"]]];
         
         /* This is the first line of the data file, which will be the keys in the dictionary
-         NDCInnerID,UseUnitLabeler,UseUnitProduct,UseUnitPackage,UseUnitPropName,UseUnitGenericName,UseUnitLabelerName, UseUnitstartDate,UseUnitEndDate,UseUnitGTIN,CVX Code,CVX Short Description,NoInner,NDC11,last_updated_date,GTIN
+         SBTVaccineName,UseUnitLabelerName, UseUnitstartDate,UseUnitEndDate,NDC11
          */
         NSArray *keys;
         if ([textLines count]){

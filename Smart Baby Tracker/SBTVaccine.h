@@ -41,6 +41,7 @@
 
 -(instancetype)copy;
 
++(NSString *)ndcFromBarcode:(NSString *)code;
 +(NSDictionary *)vaccinesByTradeName;
 +(NSDictionary *)vaccinesByGenericName;
 +(NSSet *)liveVaccineComponents;

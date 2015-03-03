@@ -24,7 +24,17 @@
 
 - (void) camera:(id)sender didCaptureBarcode:(AVMetadataMachineReadableCodeObject *)barcode{
     SBTVaccine *newVacc = [[SBTVaccine alloc] initWithBarcode:barcode.stringValue];
-    [self.addedVaccines addObject:newVacc];
+    if (newVacc) {
+        [self.addedVaccines addObject:newVacc];
+    }else{
+        NSString *ndc = [SBTVaccine ndcFromBarcode:barcode.stringValue];
+        NSString *message = [NSString stringWithFormat:@"No info for NDC %@", ndc];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Unrecognized Barcode." message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+            [alert show];
+        });
+    }
+    
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.tableView reloadData];
     });
