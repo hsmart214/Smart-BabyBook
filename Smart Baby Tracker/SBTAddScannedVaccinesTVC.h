@@ -12,12 +12,13 @@
 
 @protocol SBTAddScannedVaccinesDelegate
 
--(void)addScannedVaccinesTVC:(SBTAddScannedVaccinesTVC *)sender addedVaccines:(NSArray *)vaccines;
+-(void)addScannedVaccinesTVC:(SBTAddScannedVaccinesTVC *)sender addedVaccines:(NSSet *)vaccines;
 
 @end
 
 @interface SBTAddScannedVaccinesTVC : UITableViewController
 
+@property (weak, nonatomic) id<SBTAddScannedVaccinesDelegate> delegate;
 @property (nonatomic, strong) NSSet* currentVaccines;  // set of SBTVaccine
 
 @end

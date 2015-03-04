@@ -13,7 +13,7 @@
 
 @interface SBTEncounter ()
 
-@property (nonatomic, strong) NSMutableSet *vaccines;
+@property (nonatomic, strong) NSMutableSet *vaccines;  // set of SBTVaccine
 @property (nonatomic, copy) NSDate *dateModified;
 
 @end

@@ -31,7 +31,7 @@
 -(instancetype)initWithCoder:(NSCoder *)aDecoder;
 -(void)encodeWithCoder:(NSCoder *)aCoder;
 
--(void)replaceVaccines:(NSSet *)newVaccineSet;
+-(void)replaceVaccines:(NSSet *)newVaccineSet;  // set of SBTVaccine objects
 
 -(NSInteger)daysSinceEncounter:(SBTEncounter *)encounter;
 -(NSInteger)daysSinceDate:(NSDate *)date;

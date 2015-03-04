@@ -18,7 +18,7 @@
 // we are either editing an existing encounter or creating a new one
 // so if we are not handed one, we create a new one first, then modify it as we go along
 
-@interface SBTEncounterEditTVC ()<SBTVaccinesGivenTVCDelegate, UITextFieldDelegate>
+@interface SBTEncounterEditTVC ()<SBTVaccinesGivenTVCDelegate, SBTAddScannedVaccinesDelegate ,UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
 @property (weak, nonatomic) IBOutlet UITextField *weightField2;
@@ -250,6 +250,13 @@
     }
 }
 
+#pragma mark - SBTAddScannedVaccinesDelegate
+
+-(void)addScannedVaccinesTVC:sender addedVaccines:(NSSet *)vaccines{
+    [self.encounter replaceVaccines:vaccines];
+    [self.delegate SBTEncounterEditTVC:self updatedEncounter:self.encounter];
+}
+
 #pragma mark - SBTVaccinesGivenTVCDelegate
 
 -(void)vaccinesGivenTVC:(SBTVaccinesGivenTVC *)vaccinesGivenTVC updatedVaccines:(NSSet *)newVaccineSet
@@ -297,9 +304,11 @@
     if ([segue.identifier isEqual:@"Edit Vaccine List"]){
         SBTAddScannedVaccinesTVC *dest = segue.destinationViewController;
         dest.currentVaccines = [NSSet setWithArray:self.encounter.vaccinesGiven];
+        dest.delegate = self;
     }
-
 }
+
+
 
 #undef VACCINE_ROW
 

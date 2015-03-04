@@ -116,7 +116,19 @@
 }
 
 - (IBAction)saveChanges:(id)sender {
-    
+    NSMutableSet *newVaccineSet = [NSMutableSet set];
+    NSDictionary *genericVaccines = [SBTVaccine vaccinesByGenericName];
+    NSSet *genericNames = [NSSet setWithArray:[genericVaccines allKeys]];
+    NSDictionary *brandNameVaccines = [SBTVaccine vaccinesByTradeName];
+    for (NSString *vacName in selected){
+        if ([genericNames containsObject:vacName]){
+            [newVaccineSet addObject:genericVaccines[vacName]];
+        }else{ // must be a trade name - mutually exclusive sets of names
+            [newVaccineSet addObject:brandNameVaccines[vacName]];
+        }
+    }
+    [self.delegate vaccinesGivenTVC:self updatedVaccines:newVaccineSet];
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
 
@@ -137,23 +149,6 @@
     for (SBTVaccine *vac in self.vaccinesGiven){
         [selected addObject:vac.name];
     }
-}
-// TODO: fix the way the vaccines are returned.  Make sure I do not throw away objects with scanned data
--(void)viewWillDisappear:(BOOL)animated
-{
-    NSMutableSet *newVaccineSet = [NSMutableSet set];
-    NSDictionary *genericVaccines = [SBTVaccine vaccinesByGenericName];
-    NSSet *genericNames = [NSSet setWithArray:[genericVaccines allKeys]];
-    NSDictionary *brandNameVaccines = [SBTVaccine vaccinesByTradeName];
-    for (NSString *vacName in selected){
-        if ([genericNames containsObject:vacName]){
-            [newVaccineSet addObject:genericVaccines[vacName]];
-        }else{ // must be a trade name - mutually exclusive sets of names
-            [newVaccineSet addObject:brandNameVaccines[vacName]];
-        }
-    }
-    [self.delegate vaccinesGivenTVC:self updatedVaccines:newVaccineSet];
-    [super viewWillDisappear:animated];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{

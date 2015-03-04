@@ -12,7 +12,7 @@
 #import "SBTVaccinesGivenTVC.h"
 #import "SBTVaccine.h"
 
-@interface SBTAddScannedVaccinesTVC ()<SBTCaptureDelegate>
+@interface SBTAddScannedVaccinesTVC ()<SBTCaptureDelegate, SBTVaccinesGivenTVCDelegate>
 
 @property (strong, nonatomic) NSMutableArray *addedVaccines; // array of SBTVaccine
 
@@ -40,6 +40,38 @@
     });
 }
 
+#pragma mark - SBTVaccinesGivenTVCDelegate
+
+// the complication here is that the VaccinesGivenTVC only keep names of vaccines
+// if we only took back the names we would lose the scanned information we already have
+// so we need to first save any scanned vaccines
+-(void)vaccinesGivenTVC:(SBTVaccinesGivenTVC *)vaccinesGivenTVC updatedVaccines:(NSSet *)newVaccineSet{
+    NSMutableArray *modifiedVaccines = [NSMutableArray array];
+    // run through the previous list of scanned vaccines and save any that are still
+    // in the list of names returned from the TVC
+    for (SBTVaccine *vac in self.addedVaccines){
+        BOOL present = NO;
+        for (SBTVaccine *newVac in newVaccineSet){
+            present = present || [vac.name isEqualToString:newVac.name];
+        }
+        if (present){
+            [modifiedVaccines addObject:vac];
+        }
+    }
+    // then run through the new vaccines and add any vaccines not already in the list
+    for (SBTVaccine *newVac in newVaccineSet){
+        BOOL present = NO;
+        for (SBTVaccine *oldVac in modifiedVaccines){
+            present = present || [newVac.name isEqualToString:oldVac.name];
+        }
+        if (!present){
+            [modifiedVaccines addObject:newVac];
+        }
+    }
+    self.addedVaccines = modifiedVaccines;
+    [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
+}
+
 #pragma mark - View controller lifecycle
 
 -(void)viewDidLoad
@@ -53,7 +85,6 @@
     self.addedVaccines = [NSMutableArray arrayWithArray:[self.currentVaccines allObjects]];
 }
 
-
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -64,7 +95,6 @@
     return [self.addedVaccines count];
 }
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Additional Vaccine" forIndexPath:indexPath];
     SBTVaccine *vacc = self.addedVaccines[indexPath.row];
@@ -73,10 +103,6 @@
     return cell;
 }
 
-
-
-
-// Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
@@ -98,6 +124,7 @@
         UINavigationController *nav = segue.destinationViewController;
         SBTVaccinesGivenTVC *dest = [nav.viewControllers firstObject];
         dest.vaccinesGiven = [NSMutableSet setWithArray:self.addedVaccines];
+        dest.delegate = self;
     }
     if ([segue.identifier isEqualToString:@"Scan Barcode"]){
         SBTScannerViewController *dest = segue.destinationViewController;
@@ -106,7 +133,9 @@
 }
 
 - (IBAction)saveChanges:(id)sender {
-    
+    NSSet *vaccineSet = [NSSet setWithArray:self.addedVaccines];
+    [self.delegate addScannedVaccinesTVC:self addedVaccines:vaccineSet];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)discardChanges:(id)sender {

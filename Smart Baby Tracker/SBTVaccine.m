@@ -72,13 +72,10 @@ static NSString *const SBTVaccineNameKey = @"SBTVaccineName";
 -(instancetype)initWithBarcode:(NSString *)barcode{
     // get the NDC, lot# and expiration date out of the barcode
     // the barcode has a non-printing character x\1d at the beginning
-    NSLog(@"%@", barcode);
     if ([barcode characterAtIndex:0] < 32) barcode = [barcode substringFromIndex:1];
-    NSLog(@"%@", barcode);
     NSString *ndc = [self ndcFromBarcode:barcode];
     NSDate *expDate = [self expDateFromBarcode:barcode];
     NSString *lotNumber = [self lotNumberFromBarcode:barcode];
-    NSLog(@"%@ %@ %@", ndc, expDate.description, lotNumber);
     // get the vaccine name from the NDC number
     NSDictionary *cdcVaccines = [BCRVaccineCodeLoader vaccines];
     NSDictionary *thisVaccineInfo = cdcVaccines[ndc];
@@ -107,7 +104,14 @@ static NSString *const SBTVaccineNameKey = @"SBTVaccineName";
         NSString *second = [wholeNDC substringWithRange:NSMakeRange(5, 3)];
         NSString *third = [wholeNDC substringWithRange:NSMakeRange(8, 2)];
         // note that we pad the middle portion with a 0 digit.  The database has NDC11, but the barcode has 10 digits only
-        return [NSString stringWithFormat:@"%@-0%@-%@", first, second, third];
+        // but Merck does it different just to spite me.  For Merck, first = "00064"
+        NSString *ret;
+        if ([first isEqualToString:@"00064"]){
+            ret = [NSString stringWithFormat:@"00006-4%@-%@", second, third];
+        }else{
+            ret = [NSString stringWithFormat:@"%@-0%@-%@", first, second, third];
+        }
+        return ret;
     }else if ([prefix isEqualToString:@"17"]){
         // this is the expiration date, "17YYMMDD"
         // skip over the exp date and recur
