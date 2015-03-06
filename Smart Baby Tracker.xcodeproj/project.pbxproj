@@ -52,6 +52,7 @@
 		426436BA18C4459800414CA1 /* whoweightinfantgirls.txt in Resources */ = {isa = PBXBuildFile; fileRef = 426436A618C4459800414CA1 /* whoweightinfantgirls.txt */; };
 		4269473818D6597B00D5B06F /* SBTEncounterEditTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4269473718D6597B00D5B06F /* SBTEncounterEditTVC.m */; };
 		4269473B18D66CB700D5B06F /* SBTUnitsConvertor.m in Sources */ = {isa = PBXBuildFile; fileRef = 4269473A18D66CB700D5B06F /* SBTUnitsConvertor.m */; };
+		4269C7461AA9865A0011FA64 /* SBTVaccineRecall.m in Sources */ = {isa = PBXBuildFile; fileRef = 4269C7451AA9865A0011FA64 /* SBTVaccineRecall.m */; };
 		426AC51519024D8700EF694C /* whobmigirls.txt in Resources */ = {isa = PBXBuildFile; fileRef = 426AC50F19024D8700EF694C /* whobmigirls.txt */; };
 		426AC51619024D8700EF694C /* whobmiboys.txt in Resources */ = {isa = PBXBuildFile; fileRef = 426AC51019024D8700EF694C /* whobmiboys.txt */; };
 		426AC51719024D8700EF694C /* whostatureboys.txt in Resources */ = {isa = PBXBuildFile; fileRef = 426AC51119024D8700EF694C /* whostatureboys.txt */; };
@@ -160,6 +161,8 @@
 		4269473718D6597B00D5B06F /* SBTEncounterEditTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTEncounterEditTVC.m; sourceTree = "<group>"; };
 		4269473918D66CB700D5B06F /* SBTUnitsConvertor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTUnitsConvertor.h; sourceTree = "<group>"; };
 		4269473A18D66CB700D5B06F /* SBTUnitsConvertor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTUnitsConvertor.m; sourceTree = "<group>"; };
+		4269C7441AA9865A0011FA64 /* SBTVaccineRecall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTVaccineRecall.h; sourceTree = "<group>"; };
+		4269C7451AA9865A0011FA64 /* SBTVaccineRecall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTVaccineRecall.m; sourceTree = "<group>"; };
 		426AC50F19024D8700EF694C /* whobmigirls.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = whobmigirls.txt; sourceTree = "<group>"; };
 		426AC51019024D8700EF694C /* whobmiboys.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = whobmiboys.txt; sourceTree = "<group>"; };
 		426AC51119024D8700EF694C /* whostatureboys.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = whostatureboys.txt; sourceTree = "<group>"; };
@@ -376,6 +379,8 @@
 				42488069189459D2009F2837 /* SBTEncounter.m */,
 				4248806B18945CE2009F2837 /* SBTVaccine.h */,
 				4248806C18945CE2009F2837 /* SBTVaccine.m */,
+				4269C7441AA9865A0011FA64 /* SBTVaccineRecall.h */,
+				4269C7451AA9865A0011FA64 /* SBTVaccineRecall.m */,
 				428138551AA2D86A00770A26 /* BCRVaccineCodeLoader.h */,
 				428138561AA2D86A00770A26 /* BCRVaccineCodeLoader.m */,
 				42B6012E1895E1E6000C15F4 /* SBTVaccineSchedule.h */,
@@ -572,6 +577,7 @@
 				42CB9A5D18D589C30097BBE3 /* SBTVaccinesGivenTVC.m in Sources */,
 				428138511AA2C8D600770A26 /* SBTScannedVaccineDetailsTVC.m in Sources */,
 				8958B49A191F3875007C032B /* SBTVaccineCell.m in Sources */,
+				4269C7461AA9865A0011FA64 /* SBTVaccineRecall.m in Sources */,
 				42CB9A5718D5731C0097BBE3 /* SBTEncounterTableViewCell.m in Sources */,
 				421C747118937535000E3C30 /* SBTAppDelegate.m in Sources */,
 				4248806A189459D2009F2837 /* SBTEncounter.m in Sources */,
