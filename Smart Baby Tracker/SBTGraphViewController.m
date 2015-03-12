@@ -33,6 +33,7 @@ static NSString * const SBTGraphCacheFilePrefix = @"com.mySmartSoftware.graphCac
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) UIImageView *graphView;
 @property (weak, nonatomic) IBOutlet UIImageView *overlayView;
+@property (weak, nonatomic) IBOutlet UIImageView *labelsView;
 @property (weak, nonatomic) IBOutlet UITabBar *tabBar;
 @property (nonatomic) CGFloat maxVRange;
 @property (nonatomic) CGFloat maxHRange;
@@ -162,7 +163,7 @@ static NSString * const SBTGraphCacheFilePrefix = @"com.mySmartSoftware.graphCac
 {
     // axes will be drawn for display units based on user preferences
     // draw these into an image context, then set the image as the UIImage of the overlayView
-    UIGraphicsBeginImageContextWithOptions(self.overlayView.bounds.size, NO, 0.0);
+    UIGraphicsBeginImageContextWithOptions(self.labelsView.bounds.size, NO, 0.0);
     
     UIBezierPath *path = [[UIBezierPath alloc] init];
     [path setLineWidth:1.0];
@@ -203,7 +204,7 @@ static NSString * const SBTGraphCacheFilePrefix = @"com.mySmartSoftware.graphCac
     // add the percentile marks to the ends of the percentile lines (left edge)
     
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    [(UIImageView *)[self.overlayView.subviews firstObject] setImage: image];
+    self.labelsView.image = image;
     UIGraphicsEndImageContext();
 }
 
@@ -518,6 +519,23 @@ static NSString * const SBTGraphCacheFilePrefix = @"com.mySmartSoftware.graphCac
 -(void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
+//    // this section will force recalculation of the size for the labels view
+//    [self.labelsView removeFromSuperview];
+//    UIImageView *newView = [[UIImageView alloc] initWithFrame:self.overlayView.bounds];
+//    [newView setTranslatesAutoresizingMaskIntoConstraints:NO];
+//    [self.overlayView addSubview:newView];
+//    [newView addConstraints:[NSLayoutConstraint
+//                             constraintsWithVisualFormat:@"V:|[newView]|"
+//                             options:0
+//                             metrics:nil
+//                             views:NSDictionaryOfVariableBindings(newView)]];
+//    [newView addConstraints:[NSLayoutConstraint
+//                             constraintsWithVisualFormat:@"H:|[newView]|"
+//                             options:0
+//                             metrics:nil
+//                             views:NSDictionaryOfVariableBindings(newView)]];
+//    self.labelsView = newView;  // this will be retained by the overlayView, so it is weak
+    
     [self.scrollView setMinimumZoomScale:1/GRAPH_RATIO];
     // this flags these values as needing updates when they are accessed
     _maxVRange = -1.0;
@@ -529,7 +547,7 @@ static NSString * const SBTGraphCacheFilePrefix = @"com.mySmartSoftware.graphCac
 -(void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.overlayView addSubview:[[UIImageView alloc] initWithFrame:self.overlayView.bounds]];
+    
     [self selectParameter:self.parameter];
 }
 
