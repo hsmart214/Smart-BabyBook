@@ -577,7 +577,7 @@ Individual circumstances may make modifications of these recommendations advisab
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="Non-ST-pGQ" kind="show" id="DeY-He-xdq"/>
+                                            <segue destination="Non-ST-pGQ" kind="show" identifier="Edit Vaccine List" id="DeY-He-xdq"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -594,6 +594,9 @@ Individual circumstances may make modifications of these recommendations advisab
                         <barButtonItem systemItem="save" id="pbG-cX-G4g"/>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="New Encounter" id="QRg-Ps-6CE"/>
+                    <connections>
+                        <outlet property="datePicker" destination="osv-8v-kff" id="Sur-ze-jNl"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Oul-79-Etn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -674,7 +677,7 @@ Individual circumstances may make modifications of these recommendations advisab
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="4xQ-wd-Wh3" kind="show" id="Nke-ws-bgF"/>
+                                    <segue destination="4xQ-wd-Wh3" kind="show" identifier="Show Vaccine Details" id="Nke-ws-bgF"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -688,7 +691,7 @@ Individual circumstances may make modifications of these recommendations advisab
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="ISX-Y6-VI6"/>
                         <barButtonItem systemItem="camera" id="r16-Kg-LyE">
                             <connections>
-                                <segue destination="cPy-ZF-fd1" kind="presentation" id="IDU-Dj-g3p"/>
+                                <segue destination="cPy-ZF-fd1" kind="presentation" identifier="Scan Barcode" id="IDU-Dj-g3p"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="QYV-wm-jXY"/>
@@ -697,7 +700,7 @@ Individual circumstances may make modifications of these recommendations advisab
                     <navigationItem key="navigationItem" title="Edit Vaccines" id="UVf-XG-3Io">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="qpj-ip-m94">
                             <connections>
-                                <segue destination="bl4-L9-3uk" kind="presentation" id="fBH-WK-TGw"/>
+                                <segue destination="bl4-L9-3uk" kind="presentation" identifier="Full List Segue" id="fBH-WK-TGw"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -1004,7 +1007,7 @@ Individual circumstances may make modifications of these recommendations advisab
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="iPP-p8-bZg" kind="show" id="yHM-AS-yUg"/>
+                                            <segue destination="iPP-p8-bZg" kind="show" identifier="List Encounters Segue" id="yHM-AS-yUg"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="n1o-W4-sec" detailTextLabel="h6A-NP-LX9" style="IBUITableViewCellStyleValue1" id="Yfh-m7-Yh7">
@@ -1027,7 +1030,7 @@ Individual circumstances may make modifications of these recommendations advisab
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="fFa-ed-eoy" kind="showDetail" id="tUt-W8-499"/>
+                                            <segue destination="RmB-Yw-fEx" kind="show" id="OE6-p8-F93"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="bg1-Yh-x4Y" detailTextLabel="JKL-LN-Tzr" style="IBUITableViewCellStyleValue1" id="LLo-Hu-u4e">
@@ -1065,7 +1068,7 @@ Individual circumstances may make modifications of these recommendations advisab
                     <navigationItem key="navigationItem" title="Name of Child" id="EYB-hS-hpL">
                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="yvv-ev-AsJ">
                             <connections>
-                                <segue destination="A9X-xn-Euu" kind="presentation" id="t8A-9i-5wY"/>
+                                <segue destination="A9X-xn-Euu" kind="presentation" identifier="editBabySegue" id="t8A-9i-5wY"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -1273,7 +1276,82 @@ Individual circumstances may make modifications of these recommendations advisab
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OSM-Fe-QbW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3772" y="2199"/>
+            <point key="canvasLocation" x="3609" y="2916"/>
+        </scene>
+        <!--Item 2-->
+        <scene sceneID="sa2-wh-Bhk">
+            <objects>
+                <viewController id="uz3-PC-4N8" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2DA-cp-2k9"/>
+                        <viewControllerLayoutGuide type="bottom" id="VaA-YR-kZc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="DVI-uf-Oue">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item 2" id="Tjf-Qu-8rl"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UEH-dL-rSL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3609" y="1598"/>
+        </scene>
+        <!--Item 1-->
+        <scene sceneID="19K-DI-fep">
+            <objects>
+                <viewController id="Qxc-IY-NLV" customClass="SBTGraphViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jGf-O9-W6V"/>
+                        <viewControllerLayoutGuide type="bottom" id="QOv-45-XkM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Lb4-gT-qmm">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item 1" id="4AY-Xq-OCi"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jwd-bE-2oc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3609" y="903"/>
+        </scene>
+        <!--Growth-->
+        <scene sceneID="Jar-Wj-oHq">
+            <objects>
+                <tabBarController hidesBottomBarWhenPushed="YES" id="RmB-Yw-fEx" customClass="SBTGrowthTBC" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" title="Growth" id="9o2-8t-5St">
+                        <barButtonItem key="rightBarButtonItem" id="Y5Q-4Z-XPV">
+                            <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="WSh-PM-Q39">
+                                <rect key="frame" x="-61" y="-14" width="133" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="Infant"/>
+                                    <segment title="Child"/>
+                                </segments>
+                                <connections>
+                                    <action selector="toggleAge:" destination="RmB-Yw-fEx" eventType="valueChanged" id="DQG-QY-vZs"/>
+                                </connections>
+                            </segmentedControl>
+                        </barButtonItem>
+                    </navigationItem>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="G0G-6e-YEM">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <outlet property="ageToggle" destination="Y5Q-4Z-XPV" id="e3f-T3-v1x"/>
+                        <segue destination="Qxc-IY-NLV" kind="relationship" relationship="viewControllers" id="QHW-A1-6V1"/>
+                        <segue destination="uz3-PC-4N8" kind="relationship" relationship="viewControllers" id="X6e-yp-cX8"/>
+                        <segue destination="M3d-K3-CvU" kind="relationship" relationship="viewControllers" id="roC-oU-bFx"/>
+                        <segue destination="QoQ-p3-5fk" kind="relationship" relationship="viewControllers" id="0Bu-53-yxT"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BBs-fu-Lwe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2877" y="903"/>
         </scene>
         <!--Item 1-->
         <scene sceneID="gM6-mF-we1">
@@ -1292,26 +1370,7 @@ Individual circumstances may make modifications of these recommendations advisab
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xxq-B6-kS2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3772" y="1543"/>
-        </scene>
-        <!--Tab Bar Controller-->
-        <scene sceneID="GrZ-Un-Hf1">
-            <objects>
-                <tabBarController id="fFa-ed-eoy" sceneMemberID="viewController">
-                    <nil key="simulatedBottomBarMetrics"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="LFF-Ff-HJS">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    </tabBar>
-                    <connections>
-                        <segue destination="M3d-K3-CvU" kind="relationship" relationship="viewControllers" id="Whn-Mu-vod"/>
-                        <segue destination="QoQ-p3-5fk" kind="relationship" relationship="viewControllers" id="5TX-ek-68M"/>
-                    </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mVI-3p-Ar7" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2956" y="1871"/>
+            <point key="canvasLocation" x="3609" y="2254"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="qNR-33-aJd">
@@ -1459,7 +1518,7 @@ Individual circumstances may make modifications of these recommendations advisab
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="t8A-9i-5wY"/>
-        <segue reference="5CL-7u-yiu"/>
+        <segue reference="Z32-il-wZf"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.31307025550000001" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
 </document>
