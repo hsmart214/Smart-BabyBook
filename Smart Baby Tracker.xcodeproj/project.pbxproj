@@ -22,6 +22,7 @@
 		421C748818937535000E3C30 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 421C746418937535000E3C30 /* UIKit.framework */; };
 		421C749018937536000E3C30 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 421C748E18937536000E3C30 /* InfoPlist.strings */; };
 		421C749218937536000E3C30 /* Smart_Baby_TrackerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 421C749118937536000E3C30 /* Smart_Baby_TrackerTests.m */; };
+		421E7A501ABE4308000929CD /* SBTVaccineGridEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 421E7A4F1ABE4308000929CD /* SBTVaccineGridEntry.m */; };
 		4220B75718E4C2B500557F27 /* SBTGraphPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 4220B75618E4C2B500557F27 /* SBTGraphPoint.m */; };
 		4226B8CD189F5F3B00682A6A /* NSDateComponents+Today.m in Sources */ = {isa = PBXBuildFile; fileRef = 4226B8CC189F5F3B00682A6A /* NSDateComponents+Today.m */; };
 		423091B81AB3F01400E5EC63 /* SBTGrowthTBC.m in Sources */ = {isa = PBXBuildFile; fileRef = 423091B71AB3F01400E5EC63 /* SBTGrowthTBC.m */; };
@@ -123,6 +124,8 @@
 		421C748D18937536000E3C30 /* Smart Baby TrackerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Smart Baby TrackerTests-Info.plist"; sourceTree = "<group>"; };
 		421C748F18937536000E3C30 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		421C749118937536000E3C30 /* Smart_Baby_TrackerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Smart_Baby_TrackerTests.m; sourceTree = "<group>"; };
+		421E7A4E1ABE4308000929CD /* SBTVaccineGridEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTVaccineGridEntry.h; sourceTree = "<group>"; };
+		421E7A4F1ABE4308000929CD /* SBTVaccineGridEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTVaccineGridEntry.m; sourceTree = "<group>"; };
 		4220B75518E4C2B500557F27 /* SBTGraphPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTGraphPoint.h; sourceTree = "<group>"; };
 		4220B75618E4C2B500557F27 /* SBTGraphPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTGraphPoint.m; sourceTree = "<group>"; };
 		4226B8CB189F5F3B00682A6A /* NSDateComponents+Today.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDateComponents+Today.h"; sourceTree = "<group>"; };
@@ -303,6 +306,8 @@
 				4220B75618E4C2B500557F27 /* SBTGraphPoint.m */,
 				8958B495191F316A007C032B /* SBTVaccineGridViewController.h */,
 				8958B496191F316A007C032B /* SBTVaccineGridViewController.m */,
+				421E7A4E1ABE4308000929CD /* SBTVaccineGridEntry.h */,
+				421E7A4F1ABE4308000929CD /* SBTVaccineGridEntry.m */,
 				8958B498191F3875007C032B /* SBTVaccineCell.h */,
 				8958B499191F3875007C032B /* SBTVaccineCell.m */,
 				8958B49B191F452D007C032B /* SBTVaccineGridHeader.h */,
@@ -580,6 +585,7 @@
 				42E7F98C18C267AE00C49072 /* SBTWHODataSource.m in Sources */,
 				42B601301895E1E6000C15F4 /* SBTVaccineSchedule.m in Sources */,
 				425D58E218DEA5B100B0AA3C /* SBTEncounterInfoTVC.m in Sources */,
+				421E7A501ABE4308000929CD /* SBTVaccineGridEntry.m in Sources */,
 				4269473B18D66CB700D5B06F /* SBTUnitsConvertor.m in Sources */,
 				4220B75718E4C2B500557F27 /* SBTGraphPoint.m in Sources */,
 				4287698618CD6F2E007862AB /* SBTChildrenViewController.m in Sources */,

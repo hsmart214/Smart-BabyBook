@@ -11,6 +11,7 @@
 #import "SBTVaccine.h"
 #import "SBTVaccineCell.h"
 #import "SBTVaccineGridHeader.h"
+#import "SBTVaccineGridEntry.h"
 
 #define COMPONENT_KEY @"component"
 #define ENCOUNTERS_KEY @"encounters"
@@ -36,6 +37,8 @@
 NSString * const SBTVaccineComponentKey = @"com.mySmartSoftware.SmartBabyTracker.vaccineComponentKey";
 NSString * const SBTVaccineEncountersKey = @"com.mySmartSoftware.SmartBabyTracker.vaccineEncountersKey";
 
+// TODO: Make sure the vaccines show in chronological order, and the statuses are synchronized with the vaccines they are associated with
+
 -(NSArray *)gridModel
 {
     if (!_gridModel){
@@ -59,7 +62,16 @@ NSString * const SBTVaccineEncountersKey = @"com.mySmartSoftware.SmartBabyTracke
                 NSArray *encs = [self.baby encountersWithGivenVaccineComponent:c];
                 [componentEncounters addObjectsFromArray:encs];
             }
-            compDict[SBTVaccineEncountersKey] = [componentEncounters allObjects];
+            NSArray *orderedEncounters = [[componentEncounters allObjects] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2){
+                SBTEncounter *enc1 = (SBTEncounter *)obj1;
+                SBTEncounter *enc2 = (SBTEncounter *)obj2;
+                if ([enc1 ageInDays] < [enc2 ageInDays]){
+                    return NSOrderedAscending;
+                }else{
+                    return NSOrderedDescending;
+                }
+            }];
+            compDict[SBTVaccineEncountersKey] = orderedEncounters;
             [buildModel addObject:compDict];
         }
         _gridModel = [buildModel copy];

@@ -63,7 +63,7 @@
     enc = [[SBTEncounter alloc] initWithDate:prevEncounterDate];
     [enc replaceVaccines:[NSSet setWithArray:@[hepB]]];
     [self.baby addEncounter:enc];
-    SBTVaccinationStatus status = (SBTVaccinationStatus)[[self.sched vaccinationStatusForVaccineComponent:SBTComponentHepB forBaby:self.baby][SBTVaccineSeriesStatusKey] integerValue];
+    SBTVaccineDoseStatus status = (SBTVaccineDoseStatus)[[self.sched vaccinationStatusForVaccineComponent:SBTComponentHepB forBaby:self.baby][SBTVaccineSeriesStatusKey] integerValue];
     XCTAssertTrue(status == SBTVaccinationUTD , @"Incorrect calculation of Hep B status with two valid doses, not due yet.");
 }
 
@@ -99,7 +99,7 @@
     enc = [[SBTEncounter alloc] initWithDate:encounter3date];
     [enc replaceVaccines:[NSSet setWithArray:@[hepB]]];
     [self.toddler addEncounter:enc];
-    SBTVaccinationStatus status = (SBTVaccinationStatus)[[self.sched vaccinationStatusForVaccineComponent:SBTComponentHepB forBaby:self.toddler][SBTVaccineSeriesStatusKey] integerValue];
+    SBTVaccineDoseStatus status = (SBTVaccineDoseStatus)[[self.sched vaccinationStatusForVaccineComponent:SBTComponentHepB forBaby:self.toddler][SBTVaccineSeriesStatusKey] integerValue];
     XCTAssertTrue(status == SBTVaccinationUTD , @"Incorrect calculation of Hep B status with two valid doses, not due yet.");
 }
 
@@ -130,7 +130,7 @@
     enc = [[SBTEncounter alloc] initWithDate:encounter3date];
     [enc replaceVaccines:[NSSet setWithArray:@[hepB]]];
     [self.baby2 addEncounter:enc];
-    SBTVaccinationStatus status = (SBTVaccinationStatus)[[self.sched vaccinationStatusForVaccineComponent:SBTComponentHepB forBaby:self.baby2][SBTVaccineSeriesStatusKey] integerValue];
+    SBTVaccineDoseStatus status = (SBTVaccineDoseStatus)[[self.sched vaccinationStatusForVaccineComponent:SBTComponentHepB forBaby:self.baby2][SBTVaccineSeriesStatusKey] integerValue];
     XCTAssertTrue(status == SBTVaccinationUTD , @"Incorrect calculation of Hep B status with four doses, third too soon.");
 }
 

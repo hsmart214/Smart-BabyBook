@@ -54,7 +54,7 @@
     [self.babies addObject:baby];
     XCTAssertNotNil(baby, @"Failed to create a SBTBaby object.");
     XCTAssertEqualObjects(baby.name, @"Hayley", @"SBTBaby initWithName: did not set name properly.");
-    XCTAssertTrue([[baby ageYYDDAtDate:[NSDate date]] year] == 19, @"SBTBaby ageAtDate: not returning correct years.");
+    XCTAssertTrue([[baby ageYYDDAtDate:[NSDate date]] year] == 20, @"SBTBaby ageAtDate: not returning correct years.");
     NSDateComponents *dc = [[NSDateComponents alloc] init];
     dc.year = 1994;
     dc.month = 11;

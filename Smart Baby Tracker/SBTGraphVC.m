@@ -524,6 +524,7 @@ static NSString * const SBTGraphCacheFilePrefix = @"com.mySmartSoftware.graphCac
     _maxHRange = -1.0;
     _graphBaseline = -1.0;
     [self drawPercentiles];
+    [self drawDataForParameter:self.parameter];
 }
 
 -(void)viewDidLayoutSubviews
