@@ -11,7 +11,7 @@
 #import "SBTVaccine.h"
 #import "SBTVaccineCell.h"
 #import "SBTVaccineGridHeader.h"
-#import "SBTVaccineGridEntry.h"
+#import "SBTEncounter.h"
 
 #define COMPONENT_KEY @"component"
 #define ENCOUNTERS_KEY @"encounters"
@@ -262,7 +262,6 @@ NSString * const SBTVaccineEncountersKey = @"com.mySmartSoftware.SmartBabyTracke
         [bgView setContentMode:UIViewContentModeScaleToFill];
         [self.view insertSubview:bgView atIndex:0];
     }
-    [self.collectionView reloadData];
 }
 
 -(void)dealloc

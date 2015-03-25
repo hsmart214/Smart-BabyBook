@@ -61,6 +61,7 @@
     return cell;
 }
 
+
 #pragma mark - UITableViewDelegate
 
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -80,9 +81,9 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (self.splitViewController){
-        [self.splitViewController performSegueWithIdentifier:@"Encounter Edit Replace" sender:self];
-    }
+//    if (self.splitViewController){
+//        [self.splitViewController performSegueWithIdentifier:@"Encounter Edit Replace" sender:self];
+//    }
 }
 
 #pragma mark - SBTEncounterEditTVCDelegate
