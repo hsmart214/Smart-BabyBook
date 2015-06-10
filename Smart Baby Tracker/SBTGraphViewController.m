@@ -549,6 +549,14 @@ static NSString * const SBTGraphCacheFilePrefix = @"com.mySmartSoftware.graphCac
     [super viewDidLoad];
     
     [self selectParameter:self.parameter];
+    [[NSNotificationCenter defaultCenter] addObserverForName:SBTGrowthChartDidChangeAgeRangeNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note){
+        NSDictionary *noteInfo = note.userInfo;
+        self.childChart = [noteInfo[SBTChildGraphKey] boolValue];
+        _maxVRange = -1.0;
+        _maxHRange = -1.0;
+        _graphBaseline = -1.0;
+        [self drawPercentiles];
+    }];
 }
 
 -(void)dealloc

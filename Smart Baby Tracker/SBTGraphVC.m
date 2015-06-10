@@ -35,7 +35,6 @@ static NSString * const SBTGraphCacheFilePrefix = @"com.mySmartSoftware.graphCac
 @property (strong, nonatomic) UIImageView *graphView;
 @property (weak, nonatomic) IBOutlet UIImageView *overlayView;
 @property (weak, nonatomic) IBOutlet UIImageView *labelsView;
-@property (weak, nonatomic) IBOutlet UITabBar *tabBar;
 @property (nonatomic) CGFloat maxVRange;
 @property (nonatomic) CGFloat maxHRange;
 @property (nonatomic) CGFloat graphBaseline;
@@ -235,53 +234,6 @@ static NSString * const SBTGraphCacheFilePrefix = @"com.mySmartSoftware.graphCac
 {
     [self adjustAxesForContentOffset:scrollView.contentOffset andScale:scale];
     [self drawDataForParameter:self.parameter];
-}
-
-#pragma mark - UITabBar Delegate
-
--(void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
-{
-    _maxVRange = -1.0;   // this forces the recalculation of same
-    _maxHRange = -1.0;
-    _graphBaseline = -1.0;
-    NSInteger pos = [tabBar.items indexOfObject:item];
-    switch (pos) {
-        case HEIGHT_TAB_POSITION:
-            self.parameter = [self isChildChart] ? SBTStature : SBTLength;
-            break;
-        case WEIGHT_TAB_POSITION:
-            self.parameter = SBTWeight;
-            break;
-        case HEAD_CIRC_TAB_POSITION:
-            self.parameter = SBTHeadCircumference;
-            break;
-        case BMI_TAB_POSITION:
-            self.parameter = SBTBMI;
-            break;
-        default:
-            break;
-    }
-    [self drawPercentiles];
-}
-
--(void)selectParameter:(SBTGrowthParameter)parameter
-{
-    self.parameter = parameter;
-    switch (parameter) {
-        case SBTStature:
-        case SBTLength:
-            [self.tabBar setSelectedItem:self.tabBar.items[HEIGHT_TAB_POSITION]];
-            break;
-        case SBTWeight:
-            [self.tabBar setSelectedItem:self.tabBar.items[WEIGHT_TAB_POSITION]];
-            break;
-        case SBTHeadCircumference:
-            [self.tabBar setSelectedItem:self.tabBar.items[HEAD_CIRC_TAB_POSITION]];
-            break;
-        case SBTBMI:
-            [self.tabBar setSelectedItem:self.tabBar.items[BMI_TAB_POSITION]];
-            break;
-    }
 }
 
 #pragma mark - View Life Cycle
@@ -511,7 +463,6 @@ static NSString * const SBTGraphCacheFilePrefix = @"com.mySmartSoftware.graphCac
         NSInteger age = [SBTGrowthDataSource infantAgeMaximum] + 1;  // guarantee that we get the older child data set
         [gvc setGrowthDataSource:[SBTGrowthDataSource growthDataSourceForAge:age]];
         [gvc setBaby:self.baby];
-        if (self.parameter == SBTHeadCircumference) [self selectParameter:SBTWeight];
         [gvc setParameter:self.parameter];
         [gvc setChildChart:YES];
     }
@@ -533,11 +484,20 @@ static NSString * const SBTGraphCacheFilePrefix = @"com.mySmartSoftware.graphCac
     [self resetDisplay];
 }
 
+-(void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
+{
+    
+}
+
+-(void)willTransitionToTraitCollection:(UITraitCollection *)newCollection withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
+{
+    
+}
+
 -(void)viewDidLoad
 {
     [super viewDidLoad];
     __weak SBTGraphVC *myWeakSelf = self;
-    [self selectParameter:self.parameter];
     [[NSNotificationCenter defaultCenter] addObserverForName:SBTGrowthChartDidChangeAgeRangeNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note){
         NSDictionary *userInfo = note.userInfo;
         BOOL newChildChart = [userInfo[SBTChildGraphKey] boolValue];

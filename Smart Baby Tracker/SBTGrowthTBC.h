@@ -7,9 +7,11 @@
 //
 
 @import UIKit;
+@class SBTBaby;
 
 @interface SBTGrowthTBC : UITabBarController
 
 @property (nonatomic, getter=isChildGrowthChart) BOOL childGrowthChart;
+@property (weak, nonatomic) SBTBaby* baby;
 
 @end

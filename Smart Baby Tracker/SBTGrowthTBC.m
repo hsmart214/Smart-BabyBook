@@ -39,6 +39,7 @@
         default:
             break;
     }
+    // This state will actually be extracted as a BOOL value so YES == isChildGrowthChart
     [[NSNotificationCenter defaultCenter] postNotificationName:SBTGrowthChartDidChangeAgeRangeNotification object:self userInfo:@{SBTChildGraphKey : @(state)}];
 }
 
