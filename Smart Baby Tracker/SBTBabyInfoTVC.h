@@ -11,7 +11,7 @@
 
 @class SBTBaby;
 
-@interface SBTBabyInfoTVC : UITableViewController
+@interface SBTBabyInfoTVC : UITableViewController <UIPageViewControllerDataSource, UIPageViewControllerDelegate>
 
 // model
 @property (nonatomic, strong) SBTBaby *baby;

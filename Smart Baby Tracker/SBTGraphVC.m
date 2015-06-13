@@ -14,7 +14,7 @@
 #import "SBTWHODataSource.h"
 
 #define VERTICAL_RANGE_ADJUSTMENT 1.1f
-#define GRAPH_RATIO 2.0
+#define GRAPH_RATIO 1.0
 
 #define HEIGHT_TAB_POSITION 0
 #define WEIGHT_TAB_POSITION 1
@@ -31,10 +31,10 @@ static NSString * const SBTGraphCacheFilePrefix = @"com.mySmartSoftware.graphCac
 
 @interface SBTGraphVC ()<UIScrollViewDelegate, UITabBarDelegate>
 
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) UIImageView *graphView;
 @property (weak, nonatomic) IBOutlet UIImageView *overlayView;
 @property (weak, nonatomic) IBOutlet UIImageView *labelsView;
+@property (weak, nonatomic) IBOutlet UIView *contentView;
 @property (nonatomic) CGFloat maxVRange;
 @property (nonatomic) CGFloat maxHRange;
 @property (nonatomic) CGFloat graphBaseline;
@@ -42,6 +42,8 @@ static NSString * const SBTGraphCacheFilePrefix = @"com.mySmartSoftware.graphCac
 
 @property (nonatomic, strong) NSMutableDictionary *measurementAxisLabels;
 @property (nonatomic, strong) NSMutableDictionary *ageAxisLabels;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *parameterControl;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *infantChildControl;
 
 @end
 
@@ -210,30 +212,46 @@ static NSString * const SBTGraphCacheFilePrefix = @"com.mySmartSoftware.graphCac
 
 #pragma mark - Target/Action
 
-
-#pragma mark - UIScrollView Delegate
-
--(UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
-{
-    return self.graphView;
+- (IBAction)infantChildGraphChanged:(UISegmentedControl *)sender {
+    switch (sender.selectedSegmentIndex) {
+        case 0: //infant
+            self.childChart = NO;
+            [self.parameterControl setTitle:@"Head" forSegmentAtIndex:2];
+            break;
+        case 1: //child/adolescent
+            self.childChart = YES;
+            [self.parameterControl setTitle:@"BMI" forSegmentAtIndex:2];
+            break;
+        default:
+            break;
+    }
+    // since we are switching age range, we cannot keep either BMI or HeadCirc, so force back to weight
+    if (self.parameterControl.selectedSegmentIndex ==2){
+        [self.parameterControl setSelectedSegmentIndex:0];
+        self.parameter = SBTWeight;
+    }
+    [self resetDisplay];
 }
 
--(void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    [self adjustAxesForContentOffset:scrollView.contentOffset andScale:scrollView.contentScaleFactor];
-    [self drawDataForParameter:self.parameter];
-}
-
--(void)scrollViewDidZoom:(UIScrollView *)scrollView
-{
-    [self adjustAxesForContentOffset:scrollView.contentOffset andScale:scrollView.contentScaleFactor];
-    [self drawDataForParameter:self.parameter];
-}
-
--(void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(CGFloat)scale
-{
-    [self adjustAxesForContentOffset:scrollView.contentOffset andScale:scale];
-    [self drawDataForParameter:self.parameter];
+- (IBAction)parameterChanged:(UISegmentedControl *)sender {
+    switch (sender.selectedSegmentIndex) {
+        case 0:
+            self.parameter = SBTWeight;
+            break;
+        case 1:
+            self.parameter = SBTStature;
+            break;
+        case 2:
+            if (self.isChildChart){
+                self.parameter = SBTBMI;
+            }else{
+                self.parameter = SBTHeadCircumference;
+            }
+            break;
+        default:
+            break;
+    }
+    [self resetDisplay];
 }
 
 #pragma mark - View Life Cycle
@@ -265,7 +283,7 @@ static NSString * const SBTGraphCacheFilePrefix = @"com.mySmartSoftware.graphCac
         CGFloat yStart = [self.growthDataSource baselineForParameter:self.parameter childChart:[self isChildChart]];
         
         // create an offscreen image and draw a 4x representation of the growth curve percentiles
-        CGSize imageSize = CGSizeMake(self.scrollView.bounds.size.width * GRAPH_RATIO, self.scrollView.bounds.size.height * GRAPH_RATIO);
+        CGSize imageSize = CGSizeMake(self.view.bounds.size.width * GRAPH_RATIO, self.view.bounds.size.height * GRAPH_RATIO);
         UIGraphicsBeginImageContextWithOptions(imageSize, YES, 0.0);
         CGRect rect = CGRectMake(0.0, 0.0, imageSize.width, imageSize.height);
         UIBezierPath *path = [UIBezierPath bezierPathWithRect:rect];
@@ -396,12 +414,10 @@ static NSString * const SBTGraphCacheFilePrefix = @"com.mySmartSoftware.graphCac
     }
     
     self.graphView = [[UIImageView alloc] initWithImage:image];
-    for (UIView *view in self.scrollView.subviews){
+    for (UIView *view in self.contentView.subviews){
         [view removeFromSuperview];
     }
-    [self.scrollView addSubview:self.graphView];
-    self.scrollView.contentSize = image.size;
-    [self.scrollView setZoomScale:1.0/GRAPH_RATIO];
+    [self.contentView addSubview:self.graphView];
     
     // if we had set the growth data source to WHO before, set it back now
     self.growthDataSource = oldDataSource;
@@ -469,13 +485,13 @@ static NSString * const SBTGraphCacheFilePrefix = @"com.mySmartSoftware.graphCac
 }
 
 - (void) resetDisplay{
-    [self.scrollView setMinimumZoomScale:1/GRAPH_RATIO];
     // this flags these values as needing updates when they are accessed
     _maxVRange = -1.0;
     _maxHRange = -1.0;
     _graphBaseline = -1.0;
     [self drawPercentiles];
     [self drawDataForParameter:self.parameter];
+    [self adjustAxesForContentOffset:CGPointZero andScale:1.0];
 }
 
 -(void)viewDidLayoutSubviews
@@ -484,26 +500,28 @@ static NSString * const SBTGraphCacheFilePrefix = @"com.mySmartSoftware.graphCac
     [self resetDisplay];
 }
 
--(void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
-{
-    
-}
-
--(void)willTransitionToTraitCollection:(UITraitCollection *)newCollection withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
-{
-    
-}
-
 -(void)viewDidLoad
 {
     [super viewDidLoad];
-    __weak SBTGraphVC *myWeakSelf = self;
-    [[NSNotificationCenter defaultCenter] addObserverForName:SBTGrowthChartDidChangeAgeRangeNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note){
-        NSDictionary *userInfo = note.userInfo;
-        BOOL newChildChart = [userInfo[SBTChildGraphKey] boolValue];
-        myWeakSelf.childChart = newChildChart;
-        [myWeakSelf resetDisplay];
-    }];
+    // rename the segments of the age switcher control to match the user preferences
+    double ageSwitch = [self.growthDataSource infantAgeMaximum];
+    if (fabs(ageSwitch - TWO_YEARS) > 0.1){ // must not be the default two year break point.  Which one is it?
+        if (fabs(ageSwitch - THREE_YEARS) < 0.1){ //it is three years
+            [self.infantChildControl setTitle:@"0-36 mos" forSegmentAtIndex:0];
+            [self.infantChildControl setTitle:@"3-20 yrs" forSegmentAtIndex:1];
+        }else{// it is five years
+            [self.infantChildControl setTitle:@"0-60 mos" forSegmentAtIndex:0];
+            [self.infantChildControl setTitle:@"5-20 yrs" forSegmentAtIndex:1];
+        }
+    }
+    [[self growthDataSource] infantAgeMaximum];
+//    __weak SBTGraphVC *myWeakSelf = self;
+//    [[NSNotificationCenter defaultCenter] addObserverForName:SBTGrowthChartDidChangeAgeRangeNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note){
+//        NSDictionary *userInfo = note.userInfo;
+//        BOOL newChildChart = [userInfo[SBTChildGraphKey] boolValue];
+//        myWeakSelf.childChart = newChildChart;
+//        [myWeakSelf resetDisplay];
+//    }];
 }
 
 -(void)dealloc
@@ -511,7 +529,7 @@ static NSString * const SBTGraphCacheFilePrefix = @"com.mySmartSoftware.graphCac
     self.graphView = nil;
     self.measurementAxisLabels = nil;
     self.ageAxisLabels = nil;
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:SBTGrowthChartDidChangeAgeRangeNotification object:nil];
+    //    [[NSNotificationCenter defaultCenter] removeObserver:self name:SBTGrowthChartDidChangeAgeRangeNotification object:nil];
 }
 
 @end

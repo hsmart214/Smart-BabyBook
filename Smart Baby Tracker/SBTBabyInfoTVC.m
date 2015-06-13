@@ -9,7 +9,7 @@
 #import "SBTBabyInfoTVC.h"
 #import "SBTBaby.h"
 #import "SBTEncountersTVC.h"
-#import "SBTGraphViewController.h"
+#import "SBTGraphVC.h"
 #import "SBTWHODataSource.h"
 #import "SBTCDCDataSource.h"
 #import "SBTVaccineGridViewController.h"
@@ -40,6 +40,18 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+#pragma mark - UIPageViewControllerDelegate, UIPageViewControllerDataSource
+
+-(UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController
+{
+    return nil;
+}
+
+-(UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
+{
+    return nil;
 }
 
 #pragma mark - view life cycle
@@ -115,7 +127,7 @@
         encTVC.delegate = self;
     }
     if ([segue.identifier isEqualToString:@"showGrowthChart"]){
-        SBTGraphViewController *dest = segue.destinationViewController;
+        SBTGraphVC *dest = segue.destinationViewController;
         dest.baby = self.baby;
         dest.growthDataSource = [SBTGrowthDataSource growthDataSourceForAge:[self.baby ageDDAtDate:[NSDate date]].day];
         dest.parameter = SBTWeight;

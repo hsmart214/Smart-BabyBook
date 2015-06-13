@@ -1097,7 +1097,7 @@ Individual circumstances may make modifications of these recommendations advisab
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="RmB-Yw-fEx" kind="show" identifier="showGrowthChart" id="OE6-p8-F93"/>
+                                            <segue destination="cWX-t9-HMz" kind="showDetail" identifier="showGrowthChart" id="KvO-Zv-JIO"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="bg1-Yh-x4Y" detailTextLabel="JKL-LN-Tzr" style="IBUITableViewCellStyleValue1" id="LLo-Hu-u4e">
@@ -1334,124 +1334,6 @@ Individual circumstances may make modifications of these recommendations advisab
             </objects>
             <point key="canvasLocation" x="2128" y="903"/>
         </scene>
-        <!--Head-->
-        <scene sceneID="RwD-wc-pte">
-            <objects>
-                <viewController id="QoQ-p3-5fk" customClass="SBTGraphVC" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="g31-p6-uQ5"/>
-                        <viewControllerLayoutGuide type="bottom" id="iD6-aZ-r1U"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="15d-hj-nWe">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <extendedEdge key="edgesForExtendedLayout"/>
-                    <tabBarItem key="tabBarItem" title="Head" image="headCirc" id="MeT-ct-vKl"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="OSM-Fe-QbW" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3609" y="2916"/>
-        </scene>
-        <!--Weight-->
-        <scene sceneID="sa2-wh-Bhk">
-            <objects>
-                <viewController id="uz3-PC-4N8" customClass="SBTGraphVC" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="2DA-cp-2k9"/>
-                        <viewControllerLayoutGuide type="bottom" id="VaA-YR-kZc"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="DVI-uf-Oue">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <extendedEdge key="edgesForExtendedLayout"/>
-                    <tabBarItem key="tabBarItem" title="Weight" image="weightTab" id="Tjf-Qu-8rl"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="UEH-dL-rSL" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3609" y="1598"/>
-        </scene>
-        <!--Height-->
-        <scene sceneID="19K-DI-fep">
-            <objects>
-                <viewController id="Qxc-IY-NLV" customClass="SBTGraphVC" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="jGf-O9-W6V"/>
-                        <viewControllerLayoutGuide type="bottom" id="QOv-45-XkM"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="redraw" id="Lb4-gT-qmm">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <extendedEdge key="edgesForExtendedLayout"/>
-                    <tabBarItem key="tabBarItem" title="Height" image="heightTab" id="4AY-Xq-OCi"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Jwd-bE-2oc" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3609" y="903"/>
-        </scene>
-        <!--Growth-->
-        <scene sceneID="Jar-Wj-oHq">
-            <objects>
-                <tabBarController hidesBottomBarWhenPushed="YES" id="RmB-Yw-fEx" customClass="SBTGrowthTBC" sceneMemberID="viewController">
-                    <extendedEdge key="edgesForExtendedLayout"/>
-                    <navigationItem key="navigationItem" title="Growth" id="9o2-8t-5St">
-                        <barButtonItem key="rightBarButtonItem" id="Y5Q-4Z-XPV">
-                            <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="WSh-PM-Q39">
-                                <rect key="frame" x="-61" y="-14" width="133" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <segments>
-                                    <segment title="Infant"/>
-                                    <segment title="Child"/>
-                                </segments>
-                                <connections>
-                                    <action selector="toggleAge:" destination="RmB-Yw-fEx" eventType="valueChanged" id="DQG-QY-vZs"/>
-                                </connections>
-                            </segmentedControl>
-                        </barButtonItem>
-                    </navigationItem>
-                    <nil key="simulatedBottomBarMetrics"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="G0G-6e-YEM">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    </tabBar>
-                    <connections>
-                        <outlet property="ageToggle" destination="Y5Q-4Z-XPV" id="e3f-T3-v1x"/>
-                        <segue destination="Qxc-IY-NLV" kind="relationship" relationship="viewControllers" id="QHW-A1-6V1"/>
-                        <segue destination="uz3-PC-4N8" kind="relationship" relationship="viewControllers" id="X6e-yp-cX8"/>
-                        <segue destination="M3d-K3-CvU" kind="relationship" relationship="viewControllers" id="roC-oU-bFx"/>
-                        <segue destination="QoQ-p3-5fk" kind="relationship" relationship="viewControllers" id="0Bu-53-yxT"/>
-                    </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="BBs-fu-Lwe" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2877" y="903"/>
-        </scene>
-        <!--BMI-->
-        <scene sceneID="gM6-mF-we1">
-            <objects>
-                <viewController id="M3d-K3-CvU" customClass="SBTGraphVC" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="WAf-0l-yYa"/>
-                        <viewControllerLayoutGuide type="bottom" id="4Es-XR-n8I"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="HRn-8B-Grg">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <extendedEdge key="edgesForExtendedLayout"/>
-                    <tabBarItem key="tabBarItem" title="BMI" image="BMITab" id="br2-XN-e3h"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Xxq-B6-kS2" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3609" y="2254"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="qNR-33-aJd">
             <objects>
@@ -1550,6 +1432,82 @@ Individual circumstances may make modifications of these recommendations advisab
             </objects>
             <point key="canvasLocation" x="3860" y="127"/>
         </scene>
+        <!--GraphVC-->
+        <scene sceneID="bby-OZ-AoL">
+            <objects>
+                <viewController storyboardIdentifier="Growth Charts VC" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="cWX-t9-HMz" customClass="SBTGraphVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="g3F-ZN-5kK"/>
+                        <viewControllerLayoutGuide type="bottom" id="4Tf-fw-qej"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="v33-F0-7bX">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eEK-XK-XNV" userLabel="contentView">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cz6-0P-U7z" userLabel="overlayView">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="50v-dv-3Kh">
+                                <rect key="frame" x="20" y="28" width="145" height="29"/>
+                                <segments>
+                                    <segment title="0-24 mos"/>
+                                    <segment title="2-20 yrs"/>
+                                </segments>
+                                <connections>
+                                    <action selector="infantChildGraphChanged:" destination="cWX-t9-HMz" eventType="valueChanged" id="k2Q-1c-KFP"/>
+                                </connections>
+                            </segmentedControl>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="6bh-ik-coA">
+                                <rect key="frame" x="215" y="552" width="170" height="29"/>
+                                <segments>
+                                    <segment title="Weight"/>
+                                    <segment title="Height"/>
+                                    <segment title="Head"/>
+                                </segments>
+                                <connections>
+                                    <action selector="parameterChanged:" destination="cWX-t9-HMz" eventType="valueChanged" id="dw0-mg-rzO"/>
+                                </connections>
+                            </segmentedControl>
+                            <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RMc-3g-UIe" userLabel="labelsView">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="RMc-3g-UIe" firstAttribute="bottom" secondItem="cz6-0P-U7z" secondAttribute="bottom" id="1O3-Tu-M3X"/>
+                            <constraint firstItem="RMc-3g-UIe" firstAttribute="top" secondItem="v33-F0-7bX" secondAttribute="top" id="3Yc-hv-FAi"/>
+                            <constraint firstItem="50v-dv-3Kh" firstAttribute="top" secondItem="g3F-ZN-5kK" secondAttribute="bottom" constant="8" symbolic="YES" id="5UH-uG-ZoI"/>
+                            <constraint firstItem="RMc-3g-UIe" firstAttribute="bottom" secondItem="4Tf-fw-qej" secondAttribute="top" id="BzP-a9-Mzg"/>
+                            <constraint firstItem="6bh-ik-coA" firstAttribute="centerX" secondItem="cz6-0P-U7z" secondAttribute="centerX" id="DJ7-Xd-zAX"/>
+                            <constraint firstItem="RMc-3g-UIe" firstAttribute="leading" secondItem="v33-F0-7bX" secondAttribute="leading" id="HIn-vL-HCG"/>
+                            <constraint firstItem="50v-dv-3Kh" firstAttribute="leading" secondItem="v33-F0-7bX" secondAttribute="leading" constant="20" symbolic="YES" id="I03-EP-Eom"/>
+                            <constraint firstItem="RMc-3g-UIe" firstAttribute="top" secondItem="cz6-0P-U7z" secondAttribute="top" id="IDw-w1-bXa"/>
+                            <constraint firstItem="RMc-3g-UIe" firstAttribute="bottom" secondItem="eEK-XK-XNV" secondAttribute="bottom" id="MOd-Cm-KZC"/>
+                            <constraint firstItem="6bh-ik-coA" firstAttribute="centerX" secondItem="v33-F0-7bX" secondAttribute="centerX" id="NSD-Cl-cdn"/>
+                            <constraint firstItem="6bh-ik-coA" firstAttribute="centerX" secondItem="RMc-3g-UIe" secondAttribute="centerX" id="ex9-cc-gXE"/>
+                            <constraint firstItem="RMc-3g-UIe" firstAttribute="leading" secondItem="eEK-XK-XNV" secondAttribute="leading" id="hBI-aA-NtR"/>
+                            <constraint firstAttribute="bottom" secondItem="6bh-ik-coA" secondAttribute="bottom" constant="20" symbolic="YES" id="iyA-f7-Tl8"/>
+                            <constraint firstItem="6bh-ik-coA" firstAttribute="centerX" secondItem="eEK-XK-XNV" secondAttribute="centerX" id="mOX-QT-ifW"/>
+                            <constraint firstItem="RMc-3g-UIe" firstAttribute="top" secondItem="eEK-XK-XNV" secondAttribute="top" id="pVG-mS-hRM"/>
+                            <constraint firstItem="RMc-3g-UIe" firstAttribute="leading" secondItem="cz6-0P-U7z" secondAttribute="leading" id="toa-es-t7m"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="contentView" destination="eEK-XK-XNV" id="maq-I3-Yt7"/>
+                        <outlet property="infantChildControl" destination="50v-dv-3Kh" id="C3r-Zq-DOS"/>
+                        <outlet property="labelsView" destination="RMc-3g-UIe" id="VN1-he-mhh"/>
+                        <outlet property="overlayView" destination="cz6-0P-U7z" id="ZOX-Tm-0wc"/>
+                        <outlet property="parameterControl" destination="6bh-ik-coA" id="svJ-b5-qOz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SKz-di-wCQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2940" y="903"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="JEI-Jr-lZL">
             <objects>
@@ -1592,7 +1550,6 @@ Individual circumstances may make modifications of these recommendations advisab
         </scene>
     </scenes>
     <resources>
-        <image name="BMITab" width="30" height="30"/>
         <image name="greenCheck" width="30" height="27"/>
         <image name="headCirc" width="30" height="30"/>
         <image name="heightTab" width="30" height="30"/>
@@ -1602,7 +1559,7 @@ Individual circumstances may make modifications of these recommendations advisab
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="5CL-7u-yiu"/>
-        <segue reference="KbO-9Z-f7F"/>
+        <segue reference="t8A-9i-5wY"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.31307025550000001" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
 </document>

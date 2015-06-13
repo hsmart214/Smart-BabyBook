@@ -62,14 +62,14 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 44;
+    return UITableViewAutomaticDimension;
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     UILabel *label = [[UILabel alloc] init];
     [label setTextAlignment:NSTextAlignmentCenter];
-    [label setFont:[UIFont boldSystemFontOfSize:17.0]];
+    [label setFont:[UIFont preferredFontForTextStyle:UIFontTextStyleHeadline]];
     [label setTextColor:[UIColor whiteColor]];
     label.text = [self textForHeaderInSection:section];
     return label;
@@ -78,14 +78,23 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSIndexPath *aapPath = [NSIndexPath indexPathForRow:TWO_YEAR_ROW inSection:INFANT_CHILD_BREAK_SECTION];
+    NSIndexPath *whoInfantPath = [NSIndexPath indexPathForRow:WHO_ROW inSection:INFANT_STANDARD_SECTION];
+    NSIndexPath *whoChildPath = [NSIndexPath indexPathForRow:WHO_ROW inSection:CHILD_STANDARD_SECTION];
+    NSIndexPath *cdcChildPath = [NSIndexPath indexPathForRow:CDC_ROW inSection:CHILD_STANDARD_SECTION];
+    UITableViewCell *who5yearCell = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:FIVE_YEAR_ROW inSection:INFANT_CHILD_BREAK_SECTION]];
     switch (indexPath.section) {
         case INFANT_STANDARD_SECTION:
         {
             NSIndexPath *otherPath;
             if (indexPath.row == CDC_ROW){
-                otherPath = [NSIndexPath indexPathForRow:WHO_ROW
-                                               inSection:INFANT_STANDARD_SECTION];
+                otherPath = whoInfantPath;
                 [defaults setInteger:CDC_INFANT_CHART forKey:SBTGrowthDataSourceInfantDataSourceKey];
+                // if CDC is chosen for infant, then we cannot have WHO for child, and we cannot break at 5 years
+                [self tableView:tableView didSelectRowAtIndexPath:cdcChildPath];
+                if (who5yearCell.accessoryType != UITableViewCellAccessoryNone){
+                    [self tableView:tableView didSelectRowAtIndexPath:aapPath];
+                }
             }else{
                 otherPath = [NSIndexPath indexPathForRow:CDC_ROW
                                                inSection:INFANT_STANDARD_SECTION];
@@ -142,6 +151,7 @@
                     otherPath2 = [NSIndexPath indexPathForRow:FIVE_YEAR_ROW
                                                     inSection:INFANT_CHILD_BREAK_SECTION];
                     [defaults setDouble:TWO_YEARS forKey:SBTGrowthDataSourceInfantChildCutoffKey];
+                    [self tableView:tableView didSelectRowAtIndexPath:cdcChildPath];
                     break;
                 case THREE_YEAR_ROW:
                     otherPath1 = [NSIndexPath indexPathForRow:TWO_YEAR_ROW
@@ -149,12 +159,16 @@
                     otherPath2 = [NSIndexPath indexPathForRow:FIVE_YEAR_ROW
                                                     inSection:INFANT_CHILD_BREAK_SECTION];
                     [defaults setDouble:THREE_YEARS forKey:SBTGrowthDataSourceInfantChildCutoffKey];
+                    [self tableView:tableView didSelectRowAtIndexPath:cdcChildPath];
                     break;
                 case FIVE_YEAR_ROW:
                     otherPath1 = [NSIndexPath indexPathForRow:THREE_YEAR_ROW
                                                     inSection:INFANT_CHILD_BREAK_SECTION];
                     otherPath2 = [NSIndexPath indexPathForRow:TWO_YEAR_ROW
                                                     inSection:INFANT_CHILD_BREAK_SECTION];
+                    // if this row is picked, the data standards need to be forced to WHO
+                    [self tableView:tableView didSelectRowAtIndexPath:whoInfantPath];
+                    [self tableView:tableView didSelectRowAtIndexPath:whoChildPath];
                     [defaults setDouble:FIVE_YEARS forKey:SBTGrowthDataSourceInfantChildCutoffKey];
                     break;
                 default:
