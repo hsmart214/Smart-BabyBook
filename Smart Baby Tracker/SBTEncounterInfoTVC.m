@@ -92,10 +92,10 @@
         headerText = NSLocalizedString(@"Vaccines Given", @"Header for vaccines in encounter table view");
     }
     UILabel *headerLabel = [[UILabel alloc] init];
+    [headerLabel setFont:[UIFont preferredFontForTextStyle:UIFontTextStyleHeadline]];
     [headerLabel setTextColor:[UIColor whiteColor]];
     [headerLabel setTextAlignment:NSTextAlignmentCenter];
     [headerLabel setText:headerText];
-    [headerLabel setFont:[UIFont boldSystemFontOfSize:17.0]];
     return headerLabel;
 }
 

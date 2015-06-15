@@ -2,11 +2,14 @@
 //  SBTEncounterEditTVC.h
 //  Smart Baby Tracker
 //
-//  Created by J. HOWARD SMART on 3/16/14.
-//  Copyright (c) 2014 J. HOWARD SMART. All rights reserved.
+//  Created by J. HOWARD SMART on 6/12/15.
+//  Copyright (c) 2015 J. HOWARD SMART. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
+
+#import "SBTMeasurementEntryVC.h"
+
 @class SBTEncounter;
 @class SBTEncounterEditTVC;
 @class SBTBaby;
@@ -19,11 +22,11 @@
 
 @end
 
-@interface SBTEncounterEditTVC : UITableViewController
+@interface SBTEncounterEditTVC : UITableViewController<SBTMeasurementReturnDelegate>
 
-@property (nonatomic, strong) SBTEncounter *encounter;
+@property (nonatomic, copy) SBTEncounter *encounter;
 @property (nonatomic, weak) SBTBaby *baby;
 @property (nonatomic, weak) id<SBTEncounterEditTVCDelegate> delegate;
-@property (weak, nonatomic) IBOutlet UILabel *dateDescriptionLabel;
+
 
 @end

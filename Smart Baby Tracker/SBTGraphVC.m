@@ -505,7 +505,7 @@ static NSString * const SBTGraphCacheFilePrefix = @"com.mySmartSoftware.graphCac
     [super viewDidLoad];
     // rename the segments of the age switcher control to match the user preferences
     double ageSwitch = [self.growthDataSource infantAgeMaximum];
-    if (fabs(ageSwitch - TWO_YEARS) > 0.1){ // must not be the default two year break point.  Which one is it?
+    if (fabs(ageSwitch - TWO_YEARS) > 1.0){ // must not be the default two year break point.  Which one is it?
         if (fabs(ageSwitch - THREE_YEARS) < 0.1){ //it is three years
             [self.infantChildControl setTitle:@"0-36 mos" forSegmentAtIndex:0];
             [self.infantChildControl setTitle:@"3-20 yrs" forSegmentAtIndex:1];

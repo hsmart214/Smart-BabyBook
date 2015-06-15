@@ -323,7 +323,7 @@
         if ([self.baby.encountersList count]) {
             dest.encounter = self.baby.encountersList[0];
         }
-        dest.dateDescriptionLabel.text = NSLocalizedString(@"Birth Date:", @"Label for birth date entry field");
+        //        dest.dateDescriptionLabel.text = NSLocalizedString(@"Birth Date:", @"Label for birth date entry field");
         [dest setTitle:@"Birth Encounter"];
     }
 }

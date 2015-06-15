@@ -115,6 +115,12 @@
     return displayStrings[preferredUnit];
 }
 
++(NSString *)formattedStringForMeasurement:(double)measurement forKey:(NSString *)dimKey{
+    double num = [[self class] displayUnitsOf:measurement forKey:dimKey];
+    NSString *unit = [[self class] displayStringForKey:dimKey];
+    return [NSString stringWithFormat:@"%1.2g %@", num, unit];
+}
+
 +(NSDictionary *)standardUnitPrefs
 {
     return @{MASS_UNIT_KEY: K_POUNDS,

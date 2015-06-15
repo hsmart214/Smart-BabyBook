@@ -24,6 +24,8 @@
 
 +(NSString *)displayStringForKey:(NSString *)dimKey;
 
++(NSString *)formattedStringForMeasurement:(double)measurement forKey:(NSString *)dimKey;
+
 +(NSDictionary *)standardUnitPrefs;
 
 +(SBTImperialWeight)imperialWeightForMass:(double)mass;

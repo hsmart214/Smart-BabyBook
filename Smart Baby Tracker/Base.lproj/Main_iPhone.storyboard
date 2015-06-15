@@ -1027,9 +1027,6 @@ Individual circumstances may make modifications of these recommendations advisab
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
-                                                    <connections>
-                                                        <outlet property="delegate" destination="XxK-6Y-BCS" id="Dzn-oe-KF9"/>
-                                                    </connections>
                                                 </textField>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Mwj-7t-47T">
                                                     <rect key="frame" x="118" y="7" width="56" height="30"/>
@@ -1038,9 +1035,6 @@ Individual circumstances may make modifications of these recommendations advisab
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
-                                                    <connections>
-                                                        <outlet property="delegate" destination="XxK-6Y-BCS" id="etL-EC-hZj"/>
-                                                    </connections>
                                                 </textField>
                                                 <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="oz" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rfb-7K-c5g" customClass="SBTLongPressLabel">
                                                     <rect key="frame" x="276" y="11" width="24" height="21"/>
@@ -1100,9 +1094,6 @@ Individual circumstances may make modifications of these recommendations advisab
                                                     <state key="normal" title="Standing">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
-                                                    <connections>
-                                                        <action selector="toggleLinearMeasurementMethod:" destination="XxK-6Y-BCS" eventType="touchUpInside" id="EEm-k0-xfv"/>
-                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="cm" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ld-6w-aLo" customClass="SBTLongPressLabel">
                                                     <rect key="frame" x="276" y="11" width="24" height="21"/>
@@ -1121,9 +1112,6 @@ Individual circumstances may make modifications of these recommendations advisab
                                                     <rect key="frame" x="212" y="7" width="56" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
-                                                    <connections>
-                                                        <outlet property="delegate" destination="XxK-6Y-BCS" id="QWg-qa-4fc"/>
-                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -1168,9 +1156,6 @@ Individual circumstances may make modifications of these recommendations advisab
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
-                                                    <connections>
-                                                        <outlet property="delegate" destination="XxK-6Y-BCS" id="Hrm-nU-eat"/>
-                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -1210,59 +1195,20 @@ Individual circumstances may make modifications of these recommendations advisab
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="XxK-6Y-BCS" id="c7b-tg-y0V"/>
-                            <outlet property="delegate" destination="XxK-6Y-BCS" id="rSa-y6-lxO"/>
                         </connections>
                     </tableView>
                     <toolbarItems>
-                        <barButtonItem systemItem="cancel" id="z7n-I1-B12">
-                            <connections>
-                                <action selector="cancelEditing:" destination="XxK-6Y-BCS" id="LrB-st-W9s"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem systemItem="cancel" id="z7n-I1-B12"/>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="MuB-nb-xJX"/>
-                        <barButtonItem style="done" systemItem="save" id="Bpl-zQ-52a">
-                            <connections>
-                                <action selector="saveEncounter:" destination="XxK-6Y-BCS" id="iK5-Uw-1Sr"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem style="done" systemItem="save" id="Bpl-zQ-52a"/>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="New Encounter" id="0Kf-Wy-Tpm"/>
-                    <connections>
-                        <outlet property="dateDescriptionLabel" destination="nJe-Qn-cc0" id="xVW-zt-otH"/>
-                        <outlet property="dateLabel" destination="F0y-U4-pnd" id="Qde-HP-vk9"/>
-                        <outlet property="datePicker" destination="ENx-ej-95h" id="PSo-jg-Itw"/>
-                        <outlet property="headCircField" destination="XiQ-oZ-xz6" id="7ZE-cK-dkt"/>
-                        <outlet property="headCircUnitLabel" destination="BVi-do-jjc" id="g53-mX-QKM"/>
-                        <outlet property="heightField" destination="2Mv-SU-BEP" id="qlT-eU-ZBM"/>
-                        <outlet property="heightMethodButton" destination="Fi8-Ne-SUq" id="uRq-GP-7ws"/>
-                        <outlet property="heightUnitLabel" destination="3ld-6w-aLo" id="JXa-ek-RcQ"/>
-                        <outlet property="poundsLabel" destination="H2R-hk-rPU" id="wJx-Ww-fjf"/>
-                        <outlet property="weightField1" destination="Mwj-7t-47T" id="WC9-pO-eqG"/>
-                        <outlet property="weightField2" destination="s3A-xs-STn" id="DeV-jC-XJR"/>
-                        <outlet property="weightUnitLabel" destination="rfb-7K-c5g" id="eBt-N8-Lt1"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Dk-Bj-gl2" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="Xia-HI-CmT">
-                    <connections>
-                        <action selector="changeLengthUnitLongPress:" destination="XxK-6Y-BCS" id="S8k-UF-l4E"/>
-                    </connections>
-                </pongPressGestureRecognizer>
-                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="A3H-Uh-mw7">
-                    <connections>
-                        <action selector="changeMassUnitLongPress:" destination="XxK-6Y-BCS" id="CMa-a8-a9s"/>
-                    </connections>
-                </pongPressGestureRecognizer>
-                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="f8U-58-qqC">
-                    <connections>
-                        <action selector="changeMassUnitLongPress:" destination="XxK-6Y-BCS" id="lFw-hM-KZi"/>
-                    </connections>
-                </pongPressGestureRecognizer>
-                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="xRf-Mo-1Er">
-                    <connections>
-                        <action selector="changeHCUnitLongPress:" destination="XxK-6Y-BCS" id="snw-Kr-6q2"/>
-                    </connections>
-                </pongPressGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="Xia-HI-CmT"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="A3H-Uh-mw7"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="f8U-58-qqC"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="xRf-Mo-1Er"/>
             </objects>
             <point key="canvasLocation" x="2387" y="61"/>
         </scene>
