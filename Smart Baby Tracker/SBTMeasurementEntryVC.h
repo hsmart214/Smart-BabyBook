@@ -18,6 +18,7 @@
 
 @property (nonatomic) SBTGrowthParameter parameter;
 @property (nonatomic) double measure;
+@property (nonatomic, getter=isInfant) BOOL infant;
 @property (weak, nonatomic) id<SBTMeasurementReturnDelegate> delegate;
 
 @end

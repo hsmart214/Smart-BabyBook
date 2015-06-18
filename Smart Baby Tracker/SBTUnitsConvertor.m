@@ -87,6 +87,16 @@
     return dimension;
 }
 
++(double)convertMeasure:(double)measure toMetricForKey:(NSString *)key{
+    double retVal = 0.0;
+    if ([key isEqualToString:MASS_UNIT_KEY]){
+        retVal = measure/POUNDS_PER_KILOGRAM;
+    }else if([key isEqualToString:LENGTH_UNIT_KEY] || [key isEqualToString:HC_UNIT_KEY]){
+        retVal = measure/INCHES_PER_CENTIMETER;
+    }
+    return retVal;
+}
+
 +(SBTImperialWeight)imperialWeightForMass:(double)mass
 {
     SBTImperialWeight result;
@@ -118,7 +128,7 @@
 +(NSString *)formattedStringForMeasurement:(double)measurement forKey:(NSString *)dimKey{
     double num = [[self class] displayUnitsOf:measurement forKey:dimKey];
     NSString *unit = [[self class] displayStringForKey:dimKey];
-    return [NSString stringWithFormat:@"%1.2g %@", num, unit];
+    return [NSString stringWithFormat:@"%1.2f %@", num, unit];
 }
 
 +(NSDictionary *)standardUnitPrefs

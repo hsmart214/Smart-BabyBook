@@ -26,6 +26,9 @@
 
 +(NSString *)formattedStringForMeasurement:(double)measurement forKey:(NSString *)dimKey;
 
+// this will assume measure is in imperial units - either decimal pounds or decimal inches (no feet, no ounces)
++(double)convertMeasure:(double)measure toMetricForKey:(NSString *)key;
+
 +(NSDictionary *)standardUnitPrefs;
 
 +(SBTImperialWeight)imperialWeightForMass:(double)mass;

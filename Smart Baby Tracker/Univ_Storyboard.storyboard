@@ -112,7 +112,7 @@ Individual circumstances may make modifications of these recommendations advisab
                     <navigationItem key="navigationItem" title="Smart Baby Book" id="HHO-KB-Run">
                         <barButtonItem key="leftBarButtonItem" systemItem="add" id="LKc-BG-J2S">
                             <connections>
-                                <segue destination="A9X-xn-Euu" kind="presentation" id="KbO-9Z-f7F"/>
+                                <segue destination="A9X-xn-Euu" kind="presentation" identifier="addBabySegue" id="KbO-9Z-f7F"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -228,6 +228,9 @@ Individual circumstances may make modifications of these recommendations advisab
                                                 <constraint firstItem="xvg-nH-zgH" firstAttribute="top" secondItem="o0B-Pa-Yvs" secondAttribute="bottom" constant="8" id="uZf-8y-c6d"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="IA9-Ip-tug" kind="presentation" identifier="editBirthEncounter" id="zIK-Ze-kUM"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="bCK-j0-PgF" detailTextLabel="kqb-eO-Oyu" style="IBUITableViewCellStyleValue1" id="AWw-pm-hmE">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -515,7 +518,7 @@ Individual circumstances may make modifications of these recommendations advisab
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="HSE-zw-MXs" detailTextLabel="V9Y-Xt-G5c" style="IBUITableViewCellStyleValue1" id="gGX-e0-JLa">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="HSE-zw-MXs" detailTextLabel="V9Y-Xt-G5c" style="IBUITableViewCellStyleValue1" id="gGX-e0-JLa">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gGX-e0-JLa" id="pid-r4-I1J">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -540,7 +543,7 @@ Individual circumstances may make modifications of these recommendations advisab
                                             </segue>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="7kt-sK-jvp" detailTextLabel="8uT-N5-SFG" style="IBUITableViewCellStyleValue1" id="ik4-Op-dmR">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="7kt-sK-jvp" detailTextLabel="8uT-N5-SFG" style="IBUITableViewCellStyleValue1" id="ik4-Op-dmR">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ik4-Op-dmR" id="zMN-Fv-7cp">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -565,7 +568,7 @@ Individual circumstances may make modifications of these recommendations advisab
                                             </segue>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="anE-7Y-Fbz" detailTextLabel="4Af-I6-zTE" style="IBUITableViewCellStyleValue1" id="o2D-RH-mqP">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="anE-7Y-Fbz" detailTextLabel="4Af-I6-zTE" style="IBUITableViewCellStyleValue1" id="o2D-RH-mqP">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="o2D-RH-mqP" id="vrO-c8-yRF">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -662,9 +665,9 @@ Individual circumstances may make modifications of these recommendations advisab
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="On6-Rg-9mS">
                                 <rect key="frame" x="104" y="48" width="152" height="29"/>
                                 <segments>
-                                    <segment title="lbs"/>
-                                    <segment title="lbs oz"/>
                                     <segment title="kg"/>
+                                    <segment title="lbs oz"/>
+                                    <segment title="lbs"/>
                                 </segments>
                                 <connections>
                                     <action selector="unitsChanged:" destination="WA7-jb-030" eventType="valueChanged" id="QYb-95-Izb"/>
@@ -1653,8 +1656,8 @@ Individual circumstances may make modifications of these recommendations advisab
         <image name="weightTab" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="t8A-9i-5wY"/>
-        <segue reference="5CL-7u-yiu"/>
+        <segue reference="KbO-9Z-f7F"/>
+        <segue reference="zIK-Ze-kUM"/>
         <segue reference="deY-vd-qzM"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.31307025550000001" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>

@@ -315,7 +315,7 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"birthEncounterSegue"]){
+    if ([segue.identifier isEqualToString:@"editBirthEncounter"]){
         UINavigationController *nav = segue.destinationViewController;
         SBTEncounterEditTVC *dest = [nav.viewControllers firstObject];
         dest.delegate = self;
@@ -400,9 +400,7 @@
     [nf setLocale:[NSLocale currentLocale]];
     editingBirthTime = NO;
     editingDueDate = NO;
-//    if (!self.baby){
-//        self.baby = [[SBTBaby alloc] init];
-//    }
+
     if ([self.baby.encountersList count]){
         self.birthEncounter = [self.baby.encountersList firstObject];
     }

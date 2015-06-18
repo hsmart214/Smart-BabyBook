@@ -105,7 +105,7 @@
 {
     if ([segue.identifier isEqualToString:@"addBabySegue"]){
         // I have run into problems downstream if no valid baby instance is sent to the new baby creation machine.
-        SBTBaby *baby = [[SBTBaby alloc] init];
+        SBTBaby *baby = [[SBTBaby alloc] initWithName:NSLocalizedString(@"New Baby", @"New Baby name") andDOB:[NSDate dateWithTimeIntervalSince1970:0.0]];
         UINavigationController *nav = segue.destinationViewController;
         SBTBabyEditViewController *bevc = nav.viewControllers[0];
         bevc.baby = baby;
