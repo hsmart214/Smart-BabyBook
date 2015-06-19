@@ -112,6 +112,7 @@
         case SBTStature:
         case SBTLength:
             key = LENGTH_UNIT_KEY;
+            self.parameter = self.statureMethodControl.selectedSegmentIndex ? SBTStature : SBTLength;
         case SBTHeadCircumference:
             key = HC_UNIT_KEY;
         default:
@@ -140,6 +141,10 @@
     if ([digs count] <= [self.pickComps count]){
         for (int i = 0; i < [digs count]; i++){
             NSInteger d = [digs[i] integerValue];  // this works for the decimal point as well!
+            // this is a horrible hack, and ugly one-off code
+            if (self.measure == SBTWeight && i == 6){
+                d = [(NSString *)(digs[i]) characterAtIndex:0] - '0';
+            }
             [self.picker selectRow:d inComponent:i animated:YES];
         }
     }
@@ -158,6 +163,28 @@
 
 -(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
     return self.pickComps[component][row];
+}
+
+-(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
+    // we are only dealing with pounds and ounces here
+    if (self.parameter != SBTWeight) return;
+    if (self.unitsControl.selectedSegmentIndex == 0) return;
+    // we don't need to change anything if a zero is selected
+    if (row == 0) return;
+    
+    // components look like ###.#lbs#.#oz
+    //                      01234 5 678
+    
+    // if ounces are selected set the decimal fraction of the pounds to zero
+    if (component == 6 || component == 8){
+        [self.picker selectRow:0 inComponent:4 animated:YES];
+    }
+    // if decimal pounds are selected, set the ounces to zero
+    if (component < 5 && component != 3){
+        [self.picker selectRow:0 inComponent:6 animated:YES];
+        [self.picker selectRow:0 inComponent:8 animated:YES];
+    }
+    
 }
 
 #pragma mark - View Life Cycle
@@ -186,10 +213,11 @@
     }else{// must be pounds or pounds/ounces
         NSInteger ord = (int)measureInPrefUnits;
         double dec = measureInPrefUnits - ord;
+        self.pickComps = @[self.digits02, self.digits09, self.digits09, self.decimal, self.digits09, @[@"lbs"], self.ounces, self.decimal, self.digits05, @[@"oz"]];
         if (self.isInfant){  //use pounds and ounces for infants by default
             // set up the picker
             [self.unitsControl setSelectedSegmentIndex:1];
-            self.pickComps = @[self.digits02, self.digits09, @[@"lbs"], self.ounces, self.decimal, self.digits05, @[@"oz"]];
+            
             NSString *ouncesRep = [NSString stringWithFormat:@"%03.1f", dec * 16];
             NSUInteger length = [ouncesRep length];
             NSUInteger decPlace;
@@ -198,7 +226,17 @@
                     break;
                 }
             }
-        }else{// use deciml pounds
+            NSMutableString *build = [NSMutableString new];
+            [build appendString:[NSString stringWithFormat:@"%ld",ord]];
+            [build appendString:@".0#"];// the hashmark will have a zero value in the setPickerToValue method
+            NSInteger d = (int) dec * 16;
+            NSString *hexd = [NSString stringWithFormat:@"%ld", d];
+            if (d > 9){
+                char c = [@"0" characterAtIndex:0];
+                c += d;
+                hexd = [NSString stringWithFormat:@"%c", c];
+            }
+        }else{// use decimal pounds
             [self.unitsControl setSelectedSegmentIndex:2];
             self.pickComps = @[self.digits02, self.digits09, self.digits09, self.decimal, self.digits09, @[@"lbs"]];
             measRep = [NSString stringWithFormat:@"%05.1f", measureInPrefUnits];
@@ -214,6 +252,7 @@
     [self.unitsControl setTitle:@"inch" forSegmentAtIndex:1];
     [self.unitsControl setTitle:@"ft in" forSegmentAtIndex:2];
     [self.unitsControl setEnabled:NO forSegmentAtIndex:2];
+    [self.statureMethodControl setSelectedSegmentIndex:(self.parameter == SBTStature) ? 1 : 0];
     //figure out the current preferred units
     double measureInPrefUnits = [SBTUnitsConvertor displayUnitsOf:self.measure forKey:LENGTH_UNIT_KEY];
     NSString *unit = [SBTUnitsConvertor preferredUnitForKey:LENGTH_UNIT_KEY];
