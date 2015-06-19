@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-@class SBTBaby;
+#import "SBTBaby.h"
+#import "SBTEncounterEditTVC.h"
 
 @interface SBTVaccineGridViewController : UICollectionViewController
 
 @property (nonatomic, strong) SBTBaby *baby;
+@property (weak, nonatomic) id<SBTEncounterEditTVCDelegate> delegate;
 
 @end

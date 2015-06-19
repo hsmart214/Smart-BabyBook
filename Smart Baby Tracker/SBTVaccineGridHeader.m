@@ -35,8 +35,10 @@
             self.statusLabel.text = NSLocalizedString(@"Overdue", @"Vaccine is overdue (one word?)");
             break;
         case SBTVaccinationUTD:
-            self.statusLabel.text = NSLocalizedString(@"UTD", @"Vaccine is up to date (one word?)");
+            self.statusLabel.text = NSLocalizedString(@"Up to date", @"Vaccine is up to date (one word?)");
             break;
+        case SBTVaccinationNotYetDue:
+            self.statusLabel.text = NSLocalizedString(@"Not due yet", @"Patient too young for next dose");
         default:
             self.statusLabel.text = @"Should not ever see this text";
             break;

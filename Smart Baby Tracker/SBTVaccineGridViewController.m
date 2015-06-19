@@ -16,7 +16,7 @@
 #define COMPONENT_KEY @"component"
 #define ENCOUNTERS_KEY @"encounters"
 
-@interface SBTVaccineGridViewController ()
+@interface SBTVaccineGridViewController ()<SBTEncounterEditTVCDelegate>
 
 @property (nonatomic, strong) NSDateFormatter *dateFormatter;
 // this is an array of dictionaries - each has two entries - the name of the component, and an array of encounters where the component was given
@@ -245,11 +245,31 @@ NSString * const SBTVaccineEncountersKey = @"com.mySmartSoftware.SmartBabyTracke
     return cell;
 }
 
-#pragma mark - UICollectionView delegate
+#pragma mark - SBTEncounterEditTCVDelegate
+
+-(void)SBTEncounterEditTVC:(SBTEncounterEditTVC *)editTVC updatedEncounter:(SBTEncounter *)encounter{
+    [self.delegate SBTEncounterEditTVC:editTVC updatedEncounter:encounter];
+}
+
+#pragma mark - UICollectionViewDelegate
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
+}
+
+#pragma mark - Navigation
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([segue.identifier isEqualToString:@"editEncounterByVaccine"]){
+        SBTVaccineCell *cell = (SBTVaccineCell *)sender;
+        UINavigationController *nav = segue.destinationViewController;
+        SBTEncounterEditTVC *vc = nav.viewControllers[0];
+        vc.delegate = self;
+        vc.encounter = cell.encounter;
+        // TODO: what if cell.encounter in nil?
+        // probably make a new encounter?
+    }
 }
 
 #pragma mark - View life cycle

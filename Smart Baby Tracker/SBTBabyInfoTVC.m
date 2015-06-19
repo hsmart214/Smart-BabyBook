@@ -9,12 +9,13 @@
 #import "SBTBabyInfoTVC.h"
 #import "SBTBaby.h"
 #import "SBTEncountersTVC.h"
+#import "SBTEncounterEditTVC.h"
 #import "SBTGraphVC.h"
 #import "SBTWHODataSource.h"
 #import "SBTCDCDataSource.h"
 #import "SBTVaccineGridViewController.h"
 
-@interface SBTBabyInfoTVC ()<SBTBabyEditDelegate>
+@interface SBTBabyInfoTVC ()<SBTBabyEditDelegate, SBTEncounterEditTVCDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *birthDateLable;
 @property (weak, nonatomic) IBOutlet UILabel *birthTimeLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *babyPic;
@@ -26,12 +27,17 @@
 
 @implementation SBTBabyInfoTVC
 
-#pragma mark - SBTBabyEditDelegate methods
+#pragma mark - Delegate methods
 
 -(void)babyEditor:(id)babyEditor didSaveBaby:(SBTBaby *)baby
 {
     self.baby = baby;
     [self.delegate babyEditor:babyEditor didSaveBaby:baby];
+    [self updateDisplay];
+}
+
+-(void)SBTEncounterEditTVC:(SBTEncounterEditTVC *)editTVC updatedEncounter:(SBTEncounter *)encounter{
+    // since the data is shared, I don't think I need to actually do anything here
     [self updateDisplay];
 }
 
@@ -136,6 +142,7 @@
     if ([segue.identifier isEqualToString:@"Vaccine Grid Segue"]){
         SBTVaccineGridViewController *dest = segue.destinationViewController;
         dest.baby = self.baby;
+        dest.delegate = self;
     }
 }
 

@@ -36,6 +36,18 @@
 
 @implementation SBTMeasurementEntryVC
 
+#pragma mark - Convenience methods
+
+-(NSInteger)hexValueOf:(char)c{
+    NSAssert(c >= 'A' && c <= 'F', @"Invalid hex character");
+    return 10 + c - 'A';
+}
+
+-(char)hexCharacterFor:(NSInteger)i{
+    NSAssert(i > 9 && i < 16, @"Invalid hex digit");
+    return 'A' + i - 10;
+}
+
 #pragma mark - Lazy instantiation
 
 -(NSArray *)decimal{
@@ -56,7 +68,7 @@
     if (!_digits05){
         _digits05 = @[@"0", @"5"];
     }
-    return _digits02;
+    return _digits05;
 }
 
 -(NSArray *)digits09{
@@ -172,7 +184,7 @@
     [self.picker reloadAllComponents];
 }
 
-#pragma mark - UIPickerViewDatSource, UIPickerViewDelegate
+#pragma mark - UIPickerViewDataSource, UIPickerViewDelegate
 
 -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
     return [self.pickComps count];
@@ -185,6 +197,17 @@
 -(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
     return self.pickComps[component][row];
 }
+
+//-(CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component{
+//    CGFloat def = self.view.bounds.size.width / [self numberOfComponentsInPickerView:pickerView];
+//    if (self.parameter == SBTWeight && self.unitsControl.selectedSegmentIndex != 0){
+//        def = self.view.bounds.size.width / ([self numberOfComponentsInPickerView:pickerView] );
+//        if (component == 3 || component == 7){
+//            def /= 2.0;
+//        }
+//    }
+//    return def;
+//}
 
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
     // we are only dealing with pounds and ounces here
@@ -201,7 +224,7 @@
         [self.picker selectRow:0 inComponent:4 animated:YES];
     }
     // if decimal pounds are selected, set the ounces to zero
-    if (component < 5 && component != 3){
+    if (component == 4){
         [self.picker selectRow:0 inComponent:6 animated:YES];
         [self.picker selectRow:0 inComponent:8 animated:YES];
     }
@@ -213,9 +236,8 @@
 -(void)setUpWeight{
     self.titleLabel.text = NSLocalizedString(@"Weight", @"Title for weight entry");
     [self.unitsControl setTitle:@"kg" forSegmentAtIndex:0];
-    [self.unitsControl setTitle:@"lbs oz" forSegmentAtIndex:1];
-    [self.unitsControl setTitle:@"lbs" forSegmentAtIndex:2];
-        [self.statureMethodControl setHidden:YES];
+    [self.unitsControl setTitle:@"lbs" forSegmentAtIndex:1];
+    [self.statureMethodControl setHidden:YES];
     //figure out the current preferred units
     double measureInPrefUnits = [SBTUnitsConvertor displayUnitsOf:self.measure forKey:MASS_UNIT_KEY];
     NSString *unit = [SBTUnitsConvertor preferredUnitForKey:MASS_UNIT_KEY];
@@ -232,31 +254,45 @@
         }
         
     }else{// must be pounds or pounds/ounces
-        NSInteger ord = (int)measureInPrefUnits;
-        double dec = measureInPrefUnits - ord;
         self.pickComps = @[self.digits02, self.digits09, self.digits09, self.decimal, self.digits09, @[@"lbs"], self.ounces, self.decimal, self.digits05, @[@"oz"]];
-        if (self.isInfant){  //use pounds and ounces for infants by default
-            // set up the picker
-            [self.unitsControl setSelectedSegmentIndex:1];
-            
-            NSMutableString *build = [NSMutableString new];
-            [build appendString:[NSString stringWithFormat:@"%ld",ord]];
-            [build appendString:@".0#"];// the hashmark will have a zero value in the setPickerToValue method
-            NSInteger d = (int) dec * 16;
-            NSString *hexd = [NSString stringWithFormat:@"%ld", d];
-            if (d > 9){
-                char c = [@"0" characterAtIndex:0];
-                c += d;
-                hexd = [NSString stringWithFormat:@"%c", c];
+        NSInteger poundOrd = (int)measureInPrefUnits;
+        double poundFrac = measureInPrefUnits - poundOrd;
+        NSInteger ouncesOrd = (int)(poundFrac * 16);
+        double ounceFrac = poundFrac * 16 - ouncesOrd;
+        // round up or down the ounces
+        if (ounceFrac < 0.25) ounceFrac = 0.0;
+        if (ounceFrac >= 0.75){
+            ounceFrac = 0.0;
+            ouncesOrd += 1;
+            if (ouncesOrd == 16){
+                ouncesOrd = 0;
+                poundOrd += 1;
             }
-            [build appendString:hexd];
-            // this hack uses a 1 to represent a half ounce because the "5" is in position 1 in the component array
-            [build appendString:(d - dec * 16 >= 0.5) ? @".1": @".0"];
-        }else{// use decimal pounds
-            [self.unitsControl setSelectedSegmentIndex:2];
-            self.pickComps = @[self.digits02, self.digits09, self.digits09, self.decimal, self.digits09, @[@"lbs"]];
-            measRep = [NSString stringWithFormat:@"%05.1f", measureInPrefUnits];
+        }else{
+            ounceFrac = 0.501; // just to be safe
         }
+        // set up the picker
+        [self.unitsControl setSelectedSegmentIndex:1];
+        
+        NSMutableString *build = [NSMutableString new];
+        [build appendString:[NSString stringWithFormat:@"%03ld",poundOrd]];
+        [build appendString:@".0#"];// the hashmark will have a zero value in the setPickerToValue method
+        
+        NSString *hexd = [NSString stringWithFormat:@"%ld", ouncesOrd];
+        if (ouncesOrd > 9){
+            char c = [self hexCharacterFor:ouncesOrd];
+            hexd = [NSString stringWithFormat:@"%c", c];
+        }
+        [build appendString:hexd];
+        // this hack uses a 1 to represent a half ounce because the "5" is in position 1 in the component array
+        NSString *frac;
+        if (ounceFrac >= 0.5){
+            frac = @".1";
+        }else{
+            frac = @".0";
+        }
+        [build appendString:frac];
+        measRep = [build copy];
     }
     //get the display digits for the measurement and set the picker
     [self setPickerToValue:measRep];
@@ -266,8 +302,6 @@
     self.titleLabel.text = NSLocalizedString(@"Height/Length", @"Title for height/length entry");
     [self.unitsControl setTitle:@"cm" forSegmentAtIndex:0];
     [self.unitsControl setTitle:@"inch" forSegmentAtIndex:1];
-    [self.unitsControl setTitle:@"ft in" forSegmentAtIndex:2];
-    [self.unitsControl setEnabled:NO forSegmentAtIndex:2];
     [self.statureMethodControl setSelectedSegmentIndex:(self.parameter == SBTStature) ? 1 : 0];
     //figure out the current preferred units
     double measureInPrefUnits = [SBTUnitsConvertor displayUnitsOf:self.measure forKey:LENGTH_UNIT_KEY];
@@ -290,8 +324,6 @@
     self.titleLabel.text = NSLocalizedString(@"Head Circumference", @"Title for HC entry");
     [self.unitsControl setTitle:@"cm" forSegmentAtIndex:0];
     [self.unitsControl setTitle:@"inch" forSegmentAtIndex:1];
-    [self.unitsControl setTitle:@"ft in" forSegmentAtIndex:2];
-    [self.unitsControl setEnabled:NO forSegmentAtIndex:2];
     [self.statureMethodControl setHidden:YES];
     //figure out the current preferred units
     double measureInPrefUnits = [SBTUnitsConvertor displayUnitsOf:self.measure forKey:HC_UNIT_KEY];
