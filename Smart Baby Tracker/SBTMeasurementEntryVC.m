@@ -113,6 +113,7 @@
         case SBTLength:
             key = LENGTH_UNIT_KEY;
             self.parameter = self.statureMethodControl.selectedSegmentIndex ? SBTStature : SBTLength;
+            break;
         case SBTHeadCircumference:
             key = HC_UNIT_KEY;
         default:
@@ -124,12 +125,32 @@
 }
 
 - (double)pickerValue{
-    NSMutableString *s = [NSMutableString new];
-    for (int i = 0; i < [self.pickComps count]; i++){
-        NSInteger idx = [self.picker selectedRowInComponent:i];
-        [s appendString:self.pickComps[i][idx]];
+    if (self.parameter == SBTWeight && self.unitsControl.selectedSegmentIndex != 0){
+        // using pounds and possibly ounces
+        // picker looks like ###.#lbs#.#oz
+        //                   01234 5 678
+        NSMutableString *s = [NSMutableString new];
+        for (int i = 0; i < 5; i++){
+            NSInteger idx = [self.picker selectedRowInComponent:i];
+            [s appendString:self.pickComps[i][idx]];
+        }
+        double lbs = [s doubleValue];
+        s = [NSMutableString string];
+        for (int i = 6; i < 9; i++){
+            NSInteger idx = [self.picker selectedRowInComponent:i];
+            [s appendString:self.pickComps[i][idx]];
+        }
+        double ounceFraction = [s doubleValue] / 16.0;
+        
+        return lbs + ounceFraction;
+    }else{
+        NSMutableString *s = [NSMutableString new];
+        for (int i = 0; i < [self.pickComps count]; i++){
+            NSInteger idx = [self.picker selectedRowInComponent:i];
+            [s appendString:self.pickComps[i][idx]];
+        }
+        return [s doubleValue];
     }
-    return [s doubleValue];
 }
 
 -(void)setPickerToValue:(NSString *)measRep{
@@ -218,14 +239,6 @@
             // set up the picker
             [self.unitsControl setSelectedSegmentIndex:1];
             
-            NSString *ouncesRep = [NSString stringWithFormat:@"%03.1f", dec * 16];
-            NSUInteger length = [ouncesRep length];
-            NSUInteger decPlace;
-            for (decPlace = 0; decPlace < length; decPlace++) {
-                if ([ouncesRep characterAtIndex:decPlace] == '.'){
-                    break;
-                }
-            }
             NSMutableString *build = [NSMutableString new];
             [build appendString:[NSString stringWithFormat:@"%ld",ord]];
             [build appendString:@".0#"];// the hashmark will have a zero value in the setPickerToValue method
@@ -236,6 +249,9 @@
                 c += d;
                 hexd = [NSString stringWithFormat:@"%c", c];
             }
+            [build appendString:hexd];
+            // this hack uses a 1 to represent a half ounce because the "5" is in position 1 in the component array
+            [build appendString:(d - dec * 16 >= 0.5) ? @".1": @".0"];
         }else{// use decimal pounds
             [self.unitsControl setSelectedSegmentIndex:2];
             self.pickComps = @[self.digits02, self.digits09, self.digits09, self.decimal, self.digits09, @[@"lbs"]];
