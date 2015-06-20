@@ -280,14 +280,14 @@ NSString * const SBTVaccineEncountersKey = @"com.mySmartSoftware.SmartBabyTracke
 
 #pragma mark - View life cycle
 
-- (void)viewDidLoad
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super viewDidLoad];
-    if (!self.splitViewController){
-        UIImageView *bgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:SBTiPadDetailBackgroundImage]];
-        [bgView setContentMode:UIViewContentModeScaleToFill];
-        [self.view insertSubview:bgView atIndex:0];
-    }
+    [super viewWillAppear:animated];
+    
+    UIImageView *bgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:SBTiPhoneBackgroundImage]];
+    [bgView setContentMode:UIViewContentModeScaleToFill];
+    self.collectionView.backgroundView = bgView;
+    
 }
 
 -(void)dealloc

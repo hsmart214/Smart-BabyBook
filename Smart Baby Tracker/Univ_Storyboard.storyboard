@@ -257,7 +257,7 @@ Individual circumstances may make modifications of these recommendations advisab
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="74j-Q7-aNp" id="Tcf-Ql-PsM">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="LVw-b7-PaE">
+                                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="LVw-b7-PaE">
                                                     <rect key="frame" x="140" y="19" width="320" height="162"/>
                                                     <date key="date" timeIntervalSinceReferenceDate="446871561.71662802">
                                                         <!--2015-03-01 02:59:21 +0000-->
@@ -295,10 +295,13 @@ Individual circumstances may make modifications of these recommendations advisab
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OmV-Hi-nqy" id="Dfo-cQ-rSa">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="d83-Ou-Wpz">
+                                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="d83-Ou-Wpz">
                                                     <rect key="frame" x="140" y="19" width="320" height="162"/>
                                                     <date key="date" timeIntervalSinceReferenceDate="446871561.71662802">
                                                         <!--2015-03-01 02:59:21 +0000-->
+                                                    </date>
+                                                    <date key="minimumDate" timeIntervalSinceReferenceDate="-978267600">
+                                                        <!--1970-01-01 11:00:00 +0000-->
                                                     </date>
                                                 </datePicker>
                                             </subviews>
@@ -377,10 +380,10 @@ Individual circumstances may make modifications of these recommendations advisab
         <scene sceneID="ApD-bx-fsR">
             <objects>
                 <collectionViewController id="5s1-2a-ZfY" customClass="SBTVaccineGridViewController" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="0fC-CV-xB2">
+                    <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="0fC-CV-xB2">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.0" green="0.31307025550000001" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="p2p-zF-vNQ">
                             <size key="itemSize" width="80" height="50"/>
                             <size key="headerReferenceSize" width="50" height="50"/>
@@ -1674,7 +1677,7 @@ Individual circumstances may make modifications of these recommendations advisab
         <image name="weightTab" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="J00-nE-ZT5"/>
+        <segue reference="zIK-Ze-kUM"/>
         <segue reference="t8A-9i-5wY"/>
         <segue reference="GNu-Z6-MMO"/>
     </inferredMetricsTieBreakers>

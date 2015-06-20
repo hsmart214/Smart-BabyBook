@@ -139,20 +139,18 @@
 - (double)pickerValue{
     if (self.parameter == SBTWeight && self.unitsControl.selectedSegmentIndex != 0){
         // using pounds and possibly ounces
-        // picker looks like ###.#lbs#.#oz
-        //                   01234 5 678
+        // picker looks like ###.#lbs#oz
+        //                   01234 5 67
         NSMutableString *s = [NSMutableString new];
         for (int i = 0; i < 5; i++){
             NSInteger idx = [self.picker selectedRowInComponent:i];
             [s appendString:self.pickComps[i][idx]];
         }
         double lbs = [s doubleValue];
-        s = [NSMutableString string];
-        for (int i = 6; i < 9; i++){
-            NSInteger idx = [self.picker selectedRowInComponent:i];
-            [s appendString:self.pickComps[i][idx]];
-        }
-        double ounceFraction = [s doubleValue] / 16.0;
+        
+        NSInteger idx = [self.picker selectedRowInComponent:6];
+        
+        double ounceFraction = [self.pickComps[6][idx] integerValue] / 16.0;
         
         return lbs + ounceFraction;
     }else{
@@ -175,8 +173,8 @@
         for (int i = 0; i < [digs count]; i++){
             NSInteger d = [digs[i] integerValue];  // this works for the decimal point as well!
             // this is a horrible hack, and ugly one-off code
-            if (self.measure == SBTWeight && i == 6){
-                d = [(NSString *)(digs[i]) characterAtIndex:0] - '0';
+            if (self.parameter == SBTWeight && i == 6){
+                d = [self hexValueOf:[digs [i] characterAtIndex:0]];
             }
             [self.picker selectRow:d inComponent:i animated:YES];
         }
@@ -198,17 +196,6 @@
     return self.pickComps[component][row];
 }
 
-//-(CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component{
-//    CGFloat def = self.view.bounds.size.width / [self numberOfComponentsInPickerView:pickerView];
-//    if (self.parameter == SBTWeight && self.unitsControl.selectedSegmentIndex != 0){
-//        def = self.view.bounds.size.width / ([self numberOfComponentsInPickerView:pickerView] );
-//        if (component == 3 || component == 7){
-//            def /= 2.0;
-//        }
-//    }
-//    return def;
-//}
-
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
     // we are only dealing with pounds and ounces here
     if (self.parameter != SBTWeight) return;
@@ -216,17 +203,16 @@
     // we don't need to change anything if a zero is selected
     if (row == 0) return;
     
-    // components look like ###.#lbs#.#oz
-    //                      01234 5 678
+    // components look like ###.#lbs#oz
+    //                      01234 5 67
     
     // if ounces are selected set the decimal fraction of the pounds to zero
-    if (component == 6 || component == 8){
+    if (component == 6){
         [self.picker selectRow:0 inComponent:4 animated:YES];
     }
     // if decimal pounds are selected, set the ounces to zero
     if (component == 4){
         [self.picker selectRow:0 inComponent:6 animated:YES];
-        [self.picker selectRow:0 inComponent:8 animated:YES];
     }
     
 }
@@ -254,44 +240,34 @@
         }
         
     }else{// must be pounds or pounds/ounces
-        self.pickComps = @[self.digits02, self.digits09, self.digits09, self.decimal, self.digits09, @[@"lbs"], self.ounces, self.decimal, self.digits05, @[@"oz"]];
+        self.pickComps = @[self.digits02, self.digits09, self.digits09, self.decimal, self.digits09, @[@"lbs"], self.ounces, @[@"oz"]];
         NSInteger poundOrd = (int)measureInPrefUnits;
         double poundFrac = measureInPrefUnits - poundOrd;
         NSInteger ouncesOrd = (int)(poundFrac * 16);
         double ounceFrac = poundFrac * 16 - ouncesOrd;
         // round up or down the ounces
-        if (ounceFrac < 0.25) ounceFrac = 0.0;
-        if (ounceFrac >= 0.75){
-            ounceFrac = 0.0;
+        if (ounceFrac < 0.5) ounceFrac = 0.0;
+        if (ounceFrac >= 0.5){
             ouncesOrd += 1;
             if (ouncesOrd == 16){
                 ouncesOrd = 0;
                 poundOrd += 1;
             }
-        }else{
-            ounceFrac = 0.501; // just to be safe
         }
         // set up the picker
         [self.unitsControl setSelectedSegmentIndex:1];
         
         NSMutableString *build = [NSMutableString new];
-        [build appendString:[NSString stringWithFormat:@"%03ld",poundOrd]];
+        [build appendString:[NSString stringWithFormat:@"%03ld",(long)poundOrd]];
         [build appendString:@".0#"];// the hashmark will have a zero value in the setPickerToValue method
         
-        NSString *hexd = [NSString stringWithFormat:@"%ld", ouncesOrd];
+        NSString *hexd = [NSString stringWithFormat:@"%ld", (long)ouncesOrd];
         if (ouncesOrd > 9){
             char c = [self hexCharacterFor:ouncesOrd];
             hexd = [NSString stringWithFormat:@"%c", c];
         }
         [build appendString:hexd];
-        // this hack uses a 1 to represent a half ounce because the "5" is in position 1 in the component array
-        NSString *frac;
-        if (ounceFrac >= 0.5){
-            frac = @".1";
-        }else{
-            frac = @".0";
-        }
-        [build appendString:frac];
+        
         measRep = [build copy];
     }
     //get the display digits for the measurement and set the picker
