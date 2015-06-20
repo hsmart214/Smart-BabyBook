@@ -249,6 +249,9 @@ NSString * const SBTVaccineEncountersKey = @"com.mySmartSoftware.SmartBabyTracke
 
 -(void)SBTEncounterEditTVC:(SBTEncounterEditTVC *)editTVC updatedEncounter:(SBTEncounter *)encounter{
     [self.delegate SBTEncounterEditTVC:editTVC updatedEncounter:encounter];
+    _gridModel = nil;
+    _vaccinesGiven = nil;
+    [self.collectionView reloadData];
 }
 
 #pragma mark - UICollectionViewDelegate
@@ -269,6 +272,9 @@ NSString * const SBTVaccineEncountersKey = @"com.mySmartSoftware.SmartBabyTracke
         vc.encounter = cell.encounter;
         // TODO: what if cell.encounter in nil?
         // probably make a new encounter?
+        if (!cell.encounter){
+            vc.encounter = [[SBTEncounter alloc] initWithDate:[NSDate date]];
+        }
     }
 }
 

@@ -165,6 +165,10 @@
         if ([[recommendedDoses firstObject][MIN_AGE_KEY] integerValue] > [baby ageDDAtDate:[NSDate date]].day){
             seriesStatusDict[SBTVaccineSeriesRulesUsedKey] = recommendedDoses;
             seriesStatusDict[SBTVaccineSeriesStatusKey] = @(SBTVaccinationNotYetDue);
+            for (int i = 0; i < [datesGiven count]; i++){
+                [doseStatuses addObject:@(SBTVaccineDoseInvalidTooEarly)];
+            }
+            seriesStatusDict[SBTVaccineSeriesDoseStatusKey] = doseStatuses;
             [alternateStatusDictionaries addObject:seriesStatusDict];
             continue;
         }

@@ -179,6 +179,7 @@
 -(void)addEncounter:(SBTEncounter *)encounter
 {
     if (!encounter) return;
+    if ([self.encounters containsObject:encounter]) return;
     encounter.baby = self;
     [self.encounters addObject:encounter];
     [_encounters sortUsingSelector:@selector(compare:)];

@@ -37,7 +37,8 @@
 }
 
 -(void)SBTEncounterEditTVC:(SBTEncounterEditTVC *)editTVC updatedEncounter:(SBTEncounter *)encounter{
-    // since the data is shared, I don't think I need to actually do anything here
+    //this will only add the encounter if it did not already exist
+    [self.baby addEncounter:encounter];
     [self updateDisplay];
 }
 

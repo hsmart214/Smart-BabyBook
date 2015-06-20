@@ -39,6 +39,7 @@
             break;
         case SBTVaccinationNotYetDue:
             self.statusLabel.text = NSLocalizedString(@"Not due yet", @"Patient too young for next dose");
+            break;
         default:
             self.statusLabel.text = @"Should not ever see this text";
             break;
