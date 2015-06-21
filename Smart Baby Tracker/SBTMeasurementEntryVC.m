@@ -164,6 +164,7 @@
         default:
             break;
     }
+    [self.picker reloadAllComponents];
     [self setPickerToValue:rep];
 }
 
@@ -251,7 +252,6 @@
             [self.picker selectRow:d inComponent:i animated:YES];
         }
     }
-    [self.picker reloadAllComponents];
 }
 
 #pragma mark - UIPickerViewDataSource, UIPickerViewDelegate
