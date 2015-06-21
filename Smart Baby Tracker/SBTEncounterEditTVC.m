@@ -95,6 +95,7 @@
     if ([segue.identifier isEqualToString:@"Obtain Weight"]){
         dest.parameter = SBTWeight;
         dest.measure = self.encounter.weight;
+        dest.infant = self.encounter.ageInDays < AGE_SWITCH_TO_DECIMAL_POUNDS;
     }
     if ([segue.identifier isEqualToString:@"Obtain Stature"]){
         if (self.encounter.length == 0.0){
