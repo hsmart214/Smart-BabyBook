@@ -38,7 +38,6 @@
 
 - (IBAction)cancel:(id)sender {
     [self.navigationController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
-    
 }
 
 - (IBAction)saveEncounter:(id)sender {
@@ -48,7 +47,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row == DATE_PICKER_ROW){
-        return 220;
+        return 220.0;
     }else{
         return UITableViewAutomaticDimension;
     }
@@ -144,7 +143,8 @@
     if (!self.baby){
         self.baby = self.encounter.baby;
     }
-    [self.datePicker setMinimumDate:self.baby.DOB];
+    // here we will allow setting the encounter earlier than the DOB to allow for changing the DOB itself
+    if (!self.editingBirthData) [self.datePicker setMinimumDate:self.baby.DOB];
     [self.datePicker setMaximumDate:[NSDate date]];
 }
 

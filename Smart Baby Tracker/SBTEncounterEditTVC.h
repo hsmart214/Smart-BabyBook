@@ -26,6 +26,7 @@
 
 @property (nonatomic, strong) SBTEncounter *encounter;
 @property (nonatomic, weak) SBTBaby *baby;
+@property (nonatomic) BOOL editingBirthData;
 @property (nonatomic, weak) id<SBTEncounterEditTVCDelegate> delegate;
 
 

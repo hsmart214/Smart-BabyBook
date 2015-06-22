@@ -21,6 +21,7 @@
 @property (nonatomic, copy) NSDate *dateCreated;
 @property (nonatomic, copy) NSDate *dateModified;
 @property (nonatomic, strong) NSDateFormatter *df;
+@property (nonatomic, strong, readwrite) NSDate *DOB;
 
 @end
 
@@ -216,7 +217,9 @@
             NSAssert([[self encountersList] firstObject] == encounter, @"Failed to add birth encounter in the first position.");
         }
     }
+    self.DOB = encounter.universalDate;
     self.dateModified = [NSDate date];
+    
     return YES;
 }
 

@@ -162,7 +162,7 @@ Individual circumstances may make modifications of these recommendations advisab
             <objects>
                 <tableViewController id="pok-lP-udk" customClass="SBTBabyEditViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="MjU-bb-Rh2">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="1200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <sections>
@@ -366,6 +366,25 @@ Individual circumstances may make modifications of these recommendations advisab
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="172" id="bbn-rO-OTN">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bbn-rO-OTN" id="9d5-0R-iqr">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BdP-Xo-fAL">
+                                                    <rect key="frame" x="220" y="6" width="160" height="160"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="160" id="KYW-T2-SCb"/>
+                                                        <constraint firstAttribute="height" constant="160" id="ykj-Tv-xrv"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="centerX" secondItem="BdP-Xo-fAL" secondAttribute="centerX" id="E9Q-4Z-ULI"/>
+                                                <constraint firstAttribute="centerY" secondItem="BdP-Xo-fAL" secondAttribute="centerY" constant="-0.25" id="zRr-zQ-KvE"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -394,7 +413,10 @@ Individual circumstances may make modifications of these recommendations advisab
                         </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="New Child" id="AtF-Sd-u10"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="600" height="1200"/>
                     <connections>
+                        <outlet property="babyPic" destination="BdP-Xo-fAL" id="Oox-bt-coL"/>
                         <outlet property="birthLengthLabel" destination="Eus-ti-Bgf" id="J7Q-EW-gA0"/>
                         <outlet property="birthTimeLabel" destination="kqb-eO-Oyu" id="alC-IC-636"/>
                         <outlet property="birthTimePicker" destination="LVw-b7-PaE" id="4r9-3S-QnD"/>

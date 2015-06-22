@@ -42,6 +42,7 @@
     BOOL editingDueDate;
     NSDate *tempDOB;
     NSDate *tempBirthTime;
+    NSString *tempName;
     NSDateComponents *dobComponentsMMDDYYYY;
     NSDateComponents *birthTimeHHMM;
     NSDateFormatter *df;
@@ -94,7 +95,7 @@
             [alertView show];
         }else{
             newBaby.gender = (SBTGender)self.genderControl.selectedSegmentIndex;
-            newBaby.thumbnail = image;
+            newBaby.thumbnail = image ? image : self.baby.thumbnail;
             // unitFlags is still MMDDYYYY
             newBaby.dueDate = [[NSCalendar currentCalendar] components:unitFlags fromDate:self.dueDatePicker.date];
             [self.delegate babyEditor:self didSaveBaby:newBaby];
@@ -264,6 +265,7 @@
 
 -(BOOL)textFieldShouldEndEditing:(UITextField *)textField
 {
+    tempName = textField.text;
     return YES;
 }
 
@@ -308,7 +310,10 @@
     buildString = [NSString stringWithFormat:@"%1.1f %@", hc, units];
     self.headCircLabel.text = buildString;
 
-    self.birthEncounter = [encounter copy];
+    BOOL success = [self.baby replaceBirthEncounterWithEncounter:[encounter copy]];
+    if (success) {
+        self.birthEncounter = [encounter copy];
+    }
 }
 
 #pragma mark - Navigation
@@ -320,10 +325,10 @@
         SBTEncounterEditTVC *dest = [nav.viewControllers firstObject];
         dest.delegate = self;
         dest.baby = self.baby;
+        dest.editingBirthData = YES;
         if ([self.baby.encountersList count]) {
             dest.encounter = self.baby.encountersList[0];
         }
-        //        dest.dateDescriptionLabel.text = NSLocalizedString(@"Birth Date:", @"Label for birth date entry field");
         [dest setTitle:@"Birth Encounter"];
     }
 }
@@ -336,7 +341,7 @@
         tempBirthTime = self.baby.DOB;
         tempDOB = self.baby.DOB;
         self.title = self.baby.name;
-        self.nameField.text = self.baby.name;
+        self.nameField.text = tempName ? tempName : self.baby.name;
         self.babyPic.image = self.baby.thumbnail;
         [self.birthTimePicker setDate:self.baby.DOB];
         if (self.baby.dueDate){
