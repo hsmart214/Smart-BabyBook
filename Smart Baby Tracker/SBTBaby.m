@@ -20,6 +20,7 @@
 @property (nonatomic, strong) NSMutableArray *encounters;
 @property (nonatomic, copy) NSDate *dateCreated;
 @property (nonatomic, copy) NSDate *dateModified;
+@property (nonatomic, strong) NSDateFormatter *df;
 
 @end
 
@@ -86,6 +87,19 @@
         age = [NSString stringWithFormat:@"%ld yrs", (long)comps.year];
     }
     return age;
+}
+
+-(NSDateFormatter *)df{
+    if (!_df){
+        _df = [[NSDateFormatter alloc] init];
+        [_df setDateStyle:NSDateFormatterShortStyle];
+        [_df setTimeStyle:NSDateFormatterNoStyle];
+    }
+    return _df;
+}
+
+-(NSString *)dobDescription{
+    return [self.df stringFromDate:self.DOB];
 }
 
 -(void)setName:(NSString *)name
@@ -330,6 +344,11 @@
 +(BOOL)supportsSecureCoding
 {
     return YES;
+}
+
+-(void)dealloc
+{
+    self.df = nil;
 }
 
 @end

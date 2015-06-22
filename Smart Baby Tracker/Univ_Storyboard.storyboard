@@ -71,26 +71,63 @@ Individual circumstances may make modifications of these recommendations advisab
                                     </variation>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Child Cell" textLabel="Ccp-h3-55r" detailTextLabel="LoP-u4-A5G" style="IBUITableViewCellStyleValue1" id="9HC-CZ-OGK">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Child Cell" rowHeight="88" id="9HC-CZ-OGK" customClass="SBTChildCell">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9HC-CZ-OGK" id="WCE-Wo-99P">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ccp-h3-55r">
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="okZ-tl-kxX">
+                                            <rect key="frame" x="8" y="8" width="71.5" height="71.5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="okZ-tl-kxX" secondAttribute="height" multiplier="1:1" id="EAE-bJ-adW"/>
+                                                <constraint firstAttribute="height" constant="72" id="UGY-ja-mvU"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ksd-zC-QF4">
+                                            <rect key="frame" x="87" y="8" width="42" height="20.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Age" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="LoP-u4-A5G">
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SoI-J8-ULh">
+                                            <rect key="frame" x="87" y="32" width="42" height="20.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yob-GO-6bh">
+                                            <rect key="frame" x="137" y="31.5" width="42" height="20.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bv2-UE-nGn">
+                                            <rect key="frame" x="515" y="21" width="44" height="44"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="44" id="0WR-nU-oQC"/>
+                                                <constraint firstAttribute="width" constant="44" id="z7G-w0-s9P"/>
+                                            </constraints>
+                                        </imageView>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="okZ-tl-kxX" firstAttribute="top" secondItem="WCE-Wo-99P" secondAttribute="topMargin" id="BWs-Fr-hG1"/>
+                                        <constraint firstItem="yob-GO-6bh" firstAttribute="leading" secondItem="SoI-J8-ULh" secondAttribute="trailing" constant="8" id="CQW-bf-Z6B"/>
+                                        <constraint firstItem="Ksd-zC-QF4" firstAttribute="leading" secondItem="okZ-tl-kxX" secondAttribute="trailing" constant="7.5" id="DhH-KD-f1Q"/>
+                                        <constraint firstItem="SoI-J8-ULh" firstAttribute="baseline" secondItem="yob-GO-6bh" secondAttribute="baseline" id="MDv-TN-jwZ"/>
+                                        <constraint firstItem="bv2-UE-nGn" firstAttribute="trailing" secondItem="WCE-Wo-99P" secondAttribute="trailingMargin" id="NVp-iy-vPI"/>
+                                        <constraint firstAttribute="centerY" secondItem="bv2-UE-nGn" secondAttribute="centerY" constant="0.75" id="Pzo-L8-NZd"/>
+                                        <constraint firstItem="Ksd-zC-QF4" firstAttribute="leading" secondItem="SoI-J8-ULh" secondAttribute="leading" id="Qpo-vT-fu6"/>
+                                        <constraint firstItem="okZ-tl-kxX" firstAttribute="leading" secondItem="WCE-Wo-99P" secondAttribute="leadingMargin" id="Rw0-Ys-ucM"/>
+                                        <constraint firstItem="Ksd-zC-QF4" firstAttribute="top" secondItem="WCE-Wo-99P" secondAttribute="topMargin" id="WSH-Db-Tfw"/>
+                                        <constraint firstItem="SoI-J8-ULh" firstAttribute="top" secondItem="Ksd-zC-QF4" secondAttribute="bottom" constant="4" id="tRL-yz-kfY"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="ageLabel" destination="yob-GO-6bh" id="d1D-4f-E02"/>
+                                    <outlet property="dobLabel" destination="SoI-J8-ULh" id="qeI-mg-MVd"/>
+                                    <outlet property="name" destination="Ksd-zC-QF4" id="KF3-TM-D2h"/>
+                                    <outlet property="statusIcon" destination="bv2-UE-nGn" id="fD6-59-NVw"/>
+                                    <outlet property="thumbnailView" destination="okZ-tl-kxX" id="hBe-aY-ZNe"/>
                                     <segue destination="3c7-s8-sdz" kind="show" identifier="showBabyInfo" id="uKU-cD-KI1"/>
                                 </connections>
                             </tableViewCell>
@@ -1677,7 +1714,7 @@ Individual circumstances may make modifications of these recommendations advisab
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="zIK-Ze-kUM"/>
-        <segue reference="t8A-9i-5wY"/>
+        <segue reference="KbO-9Z-f7F"/>
         <segue reference="GNu-Z6-MMO"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.31307025550000001" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>

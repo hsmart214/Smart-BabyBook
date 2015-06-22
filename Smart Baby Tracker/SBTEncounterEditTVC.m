@@ -136,6 +136,7 @@
         self.encounter = [SBTEncounter new];
         self.encounter.baby = self.baby;
         NSAssert(self.baby != nil, @"Asked for a new encounter without giving an SBTBaby");
+        if (!self.title) self.title = @"New Encounter";
     }else{
         NSString *t = NSLocalizedString(@"Encounter", @"Encounter decription");
         self.title = [NSString stringWithFormat:@"%@ %@", t, [self.df stringFromDate:self.encounter.universalDate]];

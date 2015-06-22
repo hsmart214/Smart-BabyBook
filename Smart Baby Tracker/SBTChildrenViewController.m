@@ -11,6 +11,7 @@
 #import "SBTBabyInfoTVC.h"
 #import "SBTBabyEditViewController.h"
 #import "SBTDataStore.h"
+#import "SBTChildCell.h"
 
 @interface SBTChildrenViewController ()
 
@@ -38,12 +39,18 @@
     return section == 0 ? 1 : [self.children count];
 }
 
+-(CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 88.0;
+}
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0){
         return 160.0;
     }else{
-        return UITableViewAutomaticDimension;
+        //return UITableViewAutomaticDimension;
+        return 88.0;
     }
 }
 
@@ -70,7 +77,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell;
+    SBTChildCell *cell;
     if (indexPath.section == 0){
         cell =[tableView dequeueReusableCellWithIdentifier:@"Main Info Cell" forIndexPath:indexPath];
     }else{
@@ -78,8 +85,11 @@
         cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
         
         SBTBaby *baby = self.children[indexPath.row];
-        cell.textLabel.text = baby.name;
-        cell.detailTextLabel.text = [baby ageDescriptionAtDate:[NSDate date]];
+        cell.name.text = baby.name;
+        cell.ageLabel.text = [baby ageDescriptionAtDate:[NSDate date]];
+        cell.dobLabel.text = baby.dobDescription;
+        cell.thumbnailView.image = baby.thumbnail;
+        cell.baby = baby;
     }
     return cell;
 }
