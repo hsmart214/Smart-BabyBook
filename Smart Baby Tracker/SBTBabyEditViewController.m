@@ -132,6 +132,15 @@
 
 }
 
+#pragma mark - Lazy instantiation
+
+-(SBTEncounter *)birthEncounter{
+    if (!_birthEncounter){
+        _birthEncounter = [[SBTEncounter alloc] initWithDate:[NSDate date]];
+    }
+    return _birthEncounter;
+}
+
 #pragma mark - UITableViewDelegate
 
 -(BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath

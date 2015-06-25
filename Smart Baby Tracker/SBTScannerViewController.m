@@ -64,13 +64,12 @@
                     [myWeakSelf.delegate camera:self didCaptureBarcode:readableObject];
                     [myWeakSelf.captureSession stopRunning];
                     [myWeakSelf.pLayer removeFromSuperlayer];
-                    [myWeakSelf.navigationController popViewControllerAnimated:YES];
+                    [myWeakSelf.presentingViewController dismissViewControllerAnimated:YES completion:nil];
                 });
             }
         }
     }
 }
-
 
 
 @end

@@ -124,4 +124,8 @@
     return YES;
 }
 
+-(NSString *)description{
+    return [NSString stringWithFormat:@"%@", [self propertyList]];
+}
+
 @end

@@ -349,6 +349,10 @@
     return YES;
 }
 
+-(NSString *)description{
+    return [NSString stringWithFormat:@"Baby: %@, DOB %@, %ld encounters",[self name], [self dobDescription], [self.encounters count]];
+}
+
 -(void)dealloc
 {
     self.df = nil;

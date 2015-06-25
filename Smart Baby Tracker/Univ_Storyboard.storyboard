@@ -1041,6 +1041,13 @@ Individual circumstances may make modifications of these recommendations advisab
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Barcode Details" id="hLO-0D-ILB"/>
+                    <connections>
+                        <outlet property="componentsLabel" destination="enV-mL-5VI" id="SMG-nK-iK5"/>
+                        <outlet property="expDateLabel" destination="MlQ-fS-eY8" id="Y0Q-50-Yip"/>
+                        <outlet property="lotNumberLabel" destination="Wlq-yR-dBb" id="dn5-TS-SXQ"/>
+                        <outlet property="nameLabel" destination="iOp-WB-cfj" id="Oc6-OS-RZO"/>
+                        <outlet property="ndcLabel" destination="gQk-uF-5qF" id="2wh-7g-kPQ"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uNz-sT-ckn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
