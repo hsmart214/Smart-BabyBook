@@ -434,6 +434,7 @@
     df = nil;
     nf = nil;
     self.birthEncounter = nil;
+    self.popCon = nil;
 }
 
 @end

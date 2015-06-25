@@ -150,6 +150,7 @@
 
 -(void)dealloc{
     self.encounter = nil;
+    self.oldEncounter = nil;
     self.df = nil;
 }
 

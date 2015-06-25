@@ -87,5 +87,13 @@
                                        toFile:path];
 }
 
+-(NSString *)debugDescription{
+    return @"Baby data store shared instance.";
+}
+
+-(void)dealloc{
+    self.babyDict = nil;
+}
+
 
 @end

@@ -168,4 +168,9 @@
     }
 }
 
+-(void)dealloc{
+    self.componentFromVaccine = nil;
+    self.vaccineComponents = nil;
+}
+
 @end

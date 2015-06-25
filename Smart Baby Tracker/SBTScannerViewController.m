@@ -64,11 +64,17 @@
                     [myWeakSelf.delegate camera:self didCaptureBarcode:readableObject];
                     [myWeakSelf.captureSession stopRunning];
                     [myWeakSelf.pLayer removeFromSuperlayer];
-                    [myWeakSelf.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+                    [myWeakSelf.navigationController popViewControllerAnimated:YES];
                 });
             }
         }
     }
+}
+
+-(void)dealloc{
+    self.captureQueue = nil;
+    self.captureSession = nil;
+    self.lastRecognizedObject = nil;
 }
 
 

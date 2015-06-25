@@ -515,13 +515,6 @@ static NSString * const SBTGraphCacheFilePrefix = @"com.mySmartSoftware.graphCac
         }
     }
     [[self growthDataSource] infantAgeMaximum];
-//    __weak SBTGraphVC *myWeakSelf = self;
-//    [[NSNotificationCenter defaultCenter] addObserverForName:SBTGrowthChartDidChangeAgeRangeNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note){
-//        NSDictionary *userInfo = note.userInfo;
-//        BOOL newChildChart = [userInfo[SBTChildGraphKey] boolValue];
-//        myWeakSelf.childChart = newChildChart;
-//        [myWeakSelf resetDisplay];
-//    }];
 }
 
 -(void)dealloc
@@ -529,7 +522,6 @@ static NSString * const SBTGraphCacheFilePrefix = @"com.mySmartSoftware.graphCac
     self.graphView = nil;
     self.measurementAxisLabels = nil;
     self.ageAxisLabels = nil;
-    //    [[NSNotificationCenter defaultCenter] removeObserver:self name:SBTGrowthChartDidChangeAgeRangeNotification object:nil];
 }
 
 @end

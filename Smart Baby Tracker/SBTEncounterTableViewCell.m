@@ -8,12 +8,10 @@
 
 #import "SBTEncounterTableViewCell.h"
 
-@interface SBTEncounterTableViewCell()
-
-
-
-@end
-
 @implementation SBTEncounterTableViewCell
+
+-(NSString *)debugDescription{
+    return [NSString stringWithFormat:@"Encounter on date %@", self.dateLabel.text];
+}
 
 @end

@@ -10,6 +10,8 @@
 
 @implementation SBTChildCell
 
-
+-(NSString *)debugDescription{
+    return [NSString stringWithFormat:@"Child cell for %@", self.name];
+}
 
 @end

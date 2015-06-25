@@ -151,7 +151,10 @@
     }
 }
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+-(void)dealloc{
+    self.sortedGenericNames = nil;
+    self.sortedTradeNames = nil;
+    self.vaccinesGiven = nil;
 }
 
 @end

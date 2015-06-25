@@ -899,7 +899,7 @@ Individual circumstances may make modifications of these recommendations advisab
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="ISX-Y6-VI6"/>
                         <barButtonItem systemItem="camera" id="r16-Kg-LyE">
                             <connections>
-                                <segue destination="cPy-ZF-fd1" kind="presentation" identifier="Scan Barcode" id="IDU-Dj-g3p"/>
+                                <segue destination="cPy-ZF-fd1" kind="show" identifier="Scan Barcode" id="IDU-Dj-g3p"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="QYV-wm-jXY"/>

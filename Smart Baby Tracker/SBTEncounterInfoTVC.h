@@ -13,7 +13,7 @@
 
 @interface SBTEncounterInfoTVC : UITableViewController
 
-@property (nonatomic, strong) SBTEncounter *encounter;
+@property (nonatomic, weak) SBTEncounter *encounter;
 @property (nonatomic, weak) id<SBTEncounterEditTVCDelegate> delegate;
 
 @end

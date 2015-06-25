@@ -24,7 +24,6 @@
 		421C749218937536000E3C30 /* Smart_Baby_TrackerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 421C749118937536000E3C30 /* Smart_Baby_TrackerTests.m */; };
 		4220B75718E4C2B500557F27 /* SBTGraphPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 4220B75618E4C2B500557F27 /* SBTGraphPoint.m */; };
 		4226B8CD189F5F3B00682A6A /* NSDateComponents+Today.m in Sources */ = {isa = PBXBuildFile; fileRef = 4226B8CC189F5F3B00682A6A /* NSDateComponents+Today.m */; };
-		423091B81AB3F01400E5EC63 /* SBTGrowthTBC.m in Sources */ = {isa = PBXBuildFile; fileRef = 423091B71AB3F01400E5EC63 /* SBTGrowthTBC.m */; };
 		423091BB1AB3F76D00E5EC63 /* SBTGraphVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 423091BA1AB3F76D00E5EC63 /* SBTGraphVC.m */; };
 		423E593E1920890500E2E9AC /* babies.data in Resources */ = {isa = PBXBuildFile; fileRef = 423E593D1920890500E2E9AC /* babies.data */; };
 		4248806618944C84009F2837 /* SBTBaby.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248806518944C84009F2837 /* SBTBaby.m */; };
@@ -80,7 +79,6 @@
 		42BFE7D518D7F1DA00B0E2F4 /* SBTDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 42BFE7D418D7F1DA00B0E2F4 /* SBTDataStore.m */; };
 		42C309821921DF1B00542C6A /* SBTMiscVaccineScheduleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C309811921DF1B00542C6A /* SBTMiscVaccineScheduleTests.m */; };
 		42C753DB18C2B5630050F38A /* SBTGrowthDataSourceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C753DA18C2B5630050F38A /* SBTGrowthDataSourceTests.m */; };
-		42C9D55C18DFD22F000B4131 /* SBTLongPressLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C9D55B18DFD22F000B4131 /* SBTLongPressLabel.m */; };
 		42CB9A5118D4F7260097BBE3 /* SBTBabyInfoTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 42CB9A5018D4F7260097BBE3 /* SBTBabyInfoTVC.m */; };
 		42CB9A5718D5731C0097BBE3 /* SBTEncounterTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 42CB9A5618D5731C0097BBE3 /* SBTEncounterTableViewCell.m */; };
 		42CB9A5A18D57C4E0097BBE3 /* SBTEncountersTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 42CB9A5918D57C4E0097BBE3 /* SBTEncountersTVC.m */; };
@@ -129,8 +127,6 @@
 		4220B75618E4C2B500557F27 /* SBTGraphPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTGraphPoint.m; sourceTree = "<group>"; };
 		4226B8CB189F5F3B00682A6A /* NSDateComponents+Today.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDateComponents+Today.h"; sourceTree = "<group>"; };
 		4226B8CC189F5F3B00682A6A /* NSDateComponents+Today.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateComponents+Today.m"; sourceTree = "<group>"; };
-		423091B61AB3F01400E5EC63 /* SBTGrowthTBC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTGrowthTBC.h; sourceTree = "<group>"; };
-		423091B71AB3F01400E5EC63 /* SBTGrowthTBC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTGrowthTBC.m; sourceTree = "<group>"; };
 		423091B91AB3F76D00E5EC63 /* SBTGraphVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTGraphVC.h; sourceTree = "<group>"; };
 		423091BA1AB3F76D00E5EC63 /* SBTGraphVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTGraphVC.m; sourceTree = "<group>"; };
 		423E593D1920890500E2E9AC /* babies.data */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = babies.data; sourceTree = "<group>"; };
@@ -210,8 +206,6 @@
 		42BFE7D418D7F1DA00B0E2F4 /* SBTDataStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTDataStore.m; sourceTree = "<group>"; };
 		42C309811921DF1B00542C6A /* SBTMiscVaccineScheduleTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTMiscVaccineScheduleTests.m; sourceTree = "<group>"; };
 		42C753DA18C2B5630050F38A /* SBTGrowthDataSourceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTGrowthDataSourceTests.m; sourceTree = "<group>"; };
-		42C9D55A18DFD22F000B4131 /* SBTLongPressLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTLongPressLabel.h; sourceTree = "<group>"; };
-		42C9D55B18DFD22F000B4131 /* SBTLongPressLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTLongPressLabel.m; sourceTree = "<group>"; };
 		42CB9A4F18D4F7260097BBE3 /* SBTBabyInfoTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTBabyInfoTVC.h; sourceTree = "<group>"; };
 		42CB9A5018D4F7260097BBE3 /* SBTBabyInfoTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTBabyInfoTVC.m; sourceTree = "<group>"; };
 		42CB9A5518D5731C0097BBE3 /* SBTEncounterTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTEncounterTableViewCell.h; sourceTree = "<group>"; };
@@ -303,8 +297,6 @@
 				4281384D1AA2BF3300770A26 /* SBTAddScannedVaccinesTVC.m */,
 				4281384F1AA2C8D600770A26 /* SBTScannedVaccineDetailsTVC.h */,
 				428138501AA2C8D600770A26 /* SBTScannedVaccineDetailsTVC.m */,
-				423091B61AB3F01400E5EC63 /* SBTGrowthTBC.h */,
-				423091B71AB3F01400E5EC63 /* SBTGrowthTBC.m */,
 				4295AFB31B09693400D0EC41 /* SBTGraphVCDelegate.h */,
 				423091B91AB3F76D00E5EC63 /* SBTGraphVC.h */,
 				423091BA1AB3F76D00E5EC63 /* SBTGraphVC.m */,
@@ -339,8 +331,6 @@
 				42CB9A5C18D589C30097BBE3 /* SBTVaccinesGivenTVC.m */,
 				42BFE7D318D7F1DA00B0E2F4 /* SBTDataStore.h */,
 				42BFE7D418D7F1DA00B0E2F4 /* SBTDataStore.m */,
-				42C9D55A18DFD22F000B4131 /* SBTLongPressLabel.h */,
-				42C9D55B18DFD22F000B4131 /* SBTLongPressLabel.m */,
 				421C2A6E18E3D12100EE8A19 /* UIColor+SBTColors.h */,
 				421C2A6F18E3D12100EE8A19 /* UIColor+SBTColors.m */,
 				4279754918F1EC5A00F506C7 /* SBTPreferencesTVC.h */,
@@ -628,10 +618,8 @@
 				4287698918CD77AE007862AB /* SBTBabyEditViewController.m in Sources */,
 				42BFE7D518D7F1DA00B0E2F4 /* SBTDataStore.m in Sources */,
 				4281384B1AA2BE3F00770A26 /* SBTScannerViewController.m in Sources */,
-				42C9D55C18DFD22F000B4131 /* SBTLongPressLabel.m in Sources */,
 				42AAD6071B2BE50A00166071 /* SBTMeasurementEntryVC.m in Sources */,
 				426FF5D818C15DB000B66F36 /* SBTDataPoint.m in Sources */,
-				423091B81AB3F01400E5EC63 /* SBTGrowthTBC.m in Sources */,
 				4226B8CD189F5F3B00682A6A /* NSDateComponents+Today.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
