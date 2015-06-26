@@ -14,8 +14,6 @@
 		421C746B18937535000E3C30 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 421C746918937535000E3C30 /* InfoPlist.strings */; };
 		421C746D18937535000E3C30 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 421C746C18937535000E3C30 /* main.m */; };
 		421C747118937535000E3C30 /* SBTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 421C747018937535000E3C30 /* SBTAppDelegate.m */; };
-		421C747418937535000E3C30 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 421C747218937535000E3C30 /* Main_iPhone.storyboard */; };
-		421C747718937535000E3C30 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 421C747518937535000E3C30 /* Main_iPad.storyboard */; };
 		421C747F18937535000E3C30 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 421C747E18937535000E3C30 /* Images.xcassets */; };
 		421C748618937535000E3C30 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 421C748518937535000E3C30 /* XCTest.framework */; };
 		421C748718937535000E3C30 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 421C746018937535000E3C30 /* Foundation.framework */; };
@@ -71,7 +69,6 @@
 		42901BD818CB9756002EB9E9 /* SBTMMRScheduleTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42901BD718CB9756002EB9E9 /* SBTMMRScheduleTest.m */; };
 		42901BDA18CBD0B6002EB9E9 /* SBTHepBScheduleTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42901BD918CBD0B6002EB9E9 /* SBTHepBScheduleTest.m */; };
 		4291CD351AA58419009452AD /* VaccineNDCs.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4291CD341AA58419009452AD /* VaccineNDCs.txt */; };
-		4295AFB21B09672500D0EC41 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4295AFB11B09672500D0EC41 /* GameKit.framework */; };
 		429700CE18AED9AA0013A91B /* ACIP Schedule.plist in Resources */ = {isa = PBXBuildFile; fileRef = 429700CD18AED9AA0013A91B /* ACIP Schedule.plist */; };
 		42AAD6041B2BE00F00166071 /* SBTEncounterEditTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 42AAD6031B2BE00F00166071 /* SBTEncounterEditTVC.m */; };
 		42AAD6071B2BE50A00166071 /* SBTMeasurementEntryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 42AAD6061B2BE50A00166071 /* SBTMeasurementEntryVC.m */; };
@@ -115,8 +112,6 @@
 		421C746E18937535000E3C30 /* Smart Baby Tracker-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Smart Baby Tracker-Prefix.pch"; sourceTree = "<group>"; };
 		421C746F18937535000E3C30 /* SBTAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SBTAppDelegate.h; sourceTree = "<group>"; };
 		421C747018937535000E3C30 /* SBTAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SBTAppDelegate.m; sourceTree = "<group>"; };
-		421C747318937535000E3C30 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
-		421C747618937535000E3C30 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
 		421C747E18937535000E3C30 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		421C748418937535000E3C30 /* Smart Baby TrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Smart Baby TrackerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		421C748518937535000E3C30 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -193,7 +188,6 @@
 		42901BD918CBD0B6002EB9E9 /* SBTHepBScheduleTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTHepBScheduleTest.m; sourceTree = "<group>"; };
 		4291CD341AA58419009452AD /* VaccineNDCs.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = VaccineNDCs.txt; sourceTree = "<group>"; };
 		4295AFB01B09671F00D0EC41 /* Smart Baby Tracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Smart Baby Tracker.entitlements"; sourceTree = "<group>"; };
-		4295AFB11B09672500D0EC41 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		4295AFB31B09693400D0EC41 /* SBTGraphVCDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTGraphVCDelegate.h; sourceTree = "<group>"; };
 		429700CD18AED9AA0013A91B /* ACIP Schedule.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ACIP Schedule.plist"; sourceTree = "<group>"; };
 		42AAD6021B2BE00F00166071 /* SBTEncounterEditTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTEncounterEditTVC.h; sourceTree = "<group>"; };
@@ -236,7 +230,6 @@
 				421C746318937535000E3C30 /* CoreGraphics.framework in Frameworks */,
 				421C746518937535000E3C30 /* UIKit.framework in Frameworks */,
 				421C746118937535000E3C30 /* Foundation.framework in Frameworks */,
-				4295AFB21B09672500D0EC41 /* GameKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,7 +268,6 @@
 		421C745F18937535000E3C30 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				4295AFB11B09672500D0EC41 /* GameKit.framework */,
 				421C746018937535000E3C30 /* Foundation.framework */,
 				421C746218937535000E3C30 /* CoreGraphics.framework */,
 				421C746418937535000E3C30 /* UIKit.framework */,
@@ -288,8 +280,6 @@
 			isa = PBXGroup;
 			children = (
 				4295AFB01B09671F00D0EC41 /* Smart Baby Tracker.entitlements */,
-				421C747518937535000E3C30 /* Main_iPad.storyboard */,
-				421C747218937535000E3C30 /* Main_iPhone.storyboard */,
 				42D481781A3376410058C7AE /* Univ_Storyboard.storyboard */,
 				428138491AA2BE3F00770A26 /* SBTScannerViewController.h */,
 				4281384A1AA2BE3F00770A26 /* SBTScannerViewController.m */,
@@ -498,7 +488,7 @@
 						DevelopmentTeam = TY3543425A;
 						SystemCapabilities = {
 							com.apple.GameCenter = {
-								enabled = 1;
+								enabled = 0;
 							};
 							com.apple.iCloud = {
 								enabled = 0;
@@ -538,13 +528,11 @@
 				426AC51619024D8700EF694C /* whobmiboys.txt in Resources */,
 				426436B318C4459800414CA1 /* whobmiinfantboys.txt in Resources */,
 				426436B218C4459800414CA1 /* cdcweightinfantgirls.txt in Resources */,
-				421C747718937535000E3C30 /* Main_iPad.storyboard in Resources */,
 				421C747F18937535000E3C30 /* Images.xcassets in Resources */,
 				429700CE18AED9AA0013A91B /* ACIP Schedule.plist in Resources */,
 				426436B118C4459800414CA1 /* cdcweightinfantboys.txt in Resources */,
 				4291CD351AA58419009452AD /* VaccineNDCs.txt in Resources */,
 				426436AF18C4459800414CA1 /* cdcweightboys.txt in Resources */,
-				421C747418937535000E3C30 /* Main_iPhone.storyboard in Resources */,
 				426436AC18C4459800414CA1 /* cdclengthgirls.txt in Resources */,
 				426AC51A19024D8700EF694C /* whoweightgirls.txt in Resources */,
 				426436B918C4459800414CA1 /* whoweightinfantboys.txt in Resources */,
@@ -656,22 +644,6 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		421C747218937535000E3C30 /* Main_iPhone.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				421C747318937535000E3C30 /* Base */,
-			);
-			name = Main_iPhone.storyboard;
-			sourceTree = "<group>";
-		};
-		421C747518937535000E3C30 /* Main_iPad.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				421C747618937535000E3C30 /* Base */,
-			);
-			name = Main_iPad.storyboard;
-			sourceTree = "<group>";
-		};
 		421C748E18937536000E3C30 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -715,7 +687,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -748,7 +720,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -761,6 +733,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_OBJC_IMPLICIT_ATOMIC_PROPERTIES = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -782,6 +756,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_OBJC_IMPLICIT_ATOMIC_PROPERTIES = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

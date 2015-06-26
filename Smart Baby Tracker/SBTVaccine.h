@@ -19,7 +19,7 @@
 @property (nonatomic, copy) NSArray *displayNames;
 @property (nonatomic) BOOL liveVaccine;
 // Optional
-@property (assign) BOOL barcodeScanned;
+@property (nonatomic, assign) BOOL barcodeScanned;
 @property (nonatomic) SBTVaccineRoute route;
 @property (nonatomic, copy) NSString *manufacturer;
 @property (nonatomic, copy) NSString *ndc;

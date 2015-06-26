@@ -18,7 +18,7 @@
 @property (nonatomic, strong) UIImage *thumbnail;
 
 @property (nonatomic, copy) NSDateComponents *dueDate;    // this is optional.  If no due date, assume full term baby.
-@property (assign) SBTGender gender;
+@property (nonatomic, assign) SBTGender gender;
 
 -(BOOL)isPremature;
 

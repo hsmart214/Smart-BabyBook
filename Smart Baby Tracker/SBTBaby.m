@@ -350,7 +350,7 @@
 }
 
 -(NSString *)description{
-    return [NSString stringWithFormat:@"Baby: %@, DOB %@, %ld encounters",[self name], [self dobDescription], [self.encounters count]];
+    return [NSString stringWithFormat:@"Baby: %@, DOB %@, %ld encounters",[self name], [self dobDescription], (unsigned long)[self.encounters count]];
 }
 
 -(void)dealloc
