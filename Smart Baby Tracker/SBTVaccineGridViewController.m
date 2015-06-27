@@ -151,7 +151,7 @@ NSString * const SBTVaccineEncountersKey = @"com.mySmartSoftware.SmartBabyTracke
                                @[@(SBTComponentVZV)],
                                @[@(SBTComponentRota)],
                                @[@(SBTComponentPCV13), @(SBTComponentPCV7)],
-                               @[@(SBTComponentMCV4), @(SBTComponentMenCY), @(SBTComponentMenC), @(SBTComponentMenB), @(SBTComponentMPV4)],
+                               @[@(SBTComponentMCV4)],
                                @[@(SBTComponentTdap), @(SBTComponentTd)],
                                @[@(SBTComponentHPV4), @(SBTComponentHPV2)],
                                ];
@@ -288,6 +288,12 @@ NSString * const SBTVaccineEncountersKey = @"com.mySmartSoftware.SmartBabyTracke
     [bgView setContentMode:UIViewContentModeScaleToFill];
     self.collectionView.backgroundView = bgView;
     
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    // regenerate the model every time we go off screen
+    _gridModel = nil;
 }
 
 -(void)dealloc

@@ -115,6 +115,8 @@
     }else{
         [imagePicker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
     }
+    //TODO: imagePicker.cameraOverlayView;
+    
     [imagePicker setDelegate:self];
     if (self.popCon) {
         [self.popCon dismissPopoverAnimated:YES];

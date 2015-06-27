@@ -104,4 +104,5 @@ static NSString * const SBTVaccineSeriesDoseStatusKey = @"com.mySmartSoftware.Sm
 static NSString * const SBTUnitPreferenceMetric = @"com.mySmartSoftware.SmartBabyTracker.MetricUnits";
 static NSString * const SBTUnitPreferenceStandard = @"com.mySmartSoftware.SmartBabyTracker.StandardUnits";
 static NSString * const SBTGrowthChartDidChangeAgeRangeNotification = @"com.mySmartSoftware.SmartBabyTracker.GrowthChartDidChangeAgeRangeNotification";
+static NSString * const SBTGrowthDataSourceDidChangeInfantCutoffNotification = @"com.mySmartSoftware.SmartBabyTracker.GrowthDataSourceDidChangeInfantCutoffNotification";
 static NSString * const SBTChildGraphKey = @"com.mySmartSoftware.SmartBabyTracker.ChildGraphKey";

@@ -22,6 +22,7 @@
 #define BMI_TAB_POSITION 2
 
 #define GROWTH_LINE_WIDTH 4.0f
+#define AGE_LABEL_Y_ADJUSTMENT 5.0f
 
 
 // to this we add in order - CDC/WHO infant/child 2yr/3yr/5yr boy/girl height/weight/headCirc/BMI portrait/landscape
@@ -154,11 +155,18 @@ static NSString * const SBTGraphCacheFilePrefix = @"com.mySmartSoftware.graphCac
     // The tricky part is that this is a rect in the screen oriented coordinates - x,y == TOP LEFT!!!
     // So... the y represents the max measure.  The min is given by (maxVRange - y - origin.y)
     // ptRect is in points, mRect is in metric measurement units for y, days for x
+    double graphXStart = [self isChildChart] ? [SBTGrowthDataSource infantAgeMaximum] : 0;
     CGRect ptRect = [self.graphView convertRect:self.overlayView.bounds fromView:self.overlayView];
     CGFloat hRatio = [self currentHMeasurePerPoint];
     CGFloat vRatio = [self currentVMeasurePerPoint];
-    CGRect mRect = CGRectMake(ptRect.origin.x * hRatio, ptRect.origin.y * vRatio, ptRect.size.width * hRatio, ptRect.size.height * vRatio);
+    CGRect mRect = CGRectMake(ptRect.origin.x * hRatio + graphXStart, ptRect.origin.y * vRatio, ptRect.size.width * hRatio, ptRect.size.height * vRatio);
     return mRect;
+}
+
+-(CGFloat)xPositionForAgeInDays:(double)days{
+    double graphXStart = [self isChildChart] ? [SBTGrowthDataSource infantAgeMaximum] : 0;
+    CGFloat hRatio = [self currentHMeasurePerPoint];
+    return (days - graphXStart) / hRatio;
 }
 
 -(void)adjustAxesForContentOffset:(CGPoint)offset andScale:(CGFloat)scale
@@ -180,6 +188,8 @@ static NSString * const SBTGraphCacheFilePrefix = @"com.mySmartSoftware.graphCac
     double maxMeasureShown = [self maxVRange] - visibleMeasures.origin.y;
     double minMeasureShown = maxMeasureShown - visibleMeasures.size.height;
     
+    // add the percentile marks to the ends of the percentile lines (left edge)
+    
     NSArray *percentiles = @[@(P5),@(P10),@(P25),@(P50),@(P75),@(P90),@(P95),];
     NSArray *pctStrings = @[@"5",@"10",@"25",@"50",@"75",@"90",@"95",];
     NSArray *pctMeasures = [self.growthDataSource measurementsAtPercentiles:percentiles
@@ -200,10 +210,78 @@ static NSString * const SBTGraphCacheFilePrefix = @"com.mySmartSoftware.graphCac
         }
     }
     
-    // TODO: Draw the axes
-    // add the ticks and labels for the data (y axis) remember the y axis is inverted
+    // create a switchable flag for the infant cutoff age
+    double m = [SBTGrowthDataSource infantAgeMaximum];
+    NSInteger infantCutoff = 0;
+    if (m < 2*366){// 2yrs
+        infantCutoff = 2;
+    }else if (m < 3*366){// 3 yrs
+        infantCutoff = 3;
+    }else{// 5 yrs
+        infantCutoff = 5;
+    }
+    // TODO: add the ticks and labels for the data (y axis) remember the y axis is inverted
+    
     // add the ticks and labels for the age (x axis)
-    // add the percentile marks to the ends of the percentile lines (left edge)
+    NSArray *ageLabels;
+    NSInteger divisionCount = 0;
+    CGFloat divisionSize = 0.0;
+    CGFloat firstLabelAge = 0.0;
+    if (self.isChildChart){
+        // how many years on chart?
+        switch (infantCutoff) {
+            case 2:
+                divisionCount = 8;
+                divisionSize = 2 * 365.25;
+                firstLabelAge = 4 * 365.25;
+                ageLabels = @[@"4y", @"6y", @"8y", @"10y", @"12y", @"14y", @"16y", @"18y"];
+                break;
+            case 3:
+                divisionCount = 8;
+                divisionSize = 2 * 365.25;
+                firstLabelAge = 4 * 365.25;
+                ageLabels = @[@"4y", @"6y", @"8y", @"10y", @"12y", @"14y", @"16y", @"18y"];
+                break;
+            case 5:
+                divisionCount = 7;
+                divisionSize = 2 * 365.25;
+                firstLabelAge = 6 * 365.25;
+                ageLabels = @[@"6y", @"8y", @"10y", @"12y", @"14y", @"16y", @"18y"];
+            default:
+                break;
+        }
+    }else{
+        // we have an infant chart
+        switch (infantCutoff) {
+            case 2:
+                ageLabels = @[@"2m", @"4m", @"6m", @"8m", @"10m", @"12m", @"14m", @"16m", @"18m", @"20m", @"22m"];
+                divisionSize = 2 * DAYS_PER_MONTH;
+                firstLabelAge = 2 * DAYS_PER_MONTH;
+                break;
+            case 3:
+                ageLabels = @[@"3m", @"6m", @"9m", @"12m", @"15m", @"18m", @"21m", @"24m", @"27m", @"30m", @"33m"];
+                divisionSize = 3 * DAYS_PER_MONTH;
+                firstLabelAge = 3 * DAYS_PER_MONTH;
+                break;
+            case 5:
+                ageLabels = @[@"5m", @"10m", @"15m", @"20m", @"25m", @"30m", @"35m", @"40m", @"45m", @"50m", @"55m"];
+                divisionSize = 5 * DAYS_PER_MONTH;
+                firstLabelAge = 5 * DAYS_PER_MONTH;
+            default:
+                break;
+        }
+        divisionCount = 11;
+    
+    }
+    for (int i = 0; i < divisionCount; i++){
+        CGFloat xPos = [self xPositionForAgeInDays:firstLabelAge + i * divisionSize];
+        NSAttributedString *label = [[NSAttributedString alloc] initWithString:ageLabels[i] attributes:attrs];
+        CGSize box = label.size;
+        // how far down the side of the image are we?
+        CGFloat yPos = self.overlayView.bounds.size.height - AGE_LABEL_Y_ADJUSTMENT;
+        CGPoint boxOrigin = CGPointMake(xPos - box.width/2, yPos - box.height);
+        [label drawAtPoint:boxOrigin];
+    }
     
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     self.labelsView.image = image;
@@ -295,9 +373,16 @@ static NSString * const SBTGraphCacheFilePrefix = @"com.mySmartSoftware.graphCac
         [[UIColor SBTSuperLightGray] setStroke];
         [path setLineWidth:2.0];
         
-        // every year for child, every 2 mos for infant
+        // every year for child, 12 divisions for infant
         
         CGFloat spacing = 2 * DAYS_PER_MONTH;
+        double infantMax = [SBTGrowthDataSource infantAgeMaximum];
+        if (infantMax > 2*366){
+            spacing = 3 * DAYS_PER_MONTH;
+        }
+        if (infantMax > 4 * 366){
+            spacing = 5 * DAYS_PER_MONTH;
+        }
         if ([self maxHRange] > (365.25 * 5.1)) spacing = 365.25;
         CGFloat age = xStart + spacing;
         while (age < [self maxHRange]) {

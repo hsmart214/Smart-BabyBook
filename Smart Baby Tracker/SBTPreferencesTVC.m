@@ -8,6 +8,7 @@
 
 #import "SBTPreferencesTVC.h"
 #import "SBTUnitsConvertor.h"
+#import "SBTGrowthDataSource.h"
 
 #define INFANT_STANDARD_SECTION 0
 #define CHILD_STANDARD_SECTION 1
@@ -174,6 +175,9 @@
                 default:
                     break;
             }
+            [defaults synchronize];
+            [[NSNotificationCenter defaultCenter] postNotificationName:SBTGrowthDataSourceDidChangeInfantCutoffNotification object:self];
+            
             UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
             [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
             cell = [tableView cellForRowAtIndexPath:otherPath1];

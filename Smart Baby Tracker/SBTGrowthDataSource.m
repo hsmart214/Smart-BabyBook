@@ -195,10 +195,34 @@
     return _infantChildCutoff;
 }
 
+-(void)resetInfantAgeMaximum{
+    _infantChildCutoff = 0.0;
+}
+
 -(BOOL)hasLimitedWeightData
 {
     // override if weight data range is limited (only occurs in WHO Data Source right now)
     return NO;
+}
+
+-(instancetype)init{
+    if (self = [super init]){
+        __weak SBTGrowthDataSource *myWeakSelf = self;
+        [[NSNotificationCenter defaultCenter] addObserverForName:SBTGrowthDataSourceDidChangeInfantCutoffNotification
+                                                          object:nil
+                                                           queue:[NSOperationQueue mainQueue]
+                                                      usingBlock:^(NSNotification *not){
+                                                          // when notified of a change, set the cutoff to zero to trigger a check of NSUserDefaults
+                                                          // on the next access
+                                                          SBTGrowthDataSource *myStrongSelf = myWeakSelf;
+                                                          myStrongSelf->_infantChildCutoff = 0.0;
+                                                      }];
+    }
+    return self;
+}
+
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:SBTGrowthDataSourceDidChangeInfantCutoffNotification object:nil];
 }
 
 +(instancetype)sharedDataSource
