@@ -1239,7 +1239,7 @@ Individual circumstances may make modifications of these recommendations advisab
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="9QN-HT-dym" detailTextLabel="Idi-Ht-LSJ" style="IBUITableViewCellStyleValue1" id="yjC-rn-oHa">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="9QN-HT-dym" detailTextLabel="Idi-Ht-LSJ" imageView="5LS-RF-gE8" style="IBUITableViewCellStyleValue1" id="yjC-rn-oHa">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yjC-rn-oHa" id="5IA-sf-Okj">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -1256,6 +1256,9 @@ Individual circumstances may make modifications of these recommendations advisab
                                                     <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="Calendar" id="5LS-RF-gE8">
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
@@ -1729,6 +1732,7 @@ Individual circumstances may make modifications of these recommendations advisab
         </scene>
     </scenes>
     <resources>
+        <image name="Calendar" width="48" height="48"/>
         <image name="greenCheck" width="30" height="27"/>
         <image name="headCirc" width="30" height="30"/>
         <image name="heightTab" width="30" height="30"/>
