@@ -109,7 +109,11 @@
         editTVC.baby = self.baby;
     }
     if ([segue.identifier isEqualToString:@"showEncounterInfo"]){
+        SBTEncounterTableViewCell *cell = sender;
         SBTEncounterInfoTVC *dest = segue.destinationViewController;
+        if ([self.tableView indexPathForCell:cell].row == 0){
+            dest.disableEditing = YES;
+        }
         SBTEncounter *enc = self.encounters[[self.tableView indexPathForCell:sender].row];
         dest.encounter = enc;
         NSString *dateString = [self.dateFormatter stringFromDate:enc.universalDate];

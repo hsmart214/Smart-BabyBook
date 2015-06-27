@@ -1101,7 +1101,7 @@ Individual circumstances may make modifications of these recommendations advisab
             </objects>
             <point key="canvasLocation" x="3036" y="1779"/>
         </scene>
-        <!--Encounters-->
+        <!--Events-->
         <scene sceneID="zso-Xr-kfJ">
             <objects>
                 <tableViewController id="iPP-p8-bZg" customClass="SBTEncountersTVC" sceneMemberID="viewController">
@@ -1157,7 +1157,7 @@ Individual circumstances may make modifications of these recommendations advisab
                             <outlet property="delegate" destination="iPP-p8-bZg" id="pcx-WB-qFX"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Encounters" id="gx7-LN-EeZ">
+                    <navigationItem key="navigationItem" title="Events" id="gx7-LN-EeZ">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Odh-gm-ZdI">
                             <connections>
                                 <segue destination="IA9-Ip-tug" kind="presentation" identifier="addEncounterSegue" id="Z32-il-wZf"/>
@@ -1244,7 +1244,7 @@ Individual circumstances may make modifications of these recommendations advisab
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yjC-rn-oHa" id="5IA-sf-Okj">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Encounter Data" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9QN-HT-dym">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Event Data" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9QN-HT-dym">
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1262,7 +1262,7 @@ Individual circumstances may make modifications of these recommendations advisab
                                             <segue destination="iPP-p8-bZg" kind="show" identifier="List Encounters Segue" id="yHM-AS-yUg"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="n1o-W4-sec" detailTextLabel="h6A-NP-LX9" style="IBUITableViewCellStyleValue1" id="Yfh-m7-Yh7">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="n1o-W4-sec" detailTextLabel="h6A-NP-LX9" imageView="bni-H0-LYC" style="IBUITableViewCellStyleValue1" id="Yfh-m7-Yh7">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Yfh-m7-Yh7" id="frA-3S-JRK">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -1279,13 +1279,16 @@ Individual circumstances may make modifications of these recommendations advisab
                                                     <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="heightTab" id="bni-H0-LYC">
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
                                             <segue destination="cWX-t9-HMz" kind="show" identifier="showGrowthChart" id="KvO-Zv-JIO"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="bg1-Yh-x4Y" detailTextLabel="JKL-LN-Tzr" style="IBUITableViewCellStyleValue1" id="LLo-Hu-u4e">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="bg1-Yh-x4Y" detailTextLabel="JKL-LN-Tzr" imageView="ENy-nD-axr" style="IBUITableViewCellStyleValue1" id="LLo-Hu-u4e">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LLo-Hu-u4e" id="AFb-6I-f1j">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -1302,6 +1305,9 @@ Individual circumstances may make modifications of these recommendations advisab
                                                     <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="vaccine" id="ENy-nD-axr">
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
@@ -1731,7 +1737,7 @@ Individual circumstances may make modifications of these recommendations advisab
         <image name="weightTab" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="KbO-9Z-f7F"/>
+        <segue reference="t8A-9i-5wY"/>
         <segue reference="Z32-il-wZf"/>
         <segue reference="GNu-Z6-MMO"/>
     </inferredMetricsTieBreakers>

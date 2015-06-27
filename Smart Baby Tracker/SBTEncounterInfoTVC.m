@@ -166,6 +166,9 @@
     }else{
         self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:SBTiPhoneBackgroundImage]];
     }
+    if (self.disableEditing){
+        self.navigationItem.rightBarButtonItem = nil;
+    }
 }
 
 -(void)dealloc{

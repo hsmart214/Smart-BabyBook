@@ -15,5 +15,6 @@
 
 @property (nonatomic, weak) SBTEncounter *encounter;
 @property (nonatomic, weak) id<SBTEncounterEditTVCDelegate> delegate;
+@property (nonatomic, assign) BOOL disableEditing;
 
 @end

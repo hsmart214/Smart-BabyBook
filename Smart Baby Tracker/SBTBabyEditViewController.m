@@ -340,7 +340,7 @@
         if ([self.baby.encountersList count]) {
             dest.encounter = self.baby.encountersList[0];
         }
-        [dest setTitle:@"Birth Encounter"];
+        [dest setTitle:@"Birth Event"];
     }
 }
 

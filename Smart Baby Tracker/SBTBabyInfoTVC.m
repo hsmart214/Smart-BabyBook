@@ -78,7 +78,7 @@
     self.birthTimeLabel.text = timeString;
     // put the number of encounters into the encounters cell label
     NSInteger num = [[self.baby encountersList] count];
-    NSString *suffix = NSLocalizedString(@"encounters", @"encounters");
+    NSString *suffix = NSLocalizedString(@"events", @"events");
     self.numberOfEncountersLabel.text = [NSString stringWithFormat:@"%ld %@", (long)num, suffix];
     // put the data source (CDC/WHO) into the growth chart cell label
     suffix = NSLocalizedString(@"Data", @"Growth Data");
