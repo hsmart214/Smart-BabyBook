@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="5iK-Hl-PQU">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="WDi-a3-hJt">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
@@ -1282,7 +1282,7 @@ Individual circumstances may make modifications of these recommendations advisab
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="cWX-t9-HMz" kind="showDetail" identifier="showGrowthChart" id="KvO-Zv-JIO"/>
+                                            <segue destination="cWX-t9-HMz" kind="show" identifier="showGrowthChart" id="KvO-Zv-JIO"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="bg1-Yh-x4Y" detailTextLabel="JKL-LN-Tzr" style="IBUITableViewCellStyleValue1" id="LLo-Hu-u4e">
@@ -1305,7 +1305,7 @@ Individual circumstances may make modifications of these recommendations advisab
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="5s1-2a-ZfY" kind="showDetail" identifier="Vaccine Grid Segue" id="7Cp-lV-FWg"/>
+                                            <segue destination="5s1-2a-ZfY" kind="show" identifier="Vaccine Grid Segue" id="7Cp-lV-FWg"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -1539,18 +1539,6 @@ Individual circumstances may make modifications of these recommendations advisab
             </objects>
             <point key="canvasLocation" x="-378" y="139"/>
         </scene>
-        <!--Split View Controller-->
-        <scene sceneID="4Hf-RT-Fmj">
-            <objects>
-                <splitViewController id="5iK-Hl-PQU" sceneMemberID="viewController">
-                    <connections>
-                        <segue destination="WDi-a3-hJt" kind="relationship" relationship="masterViewController" id="qbb-du-Ncb"/>
-                    </connections>
-                </splitViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="6gC-Ls-mMA" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1198" y="470"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="nPp-xN-rzC">
             <objects>
@@ -1743,8 +1731,8 @@ Individual circumstances may make modifications of these recommendations advisab
         <image name="weightTab" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="zIK-Ze-kUM"/>
         <segue reference="KbO-9Z-f7F"/>
+        <segue reference="Z32-il-wZf"/>
         <segue reference="GNu-Z6-MMO"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.31307025550000001" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
