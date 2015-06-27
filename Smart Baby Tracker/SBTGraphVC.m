@@ -526,8 +526,16 @@ static NSString * const SBTGraphCacheFilePrefix = @"com.mySmartSoftware.graphCac
     }else{
         [[UIColor SBTGirlLineColor] setStroke];
     }
-    CGFloat x = [(SBTEncounter *)[encountersInRange firstObject] ageInDays];
-    CGFloat y = [(SBTEncounter *)[encountersInRange firstObject] dataForParameter:param];
+    
+    // now I have discovered that I need to spin through any points at the beginning of the range that have zero-value data
+    NSInteger firstEncounterWithData;
+    for (NSInteger i = 0; i < [encountersInRange count]; i++){
+        firstEncounterWithData = i;
+        if ([encountersInRange[i] dataForParameter:param] > 0.0)  break;
+    }
+    
+    CGFloat x = [(SBTEncounter *)encountersInRange[firstEncounterWithData] ageInDays];
+    CGFloat y = [(SBTEncounter *)encountersInRange[firstEncounterWithData] dataForParameter:param];
     // if it is a child (not infant) chart, start the graph at the age break point
     CGFloat xStart = [self isChildChart] ? [SBTGrowthDataSource infantAgeMaximum] + 1.0 : 0.0;
     // set the baseline of the chart based on which graph is being displayed
@@ -541,7 +549,8 @@ static NSString * const SBTGraphCacheFilePrefix = @"com.mySmartSoftware.graphCac
     // we need to draw it in the overlayView's coordinate system
     CGPoint point = [self.overlayView convertPoint:CGPointMake(locx, locy) fromView:self.graphView];
     [path moveToPoint:point];
-    for (SBTEncounter *enc in encountersInRange){
+    for (NSInteger i = firstEncounterWithData; i < [encountersInRange count]; i++){
+        SBTEncounter *enc = encountersInRange[i];
         x = [enc ageInDays];
         y = [enc dataForParameter:param];
         if (y < 0.001) continue;
@@ -550,6 +559,10 @@ static NSString * const SBTGraphCacheFilePrefix = @"com.mySmartSoftware.graphCac
         locy = self.graphView.bounds.size.height - locy;
         point = [self.overlayView convertPoint:CGPointMake(locx, locy) fromView:self.graphView];
         [path addLineToPoint:point];
+    }
+    if (firstEncounterWithData == [encountersInRange count]-1){
+        // there is only one point so make a small circle there
+        [path addArcWithCenter:point radius:GROWTH_LINE_WIDTH/2 startAngle:0.0 endAngle:2*M_PI clockwise:YES];
     }
     [path stroke];
     UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
