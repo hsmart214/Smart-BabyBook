@@ -8,6 +8,7 @@
 
 #import "SBTAppDelegate.h"
 #import "SBTUnitsConvertor.h"
+#import "SBTPreferencesTVC.h"
 
 @implementation SBTAppDelegate
 
@@ -33,6 +34,7 @@
     NSDictionary *unitPrefs = [defaults dictionaryForKey:UNIT_PREFS_KEY];
     if (!unitPrefs){ // first run
         [defaults setObject:[SBTUnitsConvertor standardUnitPrefs] forKey:UNIT_PREFS_KEY];
+        [SBTPreferencesTVC setAAPGrowthChartPreferences];
         [defaults registerDefaults:[defaults dictionaryRepresentation]];
     }
     return YES;

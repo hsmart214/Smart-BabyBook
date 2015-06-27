@@ -273,4 +273,12 @@
     }
 }
 
++(void)setAAPGrowthChartPreferences{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setDouble:AAP_CUTOFF forKey:SBTGrowthDataSourceInfantChildCutoffKey];
+    [defaults setInteger:WHO_INFANT_CHART forKey:SBTGrowthDataSourceInfantDataSourceKey];
+    [defaults setInteger:CDC_CHILD_CHART forKey:SBTGrowthDataSourceChildDataSourceKey];
+    [defaults synchronize];
+}
+
 @end

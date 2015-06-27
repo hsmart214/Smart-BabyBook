@@ -10,4 +10,6 @@
 
 @interface SBTPreferencesTVC : UITableViewController
 
++(void)setAAPGrowthChartPreferences;
+
 @end
