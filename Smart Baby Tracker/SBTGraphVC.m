@@ -512,7 +512,7 @@ static NSString * const SBTGraphCacheFilePrefix = @"com.mySmartSoftware.graphCac
 {
     NSArray *encounters = [self.baby encountersList];
     double first = [self isChildChart] ? self.growthDataSource.infantAgeMaximum + 1.0 : 0.0;
-    double last = [self isChildChart] ? [self.growthDataSource dataAgeRangeForAge:[self.growthDataSource infantAgeMaximum] + 1.0] : [self.growthDataSource infantAgeMaximum];
+    double last = [self isChildChart] ? [self.growthDataSource dataAgeRangeForAge:([self.growthDataSource infantAgeMaximum] + 1.0)] : [self.growthDataSource infantAgeMaximum];
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"%K BETWEEN %@", @"ageInDays", @[@(first), @(last)]];
     NSArray *encountersInRange = [encounters filteredArrayUsingPredicate:pred];
     UIGraphicsBeginImageContextWithOptions(self.overlayView.bounds.size, NO, 0.0);
@@ -533,7 +533,11 @@ static NSString * const SBTGraphCacheFilePrefix = @"com.mySmartSoftware.graphCac
         firstEncounterWithData = i;
         if ([encountersInRange[i] dataForParameter:param] > 0.0)  break;
     }
-    
+    if ([encountersInRange count] == 0){
+        UIGraphicsEndImageContext();
+        [self.overlayView setImage:nil];
+        return;
+    }
     CGFloat x = [(SBTEncounter *)encountersInRange[firstEncounterWithData] ageInDays];
     CGFloat y = [(SBTEncounter *)encountersInRange[firstEncounterWithData] dataForParameter:param];
     // if it is a child (not infant) chart, start the graph at the age break point

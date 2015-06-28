@@ -126,6 +126,8 @@
     //    NSString *key = [SBTVaccineSchedule keyForVaccineComponent:component];
     //    NSArray *recommendedDoses = [rules[key] lastObject];
     
+    if (doseOrd > [recommendedDoses count] - 1) return SBTVaccineDoseNoData;
+    
     NSInteger earliestAllowed = [recommendedDoses[doseOrd][MIN_AGE_KEY] integerValue];
     
     if (doseOrd > 0){

@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="WDi-a3-hJt">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Smart Baby Book-->
+        <!--mySmartSoftware-->
         <scene sceneID="FC1-ES-gNu">
             <objects>
                 <tableViewController clearsSelectionOnViewWillAppear="NO" id="w1r-5s-cj1" customClass="SBTChildrenViewController" sceneMemberID="viewController">
@@ -146,7 +145,7 @@ Individual circumstances may make modifications of these recommendations advisab
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
-                    <navigationItem key="navigationItem" title="Smart Baby Book" id="HHO-KB-Run">
+                    <navigationItem key="navigationItem" title="mySmartSoftware" id="HHO-KB-Run">
                         <barButtonItem key="leftBarButtonItem" systemItem="add" id="LKc-BG-J2S">
                             <connections>
                                 <segue destination="A9X-xn-Euu" kind="presentation" identifier="addBabySegue" id="KbO-9Z-f7F"/>
@@ -1627,14 +1626,14 @@ Individual circumstances may make modifications of these recommendations advisab
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eEK-XK-XNV" userLabel="contentView">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cz6-0P-U7z" userLabel="overlayView">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
                             </imageView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="50v-dv-3Kh">
-                                <rect key="frame" x="20" y="28" width="145" height="29"/>
+                                <rect key="frame" x="20" y="72" width="145" height="29"/>
                                 <segments>
                                     <segment title="0-24 mos"/>
                                     <segment title="2-20 yrs"/>
@@ -1655,7 +1654,7 @@ Individual circumstances may make modifications of these recommendations advisab
                                 </connections>
                             </segmentedControl>
                             <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RMc-3g-UIe" userLabel="labelsView">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1732,17 +1731,17 @@ Individual circumstances may make modifications of these recommendations advisab
         </scene>
     </scenes>
     <resources>
-        <image name="Calendar" width="48" height="48"/>
+        <image name="Calendar" width="30" height="30"/>
         <image name="greenCheck" width="30" height="27"/>
         <image name="headCirc" width="30" height="30"/>
         <image name="heightTab" width="30" height="30"/>
-        <image name="iTunesArtwork" width="1024" height="1024"/>
+        <image name="iTunesArtwork" width="512" height="512"/>
         <image name="vaccine" width="30" height="30"/>
         <image name="weightTab" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="t8A-9i-5wY"/>
         <segue reference="Z32-il-wZf"/>
+        <segue reference="KbO-9Z-f7F"/>
         <segue reference="GNu-Z6-MMO"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.31307025550000001" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
