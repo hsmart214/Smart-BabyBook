@@ -15,11 +15,6 @@
 		421C746D18937535000E3C30 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 421C746C18937535000E3C30 /* main.m */; };
 		421C747118937535000E3C30 /* SBTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 421C747018937535000E3C30 /* SBTAppDelegate.m */; };
 		421C747F18937535000E3C30 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 421C747E18937535000E3C30 /* Images.xcassets */; };
-		421C748618937535000E3C30 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 421C748518937535000E3C30 /* XCTest.framework */; };
-		421C748718937535000E3C30 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 421C746018937535000E3C30 /* Foundation.framework */; };
-		421C748818937535000E3C30 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 421C746418937535000E3C30 /* UIKit.framework */; };
-		421C749018937536000E3C30 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 421C748E18937536000E3C30 /* InfoPlist.strings */; };
-		421C749218937536000E3C30 /* Smart_Baby_TrackerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 421C749118937536000E3C30 /* Smart_Baby_TrackerTests.m */; };
 		4220B75718E4C2B500557F27 /* SBTGraphPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 4220B75618E4C2B500557F27 /* SBTGraphPoint.m */; };
 		4226B8CD189F5F3B00682A6A /* NSDateComponents+Today.m in Sources */ = {isa = PBXBuildFile; fileRef = 4226B8CC189F5F3B00682A6A /* NSDateComponents+Today.m */; };
 		423091BB1AB3F76D00E5EC63 /* SBTGraphVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 423091BA1AB3F76D00E5EC63 /* SBTGraphVC.m */; };
@@ -66,16 +61,13 @@
 		428138571AA2D86A00770A26 /* BCRVaccineCodeLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 428138561AA2D86A00770A26 /* BCRVaccineCodeLoader.m */; };
 		4287698618CD6F2E007862AB /* SBTChildrenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4287698518CD6F2E007862AB /* SBTChildrenViewController.m */; };
 		4287698918CD77AE007862AB /* SBTBabyEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4287698818CD77AE007862AB /* SBTBabyEditViewController.m */; };
-		42901BD818CB9756002EB9E9 /* SBTMMRScheduleTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42901BD718CB9756002EB9E9 /* SBTMMRScheduleTest.m */; };
-		42901BDA18CBD0B6002EB9E9 /* SBTHepBScheduleTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42901BD918CBD0B6002EB9E9 /* SBTHepBScheduleTest.m */; };
 		4291CD351AA58419009452AD /* VaccineNDCs.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4291CD341AA58419009452AD /* VaccineNDCs.txt */; };
 		429700CE18AED9AA0013A91B /* ACIP Schedule.plist in Resources */ = {isa = PBXBuildFile; fileRef = 429700CD18AED9AA0013A91B /* ACIP Schedule.plist */; };
 		42AAD6041B2BE00F00166071 /* SBTEncounterEditTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 42AAD6031B2BE00F00166071 /* SBTEncounterEditTVC.m */; };
 		42AAD6071B2BE50A00166071 /* SBTMeasurementEntryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 42AAD6061B2BE50A00166071 /* SBTMeasurementEntryVC.m */; };
 		42B601301895E1E6000C15F4 /* SBTVaccineSchedule.m in Sources */ = {isa = PBXBuildFile; fileRef = 42B6012F1895E1E6000C15F4 /* SBTVaccineSchedule.m */; };
 		42BFE7D518D7F1DA00B0E2F4 /* SBTDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 42BFE7D418D7F1DA00B0E2F4 /* SBTDataStore.m */; };
-		42C309821921DF1B00542C6A /* SBTMiscVaccineScheduleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C309811921DF1B00542C6A /* SBTMiscVaccineScheduleTests.m */; };
-		42C753DB18C2B5630050F38A /* SBTGrowthDataSourceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C753DA18C2B5630050F38A /* SBTGrowthDataSourceTests.m */; };
+		42C75D891B3FB505004D7EB6 /* Smart_BabyBook_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C75D881B3FB505004D7EB6 /* Smart_BabyBook_Tests.m */; };
 		42CB9A5118D4F7260097BBE3 /* SBTBabyInfoTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 42CB9A5018D4F7260097BBE3 /* SBTBabyInfoTVC.m */; };
 		42CB9A5718D5731C0097BBE3 /* SBTEncounterTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 42CB9A5618D5731C0097BBE3 /* SBTEncounterTableViewCell.m */; };
 		42CB9A5A18D57C4E0097BBE3 /* SBTEncountersTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 42CB9A5918D57C4E0097BBE3 /* SBTEncountersTVC.m */; };
@@ -83,41 +75,36 @@
 		42D481791A3376410058C7AE /* Univ_Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42D481781A3376410058C7AE /* Univ_Storyboard.storyboard */; };
 		42E7F98C18C267AE00C49072 /* SBTWHODataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E7F98B18C267AE00C49072 /* SBTWHODataSource.m */; };
 		42F49E471B37916000F0D89D /* SBTChildCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F49E461B37916000F0D89D /* SBTChildCell.m */; };
-		42F66E3618BC581D0099137F /* SBTDTaPScheduleTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F66E3518BC581D0099137F /* SBTDTaPScheduleTest.m */; };
 		8958B497191F316A007C032B /* SBTVaccineGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8958B496191F316A007C032B /* SBTVaccineGridViewController.m */; };
 		8958B49A191F3875007C032B /* SBTVaccineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8958B499191F3875007C032B /* SBTVaccineCell.m */; };
 		8958B49D191F452D007C032B /* SBTVaccineGridHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 8958B49C191F452D007C032B /* SBTVaccineGridHeader.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		421C748918937536000E3C30 /* PBXContainerItemProxy */ = {
+		42C75D8A1B3FB505004D7EB6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 421C745518937535000E3C30 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 421C745C18937535000E3C30;
-			remoteInfo = "Smart Baby Tracker";
+			remoteInfo = "Smart BabyBook";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		421C2A6E18E3D12100EE8A19 /* UIColor+SBTColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+SBTColors.h"; sourceTree = "<group>"; };
 		421C2A6F18E3D12100EE8A19 /* UIColor+SBTColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+SBTColors.m"; sourceTree = "<group>"; };
-		421C745D18937535000E3C30 /* Smart Baby Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Smart Baby Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		421C745D18937535000E3C30 /* Smart BabyBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Smart BabyBook.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		421C746018937535000E3C30 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		421C746218937535000E3C30 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		421C746418937535000E3C30 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		421C746818937535000E3C30 /* Smart Baby Tracker-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Smart Baby Tracker-Info.plist"; sourceTree = "<group>"; };
+		421C746818937535000E3C30 /* Smart BabyBook-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Smart BabyBook-Info.plist"; sourceTree = "<group>"; };
 		421C746A18937535000E3C30 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		421C746C18937535000E3C30 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		421C746E18937535000E3C30 /* Smart Baby Tracker-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Smart Baby Tracker-Prefix.pch"; sourceTree = "<group>"; };
+		421C746E18937535000E3C30 /* Smart BabyBook-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Smart BabyBook-Prefix.pch"; sourceTree = "<group>"; };
 		421C746F18937535000E3C30 /* SBTAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SBTAppDelegate.h; sourceTree = "<group>"; };
 		421C747018937535000E3C30 /* SBTAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SBTAppDelegate.m; sourceTree = "<group>"; };
 		421C747E18937535000E3C30 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		421C748418937535000E3C30 /* Smart Baby TrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Smart Baby TrackerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		421C748518937535000E3C30 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		421C748D18937536000E3C30 /* Smart Baby TrackerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Smart Baby TrackerTests-Info.plist"; sourceTree = "<group>"; };
-		421C748F18937536000E3C30 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		421C749118937536000E3C30 /* Smart_Baby_TrackerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Smart_Baby_TrackerTests.m; sourceTree = "<group>"; };
 		4220B75518E4C2B500557F27 /* SBTGraphPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTGraphPoint.h; sourceTree = "<group>"; };
 		4220B75618E4C2B500557F27 /* SBTGraphPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTGraphPoint.m; sourceTree = "<group>"; };
 		4226B8CB189F5F3B00682A6A /* NSDateComponents+Today.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDateComponents+Today.h"; sourceTree = "<group>"; };
@@ -184,8 +171,6 @@
 		4287698518CD6F2E007862AB /* SBTChildrenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTChildrenViewController.m; sourceTree = "<group>"; };
 		4287698718CD77AE007862AB /* SBTBabyEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTBabyEditViewController.h; sourceTree = "<group>"; };
 		4287698818CD77AE007862AB /* SBTBabyEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTBabyEditViewController.m; sourceTree = "<group>"; };
-		42901BD718CB9756002EB9E9 /* SBTMMRScheduleTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTMMRScheduleTest.m; sourceTree = "<group>"; };
-		42901BD918CBD0B6002EB9E9 /* SBTHepBScheduleTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTHepBScheduleTest.m; sourceTree = "<group>"; };
 		4291CD341AA58419009452AD /* VaccineNDCs.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = VaccineNDCs.txt; sourceTree = "<group>"; };
 		4295AFB01B09671F00D0EC41 /* Smart Baby Tracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Smart Baby Tracker.entitlements"; sourceTree = "<group>"; };
 		4295AFB31B09693400D0EC41 /* SBTGraphVCDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTGraphVCDelegate.h; sourceTree = "<group>"; };
@@ -198,8 +183,9 @@
 		42B6012F1895E1E6000C15F4 /* SBTVaccineSchedule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTVaccineSchedule.m; sourceTree = "<group>"; };
 		42BFE7D318D7F1DA00B0E2F4 /* SBTDataStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTDataStore.h; sourceTree = "<group>"; };
 		42BFE7D418D7F1DA00B0E2F4 /* SBTDataStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTDataStore.m; sourceTree = "<group>"; };
-		42C309811921DF1B00542C6A /* SBTMiscVaccineScheduleTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTMiscVaccineScheduleTests.m; sourceTree = "<group>"; };
-		42C753DA18C2B5630050F38A /* SBTGrowthDataSourceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTGrowthDataSourceTests.m; sourceTree = "<group>"; };
+		42C75D841B3FB505004D7EB6 /* Smart BabyBook Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Smart BabyBook Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		42C75D871B3FB505004D7EB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		42C75D881B3FB505004D7EB6 /* Smart_BabyBook_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Smart_BabyBook_Tests.m; sourceTree = "<group>"; };
 		42CB9A4F18D4F7260097BBE3 /* SBTBabyInfoTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTBabyInfoTVC.h; sourceTree = "<group>"; };
 		42CB9A5018D4F7260097BBE3 /* SBTBabyInfoTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTBabyInfoTVC.m; sourceTree = "<group>"; };
 		42CB9A5518D5731C0097BBE3 /* SBTEncounterTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTEncounterTableViewCell.h; sourceTree = "<group>"; };
@@ -213,7 +199,6 @@
 		42E7F98B18C267AE00C49072 /* SBTWHODataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTWHODataSource.m; sourceTree = "<group>"; };
 		42F49E451B37916000F0D89D /* SBTChildCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTChildCell.h; sourceTree = "<group>"; };
 		42F49E461B37916000F0D89D /* SBTChildCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTChildCell.m; sourceTree = "<group>"; };
-		42F66E3518BC581D0099137F /* SBTDTaPScheduleTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTDTaPScheduleTest.m; sourceTree = "<group>"; };
 		8958B495191F316A007C032B /* SBTVaccineGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTVaccineGridViewController.h; sourceTree = "<group>"; };
 		8958B496191F316A007C032B /* SBTVaccineGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTVaccineGridViewController.m; sourceTree = "<group>"; };
 		8958B498191F3875007C032B /* SBTVaccineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTVaccineCell.h; sourceTree = "<group>"; };
@@ -233,13 +218,10 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		421C748118937535000E3C30 /* Frameworks */ = {
+		42C75D811B3FB505004D7EB6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				421C748618937535000E3C30 /* XCTest.framework in Frameworks */,
-				421C748818937535000E3C30 /* UIKit.framework in Frameworks */,
-				421C748718937535000E3C30 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -250,7 +232,7 @@
 			isa = PBXGroup;
 			children = (
 				421C746618937535000E3C30 /* Smart Baby Tracker */,
-				421C748B18937536000E3C30 /* Smart Baby TrackerTests */,
+				42C75D851B3FB505004D7EB6 /* Smart BabyBook Tests */,
 				421C745F18937535000E3C30 /* Frameworks */,
 				421C745E18937535000E3C30 /* Products */,
 			);
@@ -259,8 +241,8 @@
 		421C745E18937535000E3C30 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				421C745D18937535000E3C30 /* Smart Baby Tracker.app */,
-				421C748418937535000E3C30 /* Smart Baby TrackerTests.xctest */,
+				421C745D18937535000E3C30 /* Smart BabyBook.app */,
+				42C75D841B3FB505004D7EB6 /* Smart BabyBook Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -336,37 +318,14 @@
 			isa = PBXGroup;
 			children = (
 				42C7540D18C2BBEE0050F38A /* Data files */,
-				421C746E18937535000E3C30 /* Smart Baby Tracker-Prefix.pch */,
+				421C746E18937535000E3C30 /* Smart BabyBook-Prefix.pch */,
 				421C746F18937535000E3C30 /* SBTAppDelegate.h */,
 				421C747018937535000E3C30 /* SBTAppDelegate.m */,
 				429700CD18AED9AA0013A91B /* ACIP Schedule.plist */,
 				423E593D1920890500E2E9AC /* babies.data */,
-				421C746818937535000E3C30 /* Smart Baby Tracker-Info.plist */,
+				421C746818937535000E3C30 /* Smart BabyBook-Info.plist */,
 				421C746918937535000E3C30 /* InfoPlist.strings */,
 				421C746C18937535000E3C30 /* main.m */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		421C748B18937536000E3C30 /* Smart Baby TrackerTests */ = {
-			isa = PBXGroup;
-			children = (
-				42C309811921DF1B00542C6A /* SBTMiscVaccineScheduleTests.m */,
-				42901BD918CBD0B6002EB9E9 /* SBTHepBScheduleTest.m */,
-				421C749118937536000E3C30 /* Smart_Baby_TrackerTests.m */,
-				42F66E3518BC581D0099137F /* SBTDTaPScheduleTest.m */,
-				42901BD718CB9756002EB9E9 /* SBTMMRScheduleTest.m */,
-				42C753DA18C2B5630050F38A /* SBTGrowthDataSourceTests.m */,
-				421C748C18937536000E3C30 /* Supporting Files */,
-			);
-			path = "Smart Baby TrackerTests";
-			sourceTree = "<group>";
-		};
-		421C748C18937536000E3C30 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				421C748D18937536000E3C30 /* Smart Baby TrackerTests-Info.plist */,
-				421C748E18937536000E3C30 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -436,12 +395,29 @@
 			name = "Data files";
 			sourceTree = "<group>";
 		};
+		42C75D851B3FB505004D7EB6 /* Smart BabyBook Tests */ = {
+			isa = PBXGroup;
+			children = (
+				42C75D881B3FB505004D7EB6 /* Smart_BabyBook_Tests.m */,
+				42C75D861B3FB505004D7EB6 /* Supporting Files */,
+			);
+			path = "Smart BabyBook Tests";
+			sourceTree = "<group>";
+		};
+		42C75D861B3FB505004D7EB6 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				42C75D871B3FB505004D7EB6 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		421C745C18937535000E3C30 /* Smart Baby Tracker */ = {
+		421C745C18937535000E3C30 /* Smart BabyBook */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 421C749518937536000E3C30 /* Build configuration list for PBXNativeTarget "Smart Baby Tracker" */;
+			buildConfigurationList = 421C749518937536000E3C30 /* Build configuration list for PBXNativeTarget "Smart BabyBook" */;
 			buildPhases = (
 				421C745918937535000E3C30 /* Sources */,
 				421C745A18937535000E3C30 /* Frameworks */,
@@ -451,27 +427,27 @@
 			);
 			dependencies = (
 			);
-			name = "Smart Baby Tracker";
+			name = "Smart BabyBook";
 			productName = "Smart Baby Tracker";
-			productReference = 421C745D18937535000E3C30 /* Smart Baby Tracker.app */;
+			productReference = 421C745D18937535000E3C30 /* Smart BabyBook.app */;
 			productType = "com.apple.product-type.application";
 		};
-		421C748318937535000E3C30 /* Smart Baby TrackerTests */ = {
+		42C75D831B3FB505004D7EB6 /* Smart BabyBook Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 421C749818937536000E3C30 /* Build configuration list for PBXNativeTarget "Smart Baby TrackerTests" */;
+			buildConfigurationList = 42C75D8C1B3FB505004D7EB6 /* Build configuration list for PBXNativeTarget "Smart BabyBook Tests" */;
 			buildPhases = (
-				421C748018937535000E3C30 /* Sources */,
-				421C748118937535000E3C30 /* Frameworks */,
-				421C748218937535000E3C30 /* Resources */,
+				42C75D801B3FB505004D7EB6 /* Sources */,
+				42C75D811B3FB505004D7EB6 /* Frameworks */,
+				42C75D821B3FB505004D7EB6 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				421C748A18937536000E3C30 /* PBXTargetDependency */,
+				42C75D8B1B3FB505004D7EB6 /* PBXTargetDependency */,
 			);
-			name = "Smart Baby TrackerTests";
-			productName = "Smart Baby TrackerTests";
-			productReference = 421C748418937535000E3C30 /* Smart Baby TrackerTests.xctest */;
+			name = "Smart BabyBook Tests";
+			productName = "Smart BabyBook Tests";
+			productReference = 42C75D841B3FB505004D7EB6 /* Smart BabyBook Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -495,12 +471,13 @@
 							};
 						};
 					};
-					421C748318937535000E3C30 = {
+					42C75D831B3FB505004D7EB6 = {
+						CreatedOnToolsVersion = 6.3.2;
 						TestTargetID = 421C745C18937535000E3C30;
 					};
 				};
 			};
-			buildConfigurationList = 421C745818937535000E3C30 /* Build configuration list for PBXProject "Smart Baby Tracker" */;
+			buildConfigurationList = 421C745818937535000E3C30 /* Build configuration list for PBXProject "Smart BabyBook" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -513,8 +490,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				421C745C18937535000E3C30 /* Smart Baby Tracker */,
-				421C748318937535000E3C30 /* Smart Baby TrackerTests */,
+				421C745C18937535000E3C30 /* Smart BabyBook */,
+				42C75D831B3FB505004D7EB6 /* Smart BabyBook Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -559,11 +536,10 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		421C748218937535000E3C30 /* Resources */ = {
+		42C75D821B3FB505004D7EB6 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				421C749018937536000E3C30 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -612,26 +588,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		421C748018937535000E3C30 /* Sources */ = {
+		42C75D801B3FB505004D7EB6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				42C753DB18C2B5630050F38A /* SBTGrowthDataSourceTests.m in Sources */,
-				42901BDA18CBD0B6002EB9E9 /* SBTHepBScheduleTest.m in Sources */,
-				42901BD818CB9756002EB9E9 /* SBTMMRScheduleTest.m in Sources */,
-				421C749218937536000E3C30 /* Smart_Baby_TrackerTests.m in Sources */,
-				42C309821921DF1B00542C6A /* SBTMiscVaccineScheduleTests.m in Sources */,
-				42F66E3618BC581D0099137F /* SBTDTaPScheduleTest.m in Sources */,
+				42C75D891B3FB505004D7EB6 /* Smart_BabyBook_Tests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		421C748A18937536000E3C30 /* PBXTargetDependency */ = {
+		42C75D8B1B3FB505004D7EB6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 421C745C18937535000E3C30 /* Smart Baby Tracker */;
-			targetProxy = 421C748918937536000E3C30 /* PBXContainerItemProxy */;
+			target = 421C745C18937535000E3C30 /* Smart BabyBook */;
+			targetProxy = 42C75D8A1B3FB505004D7EB6 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -640,14 +611,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				421C746A18937535000E3C30 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		421C748E18937536000E3C30 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				421C748F18937536000E3C30 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -738,10 +701,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Smart Baby Tracker/Smart Baby Tracker-Prefix.pch";
-				INFOPLIST_FILE = "Smart Baby Tracker/Smart Baby Tracker-Info.plist";
+				GCC_PREFIX_HEADER = "Smart Baby Tracker/Smart BabyBook-Prefix.pch";
+				INFOPLIST_FILE = "Smart Baby Tracker/Smart BabyBook-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Smart BabyBook";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Smart Baby Tracker/Smart Baby Tracker-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -761,10 +724,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Smart Baby Tracker/Smart Baby Tracker-Prefix.pch";
-				INFOPLIST_FILE = "Smart Baby Tracker/Smart Baby Tracker-Info.plist";
+				GCC_PREFIX_HEADER = "Smart Baby Tracker/Smart BabyBook-Prefix.pch";
+				INFOPLIST_FILE = "Smart Baby Tracker/Smart BabyBook-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Smart BabyBook";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Smart Baby Tracker/Smart Baby Tracker-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -772,50 +735,59 @@
 			};
 			name = Release;
 		};
-		421C749918937536000E3C30 /* Debug */ = {
+		42C75D8D1B3FB505004D7EB6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Smart Baby Tracker.app/Smart Baby Tracker";
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Smart Baby Tracker/Smart Baby Tracker-Prefix.pch";
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "Smart Baby TrackerTests/Smart Baby TrackerTests-Info.plist";
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = "Smart BabyBook Tests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Smart BabyBook.app/Smart BabyBook";
 			};
 			name = Debug;
 		};
-		421C749A18937536000E3C30 /* Release */ = {
+		42C75D8E1B3FB505004D7EB6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Smart Baby Tracker.app/Smart Baby Tracker";
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Smart Baby Tracker/Smart Baby Tracker-Prefix.pch";
-				INFOPLIST_FILE = "Smart Baby TrackerTests/Smart Baby TrackerTests-Info.plist";
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = "Smart BabyBook Tests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Smart BabyBook.app/Smart BabyBook";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		421C745818937535000E3C30 /* Build configuration list for PBXProject "Smart Baby Tracker" */ = {
+		421C745818937535000E3C30 /* Build configuration list for PBXProject "Smart BabyBook" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				421C749318937536000E3C30 /* Debug */,
@@ -824,7 +796,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		421C749518937536000E3C30 /* Build configuration list for PBXNativeTarget "Smart Baby Tracker" */ = {
+		421C749518937536000E3C30 /* Build configuration list for PBXNativeTarget "Smart BabyBook" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				421C749618937536000E3C30 /* Debug */,
@@ -833,14 +805,13 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		421C749818937536000E3C30 /* Build configuration list for PBXNativeTarget "Smart Baby TrackerTests" */ = {
+		42C75D8C1B3FB505004D7EB6 /* Build configuration list for PBXNativeTarget "Smart BabyBook Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				421C749918937536000E3C30 /* Debug */,
-				421C749A18937536000E3C30 /* Release */,
+				42C75D8D1B3FB505004D7EB6 /* Debug */,
+				42C75D8E1B3FB505004D7EB6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

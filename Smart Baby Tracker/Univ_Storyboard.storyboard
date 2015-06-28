@@ -6,7 +6,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--mySmartSoftware-->
+        <!--Smart BabyBook-->
         <scene sceneID="FC1-ES-gNu">
             <objects>
                 <tableViewController clearsSelectionOnViewWillAppear="NO" id="w1r-5s-cj1" customClass="SBTChildrenViewController" sceneMemberID="viewController">
@@ -145,7 +145,7 @@ Individual circumstances may make modifications of these recommendations advisab
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
-                    <navigationItem key="navigationItem" title="mySmartSoftware" id="HHO-KB-Run">
+                    <navigationItem key="navigationItem" title="Smart BabyBook" id="HHO-KB-Run">
                         <barButtonItem key="leftBarButtonItem" systemItem="add" id="LKc-BG-J2S">
                             <connections>
                                 <segue destination="A9X-xn-Euu" kind="presentation" identifier="addBabySegue" id="KbO-9Z-f7F"/>
@@ -1751,7 +1751,7 @@ Individual circumstances may make modifications of these recommendations advisab
     <inferredMetricsTieBreakers>
         <segue reference="Z32-il-wZf"/>
         <segue reference="o99-JM-dbg"/>
-        <segue reference="t8A-9i-5wY"/>
+        <segue reference="KbO-9Z-f7F"/>
         <segue reference="GNu-Z6-MMO"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.31307025550000001" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
