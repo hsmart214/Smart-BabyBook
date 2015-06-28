@@ -128,10 +128,14 @@
         bevc.baby = self.baby;
         bevc.delegate = self;
     }
-    if ([segue.identifier isEqualToString:@"List Encounters Segue"]){
+    if ([segue.identifier isEqualToString:@"List Encounters Segue"]
+        || [segue.identifier isEqualToString:@"New Encounter Segue"]){
         SBTEncountersTVC *encTVC = segue.destinationViewController;
         encTVC.baby = self.baby;
         encTVC.delegate = self;
+        if ([segue.identifier isEqualToString:@"New Encounter Segue"]){
+            encTVC.addingNewEncounter = YES;
+        }
     }
     if ([segue.identifier isEqualToString:@"showGrowthChart"]){
         SBTGraphVC *dest = segue.destinationViewController;

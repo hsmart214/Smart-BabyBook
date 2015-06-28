@@ -15,5 +15,6 @@
 @property (nonatomic, weak) SBTBaby *baby;
 @property (nonatomic, weak) id<SBTBabyEditDelegate> delegate;
 @property (nonatomic, strong) NSArray *encounters;
+@property (nonatomic, assign) BOOL addingNewEncounter;
 
 @end

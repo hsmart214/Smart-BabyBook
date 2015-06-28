@@ -373,6 +373,7 @@ Individual circumstances may make modifications of these recommendations advisab
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BdP-Xo-fAL">
                                                     <rect key="frame" x="220" y="6" width="160" height="160"/>
+                                                    <gestureRecognizers/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="160" id="KYW-T2-SCb"/>
                                                         <constraint firstAttribute="height" constant="160" id="ykj-Tv-xrv"/>
@@ -1166,7 +1167,7 @@ Individual circumstances may make modifications of these recommendations advisab
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uvc-Dr-ZpE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3036" y="951"/>
+            <point key="canvasLocation" x="3036" y="959"/>
         </scene>
         <!--Name of Child-->
         <scene sceneID="N1g-yD-xIC">
@@ -1324,7 +1325,15 @@ Individual circumstances may make modifications of these recommendations advisab
                             <outlet property="delegate" destination="3c7-s8-sdz" id="QmN-oy-WJE"/>
                         </connections>
                     </tableView>
-                    <toolbarItems/>
+                    <toolbarItems>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="RP4-Dv-Jsy"/>
+                        <barButtonItem title="New Event" id="4ql-7j-iuj">
+                            <connections>
+                                <segue destination="iPP-p8-bZg" kind="show" identifier="New Encounter Segue" id="o99-JM-dbg"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="2c8-d6-ZyV"/>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="Name of Child" id="EYB-hS-hpL">
                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="yvv-ev-AsJ">
                             <connections>
@@ -1741,7 +1750,8 @@ Individual circumstances may make modifications of these recommendations advisab
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Z32-il-wZf"/>
-        <segue reference="KbO-9Z-f7F"/>
+        <segue reference="o99-JM-dbg"/>
+        <segue reference="t8A-9i-5wY"/>
         <segue reference="GNu-Z6-MMO"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.31307025550000001" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>

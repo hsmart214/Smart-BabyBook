@@ -12,10 +12,12 @@
 #import "SBTUnitsConvertor.h"
 #import "SBTBaby.h"
 #import "NSDateComponents+Today.h"
+@import MobileCoreServices;
 
 #define BIRTH_TIME_ROW 2
 #define BIRTH_DATA_ROW 1
 #define DUE_DATE_ROW 4
+#define BABY_PIC_ROW 7
 #define DATE_PICKER_HEIGHT 219.0F
 
 @interface SBTBabyEditViewController ()<UITextFieldDelegate, UIPopoverControllerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, SBTEncounterEditTVCDelegate>
@@ -59,6 +61,9 @@
 // which will correctly set the time.  Otherwise it will be set to [NSDate date].
 // when saving the baby, we extract only the hours + minutes from the timePicker, and add it to the DOBComponents.
 // then we set it back on the birth encounter, and on the baby itself, and notify the delegate that we changed the baby.
+
+#pragma mark - Target/Action
+
 
 - (IBAction)pressedDone:(id)sender {
     // add the birth time to the DOB from the birth encounter
@@ -112,6 +117,7 @@
     UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
         [imagePicker setSourceType:UIImagePickerControllerSourceTypeCamera];
+        imagePicker.mediaTypes = @[(NSString *)kUTTypeImage];
     }else{
         [imagePicker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
     }
@@ -147,7 +153,8 @@
 
 -(BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == BIRTH_TIME_ROW || indexPath.row == DUE_DATE_ROW || indexPath.row == BIRTH_DATA_ROW){
+    if (indexPath.row == BIRTH_TIME_ROW || indexPath.row == DUE_DATE_ROW
+        || indexPath.row == BIRTH_DATA_ROW || indexPath.row == BABY_PIC_ROW){
         return YES;
     }else{
         return NO;
@@ -201,6 +208,8 @@
         }else{
             [self.dueDatePicker setHidden:NO];
         }
+    }else if (indexPath.row == BABY_PIC_ROW){
+        [self takeBabyPic:nil];
     }
     [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
     [tableView reloadData];

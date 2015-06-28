@@ -528,7 +528,7 @@ static NSString * const SBTGraphCacheFilePrefix = @"com.mySmartSoftware.graphCac
     }
     
     // now I have discovered that I need to spin through any points at the beginning of the range that have zero-value data
-    NSInteger firstEncounterWithData;
+    NSInteger firstEncounterWithData = 0;
     for (NSInteger i = 0; i < [encountersInRange count]; i++){
         firstEncounterWithData = i;
         if ([encountersInRange[i] dataForParameter:param] > 0.0)  break;

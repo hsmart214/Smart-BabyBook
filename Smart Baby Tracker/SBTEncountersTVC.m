@@ -124,6 +124,14 @@
 
 #pragma mark - View Life Cycle
 
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    if (self.addingNewEncounter){
+        self.addingNewEncounter = NO;
+        [self performSegueWithIdentifier:@"addEncounterSegue" sender:nil];
+    }
+}
+
 -(void)viewDidLoad
 {
     NSAssert(self.baby != nil, @"No baby in encounters TVC");
