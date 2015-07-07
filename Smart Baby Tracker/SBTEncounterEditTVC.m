@@ -84,10 +84,11 @@
 #pragma mark - Navigation
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    if ([segue.identifier isEqualToString:@"Show Vaccine List"]){
+    if ([segue.identifier isEqualToString:@"Show Vaccine List"] || [segue.identifier isEqualToString:@"Scan Vaccine Bottle"]){
         SBTAddScannedVaccinesTVC *dest = segue.destinationViewController;
         dest.delegate = self;
         dest.currentVaccines = [[NSSet alloc] initWithArray:self.encounter.vaccinesGiven];
+        dest.goStraightToCamera = [segue.identifier isEqualToString:@"Scan Vaccine Bottle"];
     }
     SBTMeasurementEntryVC *dest = segue.destinationViewController;
     dest.delegate = self;

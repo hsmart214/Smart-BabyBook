@@ -20,5 +20,6 @@
 
 @property (weak, nonatomic) id<SBTAddScannedVaccinesDelegate> delegate;
 @property (nonatomic, strong) NSSet* currentVaccines;  // set of SBTVaccine
+@property (nonatomic, assign) BOOL goStraightToCamera;
 
 @end

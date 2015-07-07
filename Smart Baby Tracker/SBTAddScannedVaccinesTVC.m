@@ -74,6 +74,13 @@
 
 #pragma mark - View controller lifecycle
 
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    if (self.goStraightToCamera){
+        [self performSegueWithIdentifier:@"Scan Barcode" sender:self];
+    }
+}
+
 -(void)viewDidLoad
 {
     [super viewDidLoad];

@@ -673,6 +673,23 @@ Individual circumstances may make modifications of these recommendations advisab
                                             <segue destination="Non-ST-pGQ" kind="show" identifier="Show Vaccine List" id="xRx-TS-k73"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="puu-hY-abm" style="IBUITableViewCellStyleDefault" id="kkI-Vk-3Oh">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kkI-Vk-3Oh" id="xeI-af-h4o">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Scan Vaccine Barcode" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="puu-hY-abm">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="Non-ST-pGQ" kind="show" identifier="Scan Vaccine Bottle" id="8NN-QL-fgg"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -1749,10 +1766,11 @@ Individual circumstances may make modifications of these recommendations advisab
         <image name="weightTab" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="GNu-Z6-MMO"/>
         <segue reference="Z32-il-wZf"/>
         <segue reference="o99-JM-dbg"/>
         <segue reference="KbO-9Z-f7F"/>
-        <segue reference="GNu-Z6-MMO"/>
+        <segue reference="8NN-QL-fgg"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.31307025550000001" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
 </document>
