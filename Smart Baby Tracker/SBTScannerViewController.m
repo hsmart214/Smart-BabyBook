@@ -30,11 +30,18 @@
     AVCaptureDevice *videoCaptureDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
     NSError *error = nil;
     AVCaptureDeviceInput *videoInput = [AVCaptureDeviceInput deviceInputWithDevice:videoCaptureDevice error:&error];
-    if(videoInput)
+    if(videoInput){
         [self.captureSession addInput:videoInput];
-    else
-        NSLog(@"Error: %@", error);
-    
+        [videoCaptureDevice lockForConfiguration:&error];
+        if (error) {
+            NSLog(@"Error locking capture device: %@", [error debugDescription]);
+        }else{
+            [videoCaptureDevice setVideoZoomFactor:1.5];
+            [videoCaptureDevice unlockForConfiguration];
+        }
+    }else{
+        NSLog(@"Error: %@", [error debugDescription]);
+    }
     AVCaptureMetadataOutput *metadataOutput = [[AVCaptureMetadataOutput alloc] init];
     [self.captureSession addOutput:metadataOutput];
     [metadataOutput setMetadataObjectsDelegate:self queue:self.captureQueue];

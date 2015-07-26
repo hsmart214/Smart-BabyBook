@@ -136,6 +136,7 @@
     if ([segue.identifier isEqualToString:@"Scan Barcode"]){
         SBTScannerViewController *dest = segue.destinationViewController;
         dest.delegate = self;
+        self.goStraightToCamera = NO;
     }
 }
 
