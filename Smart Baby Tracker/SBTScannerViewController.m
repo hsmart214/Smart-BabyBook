@@ -7,7 +7,11 @@
 //
 
 #import "SBTScannerViewController.h"
+#import "UIColor+SBTColors.h"
 @import MobileCoreServices;
+
+#define RETICLE_LINE_WIDTH 5.0f
+#define RETICLE_LENGTH 20.0f
 
 @interface SBTScannerViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, AVCaptureMetadataOutputObjectsDelegate>
 
@@ -16,6 +20,8 @@
 @property (strong, nonatomic) AVCaptureSession *captureSession;
 @property (strong, nonatomic) AVMetadataMachineReadableCodeObject *lastRecognizedObject;
 @property (weak, nonatomic) AVCaptureVideoPreviewLayer *pLayer; // we keep a reference to this so we can get rid of it
+@property (weak, nonatomic) IBOutlet UIView *previewLayer;
+@property (weak, nonatomic) IBOutlet UIImageView *overlayImageView;
 
 @end
 
@@ -24,6 +30,41 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // set up the overlay view
+    CGSize size = self.overlayImageView.bounds.size;
+    UIGraphicsBeginImageContextWithOptions(size, NO, 1.0);
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    [[UIColor SBTTransparentAluminum] setFill];
+    CGFloat qtr = size.width/4.0;
+    CGFloat third = size.height/3.0;
+    CGContextBeginPath(ctx);
+    CGContextMoveToPoint(ctx, 0.0, 0.0);
+    CGContextAddRect(ctx, CGRectMake(0.0, 0.0, qtr, size.height));
+    CGContextAddRect(ctx, CGRectMake(3*qtr, 0.0, qtr, size.height));
+    CGContextAddRect(ctx, CGRectMake(qtr, 0.0, 2*qtr, third));
+    CGContextAddRect(ctx, CGRectMake(qtr, 2*third, 2*qtr, third));
+    CGContextClosePath(ctx);
+    CGContextFillPath(ctx);
+    
+    CGContextBeginPath(ctx);
+    CGFloat w = RETICLE_LINE_WIDTH;
+    CGFloat l = RETICLE_LENGTH;
+    CGContextSetLineWidth(ctx, w);
+    CGContextMoveToPoint(ctx, qtr - w/2, third + l);
+    CGContextAddLineToPoint(ctx, qtr - w/2, third - w/2);
+    CGContextAddLineToPoint(ctx, qtr + l + w/2, third - w/2);
+    
+    UIColor *color = [self.view.tintColor colorWithAlphaComponent:0.5];
+    [color setStroke];
+    CGContextStrokePath(ctx);
+    
+    UIImage *overlay = UIGraphicsGetImageFromCurrentImageContext();
+    
+    self.overlayImageView.image = overlay;
+    
+    // set up and run the video preview layer
+    
     self.captureQueue = dispatch_queue_create("capture_queue", DISPATCH_QUEUE_PRIORITY_DEFAULT);
     
     self.captureSession = [[AVCaptureSession alloc] init];
@@ -48,10 +89,10 @@
     [metadataOutput setMetadataObjectTypes:@[AVMetadataObjectTypeDataMatrixCode]];
     
     
-    AVCaptureVideoPreviewLayer *previewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:self.captureSession];
-    previewLayer.frame = self.view.layer.bounds;
-    self.pLayer = previewLayer;
-    [self.view.layer addSublayer:previewLayer];
+    AVCaptureVideoPreviewLayer *pLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:self.captureSession];
+    pLayer.frame = self.view.layer.bounds;
+    self.pLayer = pLayer;
+    [self.previewLayer.layer addSublayer:pLayer];
     
     [self.captureSession startRunning];
 }

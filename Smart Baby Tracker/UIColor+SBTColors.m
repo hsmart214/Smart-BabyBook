@@ -36,5 +36,9 @@
     return [UIColor redColor];
 }
 
++(instancetype)SBTTransparentAluminum
+{
+    return [UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:0.5];
+}
 
 @end

@@ -23,7 +23,7 @@
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wAp-5L-pp0">
                                             <rect key="frame" x="152" y="8" width="162" height="48"/>
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <string key="text">Baby Tracker 1.0
+                                            <string key="text">Baby Tracker 1.1
 ©2015 mySmartSoftware</string>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -1745,11 +1745,32 @@ Individual circumstances may make modifications of these recommendations advisab
                         <viewControllerLayoutGuide type="top" id="39q-KQ-vH9"/>
                         <viewControllerLayoutGuide type="bottom" id="dHH-Pe-evB"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="WFr-3O-0uy">
+                    <view key="view" opaque="NO" contentMode="scaleToFill" id="WFr-3O-0uy">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <view opaque="NO" contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="tf5-aH-gCx">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </view>
+                            <view opaque="NO" contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="h1V-fN-oBO" customClass="UIImageView">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </view>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="tf5-aH-gCx" firstAttribute="width" secondItem="WFr-3O-0uy" secondAttribute="width" id="3au-Vl-nMI"/>
+                            <constraint firstItem="tf5-aH-gCx" firstAttribute="height" secondItem="WFr-3O-0uy" secondAttribute="height" id="CUP-jn-c7i"/>
+                            <constraint firstAttribute="centerX" secondItem="tf5-aH-gCx" secondAttribute="centerX" id="FX9-FM-JXg"/>
+                            <constraint firstAttribute="centerY" secondItem="h1V-fN-oBO" secondAttribute="centerY" id="JNy-Ly-GoD"/>
+                            <constraint firstAttribute="centerX" secondItem="h1V-fN-oBO" secondAttribute="centerX" id="Qcu-7v-5Qy"/>
+                            <constraint firstAttribute="centerY" secondItem="tf5-aH-gCx" secondAttribute="centerY" id="g3l-i9-0h6"/>
+                            <constraint firstAttribute="width" secondItem="h1V-fN-oBO" secondAttribute="width" id="l8d-D2-IME"/>
+                            <constraint firstAttribute="height" secondItem="h1V-fN-oBO" secondAttribute="height" id="zVT-ke-Jb4"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="overlayImageView" destination="h1V-fN-oBO" id="bmW-g9-Yga"/>
+                        <outlet property="previewLayer" destination="tf5-aH-gCx" id="Mwh-BK-Ufb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="49v-Pl-ixR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -15,5 +15,6 @@
 +(instancetype)SBTSuperLightGray;
 +(instancetype)SBTBoyLineColor;
 +(instancetype)SBTGirlLineColor;
++(instancetype)SBTTransparentAluminum;
 
 @end
