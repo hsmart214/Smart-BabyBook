@@ -1743,7 +1743,7 @@ Individual circumstances may make modifications of these recommendations advisab
         <!--Scanner View Controller-->
         <scene sceneID="1Xb-SJ-8xH">
             <objects>
-                <viewController useStoryboardIdentifierAsRestorationIdentifier="YES" id="cPy-ZF-fd1" customClass="SBTScannerViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Scanner" useStoryboardIdentifierAsRestorationIdentifier="YES" id="cPy-ZF-fd1" customClass="SBTScannerViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="39q-KQ-vH9"/>
                         <viewControllerLayoutGuide type="bottom" id="dHH-Pe-evB"/>

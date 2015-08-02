@@ -12,14 +12,12 @@
 
 @implementation BCRVaccineCodeLoader
 
+
 +(NSDictionary *)vaccines{
     NSMutableDictionary * sVaccines = [NSMutableDictionary new];
     if (![sVaccines count]) {
-        //NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        //NSInteger currentMotorsVersion = [defaults integerForKey:MOTOR_FILE_VERSION_KEY];
         NSBundle *mainBundle = [NSBundle mainBundle];
-        //NSInteger bundleMotorVersion = [[NSString stringWithContentsOfURL:[mainBundle URLForResource:MOTOR_VERSION_FILENAME withExtension:@"txt"] encoding:NSUTF8StringEncoding error:nil]integerValue];
-        
+       
         // Check to see if the vaccine information is already cached.  Return it
         NSURL *cacheURL = [[[NSFileManager defaultManager] URLsForDirectory:NSCachesDirectory inDomains:NSUserDomainMask] lastObject];
         NSURL *vaccineFileURL = [cacheURL URLByAppendingPathComponent:VACCINE_DICT_FILENAME];
@@ -81,6 +79,5 @@
     }
     return sVaccines;
 }
-
 @end
 

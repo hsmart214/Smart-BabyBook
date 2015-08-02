@@ -42,5 +42,6 @@ typedef NS_ENUM(NSUInteger, SBTVaccineDoseStatus) {
                                 usingDoseSeries:(NSArray *)recommendedDoses;
 +(SBTVaccineSchedule *)sharedSchedule;
 +(NSArray *)recommendedVaccines;
+-(NSArray *)recalledVaccines;
 
 @end

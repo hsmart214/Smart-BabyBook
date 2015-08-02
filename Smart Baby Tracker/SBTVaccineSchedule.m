@@ -9,8 +9,11 @@
 #import "SBTVaccineSchedule.h"
 #import "SBTBaby.h"
 #import "SBTVaccine.h"
+#import "SBTVaccineRecall.h"
 
 #define VACCINE_SCHEDULE_FILENAME @"ACIP Schedule"
+#define RECALLS_FILENAME @"vaccineRecalls"
+
 
 //#define REG_SCHED_KEY @"Customary"
 #define MIN_AGE_KEY @"doseMinimumAge"
@@ -33,6 +36,7 @@
 
 {
     NSDictionary *rules;
+    NSArray *vaccineRecalls; // Array of SBTVaccineRecall *
 }
 
 @end;
@@ -109,6 +113,31 @@
               @(SBTComponentMCV4),
               @(SBTComponentTdap),
               ];
+}
+
+-(NSArray *)recalledVaccines{
+    if (!vaccineRecalls){
+        NSMutableArray *recalls = [NSMutableArray new];
+        NSBundle *main = [NSBundle mainBundle];
+        NSURL *recallFileURL = [main URLForResource:RECALLS_FILENAME withExtension:@"plist"];
+        NSArray *recallChunks = [NSArray arrayWithContentsOfURL:recallFileURL];
+        for (NSDictionary *dict in recallChunks){
+            NSDate *date = dict[RECALL_DATE_KEY];
+            NSString *name = dict[RECALL_VACCINE_NAME_KEY];
+            NSString *reason = dict[RECALL_REASON_KEY];
+            NSString *advice = dict[RECALL_ADVICE_KEY];
+            NSString *lot = dict[RECALL_VACCINE_LOT_KEY];
+            
+            SBTVaccine *vacc = [SBTVaccine vaccinesByTradeName][name];
+            if (vacc){
+                SBTVaccineRecall *rec = [[SBTVaccineRecall alloc] initWithVaccine:vacc recallDate:date reason:reason advice:advice];
+                rec.lotNumber = lot;
+                [recalls addObject:rec];
+            }
+        }
+        vaccineRecalls = [recalls copy];
+    }
+    return vaccineRecalls;
 }
 
 -(SBTVaccineDoseStatus)statusOfVaccineComponent:(SBTComponent)component

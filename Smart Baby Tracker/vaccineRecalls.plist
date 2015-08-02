@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>com.mysmartsoftware.SmartBabyBook.recallLotKey</key>
+		<string>J007354</string>
+		<key>com.mysmartsoftware.SmartBabyBook.recallVaccineTradeNameKey</key>
+		<string>Gardasil</string>
+		<key>com.mysmartsoftware.SmartBabyBook.recallAdviceKey</key>
+		<string>Unlikely to recommend repeat dosing.  Contact your physician for information.</string>
+		<key>com.mysmartsoftware.SmartBabyBook.recallReasonKey</key>
+		<string>Potential for limited number of vials to contain glass particles.</string>
+		<key>com.mysmartsoftware.SmartBabyBook.recallDateKey</key>
+		<date>2013-12-19T08:00:00Z</date>
+	</dict>
+	<dict>
+		<key>com.mysmartsoftware.SmartBabyBook.recallLotKey</key>
+		<string>M12115</string>
+		<key>com.mysmartsoftware.SmartBabyBook.recallVaccineTradeNameKey</key>
+		<string>Menveo</string>
+		<key>com.mysmartsoftware.SmartBabyBook.recallAdviceKey</key>
+		<string>Contact your physician for information.</string>
+		<key>com.mysmartsoftware.SmartBabyBook.recallReasonKey</key>
+		<string>Higher-than-specified residual moisture in the MenA component</string>
+		<key>com.mysmartsoftware.SmartBabyBook.recallDateKey</key>
+		<date>2013-12-02T08:00:00Z</date>
+	</dict>
+	<dict>
+		<key>com.mysmartsoftware.SmartBabyBook.recallLotKey</key>
+		<string>A12115</string>
+		<key>com.mysmartsoftware.SmartBabyBook.recallVaccineTradeNameKey</key>
+		<string>Menveo</string>
+		<key>com.mysmartsoftware.SmartBabyBook.recallAdviceKey</key>
+		<string>Contact your physician for information.</string>
+		<key>com.mysmartsoftware.SmartBabyBook.recallReasonKey</key>
+		<string>Higher-than-specified residual moisture in the MenA component</string>
+		<key>com.mysmartsoftware.SmartBabyBook.recallDateKey</key>
+		<date>2013-12-02T08:00:00Z</date>
+	</dict>
+	<dict>
+		<key>com.mysmartsoftware.SmartBabyBook.recallLotKey</key>
+		<string>X12115</string>
+		<key>com.mysmartsoftware.SmartBabyBook.recallVaccineTradeNameKey</key>
+		<string>Menveo</string>
+		<key>com.mysmartsoftware.SmartBabyBook.recallAdviceKey</key>
+		<string>Contact your physician for information.</string>
+		<key>com.mysmartsoftware.SmartBabyBook.recallReasonKey</key>
+		<string>Higher-than-specified residual moisture in the MenA component</string>
+		<key>com.mysmartsoftware.SmartBabyBook.recallDateKey</key>
+		<date>2013-12-02T08:00:00Z</date>
+	</dict>
+	<dict>
+		<key>com.mysmartsoftware.SmartBabyBook.recallLotKey</key>
+		<string>M12118</string>
+		<key>com.mysmartsoftware.SmartBabyBook.recallVaccineTradeNameKey</key>
+		<string>Menveo</string>
+		<key>com.mysmartsoftware.SmartBabyBook.recallAdviceKey</key>
+		<string>Contact your physician for information.</string>
+		<key>com.mysmartsoftware.SmartBabyBook.recallReasonKey</key>
+		<string>Higher-than-specified residual moisture in the MenA component</string>
+		<key>com.mysmartsoftware.SmartBabyBook.recallDateKey</key>
+		<date>2013-07-03T07:00:00Z</date>
+	</dict>
+	<dict>
+		<key>com.mysmartsoftware.SmartBabyBook.recallLotKey</key>
+		<string>A12118</string>
+		<key>com.mysmartsoftware.SmartBabyBook.recallVaccineTradeNameKey</key>
+		<string>Menveo</string>
+		<key>com.mysmartsoftware.SmartBabyBook.recallAdviceKey</key>
+		<string>Contact your physician for information.</string>
+		<key>com.mysmartsoftware.SmartBabyBook.recallReasonKey</key>
+		<string>Higher-than-specified residual moisture in the MenA component</string>
+		<key>com.mysmartsoftware.SmartBabyBook.recallDateKey</key>
+		<date>2013-07-03T07:00:00Z</date>
+	</dict>
+	<dict>
+		<key>com.mysmartsoftware.SmartBabyBook.recallLotKey</key>
+		<string>X12118</string>
+		<key>com.mysmartsoftware.SmartBabyBook.recallVaccineTradeNameKey</key>
+		<string>Menveo</string>
+		<key>com.mysmartsoftware.SmartBabyBook.recallAdviceKey</key>
+		<string>Contact your physician for information.</string>
+		<key>com.mysmartsoftware.SmartBabyBook.recallReasonKey</key>
+		<string>Higher-than-specified residual moisture in the MenA component</string>
+		<key>com.mysmartsoftware.SmartBabyBook.recallDateKey</key>
+		<date>2013-07-03T07:00:00Z</date>
+	</dict>
+	<dict>
+		<key>com.mysmartsoftware.SmartBabyBook.recallLotKey</key>
+		<string>J001183</string>
+		<key>com.mysmartsoftware.SmartBabyBook.recallVaccineTradeNameKey</key>
+		<string>Recombivax HB</string>
+		<key>com.mysmartsoftware.SmartBabyBook.recallAdviceKey</key>
+		<string>Unlikely to recommend repeat dosing. Contact your physician for information.</string>
+		<key>com.mysmartsoftware.SmartBabyBook.recallReasonKey</key>
+		<string>Potential for a limited number of bottles to have small cracks.</string>
+		<key>com.mysmartsoftware.SmartBabyBook.recallDateKey</key>
+		<date>2013-06-26T07:00:00Z</date>
+	</dict>
+</array>
+</plist>
