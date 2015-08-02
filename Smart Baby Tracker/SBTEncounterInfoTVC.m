@@ -12,6 +12,7 @@
 #import "SBTVaccine.h"
 #import "SBTUnitsConvertor.h"
 #import "SBTBaby.h"
+#import "SBTScannedVaccineDetailsTVC.h"
 
 
 @interface SBTEncounterInfoTVC ()<SBTEncounterEditTVCDelegate>
@@ -32,7 +33,7 @@
         
         for (NSString *displayName in vacc.displayNames){
             [self.vaccineComponents addObject:displayName];
-            [self.componentFromVaccine addObject:vacc.name];
+            [self.componentFromVaccine addObject:vacc];
         }
     }
     [self.tableView reloadData];
@@ -55,11 +56,14 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (indexPath.section == 1){
+        [self performSegueWithIdentifier:@"showVaccineDetails" sender:indexPath];
+    }
 }
 
 -(BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return NO;
+    return (indexPath.section == 1);
 }
 
 #pragma mark - UITableViewDatasource
@@ -106,6 +110,7 @@
     double wt = [SBTUnitsConvertor displayUnitsOf:self.encounter.weight forKey:MASS_UNIT_KEY];
     double hc = [SBTUnitsConvertor displayUnitsOf:self.encounter.headCirc forKey:HC_UNIT_KEY];
     if (indexPath.section == 0){
+        [cell setAccessoryType:UITableViewCellAccessoryNone];
         switch (indexPath.row) {
             case 0:
                 cell.textLabel.text = self.encounter.height != 0.0 ? NSLocalizedString(@"Height", @"Height"): NSLocalizedString(@"Length", @"Length");
@@ -139,7 +144,9 @@
     }else{
         NSInteger offset = indexPath.row;
         cell.textLabel.text = self.vaccineComponents[offset];
-        cell.detailTextLabel.text = self.componentFromVaccine[offset];
+        SBTVaccine *vacc = self.componentFromVaccine[offset];
+        cell.detailTextLabel.text = vacc.name;
+        [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     }
     return cell;
 }
@@ -153,6 +160,11 @@
         SBTEncounterEditTVC *editor = nav.viewControllers[0];
         editor.encounter = self.encounter;
         editor.delegate = self;
+    }
+    if ([segue.identifier isEqualToString:@"showVaccineDetails"]){
+        SBTScannedVaccineDetailsTVC *dest = segue.destinationViewController;
+        NSIndexPath *indexPath = (NSIndexPath *)sender;
+        dest.vaccine = self.componentFromVaccine[indexPath.row];
     }
 }
 

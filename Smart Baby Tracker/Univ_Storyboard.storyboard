@@ -1113,6 +1113,9 @@ Individual circumstances may make modifications of these recommendations advisab
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="4xQ-wd-Wh3" kind="show" identifier="showVaccineDetails" id="gNl-dL-wyt"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="10j-gR-1i1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1787,11 +1790,12 @@ Individual circumstances may make modifications of these recommendations advisab
         <image name="weightTab" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="GNu-Z6-MMO"/>
-        <segue reference="Z32-il-wZf"/>
-        <segue reference="o99-JM-dbg"/>
         <segue reference="KbO-9Z-f7F"/>
+        <segue reference="o99-JM-dbg"/>
+        <segue reference="gNl-dL-wyt"/>
+        <segue reference="5CL-7u-yiu"/>
         <segue reference="8NN-QL-fgg"/>
+        <segue reference="GNu-Z6-MMO"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.31307025550000001" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
 </document>

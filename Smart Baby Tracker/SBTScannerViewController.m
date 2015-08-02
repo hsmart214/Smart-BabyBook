@@ -10,9 +10,6 @@
 #import "UIColor+SBTColors.h"
 @import MobileCoreServices;
 
-#define RETICLE_LINE_WIDTH 5.0f
-#define RETICLE_LENGTH 20.0f
-
 @interface SBTScannerViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, AVCaptureMetadataOutputObjectsDelegate>
 
 //@property (nonatomic, strong) AVCaptureMetadataOutput *output;
@@ -33,7 +30,7 @@
     
     // set up the overlay view
     CGSize size = self.overlayImageView.bounds.size;
-    UIGraphicsBeginImageContextWithOptions(size, NO, 1.0);
+    UIGraphicsBeginImageContextWithOptions(size, NO, 0.0);
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     [[UIColor SBTTransparentAluminum] setFill];
     CGFloat qtr = size.width/4.0;
@@ -44,22 +41,54 @@
     CGContextAddRect(ctx, CGRectMake(3*qtr, 0.0, qtr, size.height));
     CGContextAddRect(ctx, CGRectMake(qtr, 0.0, 2*qtr, third));
     CGContextAddRect(ctx, CGRectMake(qtr, 2*third, 2*qtr, third));
-    CGContextClosePath(ctx);
     CGContextFillPath(ctx);
     
+    // create the four corners of the aiming reticle
+    
     CGContextBeginPath(ctx);
-    CGFloat w = RETICLE_LINE_WIDTH;
-    CGFloat l = RETICLE_LENGTH;
-    CGContextSetLineWidth(ctx, w);
-    CGContextMoveToPoint(ctx, qtr - w/2, third + l);
-    CGContextAddLineToPoint(ctx, qtr - w/2, third - w/2);
-    CGContextAddLineToPoint(ctx, qtr + l + w/2, third - w/2);
+    CGFloat w = size.width / 30;
+    CGFloat l = size.height / 15;
+    CGContextSetLineWidth(ctx, 2.0*w);
+    
+    CGContextMoveToPoint(ctx, qtr, third);
+    CGContextAddLineToPoint(ctx, qtr, third + l);
+    CGContextAddLineToPoint(ctx, qtr - w, third + l);
+    CGContextAddLineToPoint(ctx, qtr - w, third - w/2);
+    CGContextAddLineToPoint(ctx, qtr + l + w, third - w/2);
+    CGContextAddLineToPoint(ctx, qtr + l + w, third);
+    CGContextClosePath(ctx);
+    
+    CGContextMoveToPoint(ctx, 3*qtr, third);
+    CGContextAddLineToPoint(ctx, 3*qtr - l - w, third);
+    CGContextAddLineToPoint(ctx, 3*qtr - l - w, third - w/2);
+    CGContextAddLineToPoint(ctx, 3*qtr + w, third - w/2);
+    CGContextAddLineToPoint(ctx, 3*qtr + w, third + l);
+    CGContextAddLineToPoint(ctx, 3*qtr, third +l);
+    CGContextClosePath(ctx);
+
+    CGContextMoveToPoint(ctx, 3*qtr, 2*third);
+    CGContextAddLineToPoint(ctx, 3*qtr, 2*third - l);
+    CGContextAddLineToPoint(ctx, 3*qtr + w, 2*third - l);
+    CGContextAddLineToPoint(ctx, 3*qtr + w, 2*third + w/2);
+    CGContextAddLineToPoint(ctx, 3*qtr - l - w, 2*third + w/2);
+    CGContextAddLineToPoint(ctx, 3*qtr - l - w, 2*third);
+    CGContextClosePath(ctx);
+
+    CGContextMoveToPoint(ctx, qtr, 2*third);
+    CGContextAddLineToPoint(ctx, qtr + l + w, 2*third);
+    CGContextAddLineToPoint(ctx, qtr + l + w, 2*third + w/2);
+    CGContextAddLineToPoint(ctx, qtr - w, 2*third + w/2);
+    CGContextAddLineToPoint(ctx, qtr - w, 2*third - l);
+    CGContextAddLineToPoint(ctx, qtr, 2*third - l);
+    CGContextClosePath(ctx);
+
     
     UIColor *color = [self.view.tintColor colorWithAlphaComponent:0.5];
-    [color setStroke];
-    CGContextStrokePath(ctx);
+    [color setFill];
+    CGContextFillPath(ctx);
     
     UIImage *overlay = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
     
     self.overlayImageView.image = overlay;
     
@@ -87,7 +116,8 @@
     [self.captureSession addOutput:metadataOutput];
     [metadataOutput setMetadataObjectsDelegate:self queue:self.captureQueue];
     [metadataOutput setMetadataObjectTypes:@[AVMetadataObjectTypeDataMatrixCode]];
-    
+    // this rectOfInterest is the same as the clear area in the center of the aiming reticle
+    [metadataOutput setRectOfInterest:CGRectMake(0.33, 0.25, 0.33, 0.5)];
     
     AVCaptureVideoPreviewLayer *pLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:self.captureSession];
     pLayer.frame = self.view.layer.bounds;
