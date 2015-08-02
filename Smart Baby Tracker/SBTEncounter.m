@@ -183,6 +183,7 @@
     [aCoder encodeObject:self.dateModified forKey:@"dateModified"];
 }
 
+
 -(instancetype)initWithCoder:(NSCoder *)aDecoder
 {
     NSDate *date = [aDecoder decodeObjectOfClass:[NSDate class] forKey:@"date"];
@@ -191,12 +192,13 @@
         self->_height = [aDecoder decodeDoubleForKey:@"height"];
         self->_length = [aDecoder decodeDoubleForKey:@"length"];
         self->_headCirc = [aDecoder decodeDoubleForKey:@"headCirc"];
-        NSData *vaccineData = [aDecoder decodeObjectOfClass:[NSMutableSet class] forKey:@"vaccines"];
+        NSData *vaccineData = [aDecoder decodeObjectOfClass:[NSData class] forKey:@"vaccines"];
         self.vaccines = [NSKeyedUnarchiver unarchiveObjectWithData:vaccineData];
         self.dateModified = [aDecoder decodeObjectOfClass:[NSDate class] forKey:@"dateModified"];
     }
     return self;
 }
+
 
 -(instancetype)copy{
     return [self copyWithZone:nil];

@@ -9,7 +9,7 @@
         <!--Smart BabyBook-->
         <scene sceneID="FC1-ES-gNu">
             <objects>
-                <tableViewController clearsSelectionOnViewWillAppear="NO" id="w1r-5s-cj1" customClass="SBTChildrenViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="Opening Screen" useStoryboardIdentifierAsRestorationIdentifier="YES" clearsSelectionOnViewWillAppear="NO" id="w1r-5s-cj1" customClass="SBTChildrenViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="TrR-Eg-4QV">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -23,7 +23,7 @@
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wAp-5L-pp0">
                                             <rect key="frame" x="152" y="8" width="162" height="48"/>
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <string key="text">Baby Tracker 1.1
+                                            <string key="text">Baby Tracker 1.2
 ©2015 mySmartSoftware</string>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -160,7 +160,7 @@ Individual circumstances may make modifications of these recommendations advisab
         <!--New Child-->
         <scene sceneID="uXs-Ya-bPK">
             <objects>
-                <tableViewController id="pok-lP-udk" customClass="SBTBabyEditViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="Baby Edit" useStoryboardIdentifierAsRestorationIdentifier="YES" id="pok-lP-udk" customClass="SBTBabyEditViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="MjU-bb-Rh2">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="1200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -438,7 +438,7 @@ Individual circumstances may make modifications of these recommendations advisab
         <!--Vaccine Grid View Controller-->
         <scene sceneID="ApD-bx-fsR">
             <objects>
-                <collectionViewController id="5s1-2a-ZfY" customClass="SBTVaccineGridViewController" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="Vaccine Grid" useStoryboardIdentifierAsRestorationIdentifier="YES" id="5s1-2a-ZfY" customClass="SBTVaccineGridViewController" sceneMemberID="viewController">
                     <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="0fC-CV-xB2">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -531,7 +531,7 @@ Individual circumstances may make modifications of these recommendations advisab
         <!--New Encounter-->
         <scene sceneID="Kak-FI-oBg">
             <objects>
-                <tableViewController id="TBu-qa-0kL" customClass="SBTEncounterEditTVC" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="Event Edit" useStoryboardIdentifierAsRestorationIdentifier="YES" id="TBu-qa-0kL" customClass="SBTEncounterEditTVC" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="oh1-Ot-hE9">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -727,7 +727,7 @@ Individual circumstances may make modifications of these recommendations advisab
         <!--Measurement EntryVC-->
         <scene sceneID="91e-Yw-4RK">
             <objects>
-                <viewController id="WA7-jb-030" customClass="SBTMeasurementEntryVC" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Measurement" useStoryboardIdentifierAsRestorationIdentifier="YES" id="WA7-jb-030" customClass="SBTMeasurementEntryVC" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8AU-lA-4AF"/>
                         <viewControllerLayoutGuide type="bottom" id="BWU-eH-Dor"/>
@@ -819,7 +819,7 @@ Individual circumstances may make modifications of these recommendations advisab
         <!--Add Vaccines-->
         <scene sceneID="9KM-kx-nYE">
             <objects>
-                <tableViewController id="jSY-zp-aDB" customClass="SBTVaccinesGivenTVC" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="Vaccine Pick" useStoryboardIdentifierAsRestorationIdentifier="YES" id="jSY-zp-aDB" customClass="SBTVaccinesGivenTVC" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="4vJ-S1-dRk">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -873,7 +873,7 @@ Individual circumstances may make modifications of these recommendations advisab
         <!--Edit Vaccines-->
         <scene sceneID="5RF-gu-twq">
             <objects>
-                <tableViewController id="Non-ST-pGQ" customClass="SBTAddScannedVaccinesTVC" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="Add Vaccines" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Non-ST-pGQ" customClass="SBTAddScannedVaccinesTVC" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="3sj-wy-Iua">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -942,7 +942,7 @@ Individual circumstances may make modifications of these recommendations advisab
         <!--Barcode Details-->
         <scene sceneID="2ib-Zr-ULn">
             <objects>
-                <tableViewController id="4xQ-wd-Wh3" customClass="SBTScannedVaccineDetailsTVC" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="Vaccine Info" useStoryboardIdentifierAsRestorationIdentifier="YES" id="4xQ-wd-Wh3" customClass="SBTScannedVaccineDetailsTVC" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="X9D-ib-DbQ">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1074,7 +1074,7 @@ Individual circumstances may make modifications of these recommendations advisab
         <!--Encounter <date>-->
         <scene sceneID="wNX-0R-BE3">
             <objects>
-                <tableViewController id="juA-Rn-d38" customClass="SBTEncounterInfoTVC" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="Event" useStoryboardIdentifierAsRestorationIdentifier="YES" id="juA-Rn-d38" customClass="SBTEncounterInfoTVC" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="BiR-dr-sPx">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1124,7 +1124,7 @@ Individual circumstances may make modifications of these recommendations advisab
         <!--Events-->
         <scene sceneID="zso-Xr-kfJ">
             <objects>
-                <tableViewController id="iPP-p8-bZg" customClass="SBTEncountersTVC" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="Event List" useStoryboardIdentifierAsRestorationIdentifier="YES" id="iPP-p8-bZg" customClass="SBTEncountersTVC" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="22" sectionFooterHeight="22" id="cyA-O4-dZa">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1192,7 +1192,7 @@ Individual circumstances may make modifications of these recommendations advisab
         <!--Name of Child-->
         <scene sceneID="N1g-yD-xIC">
             <objects>
-                <tableViewController id="3c7-s8-sdz" customClass="SBTBabyInfoTVC" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="Baby Info" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3c7-s8-sdz" customClass="SBTBabyInfoTVC" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="3LY-TL-olE">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1377,7 +1377,7 @@ Individual circumstances may make modifications of these recommendations advisab
         <!--Smart Baby Book Preferences-->
         <scene sceneID="X5T-ON-S7t">
             <objects>
-                <tableViewController id="gBE-S3-ysG" customClass="SBTPreferencesTVC" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="Prefs" useStoryboardIdentifierAsRestorationIdentifier="YES" id="gBE-S3-ysG" customClass="SBTPreferencesTVC" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="d9q-wi-iSb">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1559,7 +1559,7 @@ Individual circumstances may make modifications of these recommendations advisab
         <!--Navigation Controller-->
         <scene sceneID="qNR-33-aJd">
             <objects>
-                <navigationController toolbarHidden="NO" id="WDi-a3-hJt" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="Main Nav VC" useStoryboardIdentifierAsRestorationIdentifier="YES" toolbarHidden="NO" id="WDi-a3-hJt" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="B17-Wo-8W1">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1579,7 +1579,7 @@ Individual circumstances may make modifications of these recommendations advisab
         <!--Navigation Controller-->
         <scene sceneID="nPp-xN-rzC">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="Odv-pO-XZF" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="Prefs Nav VC" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" toolbarHidden="NO" id="Odv-pO-XZF" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="P2o-md-hiV">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1601,7 +1601,7 @@ Individual circumstances may make modifications of these recommendations advisab
         <!--Navigation Controller-->
         <scene sceneID="KQw-Qg-fUQ">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="A9X-xn-Euu" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="Baby Edit Nav VC" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" toolbarHidden="NO" id="A9X-xn-Euu" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Mwt-jT-2ry">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1623,7 +1623,7 @@ Individual circumstances may make modifications of these recommendations advisab
         <!--Navigation Controller-->
         <scene sceneID="64m-in-Jrh">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="IA9-Ip-tug" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="Event Edit Nav VC" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" toolbarHidden="NO" id="IA9-Ip-tug" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="dVT-Q6-K6B">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1721,7 +1721,7 @@ Individual circumstances may make modifications of these recommendations advisab
         <!--Navigation Controller-->
         <scene sceneID="JEI-Jr-lZL">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="bl4-L9-3uk" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="Vaccine Pick Nav VC" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" toolbarHidden="NO" id="bl4-L9-3uk" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="t36-qB-C1w">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1743,7 +1743,7 @@ Individual circumstances may make modifications of these recommendations advisab
         <!--Scanner View Controller-->
         <scene sceneID="1Xb-SJ-8xH">
             <objects>
-                <viewController id="cPy-ZF-fd1" customClass="SBTScannerViewController" sceneMemberID="viewController">
+                <viewController useStoryboardIdentifierAsRestorationIdentifier="YES" id="cPy-ZF-fd1" customClass="SBTScannerViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="39q-KQ-vH9"/>
                         <viewControllerLayoutGuide type="bottom" id="dHH-Pe-evB"/>
@@ -1790,12 +1790,12 @@ Individual circumstances may make modifications of these recommendations advisab
         <image name="weightTab" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="KbO-9Z-f7F"/>
         <segue reference="o99-JM-dbg"/>
-        <segue reference="gNl-dL-wyt"/>
+        <segue reference="t8A-9i-5wY"/>
         <segue reference="5CL-7u-yiu"/>
         <segue reference="8NN-QL-fgg"/>
         <segue reference="GNu-Z6-MMO"/>
+        <segue reference="Nke-ws-bgF"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.31307025550000001" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
 </document>
