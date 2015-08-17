@@ -7,6 +7,8 @@
 //
 
 #import "SBTVaccine.h"
+#import "SBTVaccineRecall.h"
+#import "SBTVaccineSchedule.h"
 #import "BCRVaccineCodeLoader.h"
 
 
@@ -33,6 +35,19 @@ static NSString *const SBTVaccineNameKey = @"SBTVaccineName";
 -(BOOL)includesExactComponent:(SBTComponent)component
 {
     return [self.components containsObject:@(component)];
+}
+
+-(BOOL)hasBeenRecalled{
+    BOOL recalled = NO;
+    
+    for (SBTVaccineRecall *rec in [[SBTVaccineSchedule sharedSchedule] recalledVaccines]){
+        if ([rec.lotNumber isEqualToString:self.lotNumber] &&
+            [rec.name isEqualToString:self.name]){
+            recalled = YES;
+            break;
+        }
+    }
+    return recalled;
 }
 
 -(NSString *)componentString{

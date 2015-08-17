@@ -1159,6 +1159,9 @@ Individual circumstances may make modifications of these recommendations advisab
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="headCirc" translatesAutoresizingMaskIntoConstraints="NO" id="LVC-Dn-U7n">
                                             <rect key="frame" x="142" y="28" width="32" height="32"/>
                                         </imageView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="greenCheck" translatesAutoresizingMaskIntoConstraints="NO" id="v4E-w5-uin">
+                                            <rect key="frame" x="286" y="28" width="32" height="32"/>
+                                        </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
@@ -1166,6 +1169,7 @@ Individual circumstances may make modifications of these recommendations advisab
                                     <outlet property="dateLabel" destination="XyU-JP-pxb" id="GAc-sL-Cw9"/>
                                     <outlet property="headIcon" destination="LVC-Dn-U7n" id="Mu2-vW-fXT"/>
                                     <outlet property="heightIcon" destination="g7P-VY-Wea" id="kLr-xd-y6M"/>
+                                    <outlet property="milestoneIcon" destination="v4E-w5-uin" id="HBf-hF-vay"/>
                                     <outlet property="vaccineIcon" destination="z1l-Vw-sB7" id="8FY-dC-fS8"/>
                                     <outlet property="weightIcon" destination="tcX-Dg-e5J" id="57M-Qk-tpJ"/>
                                     <segue destination="juA-Rn-d38" kind="show" identifier="showEncounterInfo" id="1QQ-Pa-coS"/>
@@ -1336,6 +1340,29 @@ Individual circumstances may make modifications of these recommendations advisab
                                         <connections>
                                             <segue destination="5s1-2a-ZfY" kind="show" identifier="Vaccine Grid Segue" id="7Cp-lV-FWg"/>
                                         </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="LrX-ed-BeF" detailTextLabel="lBg-Ss-VaC" imageView="gJi-7u-iQi" style="IBUITableViewCellStyleValue1" id="6E8-p4-EhV">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6E8-p4-EhV" id="AzW-b7-1uE">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Milestones" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="LrX-ed-BeF">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lBg-Ss-VaC">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="greenCheck" id="gJi-7u-iQi">
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </imageView>
+                                            </subviews>
+                                        </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -1790,11 +1817,11 @@ Individual circumstances may make modifications of these recommendations advisab
         <image name="weightTab" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="o99-JM-dbg"/>
         <segue reference="t8A-9i-5wY"/>
-        <segue reference="5CL-7u-yiu"/>
-        <segue reference="8NN-QL-fgg"/>
+        <segue reference="o99-JM-dbg"/>
+        <segue reference="Z32-il-wZf"/>
         <segue reference="GNu-Z6-MMO"/>
+        <segue reference="8NN-QL-fgg"/>
         <segue reference="Nke-ws-bgF"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.31307025550000001" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>

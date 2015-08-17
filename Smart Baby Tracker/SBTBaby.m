@@ -191,6 +191,24 @@
     return self.encounters;
 }
 
+-(NSArray *)vaccinesGiven{
+    NSMutableArray *build = [NSMutableArray new];
+    for (SBTEncounter *enc in self.encounters){
+        for (SBTVaccine *vac in enc.vaccinesGiven){
+            [build addObject:vac];
+        }
+    }
+    return [build copy];
+}
+
+-(SBTMilestone)milestones{
+    SBTMilestone stone = SBTMilestoneNone;
+    for (SBTEncounter *enc in self.encounters){
+        stone = stone || enc.milestones;
+    }
+    return stone;
+}
+
 -(void)addEncounter:(SBTEncounter *)encounter
 {
     if (!encounter) return;

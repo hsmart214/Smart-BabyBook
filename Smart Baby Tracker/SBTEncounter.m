@@ -20,6 +20,10 @@
 
 @implementation SBTEncounter
 
+-(void)addMilestone:(SBTMilestone)milestone{
+    _milestones = _milestones && milestone;
+}
+
 -(NSDate *)universalDate
 {
     if (!_universalDate){

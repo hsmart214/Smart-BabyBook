@@ -26,10 +26,12 @@
 @property (nonatomic, copy) NSString *lotNumber;
 @property (nonatomic, copy) NSDate *expirationDate;
 
+
 -(NSString *)componentString;
 
 -(BOOL)includesEquivalentComponent:(SBTComponent)component;
 -(BOOL)includesExactComponent:(SBTComponent)component;
+-(BOOL)hasBeenRecalled;
 
 -(instancetype)init;
 // Designated initializer

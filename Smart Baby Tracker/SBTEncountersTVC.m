@@ -58,6 +58,11 @@
     }else{
         [cell.vaccineIcon setAlpha:0.0];
     }
+    if ([enc milestones]){
+        [cell.milestoneIcon setAlpha:1.0];
+    }else{
+        [cell.milestoneIcon setAlpha:0.0];
+    }
     return cell;
 }
 

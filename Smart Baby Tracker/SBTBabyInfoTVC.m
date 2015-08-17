@@ -8,6 +8,7 @@
 
 #import "SBTBabyInfoTVC.h"
 #import "SBTBaby.h"
+#import "SBTVaccine.h"
 #import "SBTEncountersTVC.h"
 #import "SBTEncounterEditTVC.h"
 #import "SBTGraphVC.h"
@@ -87,6 +88,22 @@
     NSString *source1 = [infantSource isKindOfClass:[SBTWHODataSource class]] ? @"WHO" : @"CDC";
     NSString *source2 = [childSource isKindOfClass:[SBTWHODataSource class]] ? @"WHO" : @"CDC";
     self.growthChartDescriptionLabel.text = [NSString stringWithFormat:@"%@/%@ %@", source1, source2, suffix];
+    
+    dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0), ^{
+        BOOL recallExists = NO;
+        for (SBTVaccine *vacc in [self.baby vaccinesGiven]){
+            recallExists = recallExists || [vacc hasBeenRecalled];
+        }
+        if (recallExists){
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.vaccineStatusLabel.text = @"Recall";
+            });
+        }else{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.vaccineStatusLabel.text = @"No Recall";
+            });
+        }
+    });
 }
 
 -(void)viewDidLoad

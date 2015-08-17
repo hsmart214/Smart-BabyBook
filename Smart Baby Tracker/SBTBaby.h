@@ -6,9 +6,8 @@
 //  Copyright (c) 2014 J. HOWARD SMART. All rights reserved.
 //
 
+#import "SBTEncounter.h"
 @import Foundation;
-
-@class SBTEncounter;
 
 @interface SBTBaby : NSObject <NSSecureCoding, NSCopying>
 
@@ -54,5 +53,6 @@
 -(NSArray *)daysGivenLiveVaccineComponent;
 -(BOOL)dayIsDuringLiveBlackout:(NSDateComponents *)dayOfLife;
 -(NSArray *)encountersList;
-
+-(NSArray *)vaccinesGiven;  // a list of every vaccine given (used to check for recalls)
+-(SBTMilestone)milestones;
 @end

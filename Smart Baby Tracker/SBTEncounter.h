@@ -11,6 +11,23 @@
 /// the birth date.
 
 @import Foundation;
+
+typedef NS_OPTIONS(NSInteger, SBTMilestone) {
+    SBTMilestoneNone,
+    SBTMilestoneSmile,
+    SBTMilestoneRolloverFront,
+    SBTMilestoneRolloverBack,
+    SBTMilestoneSitWithoutSupport,
+    SBTMilestoneCrawl,
+    SBTMilestoneFirstWord,
+    SBTMilestoneFirstTooth,
+    SBTMilestonePullToStand,
+    SBTMilestoneCruise,
+    SBTMilestoneFirstSteps,
+    SBTMilestoneRun,
+    SBTMilestonePhrase,
+};
+
 @class SBTBaby;
 
 @interface SBTEncounter : NSObject <NSSecureCoding, NSCopying>
@@ -25,6 +42,7 @@
 @property (nonatomic, assign) double height;    // standing height
 @property (nonatomic, assign) double headCirc;
 @property (nonatomic, readonly) double BMI;
+@property (nonatomic, readonly) SBTMilestone milestones;
 
 -(instancetype)initWithDate:(NSDate *)date; // Designated initializer
 -(instancetype)init;
@@ -32,6 +50,8 @@
 -(void)encodeWithCoder:(NSCoder *)aCoder;
 
 -(void)replaceVaccines:(NSSet *)newVaccineSet;  // set of SBTVaccine objects
+-(void)addMilestone:(SBTMilestone)milestone;
+-(SBTMilestone)milestones;
 
 -(NSInteger)daysSinceEncounter:(SBTEncounter *)encounter;
 -(NSInteger)daysSinceDate:(NSDate *)date;
