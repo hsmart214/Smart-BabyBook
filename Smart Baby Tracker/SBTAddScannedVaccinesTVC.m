@@ -137,6 +137,7 @@
         SBTScannedVaccineDetailsTVC *dest = segue.destinationViewController;
         NSIndexPath *ip = [self.tableView indexPathForCell:sender];
         dest.vaccine = self.addedVaccines[ip.row];
+        dest.delegate = self.delegate;
     }
     if ([segue.identifier isEqual:@"Full List Segue"]){
         UINavigationController *nav = segue.destinationViewController;

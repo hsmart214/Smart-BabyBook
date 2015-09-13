@@ -31,6 +31,30 @@
     self.componentsLabel.text = self.vaccine.componentString;
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self updateUI];
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    if ([self.delegate isTooYoungForVaccine:self.vaccine] || [self.delegate isTooOldForVaccine:self.vaccine]){
+        NSString *alertPhrase = [self.delegate isTooYoungForVaccine:self.vaccine] ? @"too young" : @"too old";
+        UIAlertController *alert = [UIAlertController
+                                    alertControllerWithTitle:[NSString stringWithFormat:@"Child %@ for vaccine.", alertPhrase]
+                                    message:@"This may be appropriate for epidemics or known exposure."
+                                    preferredStyle:UIAlertControllerStyleAlert];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+    if ([self.delegate isExpiredVaccine:self.vaccine]){
+        UIAlertController *alert = [UIAlertController
+                                    alertControllerWithTitle:@"Vaccine expired before date given."
+                                    message:@"Please confirm dates."
+                                    preferredStyle:UIAlertControllerStyleAlert];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+}
+
 -(void)viewDidLoad
 {
     [super viewDidLoad];
@@ -39,7 +63,6 @@
     }else{
         self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:SBTiPhoneBackgroundImage]];
     }
-    [self updateUI];
 }
 
 @end

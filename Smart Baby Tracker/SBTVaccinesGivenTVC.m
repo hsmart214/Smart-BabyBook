@@ -26,7 +26,7 @@
 
 @implementation SBTVaccinesGivenTVC
 {
-    NSMutableSet *selected; // we will load this with the names of the selected vaccines
+    __block NSMutableSet *selected; // we will load this with the names of the selected vaccines
 }
 
 -(NSDictionary *)vaccinesByGenericName{
@@ -99,9 +99,10 @@
                                         alertControllerWithTitle:[NSString stringWithFormat:@"Child %@ for vaccine.", ageText]
                                                          message:@"This may be appropriate for epidemics or known exposure."
                                                   preferredStyle:UIAlertControllerStyleActionSheet];
+            __weak NSMutableSet *slectd = selected;
             UIAlertAction *actionAdd = [UIAlertAction actionWithTitle:@"Add" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
                 [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
-                [self->selected addObject:cell.textLabel.text];
+                [slectd addObject:cell.textLabel.text];
             }];
             UIAlertAction *actionCancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action){}];
             [alert addAction:actionAdd];

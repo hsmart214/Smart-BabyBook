@@ -22,6 +22,8 @@
 		4248806618944C84009F2837 /* SBTBaby.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248806518944C84009F2837 /* SBTBaby.m */; };
 		4248806A189459D2009F2837 /* SBTEncounter.m in Sources */ = {isa = PBXBuildFile; fileRef = 42488069189459D2009F2837 /* SBTEncounter.m */; };
 		4248806D18945CE2009F2837 /* SBTVaccine.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248806C18945CE2009F2837 /* SBTVaccine.m */; };
+		424B721C1BA62F6A005BC760 /* SBTDocumentsTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 424B721B1BA62F6A005BC760 /* SBTDocumentsTVC.m */; settings = {ASSET_TAGS = (); }; };
+		424B721F1BA62FED005BC760 /* SBTDocumentImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 424B721E1BA62FED005BC760 /* SBTDocumentImage.m */; settings = {ASSET_TAGS = (); }; };
 		4258BCF618C40E1900E8232F /* SBTCDCDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4258BCF518C40E1900E8232F /* SBTCDCDataSource.m */; };
 		425D58E218DEA5B100B0AA3C /* SBTEncounterInfoTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 425D58E118DEA5B100B0AA3C /* SBTEncounterInfoTVC.m */; };
 		426436A718C4459800414CA1 /* cdcbmiboys.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4264369318C4459800414CA1 /* cdcbmiboys.txt */; };
@@ -119,6 +121,10 @@
 		42488069189459D2009F2837 /* SBTEncounter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTEncounter.m; sourceTree = "<group>"; };
 		4248806B18945CE2009F2837 /* SBTVaccine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTVaccine.h; sourceTree = "<group>"; };
 		4248806C18945CE2009F2837 /* SBTVaccine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTVaccine.m; sourceTree = "<group>"; };
+		424B721A1BA62F6A005BC760 /* SBTDocumentsTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTDocumentsTVC.h; sourceTree = "<group>"; };
+		424B721B1BA62F6A005BC760 /* SBTDocumentsTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTDocumentsTVC.m; sourceTree = "<group>"; };
+		424B721D1BA62FED005BC760 /* SBTDocumentImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTDocumentImage.h; sourceTree = "<group>"; };
+		424B721E1BA62FED005BC760 /* SBTDocumentImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTDocumentImage.m; sourceTree = "<group>"; };
 		4258BCF418C40E1900E8232F /* SBTCDCDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTCDCDataSource.h; sourceTree = "<group>"; };
 		4258BCF518C40E1900E8232F /* SBTCDCDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTCDCDataSource.m; sourceTree = "<group>"; };
 		425D58DF18DE9EC000B0AA3C /* SBTBabyEditDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SBTBabyEditDelegate.h; sourceTree = "<group>"; };
@@ -287,6 +293,8 @@
 				425D58DF18DE9EC000B0AA3C /* SBTBabyEditDelegate.h */,
 				4287698718CD77AE007862AB /* SBTBabyEditViewController.h */,
 				4287698818CD77AE007862AB /* SBTBabyEditViewController.m */,
+				424B721A1BA62F6A005BC760 /* SBTDocumentsTVC.h */,
+				424B721B1BA62F6A005BC760 /* SBTDocumentsTVC.m */,
 				4287698418CD6F2E007862AB /* SBTChildrenViewController.h */,
 				4287698518CD6F2E007862AB /* SBTChildrenViewController.m */,
 				42F49E451B37916000F0D89D /* SBTChildCell.h */,
@@ -361,6 +369,8 @@
 				4258BCF518C40E1900E8232F /* SBTCDCDataSource.m */,
 				4226B8CB189F5F3B00682A6A /* NSDateComponents+Today.h */,
 				4226B8CC189F5F3B00682A6A /* NSDateComponents+Today.m */,
+				424B721D1BA62FED005BC760 /* SBTDocumentImage.h */,
+				424B721E1BA62FED005BC760 /* SBTDocumentImage.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -562,11 +572,13 @@
 				42CB9A5718D5731C0097BBE3 /* SBTEncounterTableViewCell.m in Sources */,
 				421C747118937535000E3C30 /* SBTAppDelegate.m in Sources */,
 				4248806A189459D2009F2837 /* SBTEncounter.m in Sources */,
+				424B721C1BA62F6A005BC760 /* SBTDocumentsTVC.m in Sources */,
 				4258BCF618C40E1900E8232F /* SBTCDCDataSource.m in Sources */,
 				4248806618944C84009F2837 /* SBTBaby.m in Sources */,
 				8958B497191F316A007C032B /* SBTVaccineGridViewController.m in Sources */,
 				421C2A7018E3D12100EE8A19 /* UIColor+SBTColors.m in Sources */,
 				421C746D18937535000E3C30 /* main.m in Sources */,
+				424B721F1BA62FED005BC760 /* SBTDocumentImage.m in Sources */,
 				42CB9A5118D4F7260097BBE3 /* SBTBabyInfoTVC.m in Sources */,
 				42AAD6041B2BE00F00166071 /* SBTEncounterEditTVC.m in Sources */,
 				42F49E471B37916000F0D89D /* SBTChildCell.m in Sources */,

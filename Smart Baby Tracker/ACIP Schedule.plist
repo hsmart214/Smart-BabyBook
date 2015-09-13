@@ -99,6 +99,8 @@
 				<real>2192</real>
 				<key>doseAgeFlagLate</key>
 				<real>2193</real>
+				<key>doseMaximumAge</key>
+				<real>2556</real>
 			</dict>
 		</array>
 		<array>
@@ -165,6 +167,8 @@
 				<integer>2192</integer>
 				<key>doseAgeFlagLate</key>
 				<integer>2192</integer>
+				<key>doseMaximumAge</key>
+				<integer>2556</integer>
 			</dict>
 		</array>
 	</array>
@@ -184,6 +188,8 @@
 				<integer>0</integer>
 				<key>doseAgeFlagLate</key>
 				<integer>485</integer>
+				<key>doseMaximumAge</key>
+				<integer>1826</integer>
 			</dict>
 		</array>
 		<array>
@@ -212,6 +218,8 @@
 				<integer>0</integer>
 				<key>doseAgeFlagLate</key>
 				<integer>456</integer>
+				<key>doseMaximumAge</key>
+				<integer>1826</integer>
 			</dict>
 		</array>
 		<array>
@@ -252,6 +260,8 @@
 				<integer>0</integer>
 				<key>doseAgeFlagLate</key>
 				<integer>485</integer>
+				<key>doseMaximumAge</key>
+				<integer>1826</integer>
 			</dict>
 		</array>
 		<array>
@@ -304,6 +314,8 @@
 				<integer>0</integer>
 				<key>doseAgeFlagLate</key>
 				<integer>485</integer>
+				<key>doseMaximumAge</key>
+				<integer>1826</integer>
 			</dict>
 		</array>
 	</array>
@@ -818,7 +830,7 @@
 			</dict>
 			<dict>
 				<key>doseMinimumAge</key>
-				<integer>3399</integer>
+				<real>3399</real>
 				<key>doseMinimumInterval</key>
 				<integer>0</integer>
 				<key>doseRecommendedAge</key>
@@ -829,6 +841,8 @@
 				<integer>0</integer>
 				<key>doseAgeFlagLate</key>
 				<integer>4749</integer>
+				<key>doseMaximumAge</key>
+				<integer>9497</integer>
 			</dict>
 		</array>
 	</array>

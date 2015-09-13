@@ -12,10 +12,11 @@
 @class SBTVaccine;
 
 @protocol SBTAddScannedVaccinesDelegate
-
+@required
 -(void)addScannedVaccinesTVC:(SBTAddScannedVaccinesTVC *)sender addedVaccines:(NSSet *)vaccines;
 -(BOOL)isTooYoungForVaccine:(SBTVaccine *)vaccine;
 -(BOOL)isTooOldForVaccine:(SBTVaccine *)vaccine;
+-(BOOL)isExpiredVaccine:(SBTVaccine *)vaccine;
 
 @end
 

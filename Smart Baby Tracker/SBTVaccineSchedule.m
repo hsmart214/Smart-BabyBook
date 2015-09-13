@@ -18,6 +18,7 @@
 
 //#define REG_SCHED_KEY @"Customary"
 #define MIN_AGE_KEY @"doseMinimumAge"
+#define MAX_AGE_KEY @"doseMaximumAge"
 #define MIN_INTERVAL_KEY @"doseMinimumInterval"
 #define REC_AGE_KEY @"doseRecommendedAge"
 #define REC_AGE_UPPER_KEY @"doseRecommendedAgeUpperLimit"
@@ -287,7 +288,7 @@
         NSString *key = [SBTVaccineSchedule keyForVaccineComponent:comp];
         NSArray *scheds = rules[key];
         for (NSArray *sched in scheds){
-            NSInteger maxAge = [[sched lastObject][REC_AGE_UPPER_KEY] integerValue];
+            NSInteger maxAge = [[sched lastObject][MAX_AGE_KEY] integerValue];
             if (maxAge == 0 || age < maxAge){ // if maxAge == 0 then there is no upper age limit
                 tooOldForComponent = NO;
                 break; // because if it is for any schedule, it is not technically too old

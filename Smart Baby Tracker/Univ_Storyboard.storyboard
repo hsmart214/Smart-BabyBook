@@ -1502,6 +1502,9 @@ Individual circumstances may make modifications of these recommendations advisab
                                                 </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="AVv-yq-wZ0" kind="show" identifier="Show Documents" id="KxE-Z6-8BP"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -1915,6 +1918,45 @@ Individual circumstances may make modifications of these recommendations advisab
             </objects>
             <point key="canvasLocation" x="1274" y="970"/>
         </scene>
+        <!--Documents-->
+        <scene sceneID="dQY-WQ-eZN">
+            <objects>
+                <tableViewController storyboardIdentifier="Documents TVC" title="Documents" useStoryboardIdentifierAsRestorationIdentifier="YES" id="AVv-yq-wZ0" customClass="SBTDocumentsTVC" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Ehf-n1-S11">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Document Cell" textLabel="Oo7-v9-8kt" style="IBUITableViewCellStyleDefault" id="dRG-7r-QVH">
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dRG-7r-QVH" id="qGz-cS-TxS">
+                                    <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Oo7-v9-8kt">
+                                            <rect key="frame" x="15" y="0.0" width="550" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="AVv-yq-wZ0" id="PVd-Os-LpM"/>
+                            <outlet property="delegate" destination="AVv-yq-wZ0" id="b5c-9o-ehI"/>
+                        </connections>
+                    </tableView>
+                    <toolbarItems/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="n1e-qM-hJT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2121" y="970"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="JEI-Jr-lZL">
             <objects>
@@ -1989,11 +2031,11 @@ Individual circumstances may make modifications of these recommendations advisab
         <image name="weightTab" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="xRx-TS-k73"/>
+        <segue reference="zIK-Ze-kUM"/>
         <segue reference="t8A-9i-5wY"/>
         <segue reference="o99-JM-dbg"/>
-        <segue reference="zIK-Ze-kUM"/>
         <segue reference="GNu-Z6-MMO"/>
-        <segue reference="8NN-QL-fgg"/>
         <segue reference="Nke-ws-bgF"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.31307025550000001" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>

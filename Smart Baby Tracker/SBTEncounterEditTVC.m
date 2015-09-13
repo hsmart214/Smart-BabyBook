@@ -13,10 +13,9 @@
 #import "SBTAddScannedVaccinesTVC.h"
 #import "SBTMeasurementEntryVC.h"
 #import "SBTVaccineSchedule.h"
+#import "SBTVaccine.h"
 
 #define DATE_PICKER_ROW 1
-
-@class SBTVaccine;
 
 @interface SBTEncounterEditTVC ()<SBTAddScannedVaccinesDelegate, SBTMeasurementReturnDelegate>
 
@@ -92,6 +91,11 @@
 -(BOOL)isTooOldForVaccine:(SBTVaccine *)vaccine
 {
     return [[SBTVaccineSchedule sharedSchedule] tooOldForVaccine:vaccine atEncounter:self.encounter];
+}
+
+-(BOOL)isExpiredVaccine:(SBTVaccine *)vaccine
+{
+    return [vaccine.expirationDate timeIntervalSinceDate:self.encounter.universalDate] > 0;
 }
 
 #pragma mark - Navigation

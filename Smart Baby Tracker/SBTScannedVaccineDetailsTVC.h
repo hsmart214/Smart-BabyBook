@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "SBTVaccine.h"
+#import "SBTAddScannedVaccinesTVC.h"
 
 @interface SBTScannedVaccineDetailsTVC : UITableViewController
 
 @property (strong, nonatomic) SBTVaccine* vaccine;
+@property (weak, nonatomic) id<SBTAddScannedVaccinesDelegate>delegate;
 
 @end
