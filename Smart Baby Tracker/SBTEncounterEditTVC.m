@@ -12,8 +12,11 @@
 #import "SBTUnitsConvertor.h"
 #import "SBTAddScannedVaccinesTVC.h"
 #import "SBTMeasurementEntryVC.h"
+#import "SBTVaccineSchedule.h"
 
 #define DATE_PICKER_ROW 1
+
+@class SBTVaccine;
 
 @interface SBTEncounterEditTVC ()<SBTAddScannedVaccinesDelegate, SBTMeasurementReturnDelegate>
 
@@ -79,6 +82,16 @@
 
 -(void)addScannedVaccinesTVC:(SBTAddScannedVaccinesTVC *)sender addedVaccines:(NSSet *)vaccines{
     [self.encounter replaceVaccines:vaccines];
+}
+
+-(BOOL)isTooYoungForVaccine:(SBTVaccine *)vaccine
+{
+    return [[SBTVaccineSchedule sharedSchedule] vaccine:vaccine tooEarlyForEncounter:self.encounter];
+}
+
+-(BOOL)isTooOldForVaccine:(SBTVaccine *)vaccine
+{
+    return [[SBTVaccineSchedule sharedSchedule] tooOldForVaccine:vaccine atEncounter:self.encounter];
 }
 
 #pragma mark - Navigation

@@ -9,10 +9,13 @@
 @import UIKit;
 
 @class SBTAddScannedVaccinesTVC;
+@class SBTVaccine;
 
 @protocol SBTAddScannedVaccinesDelegate
 
 -(void)addScannedVaccinesTVC:(SBTAddScannedVaccinesTVC *)sender addedVaccines:(NSSet *)vaccines;
+-(BOOL)isTooYoungForVaccine:(SBTVaccine *)vaccine;
+-(BOOL)isTooOldForVaccine:(SBTVaccine *)vaccine;
 
 @end
 

@@ -8,12 +8,15 @@
 
 @import UIKit;
 @class SBTVaccinesGivenTVC;
+@class SBTVaccine;
 
 @protocol SBTVaccinesGivenTVCDelegate <NSObject>
 
 @required
 
 -(void)vaccinesGivenTVC:(SBTVaccinesGivenTVC *)vaccinesGivenTVC updatedVaccines:(NSSet *)newVaccineSet;
+-(BOOL)vaccineIsTooEarly:(SBTVaccine *)vaccine;
+-(BOOL)babyIsTooOldForVaccine:(SBTVaccine *)vaccine;
 
 @end
 

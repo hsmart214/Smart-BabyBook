@@ -273,8 +273,6 @@
     
     UIImage *smallImage = UIGraphicsGetImageFromCurrentImageContext();
     
-    //    NSData *data = UIImagePNGRepresentation(image);
-    
     UIGraphicsEndImageContext();
     
     return smallImage;

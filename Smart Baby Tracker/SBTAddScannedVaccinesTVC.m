@@ -11,6 +11,7 @@
 #import "SBTScannerViewController.h"
 #import "SBTVaccinesGivenTVC.h"
 #import "SBTVaccine.h"
+#import "SBTVaccineSchedule.h"
 
 @interface SBTAddScannedVaccinesTVC ()<SBTCaptureDelegate, SBTVaccinesGivenTVCDelegate>
 
@@ -70,6 +71,16 @@
     }
     self.addedVaccines = modifiedVaccines;
     [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
+}
+
+-(BOOL)vaccineIsTooEarly:(SBTVaccine *)vaccine
+{
+    return [self.delegate isTooYoungForVaccine:vaccine];
+}
+
+-(BOOL)babyIsTooOldForVaccine:(SBTVaccine *)vaccine
+{
+    return [self.delegate isTooOldForVaccine:vaccine];
 }
 
 #pragma mark - View controller lifecycle

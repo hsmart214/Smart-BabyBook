@@ -186,7 +186,7 @@
 		42BFE7D418D7F1DA00B0E2F4 /* SBTDataStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTDataStore.m; sourceTree = "<group>"; };
 		42C3E7531B6E9E12003DB2BC /* vaccineRecalls.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = vaccineRecalls.plist; sourceTree = "<group>"; };
 		42C75D841B3FB505004D7EB6 /* Smart BabyBook Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Smart BabyBook Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		42C75D871B3FB505004D7EB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		42C75D871B3FB505004D7EB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = "../Smart BabyBook Tests/Info.plist"; sourceTree = "<group>"; };
 		42C75D881B3FB505004D7EB6 /* Smart_BabyBook_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Smart_BabyBook_Tests.m; sourceTree = "<group>"; };
 		42CB9A4F18D4F7260097BBE3 /* SBTBabyInfoTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTBabyInfoTVC.h; sourceTree = "<group>"; };
 		42CB9A5018D4F7260097BBE3 /* SBTBabyInfoTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTBabyInfoTVC.m; sourceTree = "<group>"; };
@@ -327,6 +327,7 @@
 				42C3E7531B6E9E12003DB2BC /* vaccineRecalls.plist */,
 				423E593D1920890500E2E9AC /* babies.data */,
 				421C746818937535000E3C30 /* Smart BabyBook-Info.plist */,
+				42C75D871B3FB505004D7EB6 /* Info.plist */,
 				421C746918937535000E3C30 /* InfoPlist.strings */,
 				421C746C18937535000E3C30 /* main.m */,
 			);
@@ -402,17 +403,8 @@
 			isa = PBXGroup;
 			children = (
 				42C75D881B3FB505004D7EB6 /* Smart_BabyBook_Tests.m */,
-				42C75D861B3FB505004D7EB6 /* Supporting Files */,
 			);
 			path = "Smart BabyBook Tests";
-			sourceTree = "<group>";
-		};
-		42C75D861B3FB505004D7EB6 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				42C75D871B3FB505004D7EB6 /* Info.plist */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -460,7 +452,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = SBT;
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "J. HOWARD SMART";
 				TargetAttributes = {
 					421C745C18937535000E3C30 = {
@@ -640,6 +632,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -708,6 +701,7 @@
 				GCC_PREFIX_HEADER = "Smart Baby Tracker/Smart BabyBook-Prefix.pch";
 				INFOPLIST_FILE = "Smart Baby Tracker/Smart BabyBook-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mySmartSoftware.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "Smart BabyBook";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Smart Baby Tracker/Smart Baby Tracker-Bridging-Header.h";
@@ -731,6 +725,7 @@
 				GCC_PREFIX_HEADER = "Smart Baby Tracker/Smart BabyBook-Prefix.pch";
 				INFOPLIST_FILE = "Smart Baby Tracker/Smart BabyBook-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mySmartSoftware.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "Smart BabyBook";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Smart Baby Tracker/Smart Baby Tracker-Bridging-Header.h";
@@ -760,6 +755,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mySmartSoftware.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Smart BabyBook.app/Smart BabyBook";
 			};
@@ -783,6 +779,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mySmartSoftware.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Smart BabyBook.app/Smart BabyBook";
 			};

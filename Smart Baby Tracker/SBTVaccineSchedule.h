@@ -14,6 +14,7 @@
 @import Foundation;
 @class SBTBaby;
 @class SBTVaccine;
+@class SBTEncounter;
 
 typedef NS_ENUM(NSUInteger, SBTVaccineSeriesStatus) {
     SBTVaccinationNoData, SBTVaccinationNotYetDue, SBTVaccinationOverdue, SBTVaccinationDue, SBTVaccinationDueLockedOut, SBTVaccinationUTD,
@@ -43,5 +44,8 @@ typedef NS_ENUM(NSUInteger, SBTVaccineDoseStatus) {
 +(SBTVaccineSchedule *)sharedSchedule;
 +(NSArray *)recommendedVaccines;
 -(NSArray *)recalledVaccines;
+
+-(BOOL)vaccine:(SBTVaccine *)vaccine tooEarlyForEncounter:(SBTEncounter *)encounter;
+-(BOOL)tooOldForVaccine:(SBTVaccine *)vaccine atEncounter:(SBTEncounter *)encounter;
 
 @end

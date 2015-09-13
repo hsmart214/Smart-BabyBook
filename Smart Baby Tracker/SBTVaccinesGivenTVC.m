@@ -19,6 +19,9 @@
 @property (nonatomic, strong) NSArray *sortedTradeNames;
 @property (nonatomic, strong) NSArray *sortedGenericNames;
 
+@property (nonatomic, strong) NSDictionary *vaccinesByGenericName;
+@property (nonatomic, strong) NSDictionary *vaccinesByTradeName;
+
 @end
 
 @implementation SBTVaccinesGivenTVC
@@ -26,9 +29,23 @@
     NSMutableSet *selected; // we will load this with the names of the selected vaccines
 }
 
+-(NSDictionary *)vaccinesByGenericName{
+    if (!_vaccinesByGenericName){
+        _vaccinesByGenericName = [SBTVaccine vaccinesByGenericName];
+    }
+    return _vaccinesByGenericName;
+}
+
+-(NSDictionary *)vaccinesByTradeName{
+    if (!_vaccinesByTradeName){
+        _vaccinesByTradeName = [SBTVaccine vaccinesByTradeName];
+    }
+    return _vaccinesByTradeName;
+}
+
 -(NSArray *)sortedTradeNames{
     if (!_sortedTradeNames){
-        _sortedTradeNames = [[[SBTVaccine vaccinesByTradeName] allKeys] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2){
+        _sortedTradeNames = [[self.vaccinesByTradeName allKeys] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2){
             return [obj1 localizedCaseInsensitiveCompare:obj2];
         }];
     }
@@ -37,7 +54,7 @@
 
 -(NSArray *)sortedGenericNames{
     if (!_sortedGenericNames){
-        _sortedGenericNames = [[[SBTVaccine vaccinesByGenericName] allKeys] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2){
+        _sortedGenericNames = [[self.vaccinesByGenericName allKeys] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2){
             return [obj1 localizedCaseInsensitiveCompare:obj2];
         }];
     }
@@ -65,8 +82,32 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     if ([cell accessoryType] == UITableViewCellAccessoryNone){
-        [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
-        [selected addObject:cell.textLabel.text];
+        SBTVaccine *vacc;
+        if (self.vaccinesByGenericName[cell.textLabel.text]){
+            vacc = self.vaccinesByGenericName[cell.textLabel.text];
+        }else{
+            vacc = self.vaccinesByTradeName[cell.textLabel.text];
+        }
+        if (![self.delegate vaccineIsTooEarly:vacc] && ![self.delegate babyIsTooOldForVaccine:vacc]){
+            [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
+            [selected addObject:cell.textLabel.text];
+        }else{
+            // here we embark on informing the user that the vaccine date is out of range
+            // in certain cases this will still be acceptable, so we must allow for it
+            NSString *ageText = [self.delegate vaccineIsTooEarly:vacc] ? @"too young" : @"too old";
+            UIAlertController *alert = [UIAlertController
+                                        alertControllerWithTitle:[NSString stringWithFormat:@"Child %@ for vaccine.", ageText]
+                                                         message:@"This may be appropriate for epidemics or known exposure."
+                                                  preferredStyle:UIAlertControllerStyleActionSheet];
+            UIAlertAction *actionAdd = [UIAlertAction actionWithTitle:@"Add" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+                [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
+                [self->selected addObject:cell.textLabel.text];
+            }];
+            UIAlertAction *actionCancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action){}];
+            [alert addAction:actionAdd];
+            [alert addAction:actionCancel];
+            [self presentViewController:alert animated:YES completion:nil];
+        }
     }else{
         [cell setAccessoryType:UITableViewCellAccessoryNone];
         [selected removeObject:cell.textLabel.text];
@@ -117,20 +158,17 @@
 
 - (IBAction)saveChanges:(id)sender {
     NSMutableSet *newVaccineSet = [NSMutableSet set];
-    NSDictionary *genericVaccines = [SBTVaccine vaccinesByGenericName];
-    NSSet *genericNames = [NSSet setWithArray:[genericVaccines allKeys]];
-    NSDictionary *brandNameVaccines = [SBTVaccine vaccinesByTradeName];
+    NSSet *genericNames = [NSSet setWithArray:[self.vaccinesByGenericName allKeys]];
     for (NSString *vacName in selected){
         if ([genericNames containsObject:vacName]){
-            [newVaccineSet addObject:genericVaccines[vacName]];
+            [newVaccineSet addObject:self.vaccinesByGenericName[vacName]];
         }else{ // must be a trade name - mutually exclusive sets of names
-            [newVaccineSet addObject:brandNameVaccines[vacName]];
+            [newVaccineSet addObject:self.vaccinesByTradeName[vacName]];
         }
     }
     [self.delegate vaccinesGivenTVC:self updatedVaccines:newVaccineSet];
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
-
 
 -(void)viewDidLoad
 {

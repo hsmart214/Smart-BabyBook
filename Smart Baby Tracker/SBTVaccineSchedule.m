@@ -10,6 +10,7 @@
 #import "SBTBaby.h"
 #import "SBTVaccine.h"
 #import "SBTVaccineRecall.h"
+#import "SBTEncounter.h"
 
 #define VACCINE_SCHEDULE_FILENAME @"ACIP Schedule"
 #define RECALLS_FILENAME @"vaccineRecalls"
@@ -251,6 +252,50 @@
         }
     }
     return alternateStatusDictionaries[bestIndex];
+}
+
+-(BOOL)vaccine:(SBTVaccine *)vaccine tooEarlyForEncounter:(SBTEncounter *)encounter
+{
+    NSInteger age = [encounter.baby ageInDaysAtEncounter:encounter].day;
+    NSArray *components = [[vaccine components] allObjects];
+    for (NSNumber *num in components){
+        if ([num integerValue] == 0) continue;
+        BOOL tooEarlyForComponent = YES;
+        SBTComponent comp = (SBTComponent)[num integerValue];
+        NSString *key = [SBTVaccineSchedule keyForVaccineComponent:comp];
+        NSArray *scheds = rules[key];
+        for (NSArray *sched in scheds){
+            NSInteger minAge = [sched[0][MIN_AGE_KEY] integerValue];
+            if (minAge <= age){
+                tooEarlyForComponent = NO;
+                break; // because if it is OK for any schedule, it is not technically too early
+            }
+        }
+        if (tooEarlyForComponent) return YES; // if it is too early for any component, it is too early
+    }
+    return NO;
+}
+
+-(BOOL)tooOldForVaccine:(SBTVaccine *)vaccine atEncounter:(SBTEncounter *)encounter
+{
+    NSInteger age = [encounter.baby ageInDaysAtEncounter:encounter].day;
+    NSArray *components = [[vaccine components] allObjects];
+    for (NSNumber *num in components){
+        if ([num integerValue] == 0) continue;
+        BOOL tooOldForComponent = YES;
+        SBTComponent comp = (SBTComponent)[num integerValue];
+        NSString *key = [SBTVaccineSchedule keyForVaccineComponent:comp];
+        NSArray *scheds = rules[key];
+        for (NSArray *sched in scheds){
+            NSInteger maxAge = [[sched lastObject][REC_AGE_UPPER_KEY] integerValue];
+            if (maxAge == 0 || age < maxAge){ // if maxAge == 0 then there is no upper age limit
+                tooOldForComponent = NO;
+                break; // because if it is for any schedule, it is not technically too old
+            }
+        }
+        if (tooOldForComponent) return YES; // if baby is too old for any component, it is too early
+    }
+    return NO;
 }
 
 @end
