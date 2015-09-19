@@ -22,6 +22,7 @@
 @property (nonatomic, copy) NSDate *dateModified;
 @property (nonatomic, strong) NSDateFormatter *df;
 @property (nonatomic, strong, readwrite) NSDate *DOB;
+@property (nonatomic, strong) NSMutableArray<SBTDocumentImage *> *documentImages;
 
 @end
 
@@ -209,6 +210,25 @@
     return stone;
 }
 
+-(NSArray<SBTDocumentImage *> *)documents{
+    return self.documentImages;
+}
+
+-(void)addDocument:(SBTDocumentImage *)document{
+    if (![self.documentImages containsObject:document]){
+        [self.documentImages addObject:document];
+    }
+}
+
+-(BOOL)removeDocument:(SBTDocumentImage *)document{
+    if ([self.documentImages containsObject:document]){
+        [self.documentImages removeObject:document];
+        return YES;
+    }else{
+        return NO;
+    }
+}
+
 -(void)addEncounter:(SBTEncounter *)encounter
 {
     if (!encounter) return;
@@ -314,6 +334,8 @@
     [aCoder encodeObject:self.dateModified forKey:@"dateModified"];
     NSData *imageData = UIImageJPEGRepresentation(self.thumbnail, 1.0);
     [aCoder encodeObject:imageData forKey:@"thumbnailImageData"];
+    NSData *documentData = [NSKeyedArchiver archivedDataWithRootObject:self.documentImages];
+    [aCoder encodeObject:documentData forKey:@"documentImages"];
 }
 
 -(instancetype)initWithCoder:(NSCoder *)aDecoder
@@ -333,6 +355,8 @@
         self.dateModified = [aDecoder decodeObjectOfClass:[NSDate class] forKey:@"dateModified"];
         NSData *imageData = [aDecoder decodeObjectOfClass:[NSData class] forKey:@"thumbnailImageData"];
         self.thumbnail = [UIImage imageWithData:imageData];
+        NSData *documentData = [aDecoder decodeObjectOfClass:[NSData class] forKey:@"documentImages"];
+        self.documentImages = [NSKeyedUnarchiver unarchiveObjectWithData:documentData];
     }
     return self;
 }

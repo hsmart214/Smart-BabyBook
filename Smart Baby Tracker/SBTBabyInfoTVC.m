@@ -15,6 +15,7 @@
 #import "SBTWHODataSource.h"
 #import "SBTCDCDataSource.h"
 #import "SBTVaccineGridViewController.h"
+#import "SBTDocumentsTVC.h"
 
 @interface SBTBabyInfoTVC ()<SBTBabyEditDelegate, SBTEncounterEditTVCDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *birthDateLable;
@@ -163,6 +164,11 @@
     }
     if ([segue.identifier isEqualToString:@"Vaccine Grid Segue"]){
         SBTVaccineGridViewController *dest = segue.destinationViewController;
+        dest.baby = self.baby;
+        dest.delegate = self;
+    }
+    if ([segue.identifier isEqualToString:@"Show Documents"]){
+        SBTDocumentsTVC *dest = segue.destinationViewController;
         dest.baby = self.baby;
         dest.delegate = self;
     }

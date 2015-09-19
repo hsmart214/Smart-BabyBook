@@ -9,6 +9,8 @@
 #import "SBTEncounter.h"
 @import Foundation;
 
+@class SBTDocumentImage;
+
 @interface SBTBaby : NSObject <NSSecureCoding, NSCopying>
 
 @property (nonatomic, copy) NSString *name;
@@ -55,4 +57,8 @@
 -(NSArray *)encountersList;
 -(NSArray *)vaccinesGiven;  // a list of every vaccine given (used to check for recalls)
 -(SBTMilestone)milestones;
+
+-(NSArray<SBTDocumentImage *> *)documents;
+-(void)addDocument:(SBTDocumentImage *)document;
+-(BOOL)removeDocument:(SBTDocumentImage *)document;  // returns NO if the document was not removed (not in the list?)
 @end

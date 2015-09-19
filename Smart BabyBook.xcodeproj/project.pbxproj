@@ -15,8 +15,10 @@
 		421C746D18937535000E3C30 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 421C746C18937535000E3C30 /* main.m */; };
 		421C747118937535000E3C30 /* SBTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 421C747018937535000E3C30 /* SBTAppDelegate.m */; };
 		421C747F18937535000E3C30 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 421C747E18937535000E3C30 /* Images.xcassets */; };
+		421CEE631BACEA7E00A46E8A /* SBTDocumentImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 421CEE621BACEA7E00A46E8A /* SBTDocumentImageCell.m */; settings = {ASSET_TAGS = (); }; };
 		4220B75718E4C2B500557F27 /* SBTGraphPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 4220B75618E4C2B500557F27 /* SBTGraphPoint.m */; };
 		4226B8CD189F5F3B00682A6A /* NSDateComponents+Today.m in Sources */ = {isa = PBXBuildFile; fileRef = 4226B8CC189F5F3B00682A6A /* NSDateComponents+Today.m */; };
+		4228C3ED1BAD137C00316085 /* SBTDocumentImageEditTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4228C3EC1BAD137C00316085 /* SBTDocumentImageEditTVC.m */; settings = {ASSET_TAGS = (); }; };
 		423091BB1AB3F76D00E5EC63 /* SBTGraphVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 423091BA1AB3F76D00E5EC63 /* SBTGraphVC.m */; };
 		423E593E1920890500E2E9AC /* babies.data in Resources */ = {isa = PBXBuildFile; fileRef = 423E593D1920890500E2E9AC /* babies.data */; };
 		4248806618944C84009F2837 /* SBTBaby.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248806518944C84009F2837 /* SBTBaby.m */; };
@@ -108,10 +110,14 @@
 		421C747018937535000E3C30 /* SBTAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SBTAppDelegate.m; sourceTree = "<group>"; };
 		421C747E18937535000E3C30 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		421C748518937535000E3C30 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		421CEE611BACEA7E00A46E8A /* SBTDocumentImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTDocumentImageCell.h; sourceTree = "<group>"; };
+		421CEE621BACEA7E00A46E8A /* SBTDocumentImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTDocumentImageCell.m; sourceTree = "<group>"; };
 		4220B75518E4C2B500557F27 /* SBTGraphPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTGraphPoint.h; sourceTree = "<group>"; };
 		4220B75618E4C2B500557F27 /* SBTGraphPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTGraphPoint.m; sourceTree = "<group>"; };
 		4226B8CB189F5F3B00682A6A /* NSDateComponents+Today.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDateComponents+Today.h"; sourceTree = "<group>"; };
 		4226B8CC189F5F3B00682A6A /* NSDateComponents+Today.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateComponents+Today.m"; sourceTree = "<group>"; };
+		4228C3EB1BAD137C00316085 /* SBTDocumentImageEditTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTDocumentImageEditTVC.h; sourceTree = "<group>"; };
+		4228C3EC1BAD137C00316085 /* SBTDocumentImageEditTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTDocumentImageEditTVC.m; sourceTree = "<group>"; };
 		423091B91AB3F76D00E5EC63 /* SBTGraphVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTGraphVC.h; sourceTree = "<group>"; };
 		423091BA1AB3F76D00E5EC63 /* SBTGraphVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTGraphVC.m; sourceTree = "<group>"; };
 		423E593D1920890500E2E9AC /* babies.data */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = babies.data; sourceTree = "<group>"; };
@@ -295,6 +301,10 @@
 				4287698818CD77AE007862AB /* SBTBabyEditViewController.m */,
 				424B721A1BA62F6A005BC760 /* SBTDocumentsTVC.h */,
 				424B721B1BA62F6A005BC760 /* SBTDocumentsTVC.m */,
+				4228C3EB1BAD137C00316085 /* SBTDocumentImageEditTVC.h */,
+				4228C3EC1BAD137C00316085 /* SBTDocumentImageEditTVC.m */,
+				421CEE611BACEA7E00A46E8A /* SBTDocumentImageCell.h */,
+				421CEE621BACEA7E00A46E8A /* SBTDocumentImageCell.m */,
 				4287698418CD6F2E007862AB /* SBTChildrenViewController.h */,
 				4287698518CD6F2E007862AB /* SBTChildrenViewController.m */,
 				42F49E451B37916000F0D89D /* SBTChildCell.h */,
@@ -569,6 +579,7 @@
 				428138511AA2C8D600770A26 /* SBTScannedVaccineDetailsTVC.m in Sources */,
 				8958B49A191F3875007C032B /* SBTVaccineCell.m in Sources */,
 				4269C7461AA9865A0011FA64 /* SBTVaccineRecall.m in Sources */,
+				4228C3ED1BAD137C00316085 /* SBTDocumentImageEditTVC.m in Sources */,
 				42CB9A5718D5731C0097BBE3 /* SBTEncounterTableViewCell.m in Sources */,
 				421C747118937535000E3C30 /* SBTAppDelegate.m in Sources */,
 				4248806A189459D2009F2837 /* SBTEncounter.m in Sources */,
@@ -588,6 +599,7 @@
 				8958B49D191F452D007C032B /* SBTVaccineGridHeader.m in Sources */,
 				4281384E1AA2BF3300770A26 /* SBTAddScannedVaccinesTVC.m in Sources */,
 				4287698918CD77AE007862AB /* SBTBabyEditViewController.m in Sources */,
+				421CEE631BACEA7E00A46E8A /* SBTDocumentImageCell.m in Sources */,
 				42BFE7D518D7F1DA00B0E2F4 /* SBTDataStore.m in Sources */,
 				4281384B1AA2BE3F00770A26 /* SBTScannerViewController.m in Sources */,
 				42AAD6071B2BE50A00166071 /* SBTMeasurementEntryVC.m in Sources */,
