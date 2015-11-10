@@ -95,7 +95,8 @@
 
 -(BOOL)isExpiredVaccine:(SBTVaccine *)vaccine
 {
-    return [vaccine.expirationDate timeIntervalSinceDate:self.encounter.universalDate] > 0;
+    NSTimeInterval t = [vaccine.expirationDate timeIntervalSinceDate:self.encounter.universalDate];
+    return t < 0;
 }
 
 #pragma mark - Navigation

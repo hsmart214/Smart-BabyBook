@@ -44,6 +44,9 @@
                                     alertControllerWithTitle:[NSString stringWithFormat:@"Child %@ for vaccine.", alertPhrase]
                                     message:@"This may be appropriate for epidemics or known exposure."
                                     preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                              handler:^(UIAlertAction * action) {}];
+        [alert addAction:defaultAction];
         [self presentViewController:alert animated:YES completion:nil];
     }
     if ([self.delegate isExpiredVaccine:self.vaccine]){
@@ -51,6 +54,9 @@
                                     alertControllerWithTitle:@"Vaccine expired before date given."
                                     message:@"Please confirm dates."
                                     preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                              handler:^(UIAlertAction * action) {}];
+        [alert addAction:defaultAction];
         [self presentViewController:alert animated:YES completion:nil];
     }
 }
