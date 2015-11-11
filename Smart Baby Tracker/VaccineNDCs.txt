@@ -72,7 +72,7 @@ Fluzone	Sanofi Pasteur Inc.	20120702	20130630	49281-0010-50
 MMR-II	Physicians Total Care, Inc.	19960807	20120630	54868-0980-00
 Cervarix	GlaxoSmithKline Biologicals SA	20091016		58160-0830-43
 Cervarix	GlaxoSmithKline Biologicals SA	20091016		58160-0830-05
-Prevnar13	Wyeth Pharmaceutical Division of Wyeth Holdings Co	20100312		00005-1971-01
+Prevnar13	Wyeth Pharmaceutical Division of Wyeth Holdings Co	20100312		00051-0971-01
 Prevnar13	Wyeth Pharmaceutical Division of Wyeth Holdings Co	20100312		00005-1971-01
 Prevnar13	Wyeth Pharmaceutical Division of Wyeth Holdings Co	20100312		00005-1971-01
 Tetanus Td	Akorn, Inc.	19700727		17478-0131-00
