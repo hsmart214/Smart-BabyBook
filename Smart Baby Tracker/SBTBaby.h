@@ -8,6 +8,7 @@
 
 #import "SBTEncounter.h"
 @import Foundation;
+@import UIKit;
 
 @class SBTDocumentImage;
 
