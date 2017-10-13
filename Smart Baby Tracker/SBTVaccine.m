@@ -291,6 +291,7 @@ static NSString *const SBTVaccineNameKey = @"SBTVaccineName";
                      @"Recombivax HB":[[SBTVaccine alloc] initWithName:@"Recombivax HB" displayNames:@[@"Hep B"] manufacturer:Merck andComponents:@[@(SBTComponentFDA_Approved), @(SBTComponentHepB)]],
                      @"Engerix-B":[[SBTVaccine alloc] initWithName:@"Engerix-B" displayNames:@[@"Hep B"] manufacturer:Glaxo andComponents:@[@(SBTComponentFDA_Approved), @(SBTComponentHepB)]],
                      @"Gardasil":[[SBTVaccine alloc] initWithName:@"Gardasil" displayNames:@[@"HPV"] manufacturer:Merck andComponents:@[@(SBTComponentFDA_Approved), @(SBTComponentHPV4)]],
+                     @"Gardasil 9":[[SBTVaccine alloc]initWithName:@"Gardasil 9" displayNames:@[@"HPV9"] manufacturer:Merck andComponents:@[@(SBTComponentFDA_Approved), @(SBTComponentHPV9)]],
                      @"Cervarix":[[SBTVaccine alloc] initWithName:@"Cervarix" displayNames:@[@"HPV"] manufacturer:Glaxo andComponents:@[@(SBTComponentFDA_Approved), @(SBTComponentHPV2)]],
                      @"Menveo":[[SBTVaccine alloc] initWithName:@"Menveo" displayNames:@[@"MCV4"] manufacturer:Novartis andComponents:@[@(SBTComponentFDA_Approved), @(SBTComponentMCV4)]],
                      @"Menactra":[[SBTVaccine alloc] initWithName:@"Menactra" displayNames:@[@"MCV4"] manufacturer:Sanofi andComponents:@[@(SBTComponentFDA_Approved), @(SBTComponentMCV4)]],
@@ -308,6 +309,7 @@ static NSString *const SBTVaccineNameKey = @"SBTVaccineName";
                      @"Varivax":[[SBTVaccine alloc] initWithName:@"Varivax" displayNames:@[@"VZV"] manufacturer:Merck andComponents:@[@(SBTComponentFDA_Approved), @(SBTComponentVZV)]],
                      @"Tetanus MSD":[[SBTVaccine alloc] initWithName:@"Tetanus" displayNames:@[@"Td"] manufacturer:Merck andComponents:@[@(SBTComponentFDA_Approved), @(SBTComponentTd)]],
                      @"Tetanus":[[SBTVaccine alloc] initWithName:@"Tetanus" displayNames:@[@"Td"] manufacturer:Rebel andComponents:@[@(SBTComponentFDA_Approved), @(SBTComponentTd)]],
+                     @"Quadracel":[[SBTVaccine alloc]initWithName:@"Quadracel" displayNames:@[@"DTaP", @"IPV"] manufacturer:Sanofi andComponents:@[@(SBTComponentFDA_Approved), @(SBTComponentDTaP), @(SBTComponentIPV)]]
                      };
     }
     return allVaccs;

@@ -67,7 +67,7 @@
 		428138571AA2D86A00770A26 /* BCRVaccineCodeLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 428138561AA2D86A00770A26 /* BCRVaccineCodeLoader.m */; };
 		4287698618CD6F2E007862AB /* SBTChildrenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4287698518CD6F2E007862AB /* SBTChildrenViewController.m */; };
 		4287698918CD77AE007862AB /* SBTBabyEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4287698818CD77AE007862AB /* SBTBabyEditViewController.m */; };
-		4291CD351AA58419009452AD /* VaccineNDCs.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4291CD341AA58419009452AD /* VaccineNDCs.txt */; };
+		4291CD351AA58419009452AD /* VaccineNDCsOLD.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4291CD341AA58419009452AD /* VaccineNDCsOLD.txt */; };
 		429700CE18AED9AA0013A91B /* ACIP Schedule.plist in Resources */ = {isa = PBXBuildFile; fileRef = 429700CD18AED9AA0013A91B /* ACIP Schedule.plist */; };
 		42AAD6041B2BE00F00166071 /* SBTEncounterEditTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 42AAD6031B2BE00F00166071 /* SBTEncounterEditTVC.m */; };
 		42AAD6071B2BE50A00166071 /* SBTMeasurementEntryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 42AAD6061B2BE50A00166071 /* SBTMeasurementEntryVC.m */; };
@@ -134,7 +134,7 @@
 		424B721D1BA62FED005BC760 /* SBTDocumentImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTDocumentImage.h; sourceTree = "<group>"; };
 		424B721E1BA62FED005BC760 /* SBTDocumentImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTDocumentImage.m; sourceTree = "<group>"; };
 		4256E3F21F8FEB0A003A8958 /* ALL_NDCs.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ALL_NDCs.txt; path = ../../../../Desktop/ALL_NDCs.txt; sourceTree = "<group>"; };
-		42587CDA1F908728006FE4CC /* All_NDCs.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = All_NDCs.txt; sourceTree = "<group>"; };
+		42587CDA1F908728006FE4CC /* VaccineNDCs.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = VaccineNDCs.txt; sourceTree = "<group>"; };
 		4258BCF418C40E1900E8232F /* SBTCDCDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTCDCDataSource.h; sourceTree = "<group>"; };
 		4258BCF518C40E1900E8232F /* SBTCDCDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTCDCDataSource.m; sourceTree = "<group>"; };
 		425D58DF18DE9EC000B0AA3C /* SBTBabyEditDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SBTBabyEditDelegate.h; sourceTree = "<group>"; };
@@ -190,7 +190,7 @@
 		4287698518CD6F2E007862AB /* SBTChildrenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTChildrenViewController.m; sourceTree = "<group>"; };
 		4287698718CD77AE007862AB /* SBTBabyEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTBabyEditViewController.h; sourceTree = "<group>"; };
 		4287698818CD77AE007862AB /* SBTBabyEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTBabyEditViewController.m; sourceTree = "<group>"; };
-		4291CD341AA58419009452AD /* VaccineNDCs.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = VaccineNDCs.txt; sourceTree = "<group>"; };
+		4291CD341AA58419009452AD /* VaccineNDCsOLD.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = VaccineNDCsOLD.txt; sourceTree = "<group>"; };
 		4295AFB01B09671F00D0EC41 /* Smart Baby Tracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Smart Baby Tracker.entitlements"; sourceTree = "<group>"; };
 		4295AFB31B09693400D0EC41 /* SBTGraphVCDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTGraphVCDelegate.h; sourceTree = "<group>"; };
 		429700CD18AED9AA0013A91B /* ACIP Schedule.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ACIP Schedule.plist"; sourceTree = "<group>"; };
@@ -334,6 +334,7 @@
 				4279754918F1EC5A00F506C7 /* SBTPreferencesTVC.h */,
 				4279754A18F1EC5A00F506C7 /* SBTPreferencesTVC.m */,
 				421C746818937535000E3C30 /* Smart BabyBook-Info.plist */,
+				42587CDA1F908728006FE4CC /* VaccineNDCs.txt */,
 				4248806718944C90009F2837 /* Model */,
 				421C746718937535000E3C30 /* Supporting Files */,
 			);
@@ -396,8 +397,7 @@
 		42C7540D18C2BBEE0050F38A /* Data files */ = {
 			isa = PBXGroup;
 			children = (
-				42587CDA1F908728006FE4CC /* All_NDCs.txt */,
-				4291CD341AA58419009452AD /* VaccineNDCs.txt */,
+				4291CD341AA58419009452AD /* VaccineNDCsOLD.txt */,
 				4256E3F21F8FEB0A003A8958 /* ALL_NDCs.txt */,
 				4264369318C4459800414CA1 /* cdcbmiboys.txt */,
 				4264369418C4459800414CA1 /* cdcbmigirls.txt */,
@@ -537,7 +537,7 @@
 				421C747F18937535000E3C30 /* Images.xcassets in Resources */,
 				429700CE18AED9AA0013A91B /* ACIP Schedule.plist in Resources */,
 				426436B118C4459800414CA1 /* cdcweightinfantboys.txt in Resources */,
-				4291CD351AA58419009452AD /* VaccineNDCs.txt in Resources */,
+				4291CD351AA58419009452AD /* VaccineNDCsOLD.txt in Resources */,
 				426436AF18C4459800414CA1 /* cdcweightboys.txt in Resources */,
 				426436AC18C4459800414CA1 /* cdclengthgirls.txt in Resources */,
 				426AC51A19024D8700EF694C /* whoweightgirls.txt in Resources */,
