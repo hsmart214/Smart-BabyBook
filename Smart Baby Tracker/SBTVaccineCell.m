@@ -53,6 +53,7 @@
 
 -(void)awakeFromNib
 {
+    [super awakeFromNib];
     [self.contentView.layer setCornerRadius:VACCINE_CELL_CORNER_RADIUS];
     [self.contentView.layer setMasksToBounds:YES];
 }

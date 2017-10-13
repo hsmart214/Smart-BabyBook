@@ -10,6 +10,7 @@
 
 @protocol SBTMeasurementReturnDelegate <NSObject>
 @required
+// may assume that the returned value is appropriate to be stored immediately, i.e., it is already in metrinc units
 -(void)measurementReturnDelegate:(id)delegate returnedMeasurement:(double)measurement forParameter:(SBTGrowthParameter)parameter;
 
 @end

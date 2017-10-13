@@ -11,6 +11,7 @@
 @import UIKit;
 
 @class SBTDocumentImage;
+@class SBTVaccine;
 
 @interface SBTBaby : NSObject <NSSecureCoding, NSCopying>
 
@@ -52,11 +53,11 @@
 // will return an EMPTY ARRAY (not nil) if never received the component
 // to simplify, the ages are given in DAYS as NSDateComponents * objects (not NSTimeIntervals or NSIntegers)
 -(NSArray *)daysGivenVaccineComponent:(SBTComponent)component;
--(NSArray *)encountersWithGivenVaccineComponent:(SBTComponent)component;
+-(NSArray <SBTEncounter *>*)encountersWithGivenVaccineComponent:(SBTComponent)component;
 -(NSArray *)daysGivenLiveVaccineComponent;
 -(BOOL)dayIsDuringLiveBlackout:(NSDateComponents *)dayOfLife;
--(NSArray *)encountersList;
--(NSArray *)vaccinesGiven;  // a list of every vaccine given (used to check for recalls)
+-(NSArray <SBTEncounter *>*)encountersList;
+-(NSArray <SBTVaccine *>*)vaccinesGiven;  // a list of every SBTVaccine * given (used to check for recalls)
 -(SBTMilestone)milestones;
 
 -(NSArray<SBTDocumentImage *> *)documents;

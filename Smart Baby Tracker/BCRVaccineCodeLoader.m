@@ -36,7 +36,7 @@
         NSMutableArray *textLines = [NSMutableArray arrayWithArray:[vaccineData componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"\n\r"]]];
         
         /* This is the first line of the data file, which will be the keys in the dictionary
-         SBTVaccineName,UseUnitLabelerName, UseUnitstartDate,UseUnitEndDate,NDC11
+         SBTVaccineName,UseUnitLabelerName, UseUnitstartDate,UseUnitEndDate,CVX,NDC11
          */
         NSArray *keys;
         if ([textLines count]){
@@ -67,6 +67,7 @@
                 }
             }
             if (singleVaccineEntry[@"NDC11"]){
+                // this sets up the dictionary for lookup by NDC number (since the barcode gives this information)
                 [sVaccines setObject:singleVaccineEntry forKey:singleVaccineEntry[@"NDC11"]];
             }
         }

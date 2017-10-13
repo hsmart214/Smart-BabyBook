@@ -29,6 +29,7 @@ typedef NS_OPTIONS(NSInteger, SBTMilestone) {
 };
 
 @class SBTBaby;
+@class SBTVaccine;
 
 @interface SBTEncounter : NSObject <NSSecureCoding, NSCopying>
 
@@ -49,7 +50,7 @@ typedef NS_OPTIONS(NSInteger, SBTMilestone) {
 -(instancetype)initWithCoder:(NSCoder *)aDecoder;
 -(void)encodeWithCoder:(NSCoder *)aCoder;
 
--(void)replaceVaccines:(NSSet *)newVaccineSet;  // set of SBTVaccine objects
+-(void)replaceVaccines:(NSSet <SBTVaccine *>*)newVaccineSet;  // set of SBTVaccine objects
 -(void)addMilestone:(SBTMilestone)milestone;
 -(SBTMilestone)milestones;
 
@@ -61,7 +62,7 @@ typedef NS_OPTIONS(NSInteger, SBTMilestone) {
 -(CGFloat)dataForParameter:(SBTGrowthParameter)param;
 
 // an array of SBTVaccine * objects
--(NSArray *)vaccinesGiven;
+-(NSArray <SBTVaccine *>*)vaccinesGiven;
 // an array of the individual components given
--(NSArray *)componentsGiven;
+-(NSArray <NSNumber *>*)componentsGiven; // SBTVaccineComponent raw values as NSNumber
 @end

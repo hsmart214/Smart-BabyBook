@@ -26,6 +26,7 @@
 		4248806D18945CE2009F2837 /* SBTVaccine.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248806C18945CE2009F2837 /* SBTVaccine.m */; };
 		424B721C1BA62F6A005BC760 /* SBTDocumentsTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 424B721B1BA62F6A005BC760 /* SBTDocumentsTVC.m */; };
 		424B721F1BA62FED005BC760 /* SBTDocumentImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 424B721E1BA62FED005BC760 /* SBTDocumentImage.m */; };
+		4256E3F31F8FEB0B003A8958 /* ALL_NDCs.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4256E3F21F8FEB0A003A8958 /* ALL_NDCs.txt */; };
 		4258BCF618C40E1900E8232F /* SBTCDCDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4258BCF518C40E1900E8232F /* SBTCDCDataSource.m */; };
 		425D58E218DEA5B100B0AA3C /* SBTEncounterInfoTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 425D58E118DEA5B100B0AA3C /* SBTEncounterInfoTVC.m */; };
 		426436A718C4459800414CA1 /* cdcbmiboys.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4264369318C4459800414CA1 /* cdcbmiboys.txt */; };
@@ -109,7 +110,7 @@
 		421C746E18937535000E3C30 /* Smart BabyBook-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Smart BabyBook-Prefix.pch"; sourceTree = "<group>"; };
 		421C746F18937535000E3C30 /* SBTAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SBTAppDelegate.h; sourceTree = "<group>"; };
 		421C747018937535000E3C30 /* SBTAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SBTAppDelegate.m; sourceTree = "<group>"; };
-		421C747E18937535000E3C30 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		421C747E18937535000E3C30 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "Smart Baby Tracker/Images.xcassets"; sourceTree = "<group>"; };
 		421C748518937535000E3C30 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		421CEE611BACEA7E00A46E8A /* SBTDocumentImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTDocumentImageCell.h; sourceTree = "<group>"; };
 		421CEE621BACEA7E00A46E8A /* SBTDocumentImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTDocumentImageCell.m; sourceTree = "<group>"; };
@@ -132,6 +133,8 @@
 		424B721B1BA62F6A005BC760 /* SBTDocumentsTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTDocumentsTVC.m; sourceTree = "<group>"; };
 		424B721D1BA62FED005BC760 /* SBTDocumentImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTDocumentImage.h; sourceTree = "<group>"; };
 		424B721E1BA62FED005BC760 /* SBTDocumentImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTDocumentImage.m; sourceTree = "<group>"; };
+		4256E3F21F8FEB0A003A8958 /* ALL_NDCs.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ALL_NDCs.txt; path = ../../../../Desktop/ALL_NDCs.txt; sourceTree = "<group>"; };
+		42587CDA1F908728006FE4CC /* All_NDCs.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = All_NDCs.txt; sourceTree = "<group>"; };
 		4258BCF418C40E1900E8232F /* SBTCDCDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTCDCDataSource.h; sourceTree = "<group>"; };
 		4258BCF518C40E1900E8232F /* SBTCDCDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTCDCDataSource.m; sourceTree = "<group>"; };
 		425D58DF18DE9EC000B0AA3C /* SBTBabyEditDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SBTBabyEditDelegate.h; sourceTree = "<group>"; };
@@ -248,6 +251,7 @@
 		421C745418937535000E3C30 = {
 			isa = PBXGroup;
 			children = (
+				421C747E18937535000E3C30 /* Images.xcassets */,
 				421C746618937535000E3C30 /* Smart Baby Tracker */,
 				42C75D851B3FB505004D7EB6 /* Smart BabyBook Tests */,
 				421C745F18937535000E3C30 /* Frameworks */,
@@ -278,7 +282,6 @@
 		421C746618937535000E3C30 /* Smart Baby Tracker */ = {
 			isa = PBXGroup;
 			children = (
-				4295AFB01B09671F00D0EC41 /* Smart Baby Tracker.entitlements */,
 				42D481781A3376410058C7AE /* Univ_Storyboard.storyboard */,
 				428138491AA2BE3F00770A26 /* SBTScannerViewController.h */,
 				4281384A1AA2BE3F00770A26 /* SBTScannerViewController.m */,
@@ -330,8 +333,8 @@
 				421C2A6F18E3D12100EE8A19 /* UIColor+SBTColors.m */,
 				4279754918F1EC5A00F506C7 /* SBTPreferencesTVC.h */,
 				4279754A18F1EC5A00F506C7 /* SBTPreferencesTVC.m */,
+				421C746818937535000E3C30 /* Smart BabyBook-Info.plist */,
 				4248806718944C90009F2837 /* Model */,
-				421C747E18937535000E3C30 /* Images.xcassets */,
 				421C746718937535000E3C30 /* Supporting Files */,
 			);
 			path = "Smart Baby Tracker";
@@ -340,6 +343,7 @@
 		421C746718937535000E3C30 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4295AFB01B09671F00D0EC41 /* Smart Baby Tracker.entitlements */,
 				42C7540D18C2BBEE0050F38A /* Data files */,
 				421C746E18937535000E3C30 /* Smart BabyBook-Prefix.pch */,
 				4265DB531C39D883009BA1C6 /* Smart Baby Tracker-Bridging-Header.h */,
@@ -348,7 +352,6 @@
 				429700CD18AED9AA0013A91B /* ACIP Schedule.plist */,
 				42C3E7531B6E9E12003DB2BC /* vaccineRecalls.plist */,
 				423E593D1920890500E2E9AC /* babies.data */,
-				421C746818937535000E3C30 /* Smart BabyBook-Info.plist */,
 				42C75D871B3FB505004D7EB6 /* Info.plist */,
 				421C746918937535000E3C30 /* InfoPlist.strings */,
 				421C746C18937535000E3C30 /* main.m */,
@@ -393,7 +396,9 @@
 		42C7540D18C2BBEE0050F38A /* Data files */ = {
 			isa = PBXGroup;
 			children = (
+				42587CDA1F908728006FE4CC /* All_NDCs.txt */,
 				4291CD341AA58419009452AD /* VaccineNDCs.txt */,
+				4256E3F21F8FEB0A003A8958 /* ALL_NDCs.txt */,
 				4264369318C4459800414CA1 /* cdcbmiboys.txt */,
 				4264369418C4459800414CA1 /* cdcbmigirls.txt */,
 				4264369518C4459800414CA1 /* cdchcboys.txt */,
@@ -477,11 +482,12 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = SBT;
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "J. HOWARD SMART";
 				TargetAttributes = {
 					421C745C18937535000E3C30 = {
 						DevelopmentTeam = TY3543425A;
+						LastSwiftMigration = 0900;
 						SystemCapabilities = {
 							com.apple.GameCenter = {
 								enabled = 0;
@@ -493,6 +499,7 @@
 					};
 					42C75D831B3FB505004D7EB6 = {
 						CreatedOnToolsVersion = 6.3.2;
+						LastSwiftMigration = 0800;
 						TestTargetID = 421C745C18937535000E3C30;
 					};
 				};
@@ -523,6 +530,7 @@
 			files = (
 				426436AA18C4459800414CA1 /* cdchcgirls.txt in Resources */,
 				426AC51619024D8700EF694C /* whobmiboys.txt in Resources */,
+				4256E3F31F8FEB0B003A8958 /* ALL_NDCs.txt in Resources */,
 				426436B318C4459800414CA1 /* whobmiinfantboys.txt in Resources */,
 				42C3E7541B6E9E12003DB2BC /* vaccineRecalls.plist in Resources */,
 				426436B218C4459800414CA1 /* cdcweightinfantgirls.txt in Resources */,
@@ -652,19 +660,30 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Howard SMART (TKF9Q29368)";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -677,7 +696,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -692,26 +711,38 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: J Howard Smart (TY3543425A)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -730,12 +761,15 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Smart Baby Tracker/Smart BabyBook-Prefix.pch";
 				INFOPLIST_FILE = "Smart Baby Tracker/Smart BabyBook-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mySmartSoftware.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "Smart BabyBook";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Smart Baby Tracker/Smart Baby Tracker-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -754,11 +788,15 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Smart Baby Tracker/Smart BabyBook-Prefix.pch";
 				INFOPLIST_FILE = "Smart Baby Tracker/Smart BabyBook-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mySmartSoftware.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "Smart BabyBook";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Smart Baby Tracker/Smart Baby Tracker-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -787,6 +825,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mySmartSoftware.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Smart BabyBook.app/Smart BabyBook";
 			};
 			name = Debug;
@@ -811,6 +850,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mySmartSoftware.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Smart BabyBook.app/Smart BabyBook";
 			};
 			name = Release;

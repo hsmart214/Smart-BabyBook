@@ -10,6 +10,7 @@
 #define Smart_Baby_Tracker_Bridging_Header_h
 
 #include "Smart BabyBook-Prefix.pch"
-#include "SBTBaby.h"
+#include "SBTBaby.h" // which includes "SBTEncounter.h"
+#include "SBTVaccine.h"
 
 #endif /* Smart_Baby_Tracker_Bridging_Header_h */

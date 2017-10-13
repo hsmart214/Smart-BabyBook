@@ -12,6 +12,7 @@
 #import "SBTUnitsConvertor.h"
 #import "SBTBaby.h"
 #import "NSDateComponents+Today.h"
+
 @import MobileCoreServices;
 
 #define BIRTH_TIME_ROW 2
@@ -31,7 +32,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *headCircLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dueDateLabel;
 @property (weak, nonatomic) IBOutlet UIDatePicker *dueDatePicker;
-@property (nonatomic, strong) UIPopoverController *popCon;
+@property (nonatomic, strong) UIViewController *popCon;
 
 @property (strong, nonatomic) SBTEncounter *birthEncounter;
 @end
@@ -92,12 +93,15 @@
         }
         BOOL success = [newBaby replaceBirthEncounterWithEncounter:self.birthEncounter];
         if (!success){
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Change failed"
-                                                                message:@"Attempting to put birth date after existing encounters."
-                                                               delegate:self
-                                                      cancelButtonTitle:@"OK"
-                                                      otherButtonTitles: nil];
-            [alertView show];
+//            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Change failed"
+//                                                                message:@"Attempting to put birth date after existing encounters."
+//                                                               delegate:self
+//                                                      cancelButtonTitle:@"OK"
+//                                                      otherButtonTitles: nil];
+            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Change failed"
+                                                                           message:@"Attempting to put birth date after existing encounters."
+                                                                    preferredStyle:UIAlertControllerStyleAlert];
+            [self presentViewController:alert animated:YES completion:nil];
         }else{
             newBaby.gender = (SBTGender)self.genderControl.selectedSegmentIndex;
             newBaby.thumbnail = image ? image : self.baby.thumbnail;
@@ -109,35 +113,21 @@
     }
 }
 
-- (IBAction)pressedCancel:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (IBAction)takeBabyPic:(id)sender {
+- (void)takeBabyPic:(id) sender{
     UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
-        [imagePicker setSourceType:UIImagePickerControllerSourceTypeCamera];
-        imagePicker.mediaTypes = @[(NSString *)kUTTypeImage];
+        imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        NSString *imageType = (NSString*)kUTTypeImage;
+        imagePicker.mediaTypes = @[imageType];
     }else{
-        [imagePicker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+        imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     }
-    //TODO: imagePicker.cameraOverlayView;
-    
-    [imagePicker setDelegate:self];
-    if (self.popCon) {
-        [self.popCon dismissPopoverAnimated:YES];
-        self.popCon = nil;
-        return;
-    }
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){
-        UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController:imagePicker];
-        popover.delegate = self;
-        self.popCon = popover;
-        [popover presentPopoverFromBarButtonItem:self.cameraButton permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-    }else{
-        [self presentViewController:imagePicker animated:YES completion:nil];
-    }
+    imagePicker.delegate = self;
+    [self presentViewController:imagePicker animated:YES completion:self.dismissBlock];
+}
 
+- (IBAction)pressedCancel:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:self.dismissBlock];
 }
 
 #pragma mark - Lazy instantiation
@@ -220,36 +210,18 @@
     [self performSegueWithIdentifier:@"birthEncounterSegue" sender:[tableView cellForRowAtIndexPath:indexPath]];
 }
 
-#pragma mark - UIPopoverController Delegate
-
--(void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
-{
-    self.popCon = nil;
-}
-
 #pragma mark - UIImagePickerController Delegate
 
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     image = [self reducedSizeImage: info[UIImagePickerControllerOriginalImage]];
-        
-    if (self.popCon) {
-        [self.popCon dismissPopoverAnimated:YES];
-        self.popCon = nil;
-    }else{
-        [self dismissViewControllerAnimated:YES completion:self.dismissBlock];
-    }
+    [self dismissViewControllerAnimated:YES completion:nil];
     [self updateDisplay];
 }
 
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
-    if (self.popCon) {
-        [self.popCon dismissPopoverAnimated:YES];
-        self.popCon = nil;
-    }else{
-        [self dismissViewControllerAnimated:YES completion:self.dismissBlock];
-    }
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 -(UIImage *)reducedSizeImage:(UIImage *)largeImage
@@ -295,10 +267,6 @@
 
 #pragma mark - UIAlertViewDelegate
 
--(void)alertViewCancel:(UIAlertView *)alertView
-{
-    // do nothing so far
-}
 
 #pragma mark - SBTEncounterEditTVCDelegate
 

@@ -129,7 +129,7 @@
 
 #pragma mark AVCaptureMetadataOutputObjectsDelegate
 
-- (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputMetadataObjects:(NSArray *)metadataObjects fromConnection:(AVCaptureConnection *)connection
+- (void)captureOutput:(AVCaptureOutput *)output didOutputMetadataObjects:(NSArray *)metadataObjects fromConnection:(AVCaptureConnection *)connection
 {
     if ([self.captureSession isRunning]){
         __weak SBTScannerViewController *myWeakSelf = self;

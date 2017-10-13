@@ -48,6 +48,7 @@
 
 -(void)awakeFromNib
 {
+    [super awakeFromNib];
     [self.label setTextColor:[UIColor whiteColor]];
     [self.statusLabel setTextColor:[UIColor whiteColor]];
 }

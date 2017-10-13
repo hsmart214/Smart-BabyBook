@@ -201,7 +201,8 @@
         default:
             break;
     }
-    double retVal = [SBTUnitsConvertor convertMeasure:[self pickerValueforUnitChange:NO] toMetricForKey:key];
+    double pickerVal = [self pickerValueforUnitChange:NO];
+    double retVal = self.unitsControl.selectedSegmentIndex == IMPERIAL ? [SBTUnitsConvertor convertMeasure:pickerVal toMetricForKey:key] : pickerVal;
     [self.delegate measurementReturnDelegate:self returnedMeasurement:retVal forParameter:self.parameter];
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
@@ -210,7 +211,7 @@
     BOOL pounds = self.unitsControl.selectedSegmentIndex == IMPERIAL;
     if (changing) pounds = !pounds;
     
-    if (self.parameter == SBTWeight && pounds){
+    if ((self.parameter == SBTWeight) && pounds){
         // using pounds and possibly ounces
         // picker looks like ###.#lbs#oz
         //                   01234 5 67

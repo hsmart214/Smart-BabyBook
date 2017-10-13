@@ -107,6 +107,7 @@
         dest.delegate = self;
         dest.currentVaccines = [[NSSet alloc] initWithArray:self.encounter.vaccinesGiven];
         dest.goStraightToCamera = [segue.identifier isEqualToString:@"Scan Vaccine Bottle"];
+        return;
     }
     SBTMeasurementEntryVC *dest = segue.destinationViewController;
     dest.delegate = self;

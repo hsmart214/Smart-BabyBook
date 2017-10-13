@@ -31,8 +31,11 @@
         NSString *ndc = [SBTVaccine ndcFromBarcode:barcode.stringValue];
         NSString *message = [NSString stringWithFormat:@"No info for NDC %@", ndc];
         dispatch_async(dispatch_get_main_queue(), ^{
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Unrecognized Barcode." message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-            [alert show];
+//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Unrecognized Barcode." message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Unrecognized Barcode."
+                                                                           message:message
+                                                                    preferredStyle:UIAlertControllerStyleAlert];
+            [self presentViewController:alert animated:YES completion:nil];
         });
     }
     
