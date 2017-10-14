@@ -38,6 +38,12 @@
     [self updateDisplay];
 }
 
+-(void)babyEditor:(id)babyEditor didRenameBaby:(SBTBaby *)baby
+      fromOldName:(NSString *)oldName
+        toNewName:(NSString *)newName{
+    [self.delegate babyEditor:self didRenameBaby:baby fromOldName:oldName toNewName:newName];
+}
+
 -(void)SBTEncounterEditTVC:(SBTEncounterEditTVC *)editTVC updatedEncounter:(SBTEncounter *)encounter{
     //this will only add the encounter if it did not already exist
     [self.baby addEncounter:encounter];

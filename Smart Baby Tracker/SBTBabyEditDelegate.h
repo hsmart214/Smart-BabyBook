@@ -14,5 +14,6 @@
 @required
 
 -(void)babyEditor:(id)babyEditor didSaveBaby:(SBTBaby *)baby;
+-(void)babyEditor:(id)babyEditor didRenameBaby:(SBTBaby *)baby fromOldName:(NSString *)oldName toNewName:(NSString *)newName;
 
 @end

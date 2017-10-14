@@ -19,11 +19,25 @@
 
 @implementation SBTChildrenViewController
 
+#pragma mark - Baby Edit Delegate
+
 -(void)babyEditor:(id)babyEditor didSaveBaby:(SBTBaby *)baby
 {
     [[SBTDataStore sharedStore] storeBaby:baby];
     self.children = [[SBTDataStore sharedStore] storedBabies];
     [self.tableView reloadData];
+}
+
+-(void)babyEditor:(id)babyEditor didRenameBaby:(SBTBaby *)baby
+      fromOldName:(NSString *)oldName
+        toNewName:(NSString *)newName{
+    // here, even though the baby is the same shared reference, once it has been renamed, it is still stored in the dictionary
+    // of the DataStore under the old name. Just saving the baby will not remove this reference. Deleting the reference under the old key
+    // will not delete the Baby object, but it will reduce its reference count.
+    // This prevents us having two keys referring to the same Baby in the DataStore, which would make the same baby appear twice on the home
+    // screen, once under the old name, even thought the name woud show up correctly if you tap on the row.
+    [[SBTDataStore sharedStore] removeBabyByName:oldName];
+    [[SBTDataStore sharedStore] storeBaby:baby];
 }
 
 #pragma mark - Table view data source

@@ -39,6 +39,13 @@
     return found;
 }
 
+-(void)removeBabyByName:(NSString *)name{
+    [self.babyDict removeObjectsForKeys:@[name]];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [self saveChanges];
+    });
+}
+
 -(NSArray *)storedBabies
 {
     NSArray *babies = [[self.babyDict allValues] sortedArrayUsingSelector:@selector(name)];
