@@ -35,6 +35,8 @@
             UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Unrecognized Barcode."
                                                                            message:message
                                                                     preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *dismissAction = [UIAlertAction actionWithTitle:@"Dismiss" style:UIAlertActionStyleCancel handler:nil];
+            [alert addAction:dismissAction];
             [self presentViewController:alert animated:YES completion:nil];
         });
     }
