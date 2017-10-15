@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Main Info Cell" rowHeight="160" id="cQe-JF-7px">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Main Info Cell" rowHeight="160" id="cQe-JF-7px" customClass="SBTLogoCell">
                                 <rect key="frame" x="0.0" y="22" width="375" height="160"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cQe-JF-7px" id="5c8-Rj-O0N">
@@ -77,6 +77,9 @@ Individual circumstances may make modifications of these recommendations advisab
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="infoTextView" destination="10J-Cl-U53" id="4RQ-z8-rCc"/>
+                                </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Child Cell" rowHeight="88" id="9HC-CZ-OGK" customClass="SBTChildCell">
                                 <rect key="frame" x="0.0" y="182" width="375" height="88"/>
