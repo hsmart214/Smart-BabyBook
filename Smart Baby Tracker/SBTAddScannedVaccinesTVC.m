@@ -15,7 +15,7 @@
 
 @interface SBTAddScannedVaccinesTVC ()<SBTCaptureDelegate, SBTVaccinesGivenTVCDelegate>
 
-@property (strong, nonatomic) NSMutableArray *addedVaccines; // array of SBTVaccine
+@property (strong, nonatomic) NSMutableArray<SBTVaccine *> *addedVaccines; // array of SBTVaccine
 
 @end
 
@@ -26,7 +26,8 @@
 - (void) camera:(id)sender didCaptureBarcode:(AVMetadataMachineReadableCodeObject *)barcode{
     SBTVaccine *newVacc = [[SBTVaccine alloc] initWithBarcode:barcode.stringValue];
     if (newVacc) {
-        [self.addedVaccines addObject:newVacc];
+        //[self.addedVaccines addObject:newVacc];
+        [self addVaccine:newVacc];
     }else{
         NSString *ndc = [SBTVaccine ndcFromBarcode:barcode.stringValue];
         NSString *message = [NSString stringWithFormat:@"No info for NDC %@", ndc];
@@ -44,6 +45,16 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.tableView reloadData];
     });
+}
+
+// This de-duplicates the vaccines in a given session - I would not expect to have two vaccines of the same name given on the same day
+- (void)addVaccine:(SBTVaccine *)vaccine{
+    for (SBTVaccine *vacc in self.addedVaccines){
+        if ([vacc.name isEqualToString:vaccine.name]){
+            return;
+        }
+    }
+    [self.addedVaccines addObject:vaccine];
 }
 
 #pragma mark - SBTVaccinesGivenTVCDelegate

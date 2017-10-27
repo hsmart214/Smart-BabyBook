@@ -7,8 +7,8 @@
 //
 
 #import "BCRVaccineCodeLoader.h"
-#define VACCINE_CODE_FILENAME @"VaccineNDCs.txt"
-#define VACCINE_DICT_FILENAME @"come.mysmartsoftware.BabyBook.vaccineNDCDictionary.plist"
+#define VACCINE_CODE_FILENAME @"VaccineNDCs"
+#define VACCINE_DICT_FILENAME @"com.mysmartsoftware.BabyBook.vaccineNDCDictionary.plist"
 
 @implementation BCRVaccineCodeLoader
 
@@ -27,7 +27,7 @@
         }
         
         // Load the vaccine information from the raw data file and parse it into a usable dictionary, cache the dictionary
-        NSURL *vaccineRawURL = [mainBundle URLForResource:VACCINE_CODE_FILENAME withExtension:nil];
+        NSURL *vaccineRawURL = [mainBundle URLForResource:VACCINE_CODE_FILENAME withExtension:@".txt"];
         NSError *err;
         NSString *vaccineData = [NSString stringWithContentsOfURL:vaccineRawURL encoding:NSUTF8StringEncoding error:&err];
         if (err){

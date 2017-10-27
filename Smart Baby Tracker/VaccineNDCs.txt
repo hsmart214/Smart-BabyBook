@@ -252,7 +252,7 @@ Fluvirin	Novartis Vaccines and Diagnostics Limited	20120720		141	66521-0114-10
 Fluvirin	Novartis Vaccines and Diagnostics Ltd	20110701		140	76420-0482-01
 Flulaval Quadrivalent	ID Biomedical Corporation of Quebec	20130815	20140630	158	19515-0895-01
 ProQuad	Merck Sharp & Dohme Corp.	20050906	20150731	94	00006-4999-01
-ActHib	Sanofi Pasteur Inc.	20080620		120	49281-0545-15
+Pentacel (HiB)	Sanofi Pasteur Inc.	20080620		120	49281-0545-15
 Adenovirus Type 4 Vaccine, Live, Oral	Teva Women's Health, Inc.	20110531		143	51285-0174-02
 Menomune - A/C/Y/W-135 Combined	Sanofi Pasteur Inc.	19811123		32	49281-0487-58
 YF-Vax	Sanofi Pasteur Inc.	19530522		37	49281-0915-58
@@ -262,7 +262,7 @@ YF-Vax	Sanofi Pasteur Inc.	19530522		37	49281-0915-68
 Menomune - A/C/Y/W-135 COMBINED	Sanofi Pasteur Inc.	19811123		32	49281-0488-78
 Meningococcal (Groups C, Y, W-135) CRM197 Oligosac	Novartis Vaccines and Diagnostics s.r.l.	20100219		136	46028-0219-11
 Adenovirus Type 7 Vaccine, Live, Oral	Teva Women's Health, Inc.	20110531		143	51285-0175-02
-DTaP-IPV	Sanofi Pasteur Inc.	20080620		120	49281-0560-05
+Pentacel (DTaP-IPV)	Sanofi Pasteur Inc.	20080620		120	49281-0560-05
 Adacel	Sanofi Pasteur Inc.	20131001		115	49281-0400-58
 Adacel	Sanofi Pasteur Inc.	20131001		115	49281-0400-58
 Flublok	Protein Sciences Corporation	20131101		155	42874-0013-01
